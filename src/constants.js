@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const URLS = {
   BUSINESSES: "negocios",
   BUSINESS_DETAILS: "detalles-negocio",
@@ -8,4 +10,13 @@ export const URLS = {
   USERS: "usuarios",
   USER_DETAILS: "detalles-usuario",
   NOT_FOUND: "404",
+};
+
+export const PROP = {
+  children() {
+    return PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]);
+  },
 };

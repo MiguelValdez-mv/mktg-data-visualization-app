@@ -7,6 +7,4 @@ function Container(props) {
   return <View {...props} {...actions} />;
 }
 
-Container.propTypes = {};
-
 export default Container;
