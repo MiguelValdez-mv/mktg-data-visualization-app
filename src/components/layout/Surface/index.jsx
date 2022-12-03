@@ -7,7 +7,7 @@ import { PROP } from "@/constants";
 export function Surface({ className, children }) {
   return (
     <Col
-      className={twMerge("bg-white rounded-2xl drop-shadow-xl p-5", className)}
+      className={twMerge("bg-white rounded-xl drop-shadow-xl p-5", className)}
     >
       {children}
     </Col>

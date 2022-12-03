@@ -12,15 +12,12 @@ function View() {
       <Text caption bold>
         {COPY["page.login.welcome"]}
       </Text>
-      <Spacing bottom={10} />
 
       <Surface>
         <Input placeholder={COPY["page.login.email"]} />
         <Spacing bottom={4} />
 
-        <Button>
-          <Text bold>{COPY["page.login.cta"]}</Text>
-        </Button>
+        <Button>{COPY["page.login.cta"]}</Button>
       </Surface>
     </Col>
   );
