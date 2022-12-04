@@ -9,7 +9,7 @@ export const Input = forwardRef(({ placeholder }, ref) => (
     slotProps={{
       input: {
         className:
-          "border border-slate-400 rounded-xl text-slate-700 p-2 hover:border-sky-900 focus:outline-sky-900",
+          "border border-third rounded-xl text-secondary p-2 hover:border-primary focus:outline-primary",
       },
     }}
   />

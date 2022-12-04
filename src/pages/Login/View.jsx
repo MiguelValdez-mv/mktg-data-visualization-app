@@ -8,7 +8,7 @@ import { COPY } from "@/copy";
 
 function View() {
   return (
-    <Col className=" items-center">
+    <Col className="items-center">
       <Text caption bold>
         {COPY["page.login.welcome"]}
       </Text>

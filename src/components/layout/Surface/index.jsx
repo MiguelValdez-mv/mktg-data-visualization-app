@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import { twMerge } from "tailwind-merge";
 
 import { Col } from "@/components/layout/Col";
 import { PROP } from "@/constants";
+import { twMerge } from "@/utils/twMerge";
 
 export function Surface({ className, children }) {
   return (

@@ -1,13 +1,13 @@
 import { ButtonUnstyled } from "@mui/base";
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
-import { twMerge } from "tailwind-merge";
 
 import { PROP } from "@/constants";
+import { twMerge } from "@/utils/twMerge";
 
 const baseStyles = {
-  solid: "text-white bg-gradient-to-r from-sky-900 to-gray-900",
-  outline: "text-cyan-400 border border-cyan-400",
+  solid: "text-white bg-gradient-to-r from-primary to-secondary",
+  outline: "text-cyan border border-cyan",
 };
 
 export const Button = forwardRef(

@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import { twMerge } from "tailwind-merge";
 
 import { PROP } from "@/constants";
+import { twMerge } from "@/utils/twMerge";
 
 export function Text({
-  white,
   muted,
+  white,
   center,
   semibold,
   bold,
@@ -21,17 +21,17 @@ export function Text({
   return (
     <span
       className={twMerge(
-        "text-slate-700",
+        "text-secondary",
+        muted && "text-third",
         white && "text-white",
-        muted && "text-slate-400",
         center && "text-center",
         semibold && "font-semibold",
         bold && "font-bold",
-        tiny && "text-xs",
-        small && "text-sm",
-        subtitle && "text-2xl",
-        title && "text-3xl",
-        caption && "text-4xl",
+        tiny && "text-tiny",
+        small && "text-small",
+        subtitle && "text-subtitle",
+        title && "text-title",
+        caption && "text-caption",
         truncate && "truncate",
         className
       )}
@@ -42,8 +42,8 @@ export function Text({
 }
 
 Text.propTypes = {
-  white: PropTypes.bool,
   muted: PropTypes.bool,
+  white: PropTypes.bool,
   center: PropTypes.bool,
   semibold: PropTypes.bool,
   bold: PropTypes.bool,
