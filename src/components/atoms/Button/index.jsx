@@ -1,4 +1,4 @@
-import { ButtonUnstyled } from "@mui/base";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
 

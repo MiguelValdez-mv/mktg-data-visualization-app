@@ -1,4 +1,4 @@
-import { InputUnstyled } from "@mui/base";
+import InputUnstyled from "@mui/base/InputUnstyled";
 import PropTypes from "prop-types";
 import { forwardRef } from "react";
 

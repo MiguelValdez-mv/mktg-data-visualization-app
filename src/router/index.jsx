@@ -23,7 +23,7 @@ export function AppRouter() {
 
       <Route path="conexiones" element={<Connections />} />
 
-      <Route path="iniciar-sesión" element={<Login />} />
+      <Route path="iniciar-sesion" element={<Login />} />
 
       <Route path="paneles" element={<Panels />} />
       <Route path="paneles/:panelId" element={<PanelDetails />} />

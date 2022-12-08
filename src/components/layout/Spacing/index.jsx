@@ -1,36 +1,45 @@
 import PropTypes from "prop-types";
 
 import { Box } from "@/components/atoms/Box";
+import { PROP } from "@/constants";
 
 export function Spacing({
+  spacing,
   top,
   bottom,
+  vertical,
   right,
   left,
   horizontal,
-  vertical,
-  spacing,
+  children,
 }) {
   const style = {};
   const unit = 8;
 
+  if (spacing) style.padding = spacing * unit;
   if (top) style.paddingTop = top * unit;
   if (bottom) style.paddingBottom = bottom * unit;
+  if (vertical) {
+    style.paddingTop = vertical * unit;
+    style.paddingBottom = vertical * unit;
+  }
   if (right) style.paddingRight = right * unit;
   if (left) style.paddingLeft = left * unit;
-  if (horizontal) style.paddingHorizontal = horizontal * unit;
-  if (vertical) style.paddingVertical = vertical * unit;
-  if (spacing) style.padding = spacing * unit;
+  if (horizontal) {
+    style.paddingRight = horizontal * unit;
+    style.paddingLeft = horizontal * unit;
+  }
 
-  return <Box style={style} />;
+  return <Box style={style}>{children}</Box>;
 }
 
 Spacing.propTypes = {
+  spacing: PropTypes.number,
   top: PropTypes.number,
   bottom: PropTypes.number,
+  vertical: PropTypes.number,
   right: PropTypes.number,
   left: PropTypes.number,
   horizontal: PropTypes.number,
-  vertical: PropTypes.number,
-  spacing: PropTypes.number,
+  children: PROP.children(),
 };
