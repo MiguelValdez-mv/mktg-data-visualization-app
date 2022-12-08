@@ -1,8 +1,6 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { URLS } from "@/constants";
-
 import { LazyPage } from "./LazyPage";
 
 const Businesses = LazyPage(lazy(() => import("@/pages/Businesses")));
@@ -20,16 +18,21 @@ const NotFound = LazyPage(lazy(() => import("@/pages/NotFound")));
 export function AppRouter() {
   return (
     <Routes>
-      <Route path={URLS.BUSINESSES} element={<Businesses />} />
-      <Route path={URLS.BUSINESS_DETAILS} element={<BusinessDetails />} />
-      <Route path={URLS.CONNECTIONS} element={<Connections />} />
-      <Route path={URLS.LOGIN} element={<Login />} />
-      <Route path={URLS.PANELS} element={<Panels />} />
-      <Route path={URLS.PANEL_DETAILS} element={<PanelDetails />} />
-      <Route path={URLS.USERS} element={<Users />} />
-      <Route path={URLS.USER_DETAILS} element={<UserDetails />} />
-      <Route path={URLS.NOT_FOUND} element={<NotFound />} />
-      <Route path="*" element={<Navigate to={URLS.NOT_FOUND} />} />
+      <Route path="negocios" element={<Businesses />} />
+      <Route path="negocios/:businessId" element={<BusinessDetails />} />
+
+      <Route path="conexiones" element={<Connections />} />
+
+      <Route path="iniciar-sesión" element={<Login />} />
+
+      <Route path="paneles" element={<Panels />} />
+      <Route path="paneles/:panelId" element={<PanelDetails />} />
+
+      <Route path="usuarios" element={<Users />} />
+      <Route path="usuarios/:userId" element={<UserDetails />} />
+
+      <Route path="404" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="404" />} />
     </Routes>
   );
 }

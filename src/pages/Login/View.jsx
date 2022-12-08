@@ -8,17 +8,21 @@ import { COPY } from "@/copy";
 
 function View() {
   return (
-    <Col className="items-center">
+    <Col className="h-screen justify-around items-center">
       <Text caption bold>
         {COPY["page.login.welcome"]}
       </Text>
 
       <Surface>
         <Input placeholder={COPY["page.login.email"]} />
-        <Spacing bottom={4} />
+        <Spacing bottom={2} />
 
         <Button>{COPY["page.login.cta"]}</Button>
       </Surface>
+
+      <Text muted small>
+        {COPY["page.login.productCreatedBy"]}
+      </Text>
     </Col>
   );
 }
