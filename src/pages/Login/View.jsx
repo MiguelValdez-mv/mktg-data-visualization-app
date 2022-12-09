@@ -36,19 +36,17 @@ function View({ redirectToSocialNetwork }) {
       <Col className="items-center">
         <Row>
           <ButtonIcon
+            className="w-6 h-6"
             onClick={redirectToSocialNetwork(LINKS.FACEBOOK)}
             icon={IconSquareFacebook}
-            width={25}
-            height={25}
             muted
           />
           <Spacing right={1} />
 
           <ButtonIcon
+            className="w-6 h-6"
             onClick={redirectToSocialNetwork(LINKS.INSTAGRAM)}
             icon={IconSquareInstagram}
-            width={25}
-            height={25}
             muted
           />
         </Row>
