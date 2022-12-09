@@ -8,3 +8,8 @@ export const PROP = {
     ]);
   },
 };
+
+export const LINKS = {
+  FACEBOOK: "https://www.facebook.com/somosopentech/",
+  INSTAGRAM: "https://www.instagram.com/somosopentech",
+};
