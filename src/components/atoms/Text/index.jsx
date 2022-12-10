@@ -54,5 +54,5 @@ Text.propTypes = {
   caption: PropTypes.bool,
   truncate: PropTypes.bool,
   className: PropTypes.string,
-  children: PROP.children().isRequired,
+  children: PROP.CHILDREN.isRequired,
 };

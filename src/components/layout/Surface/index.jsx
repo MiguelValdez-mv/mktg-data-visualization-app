@@ -16,5 +16,5 @@ export function Surface({ className, children }) {
 
 Surface.propTypes = {
   className: PropTypes.string,
-  children: PROP.children().isRequired,
+  children: PROP.CHILDREN.isRequired,
 };

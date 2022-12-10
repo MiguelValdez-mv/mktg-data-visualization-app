@@ -34,7 +34,5 @@ Button.propTypes = {
   variant: PropTypes.oneOf(["solid", "outline"]),
   disabled: PropTypes.bool,
   type: PropTypes.string,
-  children: PROP.children().isRequired,
+  children: PROP.CHILDREN.isRequired,
 };
-
-Button.displayName = "Button";

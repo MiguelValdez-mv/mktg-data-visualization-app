@@ -13,5 +13,5 @@ export function Box({ className, style, children }) {
 Box.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object, // eslint-disable-line
-  children: PROP.children(),
+  children: PROP.CHILDREN,
 };

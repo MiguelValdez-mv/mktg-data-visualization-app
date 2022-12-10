@@ -10,5 +10,5 @@ export function Row({ className, children }) {
 
 Row.propTypes = {
   className: PropTypes.string,
-  children: PROP.children().isRequired,
+  children: PROP.CHILDREN.isRequired,
 };

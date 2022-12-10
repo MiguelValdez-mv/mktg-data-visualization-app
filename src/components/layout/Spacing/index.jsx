@@ -41,5 +41,5 @@ Spacing.propTypes = {
   right: PropTypes.number,
   left: PropTypes.number,
   horizontal: PropTypes.number,
-  children: PROP.children(),
+  children: PROP.CHILDREN,
 };

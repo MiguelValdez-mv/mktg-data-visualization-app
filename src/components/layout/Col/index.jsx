@@ -10,5 +10,5 @@ export function Col({ className, children }) {
 
 Col.propTypes = {
   className: PropTypes.string,
-  children: PROP.children().isRequired,
+  children: PROP.CHILDREN.isRequired,
 };

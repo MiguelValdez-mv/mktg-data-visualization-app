@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 
 export const PROP = {
-  children() {
-    return PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]);
-  },
+  CHILDREN: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export const LINKS = {
