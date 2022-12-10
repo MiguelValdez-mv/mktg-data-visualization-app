@@ -16,6 +16,7 @@ module.exports = {
         secondary: colors.slate[900],
         third: colors.slate[400],
         cyan: colors.cyan[400],
+        error: colors.red[500],
       },
       fontSize: {
         tiny: defaultTheme.fontSize.xs,

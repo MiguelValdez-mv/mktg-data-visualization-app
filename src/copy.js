@@ -1,7 +1,11 @@
 export const COPY = {
-  "page.login.welcome": "¡Bienvenido!",
-  "page.login.cta": "Iniciar sesión",
-  "page.login.productCreatedBy": "Un producto creado por",
+  // PAGES
+  "pages.login.welcome": "¡Bienvenido!",
+  "pages.login.cta": "Iniciar sesión",
+  "pages.login.productCreatedBy": "Un producto creado por",
 
-  "input.label.email": "Correo electrónico",
+  // FORMS
+  "forms.labels.email": "Correo electrónico",
+  "forms.errors.requiredField": "Campo requerido",
+  "forms.errors.invalidEmail": "Correo electrónico no válido",
 };

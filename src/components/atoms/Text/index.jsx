@@ -6,6 +6,7 @@ import { twMerge } from "@/utils/twMerge";
 export function Text({
   muted,
   white,
+  error,
   center,
   semibold,
   bold,
@@ -24,6 +25,7 @@ export function Text({
         "text-secondary",
         muted && "text-third",
         white && "text-white",
+        error && "text-error",
         center && "text-center",
         semibold && "font-semibold",
         bold && "font-bold",
@@ -44,6 +46,7 @@ export function Text({
 Text.propTypes = {
   muted: PropTypes.bool,
   white: PropTypes.bool,
+  error: PropTypes.bool,
   center: PropTypes.bool,
   semibold: PropTypes.bool,
   bold: PropTypes.bool,
