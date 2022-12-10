@@ -13,7 +13,7 @@ module.exports = {
       },
       colors: {
         primary: colors.sky[900],
-        secondary: colors.slate[700],
+        secondary: colors.slate[900],
         third: colors.slate[400],
         cyan: colors.cyan[400],
       },

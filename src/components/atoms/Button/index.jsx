@@ -1,6 +1,5 @@
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+/* eslint-disable react/button-has-type */
 import PropTypes from "prop-types";
-import { forwardRef } from "react";
 
 import { PROP } from "@/constants";
 import { twMerge } from "@/utils/twMerge";
@@ -10,29 +9,31 @@ const baseStyles = {
   outline: "text-cyan border border-cyan",
 };
 
-export const Button = forwardRef(
-  ({ variant = "solid", disabled, children }, ref) => (
-    <ButtonUnstyled
-      ref={ref}
-      slotProps={{
-        root: {
-          className: twMerge(
-            "rounded-xl font-bold p-2 active:drop-shadow-xl",
-            baseStyles[variant],
-            disabled && "opacity-25"
-          ),
-        },
-      }}
+export function Button({
+  variant = "solid",
+  disabled,
+  type = "button",
+  children,
+}) {
+  return (
+    <button
+      className={twMerge(
+        "rounded-xl font-bold p-2 active:drop-shadow-xl",
+        baseStyles[variant],
+        disabled && "opacity-25"
+      )}
+      type={type}
       disabled={disabled}
     >
       {children}
-    </ButtonUnstyled>
-  )
-);
+    </button>
+  );
+}
 
 Button.propTypes = {
-  disabled: PropTypes.bool,
   variant: PropTypes.oneOf(["solid", "outline"]),
+  disabled: PropTypes.bool,
+  type: PropTypes.string,
   children: PROP.children().isRequired,
 };
 

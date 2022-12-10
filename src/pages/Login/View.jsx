@@ -1,3 +1,4 @@
+import { Formik, Form, Field } from "formik";
 import PropTypes from "prop-types";
 
 import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
@@ -27,10 +28,18 @@ function View({ redirectToSocialNetwork }) {
           <OpenTechLogo />
         </Spacing>
 
-        <Input placeholder={COPY["page.login.email"]} />
-        <Spacing bottom={2} />
+        <Formik initialValues={{ email: "" }}>
+          <Form className="flex flex-col">
+            <Field
+              name="email"
+              placeholder={COPY["input.label.email"]}
+              component={Input}
+            />
+            <Spacing bottom={2} />
 
-        <Button>{COPY["page.login.cta"]}</Button>
+            <Button type="submit">{COPY["page.login.cta"]}</Button>
+          </Form>
+        </Formik>
       </Surface>
 
       <Col className="items-center">
