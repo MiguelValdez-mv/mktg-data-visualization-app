@@ -16,7 +16,7 @@ import { Surface } from "@/components/layout/Surface";
 import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ redirectToSocialNetwork }) {
+function View({ sendOtp, isSendingOtp, redirectTo }) {
   return (
     <Col className="h-screen justify-around items-center">
       <Text caption bold>
@@ -31,6 +31,7 @@ function View({ redirectToSocialNetwork }) {
         <Formik
           initialValues={{ email: "" }}
           validationSchema={FORM_VALIDATION_SCHEMES.AUTH_SEND_OTP}
+          onSubmit={sendOtp}
         >
           <Form className="flex flex-col">
             <Field
@@ -40,16 +41,27 @@ function View({ redirectToSocialNetwork }) {
             />
             <Spacing bottom={2} />
 
-            <Button type="submit">{COPY["pages.login.cta"]}</Button>
+            <Button type="submit" isLoading={isSendingOtp}>
+              {COPY["pages.login.cta"]}
+            </Button>
           </Form>
         </Formik>
+
+        {/* <Formik initialValues={{ otp: "" }} onSubmit={validateOtpInput}>
+          <Form className="flex flex-col">
+            <Field name="otp" placeholder="Otp" component={Input} />
+            <Spacing bottom={2} />
+
+            <Button type="submit">{COPY["pages.login.cta"]}</Button>
+          </Form>
+        </Formik> */}
       </Surface>
 
       <Col className="items-center">
         <Row>
           <ButtonIcon
             className="w-6 h-6"
-            onClick={redirectToSocialNetwork(LINKS.FACEBOOK)}
+            onClick={redirectTo(LINKS.FACEBOOK)}
             icon={IconSquareFacebook}
             muted
           />
@@ -57,7 +69,7 @@ function View({ redirectToSocialNetwork }) {
 
           <ButtonIcon
             className="w-6 h-6"
-            onClick={redirectToSocialNetwork(LINKS.INSTAGRAM)}
+            onClick={redirectTo(LINKS.INSTAGRAM)}
             icon={IconSquareInstagram}
             muted
           />
@@ -70,7 +82,12 @@ function View({ redirectToSocialNetwork }) {
           </Text>
           <Spacing right={1} />
 
-          <OpenTechDarkLogo width={100} />
+          <ButtonIcon
+            className="w-24"
+            onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
+            icon={OpenTechDarkLogo}
+            muted
+          />
         </Row>
       </Col>
     </Col>
@@ -78,7 +95,10 @@ function View({ redirectToSocialNetwork }) {
 }
 
 View.propTypes = {
-  redirectToSocialNetwork: PropTypes.func.isRequired,
+  sendOtp: PropTypes.func.isRequired,
+  isSendingOtp: PropTypes.bool.isRequired,
+  // validateOtpInput: PropTypes.func.isRequired,
+  redirectTo: PropTypes.func.isRequired,
 };
 
 export default View;

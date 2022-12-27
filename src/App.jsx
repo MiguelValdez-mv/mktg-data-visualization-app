@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 
 import { AppRouter } from "@/router";
-import { startSuperTokens } from "@/third-party/superTokens";
+import { startSuperTokens } from "@/thirdParty/superTokens";
 
 import "./global.css";
 
