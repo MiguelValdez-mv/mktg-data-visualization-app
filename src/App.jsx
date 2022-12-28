@@ -1,7 +1,9 @@
+import { Provider as AlertProvider } from "react-alert";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 
+import { AlertTemplate } from "@/components/molecules/AlertTemplate";
 import { AppRouter } from "@/router";
 import { startSuperTokens } from "@/thirdParty/superTokens";
 
@@ -15,9 +17,11 @@ export function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AppRouter />
+        <AlertProvider template={AlertTemplate} timeout={5000}>
+          <AppRouter />
 
-        <ReactQueryDevtools />
+          <ReactQueryDevtools />
+        </AlertProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

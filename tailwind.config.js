@@ -16,6 +16,8 @@ module.exports = {
         secondary: colors.slate[900],
         third: colors.slate[400],
         cyan: colors.cyan[400],
+        info: colors.sky[500],
+        success: colors.lime[500],
         error: colors.red[500],
       },
       fontSize: {
