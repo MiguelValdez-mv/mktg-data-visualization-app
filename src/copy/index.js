@@ -6,6 +6,7 @@ export const COPY = {
 
   // FORMS
   "forms.labels.email": "Correo electrónico",
+  "forms.labels.otp": "Código de verificación",
   "forms.errors.requiredField": "Campo requerido",
   "forms.errors.invalidEmail": "Correo electrónico no válido",
 };

@@ -9,31 +9,39 @@ import { API_URLS } from "@/constants";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
-  const { mutate: sendOtp, isLoading: isSendingOtp } = useMutation(
-    async ({ email }) => {
-      const { data: userIsRegistered } = await axios.get(
-        API_URLS.CHECK_USER_EXISTENCE_BY_EMAIL,
-        {
-          params: { email },
-        }
-      );
-
-      if (!userIsRegistered) {
-        throw new Error("This user is not registered");
+  const {
+    mutate: createOtp,
+    isLoading: isCreatingOtp,
+    isSuccess: successInOtpCreation,
+  } = useMutation(async ({ email }) => {
+    const { data: userIsRegistered } = await axios.get(
+      API_URLS.CHECK_USER_EXISTENCE_BY_EMAIL,
+      {
+        params: { email },
       }
+    );
 
-      await createCode({ email });
+    if (!userIsRegistered) {
+      throw new Error("This user is not registered");
     }
-  );
-  const { mutate: validateOtpInput } = useMutation(async ({ otp }) => {
-    await consumeCode({
-      userInputCode: otp,
-    });
-  });
 
+    await createCode({ email });
+  });
+  const { mutate: validateOtp, isLoading: isValidatingOtp } = useMutation(
+    ({ otp }) => consumeCode({ userInputCode: otp })
+  );
+
+  const handleOtpCreationFormSubmit = (values) => createOtp(values);
+  const handleOtpValidationFormSubmit = (values) => validateOtp(values);
   const redirectTo = (url) => () => openUrl(url, true);
 
-  return { sendOtp, isSendingOtp, validateOtpInput, redirectTo };
+  return {
+    isLoading: isCreatingOtp || isValidatingOtp,
+    successInOtpCreation,
+    handleOtpCreationFormSubmit,
+    handleOtpValidationFormSubmit,
+    redirectTo,
+  };
 };
 
 export default useActions;

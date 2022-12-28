@@ -13,7 +13,7 @@ setLocale({
 });
 
 export const FORM_VALIDATION_SCHEMES = {
-  AUTH_SEND_OTP: object().shape({
+  OTP_CREATION: object().shape({
     email: string().email().required(),
   }),
 };

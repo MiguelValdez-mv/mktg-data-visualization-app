@@ -16,7 +16,13 @@ import { Surface } from "@/components/layout/Surface";
 import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ sendOtp, isSendingOtp, redirectTo }) {
+function View({
+  isLoading,
+  successInOtpCreation,
+  handleOtpCreationFormSubmit,
+  handleOtpValidationFormSubmit,
+  redirectTo,
+}) {
   return (
     <Col className="h-screen justify-around items-center">
       <Text caption bold>
@@ -28,33 +34,46 @@ function View({ sendOtp, isSendingOtp, redirectTo }) {
           <OpenTechLogo />
         </Spacing>
 
-        <Formik
-          initialValues={{ email: "" }}
-          validationSchema={FORM_VALIDATION_SCHEMES.AUTH_SEND_OTP}
-          onSubmit={sendOtp}
-        >
-          <Form className="flex flex-col">
-            <Field
-              name="email"
-              placeholder={COPY["forms.labels.email"]}
-              component={Input}
-            />
-            <Spacing bottom={2} />
+        {!successInOtpCreation ? (
+          <Formik
+            key="otp-creation"
+            initialValues={{ email: "" }}
+            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
+            onSubmit={handleOtpCreationFormSubmit}
+          >
+            <Form className="flex flex-col">
+              <Field
+                name="email"
+                placeholder={COPY["forms.labels.email"]}
+                component={Input}
+              />
+              <Spacing bottom={2} />
 
-            <Button type="submit" isLoading={isSendingOtp}>
-              {COPY["pages.login.cta"]}
-            </Button>
-          </Form>
-        </Formik>
+              <Button type="submit" isLoading={isLoading}>
+                {COPY["pages.login.cta"]}
+              </Button>
+            </Form>
+          </Formik>
+        ) : (
+          <Formik
+            key="otp-validation"
+            initialValues={{ otp: "" }}
+            onSubmit={handleOtpValidationFormSubmit}
+          >
+            <Form className="flex flex-col">
+              <Field
+                name="otp"
+                placeholder={COPY["forms.labels.otp"]}
+                component={Input}
+              />
+              <Spacing bottom={2} />
 
-        {/* <Formik initialValues={{ otp: "" }} onSubmit={validateOtpInput}>
-          <Form className="flex flex-col">
-            <Field name="otp" placeholder="Otp" component={Input} />
-            <Spacing bottom={2} />
-
-            <Button type="submit">{COPY["pages.login.cta"]}</Button>
-          </Form>
-        </Formik> */}
+              <Button type="submit" isLoading={isLoading}>
+                {COPY["pages.login.cta"]}
+              </Button>
+            </Form>
+          </Formik>
+        )}
       </Surface>
 
       <Col className="items-center">
@@ -95,9 +114,10 @@ function View({ sendOtp, isSendingOtp, redirectTo }) {
 }
 
 View.propTypes = {
-  sendOtp: PropTypes.func.isRequired,
-  isSendingOtp: PropTypes.bool.isRequired,
-  // validateOtpInput: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  successInOtpCreation: PropTypes.bool.isRequired,
+  handleOtpCreationFormSubmit: PropTypes.func.isRequired,
+  handleOtpValidationFormSubmit: PropTypes.func.isRequired,
   redirectTo: PropTypes.func.isRequired,
 };
 
