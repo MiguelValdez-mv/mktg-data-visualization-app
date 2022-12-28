@@ -1,11 +1,5 @@
-import axios from "axios";
-import { useMutation } from "react-query";
-import {
-  createCode,
-  consumeCode,
-} from "supertokens-web-js/recipe/passwordless";
-
-import { API_URLS } from "@/constants";
+import { useCreateOtp } from "@/hooks/auth/useCreateOtp";
+import { useValidateOtp } from "@/hooks/auth/useValidateOtp";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
@@ -13,23 +7,9 @@ const useActions = () => {
     mutate: createOtp,
     isLoading: isCreatingOtp,
     isSuccess: successInOtpCreation,
-  } = useMutation(async ({ email }) => {
-    const { data: userIsRegistered } = await axios.get(
-      API_URLS.CHECK_USER_EXISTENCE_BY_EMAIL,
-      {
-        params: { email },
-      }
-    );
-
-    if (!userIsRegistered) {
-      throw new Error("This user is not registered");
-    }
-
-    await createCode({ email });
-  });
-  const { mutate: validateOtp, isLoading: isValidatingOtp } = useMutation(
-    ({ otp }) => consumeCode({ userInputCode: otp })
-  );
+    reset: changeEmail,
+  } = useCreateOtp();
+  const { mutate: validateOtp, isLoading: isValidatingOtp } = useValidateOtp();
 
   const handleOtpCreationFormSubmit = (values) => createOtp(values);
   const handleOtpValidationFormSubmit = (values) => validateOtp(values);
@@ -38,6 +18,7 @@ const useActions = () => {
   return {
     isLoading: isCreatingOtp || isValidatingOtp,
     successInOtpCreation,
+    changeEmail,
     handleOtpCreationFormSubmit,
     handleOtpValidationFormSubmit,
     redirectTo,

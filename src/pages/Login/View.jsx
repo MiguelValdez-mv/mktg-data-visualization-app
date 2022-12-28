@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import PropTypes from "prop-types";
 
+import { IconArrowLeft } from "@/assets/svgs/IconArrowLeft";
 import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
 import { IconSquareInstagram } from "@/assets/svgs/IconSquareInstagram";
 import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
@@ -19,6 +20,7 @@ import { COPY } from "@/copy";
 function View({
   isLoading,
   successInOtpCreation,
+  changeEmail,
   handleOtpCreationFormSubmit,
   handleOtpValidationFormSubmit,
   redirectTo,
@@ -71,6 +73,20 @@ function View({
               <Button type="submit" isLoading={isLoading}>
                 {COPY["pages.login.cta"]}
               </Button>
+              <Spacing bottom={2} />
+
+              <Button
+                variant="outline"
+                onClick={changeEmail}
+                renderLeft={
+                  <>
+                    <IconArrowLeft />
+                    <Spacing right={1} />
+                  </>
+                }
+              >
+                {COPY["pages.login.changeEmail"]}
+              </Button>
             </Form>
           </Formik>
         )}
@@ -116,6 +132,7 @@ function View({
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   successInOtpCreation: PropTypes.bool.isRequired,
+  changeEmail: PropTypes.func.isRequired,
   handleOtpCreationFormSubmit: PropTypes.func.isRequired,
   handleOtpValidationFormSubmit: PropTypes.func.isRequired,
   redirectTo: PropTypes.func.isRequired,

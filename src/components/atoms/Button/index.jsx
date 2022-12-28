@@ -15,8 +15,11 @@ export function Button({
   variant = "solid",
   disabled,
   type = "button",
+  onClick,
   isLoading,
+  renderLeft = null,
   children,
+  renderRight = null,
 }) {
   return (
     <button
@@ -27,15 +30,20 @@ export function Button({
       )}
       type={type}
       disabled={disabled}
+      onClick={onClick}
     >
-      {isLoading && (
+      {isLoading ? (
         <>
           <Spinner />
           <Spacing right={1} />
         </>
+      ) : (
+        renderLeft
       )}
 
       {children}
+
+      {renderRight}
     </button>
   );
 }
@@ -44,6 +52,9 @@ Button.propTypes = {
   variant: PropTypes.oneOf(["solid", "outline"]),
   disabled: PropTypes.bool,
   type: PropTypes.string,
+  onClick: PropTypes.func,
   isLoading: PropTypes.bool,
+  renderLeft: PROP.CHILDREN,
   children: PROP.CHILDREN.isRequired,
+  renderRight: PROP.CHILDREN,
 };

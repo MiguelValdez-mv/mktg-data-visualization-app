@@ -2,6 +2,7 @@ export const COPY = {
   // PAGES
   "pages.login.welcome": "¡Bienvenido!",
   "pages.login.cta": "Iniciar sesión",
+  "pages.login.changeEmail": "Cambiar correo electrónico",
   "pages.login.productCreatedBy": "Un producto creado por",
 
   // FORMS
