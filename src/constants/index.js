@@ -5,10 +5,10 @@ import { COPY } from "@/copy";
 
 setLocale({
   mixed: {
-    required: COPY["forms.errors.requiredField"],
+    required: COPY["errors.requiredField"],
   },
   string: {
-    email: COPY["forms.errors.invalidEmail"],
+    email: COPY["errors.invalidEmail"],
   },
 });
 

@@ -19,7 +19,7 @@ import { COPY } from "@/copy";
 
 function View({
   isLoading,
-  successInOtpCreation,
+  otpCreationIsSuccessful,
   changeEmail,
   handleOtpCreationFormSubmit,
   handleOtpValidationFormSubmit,
@@ -36,7 +36,7 @@ function View({
           <OpenTechLogo />
         </Spacing>
 
-        {!successInOtpCreation ? (
+        {!otpCreationIsSuccessful ? (
           <Formik
             key="otp-creation"
             initialValues={{ email: "" }}
@@ -52,7 +52,7 @@ function View({
               <Spacing bottom={2} />
 
               <Button type="submit" isLoading={isLoading}>
-                {COPY["pages.login.cta"]}
+                {COPY["pages.login.continue"]}
               </Button>
             </Form>
           </Formik>
@@ -131,7 +131,7 @@ function View({
 
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  successInOtpCreation: PropTypes.bool.isRequired,
+  otpCreationIsSuccessful: PropTypes.bool.isRequired,
   changeEmail: PropTypes.func.isRequired,
   handleOtpCreationFormSubmit: PropTypes.func.isRequired,
   handleOtpValidationFormSubmit: PropTypes.func.isRequired,

@@ -3,6 +3,7 @@ import { useMutation } from "react-query";
 import { createCode } from "supertokens-web-js/recipe/passwordless";
 
 import { API_URLS } from "@/constants";
+import { COPY } from "@/copy";
 
 const mutationFn = async ({ email }) => {
   const { data: userIsRegistered } = await axios.get(
@@ -11,10 +12,12 @@ const mutationFn = async ({ email }) => {
   );
 
   if (!userIsRegistered) {
-    throw new Error("This user is not registered");
+    throw new Error(COPY["errors.unregisteredUser"]);
   }
 
-  await createCode({ email });
+  const res = await createCode({ email });
+
+  return Promise.resolve(res);
 };
 
 export const useCreateOtp = (opts = {}) => useMutation(mutationFn, opts);

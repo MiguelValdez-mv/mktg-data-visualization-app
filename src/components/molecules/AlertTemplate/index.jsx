@@ -30,7 +30,9 @@ export function AlertTemplate({ options, message, close }) {
         {renderIcon()}
         <Spacing right={1} />
 
-        <Text small>{message}</Text>
+        <Text bold small>
+          {message}
+        </Text>
       </Row>
       <Spacing right={4} />
 
