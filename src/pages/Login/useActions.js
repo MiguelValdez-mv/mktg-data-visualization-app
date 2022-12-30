@@ -1,20 +1,20 @@
 import { COPY } from "@/copy";
-import { useCreateOtp } from "@/hooks/auth/useCreateOtp";
-import { useValidateOtp } from "@/hooks/auth/useValidateOtp";
 import { useAlert } from "@/hooks/useAlert";
+// import { useAuth } from "@/hooks/useAuth";
+import { useCreateOtp } from "@/hooks/useCreateOtp";
+import { useValidateOtp } from "@/hooks/useValidateOtp";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
   const alert = useAlert();
+  // const { login } = useAuth();
   const otpCreationMutation = useCreateOtp();
   const otpValidationMutation = useValidateOtp();
 
   const handleOtpCreationFormSubmit = (values) => {
-    const { email } = values;
-
     otpCreationMutation.mutate(values, {
       onSuccess: () => {
-        alert.success(COPY["pages.login.otpCreation.success"](email));
+        alert.success(COPY["pages.login.otpCreation.success"](values.email));
       },
       onError: ({ message }) => {
         alert.error(message);
@@ -24,7 +24,8 @@ const useActions = () => {
   const handleOtpValidationFormSubmit = (values) => {
     otpValidationMutation.mutate(values, {
       onSuccess: () => {
-        // alert.success(COPY["pages.login.otpValidation.success"]());
+        // login(user);
+        // alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
       },
       onError: ({ message }) => {
         alert.error(message);
