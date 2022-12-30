@@ -26,104 +26,106 @@ function View({
   redirectTo,
 }) {
   return (
-    <Col className="h-screen justify-around items-center">
-      <Text caption bold>
-        {COPY["pages.login.welcome"]}
-      </Text>
+    <Col className="h-screen p-4">
+      <Col className="flex-1 justify-around items-center bg-header bg-no-repeat bg-contain">
+        <Text caption bold white>
+          {COPY["pages.login.welcome"]}
+        </Text>
 
-      <Surface className="py-20">
-        <Spacing horizontal={6} bottom={4}>
-          <OpenTechLogo />
-        </Spacing>
+        <Surface className="py-20">
+          <Spacing horizontal={6} bottom={4}>
+            <OpenTechLogo />
+          </Spacing>
 
-        {!otpCreationIsSuccessful ? (
-          <Formik
-            key="otp-creation"
-            initialValues={{ email: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
-            onSubmit={handleOtpCreationFormSubmit}
-          >
-            <Form className="flex flex-col">
-              <Field
-                name="email"
-                placeholder={COPY["forms.labels.email"]}
-                component={Input}
-              />
-              <Spacing bottom={2} />
+          {!otpCreationIsSuccessful ? (
+            <Formik
+              key="otp-creation"
+              initialValues={{ email: "" }}
+              validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
+              onSubmit={handleOtpCreationFormSubmit}
+            >
+              <Form className="flex flex-col">
+                <Field
+                  name="email"
+                  placeholder={COPY["forms.labels.email"]}
+                  component={Input}
+                />
+                <Spacing bottom={2} />
 
-              <Button type="submit" isLoading={isLoading}>
-                {COPY["pages.login.continue"]}
-              </Button>
-            </Form>
-          </Formik>
-        ) : (
-          <Formik
-            key="otp-validation"
-            initialValues={{ otp: "" }}
-            onSubmit={handleOtpValidationFormSubmit}
-          >
-            <Form className="flex flex-col">
-              <Field
-                name="otp"
-                placeholder={COPY["forms.labels.otp"]}
-                component={Input}
-              />
-              <Spacing bottom={2} />
+                <Button type="submit" isLoading={isLoading}>
+                  {COPY["pages.login.continue"]}
+                </Button>
+              </Form>
+            </Formik>
+          ) : (
+            <Formik
+              key="otp-validation"
+              initialValues={{ otp: "" }}
+              onSubmit={handleOtpValidationFormSubmit}
+            >
+              <Form className="flex flex-col">
+                <Field
+                  name="otp"
+                  placeholder={COPY["forms.labels.otp"]}
+                  component={Input}
+                />
+                <Spacing bottom={2} />
 
-              <Button type="submit" isLoading={isLoading}>
-                {COPY["pages.login.cta"]}
-              </Button>
-              <Spacing bottom={2} />
+                <Button type="submit" isLoading={isLoading}>
+                  {COPY["pages.login.cta"]}
+                </Button>
+                <Spacing bottom={2} />
 
-              <Button
-                variant="outline"
-                onClick={changeEmail}
-                renderLeft={
-                  <>
-                    <IconArrowLeft />
-                    <Spacing right={1} />
-                  </>
-                }
-              >
-                {COPY["pages.login.changeEmail"]}
-              </Button>
-            </Form>
-          </Formik>
-        )}
-      </Surface>
+                <Button
+                  variant="outline"
+                  onClick={changeEmail}
+                  renderLeft={
+                    <>
+                      <IconArrowLeft />
+                      <Spacing right={1} />
+                    </>
+                  }
+                >
+                  {COPY["pages.login.changeEmail"]}
+                </Button>
+              </Form>
+            </Formik>
+          )}
+        </Surface>
 
-      <Col className="items-center">
-        <Row>
-          <ButtonIcon
-            className="w-6 h-6"
-            onClick={redirectTo(LINKS.FACEBOOK)}
-            icon={IconSquareFacebook}
-            muted
-          />
-          <Spacing right={1} />
+        <Col className="items-center">
+          <Row>
+            <ButtonIcon
+              className="w-6 h-6"
+              onClick={redirectTo(LINKS.FACEBOOK)}
+              icon={IconSquareFacebook}
+              muted
+            />
+            <Spacing right={1} />
 
-          <ButtonIcon
-            className="w-6 h-6"
-            onClick={redirectTo(LINKS.INSTAGRAM)}
-            icon={IconSquareInstagram}
-            muted
-          />
-        </Row>
-        <Spacing bottom={2} />
+            <ButtonIcon
+              className="w-6 h-6"
+              onClick={redirectTo(LINKS.INSTAGRAM)}
+              icon={IconSquareInstagram}
+              muted
+            />
+          </Row>
+          <Spacing bottom={2} />
 
-        <Row>
-          <Text className="whitespace-nowrap" muted small>
-            {COPY["pages.login.productCreatedBy"]}
-          </Text>
-          <Spacing right={1} />
+          <Row>
+            <Text className="whitespace-nowrap" muted small>
+              {COPY["pages.login.productCreatedBy"]}
+            </Text>
+            <Spacing right={1} />
 
-          <ButtonIcon
-            className="w-24"
-            onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
-            icon={OpenTechDarkLogo}
-            muted
-          />
-        </Row>
+            <ButtonIcon
+              className="w-24"
+              onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
+              icon={OpenTechDarkLogo}
+              muted
+            />
+          </Row>
+        </Col>
       </Col>
     </Col>
   );

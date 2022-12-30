@@ -27,6 +27,9 @@ module.exports = {
         title: defaultTheme.fontSize["3xl"],
         caption: defaultTheme.fontSize["4xl"],
       },
+      backgroundImage: {
+        header: "url('/src/assets/images/header.png')",
+      },
     },
   },
   plugins: [],
