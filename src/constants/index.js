@@ -39,3 +39,7 @@ export const API_URLS = {
   CHECK_USER_EXISTENCE_BY_EMAIL: `${LINKS.API}/users/user-by-email-exists`,
   GET_USER_DETAILS_FROM_SUPERTOKENS_ID: `${LINKS.API}/users/get-user-details-from-supertokens-id`,
 };
+
+export const QUERY_KEYS = {
+  DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
+};

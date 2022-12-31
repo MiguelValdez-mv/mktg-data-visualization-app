@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
-
 import { COPY } from "@/copy";
 import { useAlert } from "@/hooks/useAlert";
 import { useAuth } from "@/hooks/useAuth";
 import { useCreateOtp } from "@/hooks/useCreateOtp";
+import { useNavigate } from "@/hooks/useNavigate";
 import { useValidateOtp } from "@/hooks/useValidateOtp";
+import { isUserAdmin } from "@/utils/isUserAdmin";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
@@ -29,7 +29,7 @@ const useActions = () => {
       onSuccess: (user) => {
         login(user);
         alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
-        navigate("/usuarios");
+        navigate(isUserAdmin(user) ? "/usuarios" : "/negocios");
       },
       onError: ({ message }) => {
         alert.error(message);
