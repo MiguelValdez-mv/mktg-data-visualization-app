@@ -16,6 +16,9 @@ export const FORM_VALIDATION_SCHEMES = {
   OTP_CREATION: object().shape({
     email: string().email().required(),
   }),
+  OTP_VALIDATION: object().shape({
+    otp: string().required(),
+  }),
 };
 
 export const PROP = {
@@ -34,4 +37,5 @@ export const LINKS = {
 
 export const API_URLS = {
   CHECK_USER_EXISTENCE_BY_EMAIL: `${LINKS.API}/users/user-by-email-exists`,
+  GET_USER_DETAILS_FROM_SUPERTOKENS_ID: `${LINKS.API}/users/get-user-details-from-supertokens-id`,
 };

@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useMutation } from "react-query";
 import { consumeCode } from "supertokens-web-js/recipe/passwordless";
 
+import { API_URLS } from "@/constants";
 import { COPY } from "@/copy";
 
 const mutationFn = async ({ otp }) => {
@@ -8,7 +10,11 @@ const mutationFn = async ({ otp }) => {
     await consumeCode({ userInputCode: otp });
 
   if (status === "OK") {
-    return Promise.resolve(true);
+    const { data: user } = await axios.get(
+      API_URLS.GET_USER_DETAILS_FROM_SUPERTOKENS_ID
+    );
+
+    return Promise.resolve(user);
   }
 
   if (status === "INCORRECT_USER_INPUT_CODE_ERROR") {

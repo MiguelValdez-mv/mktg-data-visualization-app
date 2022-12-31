@@ -61,6 +61,7 @@ function View({
             <Formik
               key="otp-validation"
               initialValues={{ otp: "" }}
+              validationSchema={FORM_VALIDATION_SCHEMES.OTP_VALIDATION}
               onSubmit={handleOtpValidationFormSubmit}
             >
               <Form className="flex flex-col">
