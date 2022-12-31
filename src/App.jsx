@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 
+import { Loader } from "@/components/layout/Loader";
 import { AlertTemplate } from "@/components/molecules/AlertTemplate";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
@@ -31,7 +32,7 @@ function Wrapper() {
     },
   });
 
-  if (isLoading) return null;
+  if (isLoading) return <Loader />;
 
   return <AppRouter />;
 }
