@@ -8,10 +8,8 @@ import { AlertTemplate } from "@/components/molecules/AlertTemplate";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
-import { useNavigate } from "@/hooks/useNavigate";
 import { AppRouter } from "@/router";
 import { startSuperTokens } from "@/thirdParty/superTokens";
-import { isUserAdmin } from "@/utils/isUserAdmin";
 
 import "./global.css";
 
@@ -20,19 +18,16 @@ startSuperTokens();
 const queryClient = new QueryClient();
 
 function Wrapper() {
-  const navigate = useNavigate();
   const { login } = useAuth();
   const { isLoading } = useDoesSessionExist({
     staleTime: Infinity,
     cacheTime: Infinity,
-    onSuccess: ({ sessionExist, user }) => {
-      if (!sessionExist) return;
-      login(user);
-      navigate(isUserAdmin(user) ? "/usuarios" : "/negocios");
-    },
+    onSuccess: ({ sessionExist, user }) => sessionExist && login(user),
   });
 
-  if (isLoading) return <Loader />;
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return <AppRouter />;
 }

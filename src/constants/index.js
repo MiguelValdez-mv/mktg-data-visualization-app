@@ -43,3 +43,9 @@ export const API_URLS = {
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
 };
+
+export const USER_ROLES = {
+  ADMIN: "ADMIN",
+  OWNER: "OWNER",
+  EMPLOYEE: "EMPLOYEE",
+};

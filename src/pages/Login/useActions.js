@@ -27,9 +27,9 @@ const useActions = () => {
   const handleOtpValidationFormSubmit = (values) => {
     otpValidationMutation.mutate(values, {
       onSuccess: (user) => {
-        login(user);
         alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
-        navigate(isUserAdmin(user) ? "/usuarios" : "/negocios");
+        login(user);
+        navigate(isUserAdmin(user) ? "usuarios" : "negocios");
       },
       onError: ({ message }) => {
         alert.error(message);
