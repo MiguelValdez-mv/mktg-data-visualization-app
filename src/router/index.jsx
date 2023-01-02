@@ -6,6 +6,7 @@ import { USER_ROLES } from "@/constants";
 import { LazyPage } from "./LazyPage";
 import { RequireAuth } from "./RequireAuth";
 
+const Default = LazyPage(lazy(() => import("@/pages/Default")));
 const Login = LazyPage(lazy(() => import("@/pages/Login")));
 const Users = LazyPage(lazy(() => import("@/pages/Users")));
 const UserDetails = LazyPage(lazy(() => import("@/pages/Users/Details")));
@@ -21,6 +22,8 @@ const NotFound = LazyPage(lazy(() => import("@/pages/NotFound")));
 export function AppRouter() {
   return (
     <Routes>
+      <Route path="/" element={<Default />} />
+
       <Route path="iniciar-sesion" element={<Login />} />
 
       <Route

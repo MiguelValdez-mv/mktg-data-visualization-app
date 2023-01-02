@@ -4,7 +4,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCreateOtp } from "@/hooks/useCreateOtp";
 import { useNavigate } from "@/hooks/useNavigate";
 import { useValidateOtp } from "@/hooks/useValidateOtp";
-import { isUserAdmin } from "@/utils/isUserAdmin";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
@@ -29,7 +28,7 @@ const useActions = () => {
       onSuccess: (user) => {
         alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
         login(user);
-        navigate(isUserAdmin(user) ? "usuarios" : "negocios");
+        navigate("/");
       },
       onError: ({ message }) => {
         alert.error(message);
