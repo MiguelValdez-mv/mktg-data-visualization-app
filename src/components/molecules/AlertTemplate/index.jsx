@@ -25,7 +25,7 @@ export function AlertTemplate({ options, message, close }) {
   };
 
   return (
-    <Surface className="flex-row m-2 p-4 pointer-events-auto">
+    <Surface className="flex-row m-2 pointer-events-auto">
       <Row className="items-center">
         {renderIcon()}
         <Spacing right={1} />

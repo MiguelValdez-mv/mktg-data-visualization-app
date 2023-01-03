@@ -11,6 +11,7 @@ import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Input } from "@/components/atoms/Input";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
+import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
@@ -26,7 +27,7 @@ function View({
   redirectTo,
 }) {
   return (
-    <Col className="h-screen justify-around items-center">
+    <Page className="h-screen justify-around items-center">
       <Text caption bold>
         {COPY["pages.login.welcome"]}
       </Text>
@@ -126,7 +127,7 @@ function View({
           />
         </Row>
       </Col>
-    </Col>
+    </Page>
   );
 }
 

@@ -1,4 +1,9 @@
 export const COPY = {
+  "app.sidebar.users": "Usuarios",
+  "app.sidebar.connections": "Conexiones",
+  "app.sidebar.businesses": "Negocios",
+  "app.sidebar.panels": "Paneles",
+
   // PAGES
   "pages.login.welcome": "¡Bienvenido!",
   "pages.login.continue": "Continuar",

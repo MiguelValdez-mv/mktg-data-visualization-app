@@ -12,7 +12,7 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        primary: colors.sky[900],
+        primary: "#344767",
         secondary: colors.slate[900],
         third: colors.slate[400],
         cyan: colors.cyan[400],

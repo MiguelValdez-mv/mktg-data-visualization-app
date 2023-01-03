@@ -22,7 +22,7 @@ export function Text({
   return (
     <span
       className={twMerge(
-        "text-secondary",
+        "text-primary",
         muted && "text-third",
         white && "text-white",
         error && "text-error",

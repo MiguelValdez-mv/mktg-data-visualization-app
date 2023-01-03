@@ -4,6 +4,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 
 import { Loader } from "@/components/layout/Loader";
+import { Row } from "@/components/layout/Row";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { AlertTemplate } from "@/components/molecules/AlertTemplate";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
@@ -18,18 +20,22 @@ startSuperTokens();
 const queryClient = new QueryClient();
 
 function Wrapper() {
-  const { login } = useAuth();
+  const { login, isLoggedIn, user } = useAuth();
   const { isLoading } = useDoesSessionExist({
     staleTime: Infinity,
     cacheTime: Infinity,
-    onSuccess: ({ sessionExist, user }) => sessionExist && login(user),
+    onSuccess: (params) => params.sessionExist && login(params.user),
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <Row>
+      {isLoggedIn && <Sidebar user={user} />}
 
-  return <AppRouter />;
+      <AppRouter />
+    </Row>
+  );
 }
 
 export function App() {
