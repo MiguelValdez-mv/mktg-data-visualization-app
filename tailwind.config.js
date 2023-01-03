@@ -14,7 +14,7 @@ module.exports = {
       colors: {
         primary: "#344767",
         secondary: colors.slate[900],
-        third: colors.slate[400],
+        muted: colors.slate[400],
         cyan: colors.cyan[400],
         info: colors.sky[500],
         success: colors.lime[500],

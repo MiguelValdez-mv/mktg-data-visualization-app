@@ -15,7 +15,7 @@ export function ButtonIcon({
     <button className={containerClassName} onClick={onClick} type="button">
       <Icon
         className={twMerge(
-          muted && "fill-third",
+          muted && "fill-muted",
           hoverable && "hover:opacity-50",
           className
         )}

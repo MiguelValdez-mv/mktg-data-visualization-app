@@ -20,7 +20,7 @@ export function Input({
           "border rounded-xl text-primary p-2",
           error
             ? "border-error"
-            : "border-third hover:border-primary focus-within:border-primary"
+            : "border-muted hover:border-primary focus-within:border-primary"
         )}
       >
         <input

@@ -1,3 +1,3 @@
 export function Divider() {
-  return <hr className="bg-third border-0 h-0.5" />;
+  return <hr className="bg-muted border-0 h-px" />;
 }

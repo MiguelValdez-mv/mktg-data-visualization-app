@@ -16,49 +16,58 @@ import { SidebarOption } from "./SidebarOption";
 
 export function Sidebar({ user }) {
   return (
-    <Col>
-      <OpenTechLogo />
-      <Spacing bottom={4} />
+    <Col className="max-w-xs w-full h-screen p-8">
+      <Spacing horizontal={4} bottom={3}>
+        <OpenTechLogo />
+      </Spacing>
 
       <Divider />
-      <Spacing bottom={4} />
 
-      {isUserAdmin(user) && (
-        <>
+      <Col className="flex-1 justify-around">
+        <Col>
+          {isUserAdmin(user) && (
+            <>
+              <SidebarOption
+                to="/usuarios"
+                name={COPY["app.sidebar.users"]}
+                icon={IconCircleUser}
+              />
+              <Spacing bottom={1} />
+
+              <SidebarOption
+                to="/conexiones"
+                name={COPY["app.sidebar.connections"]}
+                icon={IconTransitConnection}
+              />
+              <Spacing bottom={1} />
+            </>
+          )}
+
           <SidebarOption
-            to="/usuarios"
-            name={COPY["app.sidebar.users"]}
-            icon={IconCircleUser}
+            to="/negocios"
+            name={COPY["app.sidebar.businesses"]}
+            icon={IconBriefcase}
           />
           <Spacing bottom={1} />
 
           <SidebarOption
-            to="/conexiones"
-            name={COPY["app.sidebar.connections"]}
-            icon={IconTransitConnection}
+            to="/paneles"
+            name={COPY["app.sidebar.panels"]}
+            icon={IconStatsChart}
           />
-          <Spacing bottom={1} />
-        </>
-      )}
+        </Col>
 
-      <SidebarOption
-        to="/negocios"
-        name={COPY["app.sidebar.businesses"]}
-        icon={IconBriefcase}
-      />
-      <Spacing bottom={1} />
+        <Row className="items-center border border-muted rounded-xl p-2">
+          <Row className="bg-muted p-2 rounded-full">
+            <IconCircleUser className="w-6 h-6 text-white" />
+          </Row>
+          <Spacing right={2} />
 
-      <SidebarOption
-        to="/paneles"
-        name={COPY["app.sidebar.panels"]}
-        icon={IconStatsChart}
-      />
-
-      <Row className="border border-third rounded-xl p-2">
-        <Text muted bold>
-          {user.fullName}
-        </Text>
-      </Row>
+          <Text muted bold>
+            {user.fullName}
+          </Text>
+        </Row>
+      </Col>
     </Col>
   );
 }
