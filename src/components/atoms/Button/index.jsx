@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
 import { Spinner } from "@/components/atoms/Spinner";
 import { Spacing } from "@/components/layout/Spacing";
@@ -12,21 +13,23 @@ const baseStyles = {
   ghost: "text-primary hover:text-white hover:bg-primary",
 };
 
-export function Button({
-  innerRef,
-  variant = "solid",
-  disabled,
-  className,
-  type = "button",
-  onClick,
-  isLoading,
-  renderLeft = null,
-  children,
-  renderRight = null,
-}) {
-  return (
+export const Button = forwardRef(
+  (
+    {
+      variant = "solid",
+      disabled,
+      className,
+      type = "button",
+      onClick,
+      isLoading,
+      renderLeft = null,
+      children,
+      renderRight = null,
+    },
+    ref
+  ) => (
     <button
-      ref={innerRef}
+      ref={ref}
       className={twMerge(
         "flex justify-center items-center rounded-xl font-bold p-2 active:drop-shadow-xl",
         baseStyles[variant],
@@ -50,11 +53,10 @@ export function Button({
 
       {renderRight}
     </button>
-  );
-}
+  )
+);
 
 Button.propTypes = {
-  innerRef: PROP.REF,
   variant: PropTypes.oneOf(["solid", "outline", "ghost"]),
   disabled: PropTypes.bool,
   className: PropTypes.string,

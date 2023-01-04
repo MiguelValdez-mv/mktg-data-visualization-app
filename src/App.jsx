@@ -20,11 +20,15 @@ startSuperTokens();
 const queryClient = new QueryClient();
 
 function Wrapper() {
-  const { login, isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user, dispatch } = useAuth();
   const { isLoading } = useDoesSessionExist({
     staleTime: Infinity,
     cacheTime: Infinity,
-    onSuccess: (params) => params.sessionExist && login(params.user),
+    onSuccess: (res) => {
+      if (res.sessionExist) {
+        dispatch({ type: "LOGIN", payload: { user: res.user } });
+      }
+    },
   });
 
   return isLoading ? (

@@ -1,23 +1,44 @@
+import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+
 import { IconBriefcase } from "@/assets/svgs/IconBriefcase";
 import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { IconStatsChart } from "@/assets/svgs/IconStatsChart";
 import { IconTransitConnection } from "@/assets/svgs/IconTransitConnection";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
+import { Button } from "@/components/atoms/Button";
 import { Divider } from "@/components/atoms/Divider";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
-import { Trigger } from "@/components/layout/Menu/Trigger";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
-import { PROP } from "@/constants";
+import { PROP, QUERY_KEYS } from "@/constants";
 import { COPY } from "@/copy";
+import { useAuth } from "@/hooks/useAuth";
+import { useLogout } from "@/hooks/useLogout";
 import { isUserAdmin } from "@/utils/isUserAdmin";
 
 import { SidebarOption } from "./SidebarOption";
 
 export function Sidebar({ user }) {
+  const navigate = useNavigate();
+  const { dispatch } = useAuth();
+  const logoutMutation = useLogout();
+  const queryClient = useQueryClient();
+
+  const onClickLogoutOpt = () => {
+    logoutMutation.mutate(undefined, {
+      onSuccess: () => {
+        dispatch({ type: "LOGOUT" });
+        navigate("/");
+        queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
+      },
+      onError: (err) => alert.error(err.message),
+    });
+  };
+
   return (
     <Col className="max-w-xs w-full h-screen p-8">
       <Spacing horizontal={4} bottom={3}>
@@ -62,7 +83,7 @@ export function Sidebar({ user }) {
 
         <Menu
           trigger={
-            <Trigger
+            <Button
               className="justify-start border-muted text-muted"
               variant="outline"
               renderLeft={
@@ -75,10 +96,12 @@ export function Sidebar({ user }) {
               }
             >
               {user.fullName}
-            </Trigger>
+            </Button>
           }
         >
           <MenuOption
+            onClick={onClickLogoutOpt}
+            isLoading={logoutMutation.isLoading}
             renderLeft={
               <>
                 <IconExit className="w-6 h-6" />

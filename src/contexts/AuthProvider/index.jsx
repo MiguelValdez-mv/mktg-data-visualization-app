@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case "LOGIN":
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
         isLoggedIn: true,
       };
     case "LOGOUT":
@@ -30,11 +30,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const login = (user) => dispatch({ type: "LOGIN", payload: user });
-  const logout = () => dispatch({ type: "LOGOUT" });
-
-  const value = useMemo(() => ({ ...state, login, logout }), [state]);
+  const value = useMemo(() => ({ ...state, dispatch }), [state]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
