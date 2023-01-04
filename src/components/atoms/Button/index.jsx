@@ -8,12 +8,15 @@ import { twMerge } from "@/utils/twMerge";
 
 const baseStyles = {
   solid: "text-white bg-gradient-to-r from-primary to-secondary",
-  outline: "text-cyan border border-cyan",
+  outline: "border border-cyan text-cyan",
+  ghost: "text-primary hover:text-white hover:bg-primary",
 };
 
 export function Button({
+  innerRef,
   variant = "solid",
   disabled,
+  className,
   type = "button",
   onClick,
   isLoading,
@@ -23,10 +26,12 @@ export function Button({
 }) {
   return (
     <button
+      ref={innerRef}
       className={twMerge(
         "flex justify-center items-center rounded-xl font-bold p-2 active:drop-shadow-xl",
         baseStyles[variant],
-        disabled && "opacity-25"
+        disabled && "opacity-25",
+        className
       )}
       type={type}
       disabled={disabled}
@@ -35,7 +40,7 @@ export function Button({
       {isLoading ? (
         <>
           <Spinner />
-          <Spacing right={1} />
+          <Spacing right={2} />
         </>
       ) : (
         renderLeft
@@ -49,12 +54,14 @@ export function Button({
 }
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["solid", "outline"]),
+  innerRef: PROP.REF,
+  variant: PropTypes.oneOf(["solid", "outline", "ghost"]),
   disabled: PropTypes.bool,
+  className: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
-  renderLeft: PROP.CHILDREN,
+  renderLeft: PropTypes.node,
   children: PROP.CHILDREN.isRequired,
-  renderRight: PROP.CHILDREN,
+  renderRight: PropTypes.node,
 };

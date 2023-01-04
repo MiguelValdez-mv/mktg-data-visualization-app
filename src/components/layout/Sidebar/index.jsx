@@ -1,11 +1,14 @@
 import { IconBriefcase } from "@/assets/svgs/IconBriefcase";
 import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
+import { IconExit } from "@/assets/svgs/IconExit";
 import { IconStatsChart } from "@/assets/svgs/IconStatsChart";
 import { IconTransitConnection } from "@/assets/svgs/IconTransitConnection";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Divider } from "@/components/atoms/Divider";
-import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
+import { Menu } from "@/components/layout/Menu";
+import { MenuOption } from "@/components/layout/Menu/MenuOption";
+import { Trigger } from "@/components/layout/Menu/Trigger";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { PROP } from "@/constants";
@@ -57,16 +60,35 @@ export function Sidebar({ user }) {
           />
         </Col>
 
-        <Row className="items-center border border-muted rounded-xl p-2">
-          <Row className="bg-muted p-2 rounded-full">
-            <IconCircleUser className="w-6 h-6 text-white" />
-          </Row>
-          <Spacing right={2} />
-
-          <Text muted bold>
-            {user.fullName}
-          </Text>
-        </Row>
+        <Menu
+          trigger={
+            <Trigger
+              className="justify-start border-muted text-muted"
+              variant="outline"
+              renderLeft={
+                <>
+                  <Row className="bg-muted p-2 rounded-full">
+                    <IconCircleUser className="w-6 h-6 text-white" />
+                  </Row>
+                  <Spacing right={2} />
+                </>
+              }
+            >
+              {user.fullName}
+            </Trigger>
+          }
+        >
+          <MenuOption
+            renderLeft={
+              <>
+                <IconExit className="w-6 h-6" />
+                <Spacing right={2} />
+              </>
+            }
+          >
+            {COPY["app.sidebar.logout"]}
+          </MenuOption>
+        </Menu>
       </Col>
     </Col>
   );

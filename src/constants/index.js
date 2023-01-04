@@ -31,6 +31,10 @@ export const PROP = {
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }),
+  REF: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };
 
 export const LINKS = {

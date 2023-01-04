@@ -3,10 +3,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter } from "react-router-dom";
 
+import { AlertTemplate } from "@/components/layout/AlertTemplate";
 import { Loader } from "@/components/layout/Loader";
 import { Row } from "@/components/layout/Row";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { AlertTemplate } from "@/components/molecules/AlertTemplate";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
@@ -32,7 +32,6 @@ function Wrapper() {
   ) : (
     <Row>
       {isLoggedIn && <Sidebar user={user} />}
-
       <AppRouter />
     </Row>
   );
