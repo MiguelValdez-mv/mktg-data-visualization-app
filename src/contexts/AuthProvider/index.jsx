@@ -1,4 +1,4 @@
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 import { PROP } from "@/constants";
 
@@ -29,10 +29,11 @@ const initialState = {
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const value = useMemo(() => ({ ...state, dispatch }), [state]);
+  const context = useReducer(reducer, initialState);
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+  );
 }
 
 AuthProvider.propTypes = {

@@ -1,4 +1,3 @@
-import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import { IconBriefcase } from "@/assets/svgs/IconBriefcase";
@@ -14,27 +13,22 @@ import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
-import { PROP, QUERY_KEYS } from "@/constants";
+import { PROP } from "@/constants";
 import { COPY } from "@/copy";
-import { useAuth } from "@/hooks/useAuth";
+import { useAlert } from "@/hooks/useAlert";
 import { useLogout } from "@/hooks/useLogout";
 import { isUserAdmin } from "@/utils/isUserAdmin";
 
 import { SidebarOption } from "./SidebarOption";
 
 export function Sidebar({ user }) {
-  const navigate = useNavigate();
-  const { dispatch } = useAuth();
   const logoutMutation = useLogout();
-  const queryClient = useQueryClient();
+  const alert = useAlert();
+  const navigate = useNavigate();
 
   const onClickLogoutOpt = () => {
     logoutMutation.mutate(undefined, {
-      onSuccess: () => {
-        dispatch({ type: "LOGOUT" });
-        navigate("/");
-        queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
-      },
+      onSuccess: () => navigate("/"),
       onError: (err) => alert.error(err.message),
     });
   };

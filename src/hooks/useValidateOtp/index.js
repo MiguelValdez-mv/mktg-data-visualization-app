@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { consumeCode } from "supertokens-web-js/recipe/passwordless";
 
-import { API_URLS } from "@/constants";
+import { API_URLS, QUERY_KEYS } from "@/constants";
 import { COPY } from "@/copy";
+import { useAuth } from "@/hooks/useAuth";
 
 const mutationFn = async ({ otp }) => {
   const { status, maximumCodeInputAttempts, failedCodeInputAttemptCount } =
@@ -31,4 +32,16 @@ const mutationFn = async ({ otp }) => {
   throw new Error(COPY["errors.unexpectedError"]);
 };
 
-export const useValidateOtp = (opts = {}) => useMutation(mutationFn, opts);
+export const useValidateOtp = (opts = {}) => {
+  const queryClient = useQueryClient();
+  const authCtx = useAuth();
+
+  return useMutation(mutationFn, {
+    ...opts,
+    onSuccess: (user) => {
+      queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
+      authCtx.login(user);
+      opts.onSuccess?.();
+    },
+  });
+};

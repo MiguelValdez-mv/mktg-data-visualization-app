@@ -2,18 +2,15 @@ import { useNavigate } from "react-router-dom";
 
 import { COPY } from "@/copy";
 import { useAlert } from "@/hooks/useAlert";
-import { useAuth } from "@/hooks/useAuth";
 import { useCreateOtp } from "@/hooks/useCreateOtp";
 import { useValidateOtp } from "@/hooks/useValidateOtp";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
-  const navigate = useNavigate();
-  const alert = useAlert();
-
-  const authCtx = useAuth();
   const otpCreationMutation = useCreateOtp();
   const otpValidationMutation = useValidateOtp();
+  const navigate = useNavigate();
+  const alert = useAlert();
 
   const handleOtpCreationFormSubmit = (values) => {
     otpCreationMutation.mutate(values, {
@@ -26,9 +23,8 @@ const useActions = () => {
   const handleOtpValidationFormSubmit = (values) => {
     otpValidationMutation.mutate(values, {
       onSuccess: (user) => {
-        alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
-        authCtx.dispatch({ type: "LOGIN", payload: { user } });
         navigate("/");
+        alert.success(COPY["pages.login.otpValidation.success"](user.fullName));
       },
       onError: (err) => alert.error(err.message),
     });

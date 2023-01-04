@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Provider as AlertProvider } from "react-alert";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -20,15 +21,11 @@ startSuperTokens();
 const queryClient = new QueryClient();
 
 function Wrapper() {
-  const { isLoggedIn, user, dispatch } = useAuth();
+  const { isLoggedIn, user, login } = useAuth();
   const { isLoading } = useDoesSessionExist({
     staleTime: Infinity,
     cacheTime: Infinity,
-    onSuccess: (res) => {
-      if (res.sessionExist) {
-        dispatch({ type: "LOGIN", payload: { user: res.user } });
-      }
-    },
+    onSuccess: (res) => res.sessionExist && login(res.user),
   });
 
   return isLoading ? (
