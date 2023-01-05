@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
 import { Spinner } from "@/components/atoms/Spinner";
 import { Spacing } from "@/components/layout/Spacing";
@@ -8,25 +9,32 @@ import { twMerge } from "@/utils/twMerge";
 
 const baseStyles = {
   solid: "text-white bg-gradient-to-r from-primary to-secondary",
-  outline: "text-cyan border border-cyan",
+  outline: "border border-cyan text-cyan",
+  ghost: "text-primary hover:text-white hover:bg-primary",
 };
 
-export function Button({
-  variant = "solid",
-  disabled,
-  type = "button",
-  onClick,
-  isLoading,
-  renderLeft = null,
-  children,
-  renderRight = null,
-}) {
-  return (
+export const Button = forwardRef(
+  (
+    {
+      variant = "solid",
+      disabled,
+      className,
+      type = "button",
+      onClick,
+      isLoading,
+      renderLeft = null,
+      children,
+      renderRight = null,
+    },
+    ref
+  ) => (
     <button
+      ref={ref}
       className={twMerge(
-        "flex justify-center items-center rounded-xl font-bold p-2 active:drop-shadow-xl",
+        "flex justify-center items-center rounded-xl font-bold p-2 active:drop-shadow-surface",
         baseStyles[variant],
-        disabled && "opacity-25"
+        disabled && "opacity-25",
+        className
       )}
       type={type}
       disabled={disabled}
@@ -35,7 +43,7 @@ export function Button({
       {isLoading ? (
         <>
           <Spinner />
-          <Spacing right={1} />
+          <Spacing right={2} />
         </>
       ) : (
         renderLeft
@@ -45,16 +53,17 @@ export function Button({
 
       {renderRight}
     </button>
-  );
-}
+  )
+);
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["solid", "outline"]),
+  variant: PropTypes.oneOf(["solid", "outline", "ghost"]),
   disabled: PropTypes.bool,
+  className: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
-  renderLeft: PROP.CHILDREN,
+  renderLeft: PropTypes.node,
   children: PROP.CHILDREN.isRequired,
-  renderRight: PROP.CHILDREN,
+  renderRight: PropTypes.node,
 };

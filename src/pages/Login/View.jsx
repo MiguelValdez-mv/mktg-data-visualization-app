@@ -11,6 +11,7 @@ import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Input } from "@/components/atoms/Input";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
+import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
@@ -26,7 +27,7 @@ function View({
   redirectTo,
 }) {
   return (
-    <Col className="h-screen justify-around items-center">
+    <Page className="h-screen justify-around items-center">
       <Text caption bold>
         {COPY["pages.login.welcome"]}
       </Text>
@@ -96,7 +97,7 @@ function View({
       <Col className="items-center">
         <Row>
           <ButtonIcon
-            className="w-6 h-6"
+            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.FACEBOOK)}
             icon={IconSquareFacebook}
             muted
@@ -104,7 +105,7 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            className="w-6 h-6"
+            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.INSTAGRAM)}
             icon={IconSquareInstagram}
             muted
@@ -119,14 +120,14 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            className="w-24"
+            iconClassName="w-24"
             onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
             icon={OpenTechDarkLogo}
             muted
           />
         </Row>
       </Col>
-    </Col>
+    </Page>
   );
 }
 

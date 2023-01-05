@@ -1,4 +1,4 @@
-import { createContext, useMemo, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 import { PROP } from "@/constants";
 
@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     case "LOGIN":
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
         isLoggedIn: true,
       };
     case "LOGOUT":
@@ -29,14 +29,11 @@ const initialState = {
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const context = useReducer(reducer, initialState);
 
-  const login = (user) => dispatch({ type: "LOGIN", payload: user });
-  const logout = () => dispatch({ type: "LOGOUT" });
-
-  const value = useMemo(() => ({ ...state, login, logout }), [state]);
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+  );
 }
 
 AuthProvider.propTypes = {

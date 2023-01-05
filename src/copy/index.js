@@ -1,4 +1,7 @@
 export const COPY = {
+  // APP
+  "app.sidebar.logout": "Cerrar sesión",
+
   // PAGES
   "pages.login.welcome": "¡Bienvenido!",
   "pages.login.continue": "Continuar",
@@ -8,6 +11,12 @@ export const COPY = {
   "pages.login.otpCreation.success": (email) =>
     `Código de verificación enviado a ${email}`,
   "pages.login.otpValidation.success": (name) => `Bienvenido ${name}`,
+  "pages.users.title": "Usuarios",
+  "pages.users.details.title": "Detalles de Usuario",
+  "pages.connections.title": "Conexiones",
+  "pages.businesses.title": "Negocios",
+  "pages.businesses.details.title": "Detalles de Negocio",
+  "pages.panels.title": "Paneles",
 
   // FORMS
   "forms.labels.email": "Correo electrónico",

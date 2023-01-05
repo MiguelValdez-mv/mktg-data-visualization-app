@@ -3,21 +3,21 @@ import PropTypes from "prop-types";
 import { twMerge } from "@/utils/twMerge";
 
 export function ButtonIcon({
-  containerClassName,
+  className,
   onClick,
   icon: Icon,
   muted,
   hoverable = true,
-  className,
+  iconClassName,
   ...rest
 }) {
   return (
-    <button className={containerClassName} onClick={onClick} type="button">
+    <button className={className} onClick={onClick} type="button">
       <Icon
         className={twMerge(
-          muted && "fill-third",
+          muted && "text-muted",
           hoverable && "hover:opacity-50",
-          className
+          iconClassName
         )}
         {...rest}
       />
@@ -26,10 +26,10 @@ export function ButtonIcon({
 }
 
 ButtonIcon.propTypes = {
-  containerClassName: PropTypes.string,
+  className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   icon: PropTypes.func.isRequired,
   muted: PropTypes.bool,
   hoverable: PropTypes.bool,
-  className: PropTypes.string,
+  iconClassName: PropTypes.string,
 };

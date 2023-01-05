@@ -6,6 +6,6 @@
 @layer base {
   html {
     @apply font-poppins;
-    @apply bg-slate-50;
+    @apply bg-tertiary;
   }
 }

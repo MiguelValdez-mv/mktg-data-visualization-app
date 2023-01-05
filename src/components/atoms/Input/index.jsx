@@ -17,10 +17,10 @@ export function Input({
     <Col>
       <Col
         className={twMerge(
-          "border rounded-xl text-secondary p-2",
+          "border rounded-xl text-primary p-2",
           error
             ? "border-error"
-            : "border-third hover:border-primary focus-within:border-primary"
+            : "border-muted hover:border-primary focus-within:border-primary"
         )}
       >
         <input

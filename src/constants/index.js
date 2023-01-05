@@ -26,6 +26,15 @@ export const PROP = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  USER: PropTypes.shape({
+    fullName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+  }),
+  REF: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };
 
 export const LINKS = {

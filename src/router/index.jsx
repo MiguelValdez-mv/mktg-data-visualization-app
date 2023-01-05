@@ -10,13 +10,13 @@ const Default = LazyPage(lazy(() => import("@/pages/Default")));
 const Login = LazyPage(lazy(() => import("@/pages/Login")));
 const Users = LazyPage(lazy(() => import("@/pages/Users")));
 const UserDetails = LazyPage(lazy(() => import("@/pages/Users/Details")));
+const Connections = LazyPage(lazy(() => import("@/pages/Connections")));
 const Businesses = LazyPage(lazy(() => import("@/pages/Businesses")));
 const BusinessDetails = LazyPage(
   lazy(() => import("@/pages/Businesses/Details"))
 );
 const Panels = LazyPage(lazy(() => import("@/pages/Panels")));
 const PanelDetails = LazyPage(lazy(() => import("@/pages/Panels/Details")));
-const Connections = LazyPage(lazy(() => import("@/pages/Connections")));
 const NotFound = LazyPage(lazy(() => import("@/pages/NotFound")));
 
 export function AppRouter() {
@@ -39,6 +39,15 @@ export function AppRouter() {
         element={
           <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
             <UserDetails />
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="conexiones"
+        element={
+          <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
+            <Connections />
           </RequireAuth>
         }
       />
@@ -73,15 +82,6 @@ export function AppRouter() {
         element={
           <RequireAuth>
             <PanelDetails />
-          </RequireAuth>
-        }
-      />
-
-      <Route
-        path="conexiones"
-        element={
-          <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
-            <Connections />
           </RequireAuth>
         }
       />

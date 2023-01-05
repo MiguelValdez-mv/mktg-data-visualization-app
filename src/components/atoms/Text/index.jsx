@@ -22,8 +22,8 @@ export function Text({
   return (
     <span
       className={twMerge(
-        "text-secondary",
-        muted && "text-third",
+        "text-primary",
+        muted && "text-muted",
         white && "text-white",
         error && "text-error",
         center && "text-center",

@@ -5,7 +5,14 @@ import { AuthContext } from "@/contexts/AuthProvider";
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
-  if (context) return context;
+  if (!context) {
+    throw new Error("useAuth must be used within a AuthProvider");
+  }
 
-  throw new Error("useAuth must be used within a AuthProvider");
+  const [state, dispatch] = context;
+
+  const login = (user) => dispatch({ type: "LOGIN", payload: { user } });
+  const logout = () => dispatch({ type: "LOGOUT" });
+
+  return { ...state, login, logout };
 };
