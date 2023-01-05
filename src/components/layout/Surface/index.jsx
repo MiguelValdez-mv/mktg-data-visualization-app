@@ -7,7 +7,10 @@ import { twMerge } from "@/utils/twMerge";
 export function Surface({ className, children }) {
   return (
     <Col
-      className={twMerge("bg-white rounded-xl drop-shadow-xl p-4", className)}
+      className={twMerge(
+        "bg-white rounded-xl drop-shadow-surface p-4",
+        className
+      )}
     >
       {children}
     </Col>

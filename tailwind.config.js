@@ -14,6 +14,7 @@ module.exports = {
       colors: {
         primary: "#344767",
         secondary: colors.slate[900],
+        tertiary: colors.slate[50],
         muted: colors.slate[400],
         cyan: colors.cyan[400],
         info: colors.sky[500],
@@ -26,6 +27,9 @@ module.exports = {
         subtitle: defaultTheme.fontSize["2xl"],
         title: defaultTheme.fontSize["3xl"],
         caption: defaultTheme.fontSize["4xl"],
+      },
+      dropShadow: {
+        surface: defaultTheme.dropShadow.xl,
       },
       backgroundImage: {
         header: "url('/src/assets/images/header.png')",

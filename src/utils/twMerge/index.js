@@ -5,7 +5,8 @@ export const twMerge = extendTailwindMerge({
     colors: [
       "primary",
       "secondary",
-      "third",
+      "tertiary",
+      "muted",
       "cyan",
       "info",
       "success",
@@ -15,5 +16,7 @@ export const twMerge = extendTailwindMerge({
   classGroups: {
     "font-family": [{ font: ["poppins"] }],
     "font-size": [{ text: ["tiny", "small", "subtitle", "title", "caption"] }],
+    "drop-shadow": [{ "drop-shadow": ["surface"] }],
+    "bg-image": [{ bg: ["header"] }],
   },
 });

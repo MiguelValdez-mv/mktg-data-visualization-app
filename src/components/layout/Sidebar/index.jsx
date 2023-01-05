@@ -16,8 +16,11 @@ import { Spacing } from "@/components/layout/Spacing";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 import { useAlert } from "@/hooks/useAlert";
+import { useDimensions } from "@/hooks/useDimensions";
 import { useLogout } from "@/hooks/useLogout";
+import { useSidebar } from "@/hooks/useSidebar";
 import { isUserAdmin } from "@/utils/isUserAdmin";
+import { twMerge } from "@/utils/twMerge";
 
 import { SidebarOption } from "./SidebarOption";
 
@@ -25,6 +28,8 @@ export function Sidebar({ user }) {
   const logoutMutation = useLogout();
   const alert = useAlert();
   const navigate = useNavigate();
+  const { isLargeScreen } = useDimensions();
+  const { isSidebarOpen } = useSidebar();
 
   const onClickLogoutOpt = () => {
     logoutMutation.mutate(undefined, {
@@ -34,7 +39,13 @@ export function Sidebar({ user }) {
   };
 
   return (
-    <Col className="max-w-xs w-full h-screen p-8">
+    <Col
+      className={twMerge(
+        "max-w-xs w-full h-screen bg-tertiary p-8 ease-in-out duration-300",
+        !isLargeScreen && "fixed top-0 left-0 drop-shadow-surface",
+        !isLargeScreen && !isSidebarOpen && "-translate-x-full"
+      )}
+    >
       <Spacing horizontal={4} bottom={3}>
         <OpenTechLogo />
       </Spacing>

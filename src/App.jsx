@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { Provider as AlertProvider } from "react-alert";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -9,6 +8,7 @@ import { Loader } from "@/components/layout/Loader";
 import { Row } from "@/components/layout/Row";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { AuthProvider } from "@/contexts/AuthProvider";
+import { SidebarProvider } from "@/contexts/SidebarProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
 import { AppRouter } from "@/router";
@@ -42,12 +42,14 @@ export function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <AlertProvider template={AlertTemplate} timeout={5000}>
-            <Wrapper />
-            <ReactQueryDevtools />
-          </AlertProvider>
-        </AuthProvider>
+        <AlertProvider template={AlertTemplate} timeout={5000}>
+          <AuthProvider>
+            <SidebarProvider>
+              <Wrapper />
+              <ReactQueryDevtools />
+            </SidebarProvider>
+          </AuthProvider>
+        </AlertProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );
