@@ -97,7 +97,7 @@ function View({
       <Col className="items-center">
         <Row>
           <ButtonIcon
-            className="w-6 h-6"
+            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.FACEBOOK)}
             icon={IconSquareFacebook}
             muted
@@ -105,7 +105,7 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            className="w-6 h-6"
+            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.INSTAGRAM)}
             icon={IconSquareInstagram}
             muted
@@ -120,7 +120,7 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            className="w-24"
+            iconClassName="w-24"
             onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
             icon={OpenTechDarkLogo}
             muted

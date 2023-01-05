@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
 
 import { IconBriefcase } from "@/assets/svgs/IconBriefcase";
+import { IconChevronDoubleLeft } from "@/assets/svgs/IconChevronDoubleLeft";
 import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { IconStatsChart } from "@/assets/svgs/IconStatsChart";
 import { IconTransitConnection } from "@/assets/svgs/IconTransitConnection";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
+import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Divider } from "@/components/atoms/Divider";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { Surface } from "@/components/layout/Surface";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 import { useAlert } from "@/hooks/useAlert";
@@ -29,11 +32,14 @@ export function Sidebar({ user }) {
   const alert = useAlert();
   const navigate = useNavigate();
   const { isLargeScreen } = useDimensions();
-  const { isSidebarOpen } = useSidebar();
+  const { isSidebarOpen, closeSidebar } = useSidebar();
 
   const onClickLogoutOpt = () => {
     logoutMutation.mutate(undefined, {
-      onSuccess: () => navigate("/"),
+      onSuccess: () => {
+        navigate("/");
+        closeSidebar();
+      },
       onError: (err) => alert.error(err.message),
     });
   };
@@ -58,15 +64,17 @@ export function Sidebar({ user }) {
             <>
               <SidebarOption
                 to="/usuarios"
-                name={COPY["app.sidebar.users"]}
+                name={COPY["pages.users.title"]}
                 icon={IconCircleUser}
+                closeSidebar={closeSidebar}
               />
               <Spacing bottom={1} />
 
               <SidebarOption
                 to="/conexiones"
-                name={COPY["app.sidebar.connections"]}
+                name={COPY["pages.connections.title"]}
                 icon={IconTransitConnection}
+                closeSidebar={closeSidebar}
               />
               <Spacing bottom={1} />
             </>
@@ -74,15 +82,17 @@ export function Sidebar({ user }) {
 
           <SidebarOption
             to="/negocios"
-            name={COPY["app.sidebar.businesses"]}
+            name={COPY["pages.businesses.title"]}
             icon={IconBriefcase}
+            closeSidebar={closeSidebar}
           />
           <Spacing bottom={1} />
 
           <SidebarOption
             to="/paneles"
-            name={COPY["app.sidebar.panels"]}
+            name={COPY["pages.panels.title"]}
             icon={IconStatsChart}
+            closeSidebar={closeSidebar}
           />
         </Col>
 
@@ -118,6 +128,16 @@ export function Sidebar({ user }) {
           </MenuOption>
         </Menu>
       </Col>
+
+      {!isLargeScreen && (
+        <Surface className="self-center p-2">
+          <ButtonIcon
+            iconClassName="w-6 h-6 text-primary"
+            onClick={closeSidebar}
+            icon={IconChevronDoubleLeft}
+          />
+        </Surface>
+      )}
     </Col>
   );
 }

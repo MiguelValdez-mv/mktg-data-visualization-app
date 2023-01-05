@@ -9,17 +9,17 @@ export function SidebarProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const { isLargeScreen } = useDimensions();
 
-  const showSidebar = () => setIsOpen(true);
+  const openSidebar = () => setIsOpen(true);
   const closeSidebar = () => !isLargeScreen && setIsOpen(false);
 
   const value = useMemo(
-    () => ({ isSidebarOpen: isOpen, showSidebar, closeSidebar }),
-    [isOpen]
+    () => ({ isSidebarOpen: isOpen, openSidebar, closeSidebar }),
+    [isOpen, isLargeScreen]
   );
 
   useEffect(() => {
     if (isLargeScreen) {
-      showSidebar();
+      openSidebar();
     } else {
       closeSidebar();
     }

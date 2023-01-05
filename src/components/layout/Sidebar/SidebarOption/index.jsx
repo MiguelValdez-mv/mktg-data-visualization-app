@@ -7,12 +7,12 @@ import { Surface } from "@/components/layout/Surface";
 import { useLocation } from "@/hooks/useLocation";
 import { twMerge } from "@/utils/twMerge";
 
-export function SidebarOption({ to, name, icon: Icon }) {
+export function SidebarOption({ to, icon: Icon, name, closeSidebar }) {
   const { pathname } = useLocation();
   const isCurrentRoute = pathname.includes(to);
 
   return (
-    <Link to={to}>
+    <Link to={to} onClick={closeSidebar}>
       <Surface
         className={twMerge(
           "flex-row items-center p-2",
@@ -39,4 +39,5 @@ SidebarOption.propTypes = {
   to: PropTypes.string.isRequired,
   icon: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  closeSidebar: PropTypes.func.isRequired,
 };

@@ -37,7 +37,7 @@ export function AlertTemplate({ options, message, close }) {
       <Spacing right={4} />
 
       <ButtonIcon
-        containerClassName="self-start"
+        className="self-start"
         onClick={close}
         icon={IconClose}
         muted
