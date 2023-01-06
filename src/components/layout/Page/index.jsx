@@ -5,7 +5,7 @@ import { PROP } from "@/constants";
 import { twMerge } from "@/utils/twMerge";
 
 export function Page({ className, children }) {
-  return <Col className={twMerge("w-full", className)}>{children}</Col>;
+  return <Col className={twMerge("w-full p-5", className)}>{children}</Col>;
 }
 
 Page.propTypes = {

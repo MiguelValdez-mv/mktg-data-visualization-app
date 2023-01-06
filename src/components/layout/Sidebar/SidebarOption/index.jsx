@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
+import { useLocation } from "react-router-dom";
 
 import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { useLocation } from "@/hooks/useLocation";
 import { twMerge } from "@/utils/twMerge";
 
 export function SidebarOption({ to, icon: Icon, name, closeSidebar }) {
