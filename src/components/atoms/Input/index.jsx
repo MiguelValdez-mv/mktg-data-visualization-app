@@ -3,19 +3,23 @@ import PropTypes from "prop-types";
 
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
+import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { twMerge } from "@/utils/twMerge";
 
 export function Input({
-  field: { name, value, onChange, onBlur },
-  form: { touched, errors },
+  error,
+  name,
+  value,
+  onChange,
+  onBlur,
   placeholder,
+  startAdornment = null,
+  endAdornment = null,
 }) {
-  const error = touched[name] && errors[name];
-
   return (
     <Col>
-      <Col
+      <Row
         className={twMerge(
           "border rounded-xl text-primary p-2",
           error
@@ -23,6 +27,13 @@ export function Input({
             : "border-muted hover:border-primary focus-within:border-primary"
         )}
       >
+        {startAdornment && (
+          <>
+            {startAdornment}
+            <Spacing right={2} />
+          </>
+        )}
+
         <input
           className="outline-none"
           name={name}
@@ -31,7 +42,14 @@ export function Input({
           onBlur={onBlur}
           placeholder={placeholder}
         />
-      </Col>
+
+        {endAdornment && (
+          <>
+            <Spacing left={2} />
+            {endAdornment}
+          </>
+        )}
+      </Row>
       <Spacing bottom={0.5} />
 
       {error && <Text error>{error}</Text>}
@@ -40,15 +58,12 @@ export function Input({
 }
 
 Input.propTypes = {
-  field: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-  }).isRequired,
-  form: PropTypes.shape({
-    touched: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired,
-  }).isRequired,
+  error: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   placeholder: PropTypes.string,
+  startAdornment: PropTypes.node,
+  endAdornment: PropTypes.node,
 };

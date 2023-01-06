@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 
 import { IconArrowLeft } from "@/assets/svgs/IconArrowLeft";
@@ -8,7 +8,7 @@ import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
 import { ButtonIcon } from "@/components/atoms/ButtonIcon";
-import { Input } from "@/components/atoms/Input";
+import { CustomField } from "@/components/atoms/CustomField";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
 import { Page } from "@/components/layout/Page";
@@ -45,10 +45,9 @@ function View({
             onSubmit={handleOtpCreationFormSubmit}
           >
             <Form className="flex flex-col">
-              <Field
+              <CustomField
                 name="email"
                 placeholder={COPY["forms.labels.email"]}
-                component={Input}
               />
               <Spacing bottom={2} />
 
@@ -65,11 +64,7 @@ function View({
             onSubmit={handleOtpValidationFormSubmit}
           >
             <Form className="flex flex-col">
-              <Field
-                name="otp"
-                placeholder={COPY["forms.labels.otp"]}
-                component={Input}
-              />
+              <CustomField name="otp" placeholder={COPY["forms.labels.otp"]} />
               <Spacing bottom={2} />
 
               <Button type="submit" isLoading={isLoading}>
@@ -80,12 +75,7 @@ function View({
               <Button
                 variant="outline"
                 onClick={changeEmail}
-                renderLeft={
-                  <>
-                    <IconArrowLeft />
-                    <Spacing right={1} />
-                  </>
-                }
+                startIcon={<IconArrowLeft />}
               >
                 {COPY["pages.login.changeEmail"]}
               </Button>

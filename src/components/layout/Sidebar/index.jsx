@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconChevronDoubleLeft } from "@/assets/svgs/IconChevronDoubleLeft";
+import { IconChevronLeft } from "@/assets/svgs/IconChevronLeft";
 import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
@@ -99,13 +99,10 @@ export function Sidebar({ user }) {
             <Button
               className="justify-start border-muted text-muted"
               variant="outline"
-              renderLeft={
-                <>
-                  <Row className="bg-muted p-2 rounded-full">
-                    <IconCircleUser className="w-6 h-6 text-white" />
-                  </Row>
-                  <Spacing right={2} />
-                </>
+              startIcon={
+                <Row className="bg-muted p-2 rounded-full">
+                  <IconCircleUser className="w-6 h-6 text-white" />
+                </Row>
               }
             >
               {user.fullName}
@@ -115,12 +112,7 @@ export function Sidebar({ user }) {
           <MenuOption
             onClick={onClickLogoutOpt}
             isLoading={logoutMutation.isLoading}
-            renderLeft={
-              <>
-                <IconExit className="w-6 h-6" />
-                <Spacing right={2} />
-              </>
-            }
+            startIcon={<IconExit className="w-6 h-6" />}
           >
             {COPY["app.sidebar.logout"]}
           </MenuOption>
@@ -132,7 +124,7 @@ export function Sidebar({ user }) {
           <ButtonIcon
             iconClassName="w-6 h-6 text-primary"
             onClick={closeSidebar}
-            icon={IconChevronDoubleLeft}
+            icon={IconChevronLeft}
           />
         </Surface>
       )}
