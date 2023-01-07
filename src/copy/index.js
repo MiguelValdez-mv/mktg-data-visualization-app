@@ -10,7 +10,7 @@ export const COPY = {
   "pages.login.productCreatedBy": "Un producto creado por",
   "pages.login.otpCreation.success": (email) =>
     `Código de verificación enviado a ${email}`,
-  "pages.login.otpValidation.success": (name) => `Bienvenido ${name}`,
+  "pages.login.otpValidation.success": (name) => `Bienvenid@, ${name}`,
 
   "pages.users.title": "Usuarios",
   "pages.users.search.placeholder": "Buscar usuario",

@@ -9,12 +9,12 @@ import { twMerge } from "@/utils/twMerge";
 
 export function TextInput({
   error,
+  startAdornment = null,
   name,
   value,
   onChange,
   onBlur,
   placeholder,
-  startAdornment = null,
   endAdornment = null,
 }) {
   return (
