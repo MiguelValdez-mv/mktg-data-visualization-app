@@ -7,7 +7,7 @@ import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { twMerge } from "@/utils/twMerge";
 
-export function Input({
+export function TextInput({
   error,
   name,
   value,
@@ -21,7 +21,7 @@ export function Input({
     <Col>
       <Row
         className={twMerge(
-          "border rounded-xl text-primary p-2",
+          "border rounded-xl text-primary p-2 items-center bg-white",
           error
             ? "border-error"
             : "border-muted hover:border-primary focus-within:border-primary"
@@ -35,7 +35,8 @@ export function Input({
         )}
 
         <input
-          className="outline-none"
+          className="outline-none flex-1 bg-transparent"
+          type="text"
           name={name}
           value={value}
           onChange={onChange}
@@ -57,7 +58,7 @@ export function Input({
   );
 }
 
-Input.propTypes = {
+TextInput.propTypes = {
   error: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,

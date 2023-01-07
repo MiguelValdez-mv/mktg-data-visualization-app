@@ -11,12 +11,20 @@ export const COPY = {
   "pages.login.otpCreation.success": (email) =>
     `Código de verificación enviado a ${email}`,
   "pages.login.otpValidation.success": (name) => `Bienvenido ${name}`,
+
   "pages.users.title": "Usuarios",
+  "pages.users.search.placeholder": "Buscar usuario",
   "pages.users.details.title": "Detalles de Usuario",
+
   "pages.connections.title": "Conexiones",
+  "pages.connections.search.placeholder": "Buscar conexión",
+
   "pages.businesses.title": "Negocios",
+  "pages.businesses.search.placeholder": "Buscar negocio",
   "pages.businesses.details.title": "Detalles de Negocio",
+
   "pages.panels.title": "Paneles",
+  "pages.panels.search.placeholder": "Buscar panel",
 
   // FORMS
   "forms.labels.email": "Correo electrónico",

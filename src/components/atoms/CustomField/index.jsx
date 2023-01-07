@@ -1,13 +1,13 @@
 import { Field } from "formik";
 import PropTypes from "prop-types";
 
-import { Input } from "@/components/atoms/Input";
+import { TextInput } from "@/components/atoms/TextInput";
 
 export function CustomField({ name, ...rest }) {
   return (
     <Field name={name}>
       {({ form: { touched, errors }, field: { value, onChange, onBlur } }) => (
-        <Input
+        <TextInput
           error={touched[name] && errors[name]}
           name={name}
           value={value}

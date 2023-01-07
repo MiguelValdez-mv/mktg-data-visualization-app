@@ -1,13 +1,22 @@
 import PropTypes from "prop-types";
 
+import { SearchBar } from "@/components/app/SearchBar";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
+import { COPY } from "@/copy";
 import { PAGE_ICONS } from "@/router/config";
 
 function View({ title, pathname }) {
   return (
     <Page>
-      <Header pathname={pathname} icon={PAGE_ICONS.PANELS} title={title} />
+      <Header
+        title={title}
+        pathname={pathname}
+        icon={PAGE_ICONS.PANELS}
+        bottomContent={
+          <SearchBar placeholder={COPY["pages.panels.search.placeholder"]} />
+        }
+      />
     </Page>
   );
 }

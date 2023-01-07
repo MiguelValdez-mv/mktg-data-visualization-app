@@ -7,7 +7,7 @@ import { PAGE_ICONS } from "@/router/config";
 function View({ title, pathname }) {
   return (
     <Page>
-      <Header pathname={pathname} icon={PAGE_ICONS.PANELS} title={title} />
+      <Header title={title} pathname={pathname} icon={PAGE_ICONS.PANELS} />
     </Page>
   );
 }
