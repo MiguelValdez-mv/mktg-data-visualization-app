@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { Formik } from "formik";
 import PropTypes from "prop-types";
 
 import { IconArrowLeft } from "@/assets/svgs/IconArrowLeft";
@@ -8,13 +8,14 @@ import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
 import { ButtonIcon } from "@/components/atoms/ButtonIcon";
-import { Input } from "@/components/atoms/Input";
 import { Text } from "@/components/atoms/Text";
+import { TextInput } from "@/components/atoms/TextInput";
 import { Col } from "@/components/layout/Col";
 import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { Form } from "@/components/molecules/Form";
 import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
@@ -44,18 +45,23 @@ function View({
             validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
             onSubmit={handleOtpCreationFormSubmit}
           >
-            <Form className="flex flex-col">
-              <Field
-                name="email"
-                placeholder={COPY["forms.labels.email"]}
-                component={Input}
-              />
-              <Spacing bottom={2} />
+            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+              <Form onSubmit={handleSubmit}>
+                <TextInput
+                  name="email"
+                  placeholder={COPY["forms.labels.email"]}
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.email}
+                />
+                <Spacing bottom={2} />
 
-              <Button type="submit" isLoading={isLoading}>
-                {COPY["pages.login.continue"]}
-              </Button>
-            </Form>
+                <Button type="submit" isLoading={isLoading}>
+                  {COPY["pages.login.continue"]}
+                </Button>
+              </Form>
+            )}
           </Formik>
         ) : (
           <Formik
@@ -64,32 +70,32 @@ function View({
             validationSchema={FORM_VALIDATION_SCHEMES.OTP_VALIDATION}
             onSubmit={handleOtpValidationFormSubmit}
           >
-            <Form className="flex flex-col">
-              <Field
-                name="otp"
-                placeholder={COPY["forms.labels.otp"]}
-                component={Input}
-              />
-              <Spacing bottom={2} />
+            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+              <Form onSubmit={handleSubmit}>
+                <TextInput
+                  name="otp"
+                  placeholder={COPY["forms.placeholder.otp"]}
+                  value={values.otp}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.otp}
+                />
+                <Spacing bottom={2} />
 
-              <Button type="submit" isLoading={isLoading}>
-                {COPY["pages.login.cta"]}
-              </Button>
-              <Spacing bottom={2} />
+                <Button type="submit" isLoading={isLoading}>
+                  {COPY["pages.login.cta"]}
+                </Button>
+                <Spacing bottom={2} />
 
-              <Button
-                variant="outline"
-                onClick={changeEmail}
-                renderLeft={
-                  <>
-                    <IconArrowLeft />
-                    <Spacing right={1} />
-                  </>
-                }
-              >
-                {COPY["pages.login.changeEmail"]}
-              </Button>
-            </Form>
+                <Button
+                  variant="outline"
+                  onClick={changeEmail}
+                  startIcon={<IconArrowLeft />}
+                >
+                  {COPY["pages.login.changeEmail"]}
+                </Button>
+              </Form>
+            )}
           </Formik>
         )}
       </Surface>

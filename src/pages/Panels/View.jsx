@@ -1,5 +1,19 @@
+import { SearchBar } from "@/components/app/SearchBar";
+import { Header } from "@/components/layout/Header";
+import { Page } from "@/components/layout/Page";
+import { COPY } from "@/copy";
+
 function View() {
-  return <h1>View - Panels</h1>;
+  return (
+    <Page>
+      <Header
+        title={COPY["pages.panels.title"]}
+        bottomContent={
+          <SearchBar placeholder={COPY["forms.placeholder.searchPanel"]} />
+        }
+      />
+    </Page>
+  );
 }
 
 export default View;

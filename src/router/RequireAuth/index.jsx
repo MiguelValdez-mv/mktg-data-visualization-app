@@ -8,7 +8,7 @@ export function RequireAuth({ allowedRoles = [], children }) {
   const { isLoggedIn, user } = useAuth();
 
   if (!isLoggedIn) {
-    return <Navigate to="/iniciar-sesion" />;
+    return <Navigate to="/login" />;
   }
 
   const isValidRole = !allowedRoles.length || allowedRoles.includes(user.role);

@@ -10,17 +10,25 @@ export const COPY = {
   "pages.login.productCreatedBy": "Un producto creado por",
   "pages.login.otpCreation.success": (email) =>
     `Código de verificación enviado a ${email}`,
-  "pages.login.otpValidation.success": (name) => `Bienvenido ${name}`,
+  "pages.login.otpValidation.success": (name) => `Bienvenid@, ${name}`,
+
   "pages.users.title": "Usuarios",
   "pages.users.details.title": "Detalles de Usuario",
+
   "pages.connections.title": "Conexiones",
+
   "pages.businesses.title": "Negocios",
   "pages.businesses.details.title": "Detalles de Negocio",
+
   "pages.panels.title": "Paneles",
 
   // FORMS
   "forms.labels.email": "Correo electrónico",
-  "forms.labels.otp": "Código de verificación",
+  "forms.placeholder.otp": "Código de verificación",
+  "forms.placeholder.searchUser": "Buscar usuario",
+  "forms.placeholder.searchConnection": "Buscar conexión",
+  "forms.placeholder.searchBusiness": "Buscar negocio",
+  "forms.placeholder.searchPanel": "Buscar panel",
 
   // ERRORS
   "errors.requiredField": "Campo requerido",

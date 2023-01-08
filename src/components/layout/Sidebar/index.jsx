@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconBriefcase } from "@/assets/svgs/IconBriefcase";
-import { IconChevronDoubleLeft } from "@/assets/svgs/IconChevronDoubleLeft";
+import { IconChevronLeft } from "@/assets/svgs/IconChevronLeft";
 import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
-import { IconStatsChart } from "@/assets/svgs/IconStatsChart";
-import { IconTransitConnection } from "@/assets/svgs/IconTransitConnection";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
 import { ButtonIcon } from "@/components/atoms/ButtonIcon";
@@ -22,6 +19,7 @@ import { useAlert } from "@/hooks/useAlert";
 import { useDimensions } from "@/hooks/useDimensions";
 import { useLogout } from "@/hooks/useLogout";
 import { useSidebar } from "@/hooks/useSidebar";
+import { PAGE_ICONS } from "@/router/config";
 import { isUserAdmin } from "@/utils/isUserAdmin";
 import { twMerge } from "@/utils/twMerge";
 
@@ -47,7 +45,7 @@ export function Sidebar({ user }) {
   return (
     <Col
       className={twMerge(
-        "max-w-xs w-full h-screen bg-tertiary p-8 ease-in-out duration-300",
+        "max-w-xs w-full h-screen bg-tertiary p-5 ease-in-out duration-300 z-50",
         !isLargeScreen && "fixed top-0 left-0 drop-shadow-surface",
         !isLargeScreen && !isSidebarOpen && "-translate-x-full"
       )}
@@ -63,17 +61,17 @@ export function Sidebar({ user }) {
           {isUserAdmin(user) && (
             <>
               <SidebarOption
-                to="/usuarios"
+                to="/users"
                 name={COPY["pages.users.title"]}
-                icon={IconCircleUser}
+                icon={PAGE_ICONS.USERS}
                 closeSidebar={closeSidebar}
               />
               <Spacing bottom={1} />
 
               <SidebarOption
-                to="/conexiones"
+                to="/connections"
                 name={COPY["pages.connections.title"]}
-                icon={IconTransitConnection}
+                icon={PAGE_ICONS.CONNECTIONS}
                 closeSidebar={closeSidebar}
               />
               <Spacing bottom={1} />
@@ -81,17 +79,17 @@ export function Sidebar({ user }) {
           )}
 
           <SidebarOption
-            to="/negocios"
+            to="/businesses"
             name={COPY["pages.businesses.title"]}
-            icon={IconBriefcase}
+            icon={PAGE_ICONS.BUSINESSES}
             closeSidebar={closeSidebar}
           />
           <Spacing bottom={1} />
 
           <SidebarOption
-            to="/paneles"
+            to="/panels"
             name={COPY["pages.panels.title"]}
-            icon={IconStatsChart}
+            icon={PAGE_ICONS.PANELS}
             closeSidebar={closeSidebar}
           />
         </Col>
@@ -101,13 +99,10 @@ export function Sidebar({ user }) {
             <Button
               className="justify-start border-muted text-muted"
               variant="outline"
-              renderLeft={
-                <>
-                  <Row className="bg-muted p-2 rounded-full">
-                    <IconCircleUser className="w-6 h-6 text-white" />
-                  </Row>
-                  <Spacing right={2} />
-                </>
+              startIcon={
+                <Row className="bg-muted p-2 rounded-full">
+                  <IconCircleUser className="w-6 h-6 text-white" />
+                </Row>
               }
             >
               {user.fullName}
@@ -117,12 +112,7 @@ export function Sidebar({ user }) {
           <MenuOption
             onClick={onClickLogoutOpt}
             isLoading={logoutMutation.isLoading}
-            renderLeft={
-              <>
-                <IconExit className="w-6 h-6" />
-                <Spacing right={2} />
-              </>
-            }
+            startIcon={<IconExit className="w-6 h-6" />}
           >
             {COPY["app.sidebar.logout"]}
           </MenuOption>
@@ -134,7 +124,7 @@ export function Sidebar({ user }) {
           <ButtonIcon
             iconClassName="w-6 h-6 text-primary"
             onClick={closeSidebar}
-            icon={IconChevronDoubleLeft}
+            icon={IconChevronLeft}
           />
         </Surface>
       )}

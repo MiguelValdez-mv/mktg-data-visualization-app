@@ -24,10 +24,10 @@ export function AppRouter() {
     <Routes>
       <Route path="/" element={<Default />} />
 
-      <Route path="iniciar-sesion" element={<Login />} />
+      <Route path="login" element={<Login />} />
 
       <Route
-        path="usuarios"
+        path="users"
         element={
           <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
             <Users />
@@ -35,7 +35,7 @@ export function AppRouter() {
         }
       />
       <Route
-        path="usuarios/:userId"
+        path="users/:userId"
         element={
           <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
             <UserDetails />
@@ -44,7 +44,7 @@ export function AppRouter() {
       />
 
       <Route
-        path="conexiones"
+        path="connections"
         element={
           <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
             <Connections />
@@ -53,7 +53,7 @@ export function AppRouter() {
       />
 
       <Route
-        path="negocios"
+        path="businesses"
         element={
           <RequireAuth>
             <Businesses />
@@ -61,7 +61,7 @@ export function AppRouter() {
         }
       />
       <Route
-        path="negocios/:businessId"
+        path="businesses/:businessId"
         element={
           <RequireAuth>
             <BusinessDetails />
@@ -70,7 +70,7 @@ export function AppRouter() {
       />
 
       <Route
-        path="paneles"
+        path="panels"
         element={
           <RequireAuth>
             <Panels />
@@ -78,7 +78,7 @@ export function AppRouter() {
         }
       />
       <Route
-        path="paneles/:panelId"
+        path="panels/:panelId"
         element={
           <RequireAuth>
             <PanelDetails />

@@ -22,9 +22,9 @@ export const Button = forwardRef(
       type = "button",
       onClick,
       isLoading,
-      renderLeft = null,
+      startIcon = null,
       children,
-      renderRight = null,
+      endIcon = null,
     },
     ref
   ) => (
@@ -40,18 +40,21 @@ export const Button = forwardRef(
       disabled={disabled}
       onClick={onClick}
     >
-      {isLoading ? (
+      {isLoading || startIcon ? (
         <>
-          <Spinner />
+          {isLoading ? <Spinner /> : startIcon}
           <Spacing right={2} />
         </>
-      ) : (
-        renderLeft
-      )}
+      ) : null}
 
       {children}
 
-      {renderRight}
+      {endIcon && (
+        <>
+          <Spacing left={2} />
+          {endIcon}
+        </>
+      )}
     </button>
   )
 );
@@ -63,7 +66,7 @@ Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   isLoading: PropTypes.bool,
-  renderLeft: PropTypes.node,
+  startIcon: PropTypes.node,
   children: PROP.CHILDREN.isRequired,
-  renderRight: PropTypes.node,
+  endIcon: PropTypes.node,
 };

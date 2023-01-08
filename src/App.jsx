@@ -10,7 +10,6 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { SidebarProvider } from "@/contexts/SidebarProvider";
 import { useAuth } from "@/hooks/useAuth";
-import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
 import { AppRouter } from "@/router";
 import { startSuperTokens } from "@/thirdParty/superTokens";
 
@@ -21,14 +20,9 @@ startSuperTokens();
 const queryClient = new QueryClient();
 
 function Wrapper() {
-  const { isLoggedIn, user, login } = useAuth();
-  const { isLoading } = useDoesSessionExist({
-    staleTime: Infinity,
-    cacheTime: Infinity,
-    onSuccess: (res) => res.sessionExist && login(res.user),
-  });
+  const { isLoggedIn, user, isCheckingSession } = useAuth();
 
-  return isLoading ? (
+  return isCheckingSession ? (
     <Loader />
   ) : (
     <Row>
@@ -42,7 +36,7 @@ export function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <AlertProvider template={AlertTemplate} timeout={5000}>
+        <AlertProvider template={AlertTemplate} timeout={5 * 1000}>
           <AuthProvider>
             <SidebarProvider>
               <Wrapper />

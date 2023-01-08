@@ -6,23 +6,20 @@ import { useDimensions } from "@/hooks/useDimensions";
 export const SidebarContext = createContext();
 
 export function SidebarProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isLargeScreen } = useDimensions();
 
-  const openSidebar = () => setIsOpen(true);
-  const closeSidebar = () => !isLargeScreen && setIsOpen(false);
+  const openSidebar = () => setIsSidebarOpen(true);
+  const closeSidebar = () => !isLargeScreen && setIsSidebarOpen(false);
 
   const value = useMemo(
-    () => ({ isSidebarOpen: isOpen, openSidebar, closeSidebar }),
-    [isOpen, isLargeScreen]
+    () => ({ isSidebarOpen, openSidebar, closeSidebar }),
+    [isSidebarOpen, isLargeScreen]
   );
 
   useEffect(() => {
-    if (isLargeScreen) {
-      openSidebar();
-    } else {
-      closeSidebar();
-    }
+    if (isLargeScreen) openSidebar();
+    else closeSidebar();
   }, [isLargeScreen]);
 
   return (

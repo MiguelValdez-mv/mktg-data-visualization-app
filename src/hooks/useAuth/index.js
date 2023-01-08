@@ -9,10 +9,5 @@ export const useAuth = () => {
     throw new Error("useAuth must be used within a AuthProvider");
   }
 
-  const [state, dispatch] = context;
-
-  const login = (user) => dispatch({ type: "LOGIN", payload: { user } });
-  const logout = () => dispatch({ type: "LOGOUT" });
-
-  return { ...state, login, logout };
+  return context;
 };

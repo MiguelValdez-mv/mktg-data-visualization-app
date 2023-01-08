@@ -1,5 +1,13 @@
+import { Header } from "@/components/layout/Header";
+import { Page } from "@/components/layout/Page";
+import { COPY } from "@/copy";
+
 function View() {
-  return <h1>View - User Details</h1>;
+  return (
+    <Page>
+      <Header title={COPY["pages.users.details.title"]} />
+    </Page>
+  );
 }
 
 export default View;
