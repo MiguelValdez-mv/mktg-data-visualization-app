@@ -10,13 +10,22 @@ import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
 import { useDimensions } from "@/hooks/useDimensions";
 import { useSidebar } from "@/hooks/useSidebar";
+import { PAGE_ICONS } from "@/router/config";
 
 export function Header({ title, topContent = null, bottomContent = null }) {
   const { openSidebar } = useSidebar();
   const { isLargeScreen } = useDimensions();
   const { pathname } = useLocation();
 
-  const splitPathname = pathname.split("/").filter(Boolean);
+  const [, pathnameBase] = pathname.split("/");
+  const isMainRoute = [
+    "/users",
+    "/connections",
+    "/businesses",
+    "/panels",
+  ].includes(pathname);
+
+  const Icon = PAGE_ICONS[pathnameBase.toUpperCase()];
 
   return (
     <Surface className="bg-transparent lg:bg-white lg:flex-row lg:justify-between lg:items-center">
@@ -40,20 +49,27 @@ export function Header({ title, topContent = null, bottomContent = null }) {
           {isLargeScreen && (
             <>
               <Row className="items-center">
-                {/* <Icon className="text-muted" />
-                <Spacing right={1} /> */}
+                <Icon className="text-muted" />
+                <Spacing right={1} />
 
-                {splitPathname.map((s) => (
-                  <Row key={s}>
+                <Text muted bold>
+                  /
+                </Text>
+                <Spacing right={1} />
+
+                {!isMainRoute && (
+                  <>
+                    <Text capitalize>{pathnameBase}</Text>
+                    <Spacing right={1} />
+
                     <Text muted bold>
                       /
                     </Text>
                     <Spacing right={1} />
+                  </>
+                )}
 
-                    <Text capitalize>{s}</Text>
-                    <Spacing right={1} />
-                  </Row>
-                ))}
+                <Text>{title}</Text>
               </Row>
               <Spacing bottom={1} />
             </>

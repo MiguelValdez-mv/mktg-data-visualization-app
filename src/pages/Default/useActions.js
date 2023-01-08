@@ -6,11 +6,11 @@ const useActions = () => {
 
   let to;
   if (!isLoggedIn) {
-    to = "/iniciar-sesion";
+    to = "/login";
   } else if (isUserAdmin(user)) {
-    to = "/usuarios";
+    to = "/users";
   } else {
-    to = "/negocios";
+    to = "/businesses";
   }
 
   return { to };

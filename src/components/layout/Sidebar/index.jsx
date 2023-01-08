@@ -61,7 +61,7 @@ export function Sidebar({ user }) {
           {isUserAdmin(user) && (
             <>
               <SidebarOption
-                to="/usuarios"
+                to="/users"
                 name={COPY["pages.users.title"]}
                 icon={PAGE_ICONS.USERS}
                 closeSidebar={closeSidebar}
@@ -69,7 +69,7 @@ export function Sidebar({ user }) {
               <Spacing bottom={1} />
 
               <SidebarOption
-                to="/conexiones"
+                to="/connections"
                 name={COPY["pages.connections.title"]}
                 icon={PAGE_ICONS.CONNECTIONS}
                 closeSidebar={closeSidebar}
@@ -79,7 +79,7 @@ export function Sidebar({ user }) {
           )}
 
           <SidebarOption
-            to="/negocios"
+            to="/businesses"
             name={COPY["pages.businesses.title"]}
             icon={PAGE_ICONS.BUSINESSES}
             closeSidebar={closeSidebar}
@@ -87,7 +87,7 @@ export function Sidebar({ user }) {
           <Spacing bottom={1} />
 
           <SidebarOption
-            to="/paneles"
+            to="/panels"
             name={COPY["pages.panels.title"]}
             icon={PAGE_ICONS.PANELS}
             closeSidebar={closeSidebar}
