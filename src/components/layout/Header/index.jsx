@@ -8,6 +8,7 @@ import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { COPY } from "@/copy";
 import { useDimensions } from "@/hooks/useDimensions";
 import { useSidebar } from "@/hooks/useSidebar";
 import { PAGE_ICONS } from "@/router/config";
@@ -59,7 +60,9 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
                 {!isMainRoute && (
                   <>
-                    <Text capitalize>{pathnameBase}</Text>
+                    <Text capitalize>
+                      {COPY[`pages.${pathnameBase.toLowerCase()}.title`]}
+                    </Text>
                     <Spacing right={1} />
 
                     <Text muted bold>
