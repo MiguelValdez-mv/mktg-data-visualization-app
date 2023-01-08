@@ -8,4 +8,8 @@
     @apply font-poppins;
     @apply bg-tertiary;
   }
+
+  svg {
+    @apply min-w-fit;
+  }
 }
