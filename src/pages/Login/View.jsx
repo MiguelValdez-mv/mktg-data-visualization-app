@@ -74,7 +74,7 @@ function View({
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   name="otp"
-                  placeholder={COPY["forms.labels.otp"]}
+                  placeholder={COPY["forms.placeholder.otp"]}
                   value={values.otp}
                   onChange={handleChange}
                   onBlur={handleBlur}

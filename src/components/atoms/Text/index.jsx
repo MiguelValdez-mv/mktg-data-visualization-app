@@ -32,7 +32,7 @@ export function Text({
         semibold && "font-semibold",
         bold && "font-bold",
         italic && "italic",
-        capitalize && "capitalize",
+        capitalize && "first-letter:capitalize",
         tiny && "text-tiny",
         small && "text-small",
         subtitle && "text-subtitle",
