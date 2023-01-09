@@ -25,6 +25,7 @@ export const PROP = {
   CHILDREN: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
+    PropTypes.func,
   ]),
   USER: PropTypes.shape({
     name: PropTypes.string.isRequired,

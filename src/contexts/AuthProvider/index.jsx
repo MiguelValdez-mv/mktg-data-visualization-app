@@ -42,6 +42,7 @@ export function AuthProvider({ children }) {
       if (sessionExist) login(user);
       else if (isLoggedIn) logout();
     },
+    staleTime: Infinity,
   });
 
   const value = useMemo(

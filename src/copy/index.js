@@ -20,6 +20,11 @@ export const COPY = {
   "pages.users.create.title": "Añadir Usuario",
   "pages.users.create.name": "Nombre",
   "pages.users.create.email": "Correo electrónico",
+  "pages.users.create.role": "Rol",
+  "pages.users.create.role.admin": "Administrador",
+  "pages.users.create.role.owner": "Propietario",
+  "pages.users.create.role.employee": "Empleado",
+  "pages.users.create.cta": "Añadir",
 
   "pages.users.details.title": "Detalles de Usuario",
 

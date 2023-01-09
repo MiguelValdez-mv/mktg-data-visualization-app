@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 
+import { Label } from "@/components/atoms/Label";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
@@ -20,12 +21,7 @@ export function TextInput({
 }) {
   return (
     <Col>
-      {label && (
-        <>
-          <Text bold>{label}</Text>
-          <Spacing bottom={1} />
-        </>
-      )}
+      {label && <Label>{label}</Label>}
 
       <Row
         className={twMerge(

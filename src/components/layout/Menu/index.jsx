@@ -12,13 +12,17 @@ export function Menu({
 }) {
   return (
     <Popup trigger={trigger} position={position} arrow={arrow}>
-      <Surface className="p-0">{children}</Surface>
+      {(closeMenu) => (
+        <Surface className="p-0">
+          {typeof children === "function" ? children(closeMenu) : children}
+        </Surface>
+      )}
     </Popup>
   );
 }
 
 Menu.propTypes = {
-  trigger: PropTypes.node,
+  trigger: PROP.CHILDREN,
   position: PropTypes.string,
   children: PROP.CHILDREN.isRequired,
   arrow: PropTypes.bool,
