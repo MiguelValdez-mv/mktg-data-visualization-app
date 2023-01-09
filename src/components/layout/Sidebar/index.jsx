@@ -120,11 +120,9 @@ export function Sidebar({ user }) {
 
       {!isLargeScreen && (
         <Surface className="self-center p-2">
-          <ButtonIcon
-            iconClassName="text-primary"
-            onClick={closeSidebar}
-            icon={IconChevronLeft}
-          />
+          <ButtonIcon onClick={closeSidebar}>
+            <IconChevronLeft className="text-primary" />
+          </ButtonIcon>
         </Surface>
       )}
     </Col>

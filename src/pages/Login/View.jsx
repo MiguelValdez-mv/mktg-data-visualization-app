@@ -101,18 +101,14 @@ function View({
 
       <Col className="items-center">
         <Row>
-          <ButtonIcon
-            onClick={redirectTo(LINKS.FACEBOOK)}
-            icon={IconSquareFacebook}
-            muted
-          />
+          <ButtonIcon onClick={redirectTo(LINKS.FACEBOOK)} muted>
+            <IconSquareFacebook />
+          </ButtonIcon>
           <Spacing right={1} />
 
-          <ButtonIcon
-            onClick={redirectTo(LINKS.INSTAGRAM)}
-            icon={IconSquareInstagram}
-            muted
-          />
+          <ButtonIcon onClick={redirectTo(LINKS.INSTAGRAM)} muted>
+            <IconSquareInstagram />
+          </ButtonIcon>
         </Row>
         <Spacing bottom={2} />
 
@@ -122,12 +118,9 @@ function View({
           </Text>
           <Spacing right={1} />
 
-          <ButtonIcon
-            iconClassName="w-24 h-auto"
-            onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
-            icon={OpenTechDarkLogo}
-            muted
-          />
+          <ButtonIcon onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)} muted>
+            <OpenTechDarkLogo className="w-24 h-auto" />
+          </ButtonIcon>
         </Row>
       </Col>
     </Page>

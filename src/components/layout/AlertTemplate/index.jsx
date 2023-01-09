@@ -36,12 +36,9 @@ export function AlertTemplate({ options, message, close }) {
       </Row>
       <Spacing right={4} />
 
-      <ButtonIcon
-        className="self-start"
-        onClick={close}
-        icon={IconClose}
-        muted
-      />
+      <ButtonIcon className="self-start" onClick={close} muted>
+        <IconClose className="w-auto h-auto" />
+      </ButtonIcon>
     </Surface>
   );
 }

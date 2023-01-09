@@ -39,11 +39,9 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
       <Row className="justify-between">
         {!isLargeScreen && (
-          <ButtonIcon
-            iconClassName="text-primary"
-            onClick={openSidebar}
-            icon={IconMenu}
-          />
+          <ButtonIcon onClick={openSidebar}>
+            <IconMenu className="text-primary" />
+          </ButtonIcon>
         )}
 
         <Col>
