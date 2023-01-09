@@ -7,7 +7,7 @@ import { IconSquareInstagram } from "@/assets/svgs/IconSquareInstagram";
 import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
+import { IconButton } from "@/components/atoms/IconButton";
 import { Text } from "@/components/atoms/Text";
 import { TextInput } from "@/components/atoms/TextInput";
 import { Col } from "@/components/layout/Col";
@@ -101,14 +101,14 @@ function View({
 
       <Col className="items-center">
         <Row>
-          <ButtonIcon onClick={redirectTo(LINKS.FACEBOOK)} muted>
+          <IconButton onClick={redirectTo(LINKS.FACEBOOK)} muted>
             <IconSquareFacebook />
-          </ButtonIcon>
+          </IconButton>
           <Spacing right={1} />
 
-          <ButtonIcon onClick={redirectTo(LINKS.INSTAGRAM)} muted>
+          <IconButton onClick={redirectTo(LINKS.INSTAGRAM)} muted>
             <IconSquareInstagram />
-          </ButtonIcon>
+          </IconButton>
         </Row>
         <Spacing bottom={2} />
 
@@ -118,9 +118,9 @@ function View({
           </Text>
           <Spacing right={1} />
 
-          <ButtonIcon onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)} muted>
+          <IconButton onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)} muted>
             <OpenTechDarkLogo className="w-24 h-auto" />
-          </ButtonIcon>
+          </IconButton>
         </Row>
       </Col>
     </Page>

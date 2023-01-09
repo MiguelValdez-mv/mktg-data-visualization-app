@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { PROP } from "@/constants";
 import { twMerge } from "@/utils/twMerge";
 
-export function ButtonIcon({
+export function IconButton({
   muted,
   hoverable = true,
   className,
@@ -25,7 +25,7 @@ export function ButtonIcon({
   );
 }
 
-ButtonIcon.propTypes = {
+IconButton.propTypes = {
   muted: PropTypes.bool,
   hoverable: PropTypes.bool,
   className: PropTypes.string,

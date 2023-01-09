@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
 import { IconMenu } from "@/assets/svgs/IconMenu";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
+import { IconButton } from "@/components/atoms/IconButton";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
@@ -39,9 +39,9 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
       <Row className="justify-between">
         {!isLargeScreen && (
-          <ButtonIcon onClick={openSidebar}>
+          <IconButton onClick={openSidebar}>
             <IconMenu className="text-primary" />
-          </ButtonIcon>
+          </IconButton>
         )}
 
         <Col>

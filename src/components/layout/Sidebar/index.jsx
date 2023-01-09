@@ -5,8 +5,8 @@ import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Divider } from "@/components/atoms/Divider";
+import { IconButton } from "@/components/atoms/IconButton";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
@@ -120,9 +120,9 @@ export function Sidebar({ user }) {
 
       {!isLargeScreen && (
         <Surface className="self-center p-2">
-          <ButtonIcon onClick={closeSidebar}>
+          <IconButton onClick={closeSidebar}>
             <IconChevronLeft className="text-primary" />
-          </ButtonIcon>
+          </IconButton>
         </Surface>
       )}
     </Col>
