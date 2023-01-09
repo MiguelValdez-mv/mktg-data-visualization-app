@@ -14,11 +14,11 @@ export function AlertTemplate({ options, message, close }) {
   const renderIcon = () => {
     switch (options.type) {
       case "info":
-        return <IconInfoCircle className="text-info w-6 h-6" />;
+        return <IconInfoCircle className="text-info" />;
       case "success":
-        return <IconCheckCircle className="text-success w-6 h-6" />;
+        return <IconCheckCircle className="text-success" />;
       case "error":
-        return <IconBxErrorCircle className="text-error w-6 h-6" />;
+        return <IconBxErrorCircle className="text-error" />;
       default:
         return null;
     }

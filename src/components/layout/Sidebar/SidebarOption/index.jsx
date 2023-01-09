@@ -9,27 +9,22 @@ import { twMerge } from "@/utils/twMerge";
 
 export function SidebarOption({ to, icon: Icon, name, closeSidebar }) {
   const { pathname } = useLocation();
-  const isCurrentRoute = pathname.includes(to);
+  const isSelected = pathname.includes(to);
 
   return (
     <Link to={to} onClick={closeSidebar}>
       <Surface
         className={twMerge(
           "flex-row items-center p-2",
-          isCurrentRoute ? "bg-white" : "bg-transparent"
+          isSelected ? "bg-white" : "bg-transparent"
         )}
       >
-        <Surface className={twMerge("p-2", isCurrentRoute && "bg-primary")}>
-          <Icon
-            className={twMerge(
-              "w-6 h-6",
-              isCurrentRoute ? "text-white" : "text-primary"
-            )}
-          />
+        <Surface className={twMerge("p-2", isSelected && "bg-primary")}>
+          <Icon className={isSelected ? "text-white" : "text-primary"} />
         </Surface>
         <Spacing right={2} />
 
-        <Text bold={isCurrentRoute}>{name}</Text>
+        <Text bold={isSelected}>{name}</Text>
       </Surface>
     </Link>
   );

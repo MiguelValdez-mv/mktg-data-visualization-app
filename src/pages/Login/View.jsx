@@ -34,9 +34,8 @@ function View({
       </Text>
 
       <Surface className="py-20">
-        <Spacing horizontal={6} bottom={4}>
-          <OpenTechLogo />
-        </Spacing>
+        <OpenTechLogo className="w-auto h-auto px-10" />
+        <Spacing bottom={4} />
 
         {!otpCreationIsSuccessful ? (
           <Formik
@@ -103,7 +102,6 @@ function View({
       <Col className="items-center">
         <Row>
           <ButtonIcon
-            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.FACEBOOK)}
             icon={IconSquareFacebook}
             muted
@@ -111,7 +109,6 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            iconClassName="w-6 h-6"
             onClick={redirectTo(LINKS.INSTAGRAM)}
             icon={IconSquareInstagram}
             muted
@@ -126,7 +123,7 @@ function View({
           <Spacing right={1} />
 
           <ButtonIcon
-            iconClassName="w-24"
+            iconClassName="w-24 h-auto"
             onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)}
             icon={OpenTechDarkLogo}
             muted

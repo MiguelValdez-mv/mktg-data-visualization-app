@@ -50,9 +50,8 @@ export function Sidebar({ user }) {
         !isLargeScreen && !isSidebarOpen && "-translate-x-full"
       )}
     >
-      <Spacing horizontal={4} bottom={3}>
-        <OpenTechLogo />
-      </Spacing>
+      <OpenTechLogo className="w-auto h-auto px-10" />
+      <Spacing bottom={3} />
 
       <Divider />
 
@@ -101,7 +100,7 @@ export function Sidebar({ user }) {
               variant="outline"
               startIcon={
                 <Row className="bg-muted p-2 rounded-full">
-                  <IconCircleUser className="w-6 h-6 text-white" />
+                  <IconCircleUser className="text-white" />
                 </Row>
               }
             >
@@ -112,7 +111,7 @@ export function Sidebar({ user }) {
           <MenuOption
             onClick={onClickLogoutOpt}
             isLoading={logoutMutation.isLoading}
-            startIcon={<IconExit className="w-6 h-6" />}
+            startIcon={<IconExit />}
           >
             {COPY["app.sidebar.logout"]}
           </MenuOption>
@@ -122,7 +121,7 @@ export function Sidebar({ user }) {
       {!isLargeScreen && (
         <Surface className="self-center p-2">
           <ButtonIcon
-            iconClassName="w-6 h-6 text-primary"
+            iconClassName="text-primary"
             onClick={closeSidebar}
             icon={IconChevronLeft}
           />
