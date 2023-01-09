@@ -18,13 +18,13 @@ export function Header({ title, topContent = null, bottomContent = null }) {
   const { isLargeScreen } = useDimensions();
   const { pathname } = useLocation();
 
-  const [, pathnameBase] = pathname.split("/");
   const isMainRoute = [
     "/users",
     "/connections",
     "/businesses",
     "/panels",
   ].includes(pathname);
+  const [, pathnameBase] = pathname.split("/");
 
   const Icon = PAGE_ICONS[pathnameBase.toUpperCase()];
 

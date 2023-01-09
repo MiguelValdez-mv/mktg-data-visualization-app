@@ -8,6 +8,7 @@ import { Spacing } from "@/components/layout/Spacing";
 import { twMerge } from "@/utils/twMerge";
 
 export function TextInput({
+  label,
   error,
   startAdornment = null,
   name,
@@ -19,6 +20,13 @@ export function TextInput({
 }) {
   return (
     <Col>
+      {label && (
+        <>
+          <Text bold>{label}</Text>
+          <Spacing bottom={1} />
+        </>
+      )}
+
       <Row
         className={twMerge(
           "border rounded-xl text-primary p-2 items-center bg-white",
@@ -51,14 +59,19 @@ export function TextInput({
           </>
         )}
       </Row>
-      <Spacing bottom={0.5} />
 
-      {error && <Text error>{error}</Text>}
+      {error && (
+        <>
+          <Spacing top={1} />
+          <Text error>{error}</Text>
+        </>
+      )}
     </Col>
   );
 }
 
 TextInput.propTypes = {
+  label: PropTypes.string,
   error: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,

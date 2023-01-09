@@ -104,7 +104,7 @@ export function Sidebar({ user }) {
                 </Row>
               }
             >
-              {user.fullName}
+              {user.name}
             </Button>
           }
         >

@@ -27,7 +27,7 @@ export const PROP = {
     PropTypes.node,
   ]),
   USER: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }),

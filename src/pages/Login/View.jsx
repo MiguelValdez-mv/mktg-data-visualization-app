@@ -7,6 +7,7 @@ import { IconSquareInstagram } from "@/assets/svgs/IconSquareInstagram";
 import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
 import { Button } from "@/components/atoms/Button";
+import { Form } from "@/components/atoms/Form";
 import { IconButton } from "@/components/atoms/IconButton";
 import { Text } from "@/components/atoms/Text";
 import { TextInput } from "@/components/atoms/TextInput";
@@ -15,7 +16,6 @@ import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { Form } from "@/components/molecules/Form";
 import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
@@ -48,7 +48,7 @@ function View({
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   name="email"
-                  placeholder={COPY["forms.labels.email"]}
+                  placeholder={COPY["pages.login.email"]}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -73,7 +73,7 @@ function View({
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   name="otp"
-                  placeholder={COPY["forms.placeholder.otp"]}
+                  placeholder={COPY["pages.login.otp"]}
                   value={values.otp}
                   onChange={handleChange}
                   onBlur={handleBlur}

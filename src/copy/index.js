@@ -4,7 +4,9 @@ export const COPY = {
 
   // PAGES
   "pages.login.welcome": "¡Bienvenido!",
+  "pages.login.email": "Correo electrónico",
   "pages.login.continue": "Continuar",
+  "pages.login.otp": "Código de verificación",
   "pages.login.cta": "Iniciar sesión",
   "pages.login.changeEmail": "Cambiar correo electrónico",
   "pages.login.productCreatedBy": "Un producto creado por",
@@ -13,22 +15,24 @@ export const COPY = {
   "pages.login.otpValidation.success": (name) => `Bienvenid@, ${name}`,
 
   "pages.users.title": "Usuarios",
+  "pages.users.searchUser": "Buscar usuario",
+
+  "pages.users.create.title": "Añadir Usuario",
+  "pages.users.create.name": "Nombre",
+  "pages.users.create.email": "Correo electrónico",
+
   "pages.users.details.title": "Detalles de Usuario",
 
   "pages.connections.title": "Conexiones",
+  "pages.connections.searchConnection": "Buscar conexión",
 
   "pages.businesses.title": "Negocios",
+  "pages.businesses.searchBusiness": "Buscar negocio",
+
   "pages.businesses.details.title": "Detalles de Negocio",
 
   "pages.panels.title": "Paneles",
-
-  // FORMS
-  "forms.labels.email": "Correo electrónico",
-  "forms.placeholder.otp": "Código de verificación",
-  "forms.placeholder.searchUser": "Buscar usuario",
-  "forms.placeholder.searchConnection": "Buscar conexión",
-  "forms.placeholder.searchBusiness": "Buscar negocio",
-  "forms.placeholder.searchPanel": "Buscar panel",
+  "pages.panels.searchPanel": "Buscar panel",
 
   // ERRORS
   "errors.requiredField": "Campo requerido",
