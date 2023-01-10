@@ -3,6 +3,7 @@ import { Formik } from "formik";
 
 import { Button } from "@/components/atoms/Button";
 import { Checkbox } from "@/components/atoms/Checkbox";
+import { FileInput } from "@/components/atoms/FileInput";
 import { Form } from "@/components/atoms/Form";
 import { Text } from "@/components/atoms/Text";
 import { TextInput } from "@/components/atoms/TextInput";
@@ -13,7 +14,7 @@ import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { USER_ROLES } from "@/constants";
+import { USER_ROLES, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
 function View() {
@@ -28,8 +29,10 @@ function View() {
             name: "",
             email: "",
             role: USER_ROLES.ADMIN,
+            avatar: null,
             notifyRegistration: false,
           }}
+          validationSchema={FORM_VALIDATION_SCHEMES.USER_CREATION}
         >
           {({
             handleSubmit,
@@ -37,6 +40,7 @@ function View() {
             handleBlur,
             values,
             errors,
+            touched,
             setFieldValue,
           }) => (
             <Form onSubmit={handleSubmit}>
@@ -46,7 +50,7 @@ function View() {
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name}
+                error={touched.name && errors.name}
               />
               <Spacing bottom={2} />
 
@@ -56,7 +60,7 @@ function View() {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.email}
+                error={touched.email && errors.email}
               />
               <Spacing bottom={2} />
 
@@ -92,6 +96,16 @@ function View() {
                   ))
                 }
               </Menu>
+              <Spacing bottom={2} />
+
+              <FileInput
+                id="avatar"
+                label={COPY["pages.users.create.avatar"]}
+                onChange={(e) =>
+                  setFieldValue("avatar", e.currentTarget.files[0])
+                }
+                accept=".jpg, .jpeg, .png"
+              />
               <Spacing bottom={2} />
 
               <Checkbox

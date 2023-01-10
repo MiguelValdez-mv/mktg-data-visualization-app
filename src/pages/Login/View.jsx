@@ -44,7 +44,14 @@ function View({
             validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
             onSubmit={handleOtpCreationFormSubmit}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              errors,
+              touched,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   id="email"
@@ -52,7 +59,7 @@ function View({
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.email}
+                  error={touched.email && errors.email}
                 />
                 <Spacing bottom={2} />
 
@@ -69,7 +76,14 @@ function View({
             validationSchema={FORM_VALIDATION_SCHEMES.OTP_VALIDATION}
             onSubmit={handleOtpValidationFormSubmit}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              errors,
+              touched,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   id="otp"
@@ -77,7 +91,7 @@ function View({
                   value={values.otp}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.otp}
+                  error={touched.otp && errors.otp}
                 />
                 <Spacing bottom={2} />
 

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { object, string, setLocale } from "yup";
+import { setLocale, object, string, mixed, boolean } from "yup";
 
 import { COPY } from "@/copy";
 
@@ -18,6 +18,13 @@ export const FORM_VALIDATION_SCHEMES = {
   }),
   OTP_VALIDATION: object().shape({
     otp: string().required(),
+  }),
+  USER_CREATION: object().shape({
+    name: string().required(),
+    email: string().email().required(),
+    role: string().required(),
+    file: mixed(),
+    notifyRegistration: boolean(),
   }),
 };
 
