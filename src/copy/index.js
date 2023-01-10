@@ -24,6 +24,7 @@ export const COPY = {
   "pages.users.create.role.admin": "Administrador",
   "pages.users.create.role.owner": "Propietario",
   "pages.users.create.role.employee": "Empleado",
+  "pages.users.create.notifyRegistration": "Notificar registro",
   "pages.users.create.cta": "Añadir",
 
   "pages.users.details.title": "Detalles de Usuario",

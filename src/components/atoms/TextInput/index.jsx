@@ -10,9 +10,9 @@ import { twMerge } from "@/utils/twMerge";
 
 export function TextInput({
   label,
+  id,
   error,
   startAdornment = null,
-  name,
   value,
   onChange,
   onBlur,
@@ -21,7 +21,12 @@ export function TextInput({
 }) {
   return (
     <Col>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <>
+          <Label htmlFor={id}>{label}</Label>
+          <Spacing bottom={1} />
+        </>
+      )}
 
       <Row
         className={twMerge(
@@ -41,7 +46,7 @@ export function TextInput({
         <input
           className="outline-none flex-1 bg-transparent"
           type="text"
-          name={name}
+          id={id}
           value={value}
           onChange={onChange}
           onBlur={onBlur}
@@ -68,8 +73,8 @@ export function TextInput({
 
 TextInput.propTypes = {
   label: PropTypes.string,
+  id: PropTypes.string.isRequired,
   error: PropTypes.string,
-  name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,

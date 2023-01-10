@@ -47,7 +47,7 @@ function View({
             {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
-                  name="email"
+                  id="email"
                   placeholder={COPY["pages.login.email"]}
                   value={values.email}
                   onChange={handleChange}
@@ -72,7 +72,7 @@ function View({
             {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
-                  name="otp"
+                  id="otp"
                   placeholder={COPY["pages.login.otp"]}
                   value={values.otp}
                   onChange={handleChange}

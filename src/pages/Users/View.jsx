@@ -15,7 +15,10 @@ function View() {
       <Header
         title={COPY["pages.users.title"]}
         bottomContent={
-          <SearchBar placeholder={COPY["pages.users.searchUser"]} />
+          <SearchBar
+            id="searchUser"
+            placeholder={COPY["pages.users.searchUser"]}
+          />
         }
       />
       <Spacing bottom={10} />

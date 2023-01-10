@@ -1,17 +1,21 @@
-import { Text } from "@/components/atoms/Text";
-import { Col } from "@/components/layout/Col";
-import { Spacing } from "@/components/layout/Spacing";
-import { PROP } from "@/constants";
+import PropTypes from "prop-types";
 
-export function Label({ children }) {
+import { PROP } from "@/constants";
+import { twMerge } from "@/utils/twMerge";
+
+export function Label({ className, htmlFor, children }) {
   return (
-    <Col>
-      <Text bold>{children}</Text>
-      <Spacing bottom={1} />
-    </Col>
+    <label
+      className={twMerge("text-primary font-bold", className)}
+      htmlFor={htmlFor}
+    >
+      {children}
+    </label>
   );
 }
 
 Label.propTypes = {
+  className: PropTypes.string,
+  htmlFor: PropTypes.string.isRequired,
   children: PROP.CHILDREN.isRequired,
 };

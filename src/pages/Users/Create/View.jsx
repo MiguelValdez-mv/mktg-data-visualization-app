@@ -1,9 +1,10 @@
-/* eslint-disable */
+/* eslint-disable react/no-unstable-nested-components */
 import { Formik } from "formik";
 
 import { Button } from "@/components/atoms/Button";
+import { Checkbox } from "@/components/atoms/Checkbox";
 import { Form } from "@/components/atoms/Form";
-import { Label } from "@/components/atoms/Label";
+import { Text } from "@/components/atoms/Text";
 import { TextInput } from "@/components/atoms/TextInput";
 import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
 import { Header } from "@/components/layout/Header";
@@ -22,7 +23,14 @@ function View() {
       <Spacing bottom={10} />
 
       <Surface className="p-8">
-        <Formik initialValues={{ name: "", email: "", role: USER_ROLES.ADMIN }}>
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            role: USER_ROLES.ADMIN,
+            notifyRegistration: false,
+          }}
+        >
           {({
             handleSubmit,
             handleChange,
@@ -33,7 +41,7 @@ function View() {
           }) => (
             <Form onSubmit={handleSubmit}>
               <TextInput
-                name="name"
+                id="name"
                 label={COPY["pages.users.create.name"]}
                 value={values.name}
                 onChange={handleChange}
@@ -43,7 +51,7 @@ function View() {
               <Spacing bottom={2} />
 
               <TextInput
-                name="email"
+                id="email"
                 label={COPY["pages.users.create.email"]}
                 value={values.email}
                 onChange={handleChange}
@@ -52,7 +60,9 @@ function View() {
               />
               <Spacing bottom={2} />
 
-              <Label>{COPY["pages.users.create.role"]}</Label>
+              <Text bold>{COPY["pages.users.create.role"]}</Text>
+              <Spacing bottom={1} />
+
               <Menu
                 trigger={(menuIsOpen) => (
                   <Button
@@ -82,6 +92,14 @@ function View() {
                   ))
                 }
               </Menu>
+              <Spacing bottom={2} />
+
+              <Checkbox
+                id="notifyRegistration"
+                label={COPY["pages.users.create.notifyRegistration"]}
+                checked={values.notifyRegistration}
+                onChange={handleChange}
+              />
               <Spacing bottom={4} />
 
               <Button className="self-end" type="submit">

@@ -9,7 +9,10 @@ function View() {
       <Header
         title={COPY["pages.panels.title"]}
         bottomContent={
-          <SearchBar placeholder={COPY["pages.panels.searchPanel"]} />
+          <SearchBar
+            id="searchPanel"
+            placeholder={COPY["pages.panels.searchPanel"]}
+          />
         }
       />
     </Page>
