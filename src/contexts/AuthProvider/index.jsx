@@ -36,13 +36,8 @@ export function AuthProvider({ children }) {
   const logout = () => dispatch({ type: "LOGOUT" });
 
   const { isLoading: isCheckingSession } = useDoesSessionExist({
-    onSuccess: ({ sessionExist, user }) => {
-      const { isLoggedIn } = state;
-
-      if (sessionExist) login(user);
-      else if (isLoggedIn) logout();
-    },
     staleTime: Infinity,
+    onSuccess: ({ sessionExist, user }) => sessionExist && login(user),
   });
 
   const value = useMemo(

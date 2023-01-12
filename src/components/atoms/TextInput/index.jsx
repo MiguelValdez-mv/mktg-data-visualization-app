@@ -17,6 +17,7 @@ export function TextInput({
   onChange,
   onBlur,
   placeholder,
+  autoComplete = "off",
   endAdornment = null,
 }) {
   return (
@@ -51,6 +52,7 @@ export function TextInput({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
+          autoComplete={autoComplete}
         />
 
         {endAdornment && (
@@ -75,10 +77,11 @@ TextInput.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
   error: PropTypes.string,
+  startAdornment: PropTypes.node,
   value: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
-  startAdornment: PropTypes.node,
+  autoComplete: PropTypes.string,
   endAdornment: PropTypes.node,
 };

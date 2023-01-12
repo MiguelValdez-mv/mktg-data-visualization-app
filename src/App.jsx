@@ -11,11 +11,11 @@ import { AuthProvider } from "@/contexts/AuthProvider";
 import { SidebarProvider } from "@/contexts/SidebarProvider";
 import { useAuth } from "@/hooks/useAuth";
 import { AppRouter } from "@/router";
-import { startSuperTokens } from "@/thirdParty/superTokens";
+import { startSupertokens } from "@/thirdParty/supertokens";
 
 import "./global.css";
 
-startSuperTokens();
+startSupertokens();
 
 const queryClient = new QueryClient();
 

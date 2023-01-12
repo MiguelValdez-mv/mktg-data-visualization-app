@@ -1,11 +1,13 @@
-import SuperTokens from "supertokens-web-js";
+import supertokens from "supertokens-web-js";
 import Passwordless from "supertokens-web-js/recipe/passwordless";
 import Session from "supertokens-web-js/recipe/session";
 
-export const startSuperTokens = () => {
-  SuperTokens.init({
+import { LINKS } from "@/constants";
+
+export const startSupertokens = () => {
+  supertokens.init({
     appInfo: {
-      apiDomain: "http://localhost:8080",
+      apiDomain: LINKS.API,
       apiBasePath: "/auth",
       appName: "Marketing data visualization",
     },

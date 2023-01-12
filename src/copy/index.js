@@ -1,8 +1,8 @@
 export const COPY = {
-  // APP
+  // App
   "app.sidebar.logout": "Cerrar sesión",
 
-  // PAGES
+  // Pages
   "pages.login.welcome": "¡Bienvenido!",
   "pages.login.email": "Correo electrónico",
   "pages.login.continue": "Continuar",
@@ -41,7 +41,7 @@ export const COPY = {
   "pages.panels.title": "Paneles",
   "pages.panels.searchPanel": "Buscar panel",
 
-  // ERRORS
+  // Errors
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":
