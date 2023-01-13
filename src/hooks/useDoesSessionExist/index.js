@@ -9,9 +9,7 @@ const queryFn = async () => {
   let user;
 
   if (sessionExist) {
-    const { data } = await axios.get(
-      API_URLS.GET_USER_DETAILS_FROM_SUPERTOKENS_ID
-    );
+    const { data } = await axios.get(API_URLS.GET_USER_FROM_SESSION);
     user = data;
   }
 

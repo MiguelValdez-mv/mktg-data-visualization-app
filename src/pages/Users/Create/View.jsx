@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Formik } from "formik";
+import PropTypes from "prop-types";
 
 import { Button } from "@/components/atoms/Button";
 import { Checkbox } from "@/components/atoms/Checkbox";
@@ -17,10 +18,10 @@ import { Surface } from "@/components/layout/Surface";
 import { USER_ROLES, FORM_VALIDATION_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View() {
+function View({ isLoading, handleUserCreationFormSubmit }) {
   return (
     <Page>
-      <Header title={COPY["pages.users.create.title"]} />
+      <Header title={COPY["pages.users.creation.title"]} />
       <Spacing bottom={10} />
 
       <Surface className="p-8">
@@ -33,6 +34,7 @@ function View() {
             notifyRegistration: false,
           }}
           validationSchema={FORM_VALIDATION_SCHEMES.USER_CREATION}
+          onSubmit={handleUserCreationFormSubmit}
         >
           {({
             handleSubmit,
@@ -46,7 +48,7 @@ function View() {
             <Form onSubmit={handleSubmit}>
               <TextInput
                 id="name"
-                label={COPY["pages.users.create.name"]}
+                label={COPY["pages.users.creation.name"]}
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -56,7 +58,7 @@ function View() {
 
               <TextInput
                 id="email"
-                label={COPY["pages.users.create.email"]}
+                label={COPY["pages.users.creation.email"]}
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -64,7 +66,7 @@ function View() {
               />
               <Spacing bottom={2} />
 
-              <Text bold>{COPY["pages.users.create.role"]}</Text>
+              <Text bold>{COPY["pages.users.creation.role"]}</Text>
               <Spacing bottom={1} />
 
               <Menu
@@ -76,7 +78,7 @@ function View() {
                   >
                     {
                       COPY[
-                        `pages.users.create.role.${values.role.toLowerCase()}`
+                        `pages.users.creation.role.${values.role.toLowerCase()}`
                       ]
                     }
                   </Button>
@@ -91,7 +93,7 @@ function View() {
                         closeMenu();
                       }}
                     >
-                      {COPY[`pages.users.create.role.${opt.toLowerCase()}`]}
+                      {COPY[`pages.users.creation.role.${opt.toLowerCase()}`]}
                     </MenuOption>
                   ))
                 }
@@ -100,7 +102,7 @@ function View() {
 
               <FileInput
                 id="avatar"
-                label={COPY["pages.users.create.avatar"]}
+                label={COPY["pages.users.creation.avatar"]}
                 onChange={(e) =>
                   setFieldValue("avatar", e.currentTarget.files[0])
                 }
@@ -110,14 +112,14 @@ function View() {
 
               <Checkbox
                 id="notifyRegistration"
-                label={COPY["pages.users.create.notifyRegistration"]}
+                label={COPY["pages.users.creation.notifyRegistration"]}
                 checked={values.notifyRegistration}
                 onChange={handleChange}
               />
               <Spacing bottom={4} />
 
-              <Button className="self-end" type="submit">
-                {COPY["pages.users.create.cta"]}
+              <Button className="self-end" type="submit" isLoading={isLoading}>
+                {COPY["pages.users.creation.cta"]}
               </Button>
             </Form>
           )}
@@ -126,5 +128,10 @@ function View() {
     </Page>
   );
 }
+
+View.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  handleUserCreationFormSubmit: PropTypes.func.isRequired,
+};
 
 export default View;

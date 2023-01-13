@@ -11,9 +11,7 @@ const mutationFn = async ({ otp }) => {
     await consumeCode({ userInputCode: otp });
 
   if (status === "OK") {
-    const { data: user } = await axios.get(
-      API_URLS.GET_USER_DETAILS_FROM_SUPERTOKENS_ID
-    );
+    const { data: user } = await axios.get(API_URLS.GET_USER_FROM_SESSION);
 
     return Promise.resolve(user);
   }

@@ -26,7 +26,7 @@ function View() {
       <Col>
         <Link className="self-end" to="/users/create-user">
           <Button className="uppercase" startIcon={<IconAdd />}>
-            {COPY["pages.users.create.title"]}
+            {COPY["pages.users.creation.title"]}
           </Button>
         </Link>
       </Col>

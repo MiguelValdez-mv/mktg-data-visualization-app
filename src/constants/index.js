@@ -53,8 +53,9 @@ export const LINKS = {
 };
 
 export const API_URLS = {
+  USERS: `${LINKS.API}/users`,
   CHECK_USER_EXISTENCE_BY_EMAIL: `${LINKS.API}/users/user-by-email-exists`,
-  GET_USER_DETAILS_FROM_SUPERTOKENS_ID: `${LINKS.API}/users/get-user-details-from-supertokens-id`,
+  GET_USER_FROM_SESSION: `${LINKS.API}/users/get-user-from-session`,
 };
 
 export const QUERY_KEYS = {
