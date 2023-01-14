@@ -4,7 +4,7 @@ import { consumeCode } from "supertokens-web-js/recipe/passwordless";
 
 import { API_URLS, QUERY_KEYS } from "@/constants";
 import { COPY } from "@/copy";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 
 const mutationFn = async ({ otp }) => {
   const { status, maximumCodeInputAttempts, failedCodeInputAttemptCount } =

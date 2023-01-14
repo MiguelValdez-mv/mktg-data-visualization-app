@@ -23,8 +23,8 @@ export const FORM_VALIDATION_SCHEMES = {
     name: string().required(),
     email: string().email().required(),
     role: string().required(),
-    file: mixed(),
-    notifyRegistration: boolean(),
+    avatar: mixed(),
+    notifyRegistration: boolean().required(),
   }),
 };
 
@@ -34,15 +34,19 @@ export const PROP = {
     PropTypes.node,
     PropTypes.func,
   ]),
-  USER: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
-  }),
   REF: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
+  USER: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+  }),
+  get USERS() {
+    return PropTypes.arrayOf(this.USER);
+  },
 };
 
 export const LINKS = {
@@ -60,6 +64,7 @@ export const API_URLS = {
 
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
+  GET_USERS: "GET_USERS",
 };
 
 export const USER_ROLES = {

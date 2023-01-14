@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "react-query";
 import Session from "supertokens-web-js/recipe/session";
 
 import { QUERY_KEYS } from "@/constants";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 
 const mutationFn = () => Session.signOut();
 

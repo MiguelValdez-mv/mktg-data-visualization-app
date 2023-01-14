@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { COPY } from "@/copy";
 import { useAlert } from "@/hooks/useAlert";
-import { useCreateUser } from "@/hooks/useCreateUser";
+import { useCreateUser } from "@/hooks/users/useCreateUser";
 
 const useActions = () => {
   const { isLoading, mutate } = useCreateUser();

@@ -9,7 +9,7 @@ import { Row } from "@/components/layout/Row";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { SidebarProvider } from "@/contexts/SidebarProvider";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { AppRouter } from "@/router";
 import { startSupertokens } from "@/thirdParty/supertokens";
 

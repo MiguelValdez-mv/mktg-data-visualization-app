@@ -118,7 +118,11 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
               />
               <Spacing bottom={4} />
 
-              <Button className="self-end" type="submit" isLoading={isLoading}>
+              <Button
+                className="sm:self-end"
+                type="submit"
+                isLoading={isLoading}
+              >
                 {COPY["pages.users.creation.cta"]}
               </Button>
             </Form>

@@ -1,7 +1,7 @@
 import { createContext, useReducer, useMemo } from "react";
 
 import { PROP } from "@/constants";
-import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
+import { useDoesSessionExist } from "@/hooks/auth/useDoesSessionExist";
 
 const reducer = (state, action) => {
   switch (action.type) {

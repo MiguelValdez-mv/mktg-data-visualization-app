@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import { COPY } from "@/copy";
+import { useCreateOtp } from "@/hooks/auth/useCreateOtp";
+import { useValidateOtp } from "@/hooks/auth/useValidateOtp";
 import { useAlert } from "@/hooks/useAlert";
-import { useCreateOtp } from "@/hooks/useCreateOtp";
-import { useValidateOtp } from "@/hooks/useValidateOtp";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
