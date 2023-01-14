@@ -1,17 +1,20 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { IconAdd } from "@/assets/svgs/IconAdd";
 import { SearchBar } from "@/components/app/SearchBar";
+import { UserList } from "@/components/app/users/UserList";
 import { Button } from "@/components/atoms/Button";
 import { Text } from "@/components/atoms/Text";
-import { Col } from "@/components/layout/Col";
+import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View() {
+function View({ users, isLoading }) {
   return (
     <Page>
       <Header
@@ -23,9 +26,9 @@ function View() {
           />
         }
       />
-      <Spacing bottom={8} />
+      <Spacing bottom={4} />
 
-      <Col>
+      <Content isLoading={isLoading}>
         <Link className="self-end" to="/users/create-user">
           <Button startIcon={<IconAdd />}>
             {COPY["pages.users.creation.title"]}
@@ -35,10 +38,18 @@ function View() {
 
         <Surface>
           <Text bold>{COPY["pages.users.title"]}</Text>
+          <Spacing bottom={2} />
+
+          <UserList users={users} />
         </Surface>
-      </Col>
+      </Content>
     </Page>
   );
 }
+
+View.propTypes = {
+  users: PROP.USERS,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default View;

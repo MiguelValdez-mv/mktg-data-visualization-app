@@ -113,7 +113,7 @@ export function Sidebar({ user }) {
             isLoading={logoutMutation.isLoading}
             startIcon={<IconExit />}
           >
-            {COPY["app.sidebar.logout"]}
+            {COPY["sidebar.logout"]}
           </MenuOption>
         </Menu>
       </Col>

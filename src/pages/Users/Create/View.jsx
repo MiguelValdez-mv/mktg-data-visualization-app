@@ -22,7 +22,7 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
   return (
     <Page>
       <Header title={COPY["pages.users.creation.title"]} />
-      <Spacing bottom={10} />
+      <Spacing bottom={4} />
 
       <Surface className="p-8">
         <Formik

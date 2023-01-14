@@ -1,8 +1,4 @@
 export const COPY = {
-  // App
-  "app.sidebar.logout": "Cerrar sesión",
-
-  // Pages
   "pages.login.welcome": "¡Bienvenido!",
   "pages.login.email": "Correo electrónico",
   "pages.login.continue": "Continuar",
@@ -16,7 +12,6 @@ export const COPY = {
 
   "pages.users.title": "Usuarios",
   "pages.users.searchUser": "Buscar usuario",
-
   "pages.users.creation.title": "Añadir Usuario",
   "pages.users.creation.name": "Nombre",
   "pages.users.creation.email": "Correo electrónico",
@@ -28,7 +23,6 @@ export const COPY = {
   "pages.users.creation.notifyRegistration": "Notificar registro",
   "pages.users.creation.cta": "Añadir",
   "pages.users.creation.success": "Usuario creado exitosamente",
-
   "pages.users.details.title": "Detalles de Usuario",
 
   "pages.connections.title": "Conexiones",
@@ -36,13 +30,13 @@ export const COPY = {
 
   "pages.businesses.title": "Negocios",
   "pages.businesses.searchBusiness": "Buscar negocio",
-
   "pages.businesses.details.title": "Detalles de Negocio",
 
   "pages.panels.title": "Paneles",
   "pages.panels.searchPanel": "Buscar panel",
 
-  // Errors
+  "sidebar.logout": "Cerrar sesión",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":
