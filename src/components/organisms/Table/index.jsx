@@ -9,6 +9,7 @@ import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
 import { Spacing } from "@/components/layout/Spacing";
+import { twMerge } from "@/utils/twMerge";
 
 export function Table({
   data,
@@ -16,7 +17,7 @@ export function Table({
   filterGlobally,
   title,
   onRowClick,
-  showDivider,
+  divideContent,
 }) {
   const {
     getTableProps,
@@ -35,15 +36,17 @@ export function Table({
         Cell: ({ value }) => <Cell>{value}</Cell>,
       },
     },
-    filterGlobally && useGlobalFilter
+    useGlobalFilter
   );
 
-  const onChangeGlobalFilter = (e) => setGlobalFilter?.(e.target.value);
+  const onChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 
   return (
     <Col>
       <Col className="sm:flex-row sm:justify-between sm:items-center">
-        <Text bold>{title}</Text>
+        <Text subtitle bold>
+          {title}
+        </Text>
 
         {filterGlobally && (
           <>
@@ -59,46 +62,50 @@ export function Table({
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th
+                  {...column.getHeaderProps({
+                    className: twMerge("py-4", column.className),
+                  })}
+                >
+                  {column.render("Header")}
+                </th>
               ))}
             </tr>
           ))}
-
-          <tr>
-            <th>
-              <Spacing bottom={4} />
-            </th>
-          </tr>
         </thead>
 
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row, idx) => {
+            const showDivider = divideContent && idx !== rows.length - 1;
+
             prepareRow(row);
 
-            const { index, getRowProps } = row;
-            const { key, ...rowProps } = getRowProps();
-
             return (
-              <Fragment key={key}>
+              <Fragment key={row.id}>
                 <tr
-                  className={onRowClick && "cursor-pointer"}
-                  onClick={() => onRowClick?.(row)}
-                  {...rowProps}
+                  {...row.getRowProps({
+                    className: onRowClick && "cursor-pointer",
+                    onClick: () => onRowClick?.(row),
+                  })}
                 >
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td
+                      {...cell.getCellProps({
+                        className: twMerge("py-4", cell.column.className),
+                      })}
+                    >
+                      {cell.render("Cell")}
+                    </td>
                   ))}
                 </tr>
 
-                {showDivider && index !== data.length - 1 ? (
+                {showDivider && (
                   <tr>
                     <td colSpan="100%">
-                      <Spacing vertical={2}>
-                        <Divider />
-                      </Spacing>
+                      <Divider />
                     </td>
                   </tr>
-                ) : null}
+                )}
               </Fragment>
             );
           })}
@@ -114,5 +121,5 @@ Table.propTypes = {
   filterGlobally: PropTypes.bool,
   title: PropTypes.string.isRequired,
   onRowClick: PropTypes.func,
-  showDivider: PropTypes.bool,
+  divideContent: PropTypes.bool,
 };

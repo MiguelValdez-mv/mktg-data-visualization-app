@@ -58,7 +58,7 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
                 {!isMainRoute && (
                   <>
-                    <Text capitalize>
+                    <Text capitalize small>
                       {COPY[`pages.${pathnameBase.toLowerCase()}.title`]}
                     </Text>
                     <Spacing right={1} />
@@ -70,7 +70,7 @@ export function Header({ title, topContent = null, bottomContent = null }) {
                   </>
                 )}
 
-                <Text>{title}</Text>
+                <Text small>{title}</Text>
               </Row>
               <Spacing bottom={1} />
             </>

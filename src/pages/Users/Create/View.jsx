@@ -24,6 +24,11 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
       <Spacing bottom={4} />
 
       <Surface>
+        <Text subtitle bold>
+          {COPY["pages.users.creation.title"]}
+        </Text>
+        <Spacing bottom={4} />
+
         <Formik
           initialValues={{
             name: "",

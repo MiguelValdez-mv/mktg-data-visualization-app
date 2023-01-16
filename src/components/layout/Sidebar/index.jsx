@@ -1,16 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
 import { IconChevronLeft } from "@/assets/svgs/IconChevronLeft";
-import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
+import { Avatar } from "@/components/atoms/Avatar";
 import { Button } from "@/components/atoms/Button";
 import { Divider } from "@/components/atoms/Divider";
 import { IconButton } from "@/components/atoms/IconButton";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
-import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
 import { PROP } from "@/constants";
@@ -98,11 +97,7 @@ export function Sidebar({ user }) {
             <Button
               className="justify-start border-muted text-muted"
               variant="outline"
-              startIcon={
-                <Row className="bg-muted p-2 rounded-full">
-                  <IconCircleUser className="text-white" />
-                </Row>
-              }
+              startIcon={<Avatar name={user.name} src={user.avatar} />}
             >
               {user.name}
             </Button>

@@ -8,7 +8,7 @@ import { twMerge } from "@/utils/twMerge";
 export function TableCell({ className, header, children }) {
   return (
     <Col className={twMerge("text-left", className)}>
-      <Text tiny={header} uppercase={header} muted bold>
+      <Text small={header} uppercase={header} muted bold>
         {children}
       </Text>
     </Col>

@@ -13,7 +13,7 @@ export function UserList({
   users = [],
   title,
   filterGlobally = true,
-  showDivider = true,
+  divideContent = true,
 }) {
   const data = useMemo(() => users, [users]);
   const columns = useMemo(
@@ -21,9 +21,9 @@ export function UserList({
       {
         id: "user",
         Header: () => <Cell header>{COPY["userList.user"]}</Cell>,
-        accessor: ({ name, email, avatar }) => ({ name, email, avatar }),
+        accessor: ({ name, email }) => [name, email],
         // eslint-disable-next-line react/prop-types
-        Cell: ({ value }) => <ProfileCard {...value} />,
+        Cell: ({ row: { original: user } }) => <ProfileCard {...user} />,
       },
       {
         id: "role",
@@ -49,7 +49,7 @@ export function UserList({
       title={title}
       onRowClick={handleRowClick}
       filterGlobally={filterGlobally}
-      showDivider={showDivider}
+      divideContent={divideContent}
     />
   );
 }
@@ -58,5 +58,5 @@ UserList.propTypes = {
   users: PROP.USERS,
   filterGlobally: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  showDivider: PropTypes.bool,
+  divideContent: PropTypes.bool,
 };
