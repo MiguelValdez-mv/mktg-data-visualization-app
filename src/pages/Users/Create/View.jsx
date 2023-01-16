@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 
@@ -24,7 +23,7 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
       <Header title={COPY["pages.users.creation.title"]} />
       <Spacing bottom={4} />
 
-      <Surface className="p-8">
+      <Surface>
         <Formik
           initialValues={{
             name: "",

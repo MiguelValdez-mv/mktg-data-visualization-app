@@ -15,7 +15,7 @@ export const COPY = {
   "pages.users.creation.title": "Añadir Usuario",
   "pages.users.creation.name": "Nombre",
   "pages.users.creation.email": "Correo electrónico",
-  "pages.users.creation.role": "Rol",
+  "pages.users.creation.role": "Función",
   "pages.users.creation.role.admin": "Administrador",
   "pages.users.creation.role.owner": "Propietario",
   "pages.users.creation.role.employee": "Empleado",
@@ -36,6 +36,15 @@ export const COPY = {
   "pages.panels.searchPanel": "Buscar panel",
 
   "sidebar.logout": "Cerrar sesión",
+
+  "searchBar.placeholder": "Buscar...",
+
+  "userList.user": "Usuario",
+  "userList.role": "Función",
+  "userList.role.admin": "Administrador",
+  "userList.role.owner": "Propietario",
+  "userList.role.employee": "Empleado",
+  "userList.date": "Fecha",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

@@ -31,7 +31,7 @@ export const Button = forwardRef(
     <button
       ref={ref}
       className={twMerge(
-        "flex justify-center items-center rounded-xl font-bold p-2 active:drop-shadow-surface",
+        "flex justify-center items-center rounded-xl font-bold p-2 outline-none active:drop-shadow-surface",
         baseStyles[variant],
         disabled && "opacity-25",
         className
