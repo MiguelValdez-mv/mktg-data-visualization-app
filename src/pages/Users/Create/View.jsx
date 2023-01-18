@@ -1,13 +1,13 @@
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 
-import { Button } from "@/components/atoms/Button";
-import { Checkbox } from "@/components/atoms/Checkbox";
-import { FileInput } from "@/components/atoms/FileInput";
 import { Form } from "@/components/atoms/Form";
 import { Text } from "@/components/atoms/Text";
-import { TextInput } from "@/components/atoms/TextInput";
 import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
+import { Button } from "@/components/atoms/buttons/Button";
+import { Checkbox } from "@/components/atoms/inputs/Checkbox";
+import { FileInput } from "@/components/atoms/inputs/FileInput";
+import { TextInput } from "@/components/atoms/inputs/TextInput";
 import { Header } from "@/components/layout/Header";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";

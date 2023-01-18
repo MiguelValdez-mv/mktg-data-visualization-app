@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { IconAdd } from "@/assets/svgs/IconAdd";
 import { UserList } from "@/components/app/users/UserList";
-import { Button } from "@/components/atoms/Button";
+import { Button } from "@/components/atoms/buttons/Button";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
@@ -20,7 +20,7 @@ function View({ users, isLoading }) {
 
       <Content isLoading={isLoading}>
         <Link className="self-end" to="/users/create-user">
-          <Button className="uppercase" startIcon={<IconAdd />}>
+          <Button startIcon={<IconAdd />}>
             {COPY["pages.users.creation.title"]}
           </Button>
         </Link>

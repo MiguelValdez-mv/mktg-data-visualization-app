@@ -5,11 +5,11 @@ import { useTable, useGlobalFilter, useRowSelect } from "react-table";
 
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
 import { SearchBar } from "@/components/app/SearchBar";
-import { Checkbox } from "@/components/atoms/Checkbox";
 import { Divider } from "@/components/atoms/Divider";
-import { IconButton } from "@/components/atoms/IconButton";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Text } from "@/components/atoms/Text";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
+import { Checkbox } from "@/components/atoms/inputs/Checkbox";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";

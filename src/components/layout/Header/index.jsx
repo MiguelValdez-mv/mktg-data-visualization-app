@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
 import { IconMenu } from "@/assets/svgs/IconMenu";
-import { IconButton } from "@/components/atoms/IconButton";
 import { Text } from "@/components/atoms/Text";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";

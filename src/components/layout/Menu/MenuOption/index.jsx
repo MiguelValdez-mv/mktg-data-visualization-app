@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { Button } from "@/components/atoms/Button";
+import { Button } from "@/components/atoms/buttons/Button";
 import { PROP } from "@/constants";
 
 export function MenuOption({ children, ...rest }) {
