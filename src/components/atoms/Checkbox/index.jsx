@@ -5,7 +5,7 @@ import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { twMerge } from "@/utils/twMerge";
 
-export function Checkbox({ id, className, checked, onChange, label }) {
+export function Checkbox({ id, className, checked, onChange, onClick, label }) {
   return (
     <Row className="items-center">
       <input
@@ -14,6 +14,7 @@ export function Checkbox({ id, className, checked, onChange, label }) {
         type="checkbox"
         checked={checked}
         onChange={onChange}
+        onClick={onClick}
       />
 
       {label && (
@@ -31,5 +32,6 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
+  onClick: PropTypes.func,
   label: PropTypes.string,
 };

@@ -1,19 +1,16 @@
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
 import { PROP } from "@/constants";
 import { twMerge } from "@/utils/twMerge";
 
-export function IconButton({
-  muted,
-  hoverable = true,
-  className,
-  onClick,
-  children,
-}) {
-  return (
+export const IconButton = forwardRef(
+  ({ muted, primary, hoverable = true, className, onClick, children }, ref) => (
     <button
+      ref={ref}
       className={twMerge(
         muted && "text-muted",
+        primary && "text-primary",
         hoverable && "hover:opacity-50",
         className
       )}
@@ -22,13 +19,14 @@ export function IconButton({
     >
       {children}
     </button>
-  );
-}
+  )
+);
 
 IconButton.propTypes = {
   muted: PropTypes.bool,
+  primary: PropTypes.bool,
   hoverable: PropTypes.bool,
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PROP.CHILDREN.isRequired,
 };

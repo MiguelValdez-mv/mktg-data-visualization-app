@@ -39,8 +39,8 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
       <Row className="justify-between">
         {!isLargeScreen && (
-          <IconButton onClick={openSidebar}>
-            <IconMenu className="text-primary" />
+          <IconButton onClick={openSidebar} primary>
+            <IconMenu />
           </IconButton>
         )}
 
@@ -48,10 +48,10 @@ export function Header({ title, topContent = null, bottomContent = null }) {
           {isLargeScreen && (
             <>
               <Row className="items-center">
-                <Icon className="text-muted" />
+                <Icon className="text-muted w-4 h-4" />
                 <Spacing right={1} />
 
-                <Text muted bold>
+                <Text muted bold small>
                   /
                 </Text>
                 <Spacing right={1} />
@@ -63,7 +63,7 @@ export function Header({ title, topContent = null, bottomContent = null }) {
                     </Text>
                     <Spacing right={1} />
 
-                    <Text muted bold>
+                    <Text muted bold small>
                       /
                     </Text>
                     <Spacing right={1} />

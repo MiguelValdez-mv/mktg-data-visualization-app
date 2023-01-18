@@ -115,8 +115,8 @@ export function Sidebar({ user }) {
 
       {!isLargeScreen && (
         <Surface className="self-center p-2">
-          <IconButton onClick={closeSidebar}>
-            <IconChevronLeft className="text-primary" />
+          <IconButton onClick={closeSidebar} primary>
+            <IconChevronLeft />
           </IconButton>
         </Surface>
       )}

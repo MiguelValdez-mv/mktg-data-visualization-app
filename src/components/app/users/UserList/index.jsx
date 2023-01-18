@@ -12,9 +12,13 @@ import { COPY } from "@/copy";
 export function UserList({
   users = [],
   title,
+  selectRows = true,
+  selectSingleRow = true,
   filterGlobally = true,
   divideContent = true,
 }) {
+  const navigate = useNavigate();
+
   const data = useMemo(() => users, [users]);
   const columns = useMemo(
     () => [
@@ -38,16 +42,23 @@ export function UserList({
     ],
     []
   );
-  const navigate = useNavigate();
 
-  const handleRowClick = ({ original: user }) => navigate(`/users/${user._id}`);
+  const handleEditRow = ({ selectedRows, closeMenu }) => {
+    const [{ original: user }] = selectedRows;
+
+    navigate(`/users/${user._id}`);
+
+    closeMenu();
+  };
 
   return (
     <Table
+      title={title}
       data={data}
       columns={columns}
-      title={title}
-      onRowClick={handleRowClick}
+      selectRows={selectRows}
+      selectSingleRow={selectSingleRow}
+      onEditRow={handleEditRow}
       filterGlobally={filterGlobally}
       divideContent={divideContent}
     />
@@ -56,7 +67,9 @@ export function UserList({
 
 UserList.propTypes = {
   users: PROP.USERS,
-  filterGlobally: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  selectRows: PropTypes.bool,
+  selectSingleRow: PropTypes.bool,
+  filterGlobally: PropTypes.bool,
   divideContent: PropTypes.bool,
 };

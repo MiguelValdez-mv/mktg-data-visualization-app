@@ -46,6 +46,8 @@ export const COPY = {
   "userList.role.employee": "Empleado",
   "userList.date": "Fecha",
 
+  "table.opts.edit": "Editar",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":
