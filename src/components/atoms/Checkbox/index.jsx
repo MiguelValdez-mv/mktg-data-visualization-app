@@ -10,7 +10,10 @@ export function Checkbox({ id, className, checked, onChange, onClick, label }) {
     <Row className="items-center">
       <input
         id={id}
-        className={twMerge("w-4 h-4 accent-primary outline-none", className)}
+        className={twMerge(
+          "w-4 h-4 rounded border-muted text-primary focus:ring-primary focus:ring-transparent",
+          className
+        )}
         type="checkbox"
         checked={checked}
         onChange={onChange}

@@ -3,6 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
+const forms = require("@tailwindcss/forms");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -36,5 +37,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [forms],
 };

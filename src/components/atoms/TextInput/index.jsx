@@ -45,7 +45,7 @@ export function TextInput({
         )}
 
         <input
-          className="outline-none flex-1 bg-transparent"
+          className="flex-1 border-0 p-0 focus:ring-0"
           type="text"
           id={id}
           value={value}

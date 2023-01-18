@@ -15,7 +15,7 @@ export function FileInput({ label, id, onChange, accept, multiple }) {
       )}
 
       <input
-        className="outline-none file:bg-transparent file:rounded-xl file:border file:border-solid file:border-muted file:text-primary file:p-2 file:mr-2 text-muted"
+        className="focus:outline-none file:bg-transparent file:rounded-xl file:border file:border-solid file:border-muted file:text-primary file:p-2 file:mr-2 text-muted"
         type="file"
         id={id}
         onChange={onChange}

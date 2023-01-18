@@ -45,9 +45,7 @@ export function UserList({
 
   const handleEditRow = ({ selectedRows, closeMenu }) => {
     const [{ original: user }] = selectedRows;
-
     navigate(`/users/${user._id}`);
-
     closeMenu();
   };
 
