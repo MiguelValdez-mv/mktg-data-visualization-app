@@ -118,45 +118,49 @@ export function Table({
       </Col>
       <Spacing bottom={4} />
 
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
+      <Col className="overflow-x-auto">
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()}>
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row, idx) => {
-            const showDivider = divideContent && idx !== rows.length - 1;
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, idx) => {
+              const showDivider = divideContent && idx !== rows.length - 1;
 
-            prepareRow(row);
+              prepareRow(row);
 
-            return (
-              <Fragment key={row.id}>
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps({ className: "py-4" })}>
-                      {cell.render("Cell")}
-                    </td>
-                  ))}
-                </tr>
-
-                {showDivider && (
-                  <tr>
-                    <td colSpan={row.cells.length}>
-                      <Divider />
-                    </td>
+              return (
+                <Fragment key={row.id}>
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map((cell) => (
+                      <td {...cell.getCellProps({ className: "pr-2 py-4" })}>
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
                   </tr>
-                )}
-              </Fragment>
-            );
-          })}
-        </tbody>
-      </table>
+
+                  {showDivider && (
+                    <tr>
+                      <td colSpan={row.cells.length}>
+                        <Divider />
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </Col>
     </Col>
   );
 }
