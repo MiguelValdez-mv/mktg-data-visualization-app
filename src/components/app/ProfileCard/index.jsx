@@ -9,7 +9,7 @@ import { Spacing } from "@/components/layout/Spacing";
 export function ProfileCard({ name, email, avatar }) {
   return (
     <Row className="items-center">
-      <Avatar name={name} email={email} src={avatar} />
+      <Avatar name={name} src={avatar} />
       <Spacing right={2} />
 
       <Col className="justify-center">

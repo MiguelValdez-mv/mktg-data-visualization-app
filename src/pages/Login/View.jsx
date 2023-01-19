@@ -63,7 +63,11 @@ function View({
                 />
                 <Spacing bottom={2} />
 
-                <Button type="submit" isLoading={isLoading}>
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                >
                   {COPY["pages.login.continue"]}
                 </Button>
               </Form>
@@ -95,7 +99,11 @@ function View({
                 />
                 <Spacing bottom={2} />
 
-                <Button type="submit" isLoading={isLoading}>
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                >
                   {COPY["pages.login.cta"]}
                 </Button>
                 <Spacing bottom={2} />

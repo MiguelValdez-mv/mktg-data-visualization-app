@@ -5,8 +5,8 @@ import { Form } from "@/components/atoms/Form";
 import { Text } from "@/components/atoms/Text";
 import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
 import { Button } from "@/components/atoms/buttons/Button";
+import { AvatarInput } from "@/components/atoms/inputs/AvatarInput";
 import { Checkbox } from "@/components/atoms/inputs/Checkbox";
-import { FileInput } from "@/components/atoms/inputs/FileInput";
 import { TextInput } from "@/components/atoms/inputs/TextInput";
 import { Header } from "@/components/layout/Header";
 import { Menu } from "@/components/layout/Menu";
@@ -104,13 +104,14 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
               </Menu>
               <Spacing bottom={2} />
 
-              <FileInput
+              <AvatarInput
                 id="avatar"
                 label={COPY["pages.users.creation.avatar"]}
+                avatar={values.avatar}
+                name={values.name}
                 onChange={(e) =>
                   setFieldValue("avatar", e.currentTarget.files[0])
                 }
-                accept=".jpg, .jpeg, .png"
               />
               <Spacing bottom={2} />
 
@@ -126,6 +127,7 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
                 className="sm:self-end"
                 type="submit"
                 isLoading={isLoading}
+                disabled={isLoading}
               >
                 {COPY["pages.users.creation.cta"]}
               </Button>
