@@ -24,13 +24,13 @@ function View({
   otpCreationIsSuccessful,
   changeEmail,
   handleOtpCreationFormSubmit,
-  handleOtpValidationFormSubmit,
+  handleOtpConsumptionFormSubmit,
   redirectTo,
 }) {
   return (
     <Page className="h-screen justify-around items-center">
       <Text caption bold>
-        {COPY["pages.login.welcome"]}
+        {COPY["login.welcome"]}
       </Text>
 
       <Surface className="py-20">
@@ -55,7 +55,7 @@ function View({
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   id="email"
-                  placeholder={COPY["pages.login.email"]}
+                  placeholder={COPY["login.email"]}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -68,17 +68,17 @@ function View({
                   isLoading={isLoading}
                   disabled={isLoading}
                 >
-                  {COPY["pages.login.continue"]}
+                  {COPY["login.continue"]}
                 </Button>
               </Form>
             )}
           </Formik>
         ) : (
           <Formik
-            key="otp-validation"
+            key="otp-consumption"
             initialValues={{ otp: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_VALIDATION}
-            onSubmit={handleOtpValidationFormSubmit}
+            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CONSUMPTION}
+            onSubmit={handleOtpConsumptionFormSubmit}
           >
             {({
               handleSubmit,
@@ -91,7 +91,7 @@ function View({
               <Form onSubmit={handleSubmit}>
                 <TextInput
                   id="otp"
-                  placeholder={COPY["pages.login.otp"]}
+                  placeholder={COPY["login.otp"]}
                   value={values.otp}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -104,7 +104,7 @@ function View({
                   isLoading={isLoading}
                   disabled={isLoading}
                 >
-                  {COPY["pages.login.cta"]}
+                  {COPY["login.cta"]}
                 </Button>
                 <Spacing bottom={2} />
 
@@ -113,7 +113,7 @@ function View({
                   onClick={changeEmail}
                   startIcon={<IconArrowLeft />}
                 >
-                  {COPY["pages.login.changeEmail"]}
+                  {COPY["login.changeEmail"]}
                 </Button>
               </Form>
             )}
@@ -136,7 +136,7 @@ function View({
 
         <Row>
           <Text className="whitespace-nowrap" muted small>
-            {COPY["pages.login.productCreatedBy"]}
+            {COPY["login.productCreatedBy"]}
           </Text>
           <Spacing right={1} />
 
@@ -154,7 +154,7 @@ View.propTypes = {
   otpCreationIsSuccessful: PropTypes.bool.isRequired,
   changeEmail: PropTypes.func.isRequired,
   handleOtpCreationFormSubmit: PropTypes.func.isRequired,
-  handleOtpValidationFormSubmit: PropTypes.func.isRequired,
+  handleOtpConsumptionFormSubmit: PropTypes.func.isRequired,
   redirectTo: PropTypes.func.isRequired,
 };
 

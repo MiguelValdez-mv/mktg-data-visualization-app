@@ -1,30 +1,30 @@
 import { useNavigate } from "react-router-dom";
 
 import { COPY } from "@/copy";
+import { useConsumeOtp } from "@/hooks/auth/useConsumeOtp";
 import { useCreateOtp } from "@/hooks/auth/useCreateOtp";
-import { useValidateOtp } from "@/hooks/auth/useValidateOtp";
 import { useAlert } from "@/hooks/useAlert";
 import { openUrl } from "@/utils/openUrl";
 
 const useActions = () => {
-  const otpCreationMutation = useCreateOtp();
-  const otpValidationMutation = useValidateOtp();
   const navigate = useNavigate();
   const alert = useAlert();
+  const otpCreationMutation = useCreateOtp();
+  const otpConsumptionMutation = useConsumeOtp();
 
   const handleOtpCreationFormSubmit = (values) => {
     otpCreationMutation.mutate(values, {
       onSuccess: () => {
-        alert.success(COPY["pages.login.otpCreation.success"](values.email));
+        alert.success(COPY["login.otpCreation.success"](values.email));
       },
       onError: (err) => alert.error(err.message),
     });
   };
-  const handleOtpValidationFormSubmit = (values) => {
-    otpValidationMutation.mutate(values, {
+  const handleOtpConsumptionFormSubmit = (values) => {
+    otpConsumptionMutation.mutate(values, {
       onSuccess: (user) => {
         navigate("/");
-        alert.success(COPY["pages.login.otpValidation.success"](user.name));
+        alert.success(COPY["login.otpConsumption.success"](user.name));
       },
       onError: (err) => alert.error(err.message),
     });
@@ -32,11 +32,12 @@ const useActions = () => {
   const redirectTo = (url) => () => openUrl(url, true);
 
   return {
-    isLoading: otpCreationMutation.isLoading || otpValidationMutation.isLoading,
+    isLoading:
+      otpCreationMutation.isLoading || otpConsumptionMutation.isLoading,
     otpCreationIsSuccessful: otpCreationMutation.isSuccess,
     changeEmail: otpCreationMutation.reset,
     handleOtpCreationFormSubmit,
-    handleOtpValidationFormSubmit,
+    handleOtpConsumptionFormSubmit,
     redirectTo,
   };
 };

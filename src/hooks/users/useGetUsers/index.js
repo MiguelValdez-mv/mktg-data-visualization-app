@@ -8,4 +8,4 @@ const queryFn = async () => axios.get(API_URLS.USERS);
 const select = ({ data }) => data;
 
 export const useGetUsers = (opts = {}) =>
-  useQuery([QUERY_KEYS.GET_USERS], queryFn, { select, ...opts });
+  useQuery([QUERY_KEYS.USERS], queryFn, { select, ...opts });

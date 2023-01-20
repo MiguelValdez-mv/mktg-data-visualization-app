@@ -60,7 +60,7 @@ export function Sidebar({ user }) {
             <>
               <SidebarOption
                 to="/users"
-                name={COPY["pages.users.title"]}
+                name={COPY["users.title"]}
                 icon={PAGE_ICONS.USERS}
                 closeSidebar={closeSidebar}
               />
@@ -68,7 +68,7 @@ export function Sidebar({ user }) {
 
               <SidebarOption
                 to="/connections"
-                name={COPY["pages.connections.title"]}
+                name={COPY["connections.title"]}
                 icon={PAGE_ICONS.CONNECTIONS}
                 closeSidebar={closeSidebar}
               />
@@ -78,7 +78,7 @@ export function Sidebar({ user }) {
 
           <SidebarOption
             to="/businesses"
-            name={COPY["pages.businesses.title"]}
+            name={COPY["businesses.title"]}
             icon={PAGE_ICONS.BUSINESSES}
             closeSidebar={closeSidebar}
           />
@@ -86,7 +86,7 @@ export function Sidebar({ user }) {
 
           <SidebarOption
             to="/panels"
-            name={COPY["pages.panels.title"]}
+            name={COPY["panels.title"]}
             icon={PAGE_ICONS.PANELS}
             closeSidebar={closeSidebar}
           />

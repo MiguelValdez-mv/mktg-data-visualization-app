@@ -16,7 +16,7 @@ export const FORM_VALIDATION_SCHEMES = {
   OTP_CREATION: object().shape({
     email: string().email().required(),
   }),
-  OTP_VALIDATION: object().shape({
+  OTP_CONSUMPTION: object().shape({
     otp: string().required(),
   }),
   USER_CREATION: object().shape({
@@ -25,6 +25,12 @@ export const FORM_VALIDATION_SCHEMES = {
     role: string().required(),
     avatar: mixed(),
     notifyRegistration: boolean().required(),
+  }),
+  USER_UPDATE: object().shape({
+    name: string().required(),
+    email: string().email().required(),
+    role: string().required(),
+    avatar: mixed(),
   }),
 };
 
@@ -58,13 +64,14 @@ export const LINKS = {
 
 export const API_URLS = {
   USERS: `${LINKS.API}/users`,
-  CHECK_USER_EXISTENCE_BY_EMAIL: `${LINKS.API}/users/user-by-email-exists`,
-  GET_USER_FROM_SESSION: `${LINKS.API}/users/get-user-from-session`,
+  USER_BY_EMAIL_EXISTS: `${LINKS.API}/users/user-by-email-exists`,
+  USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
+  USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
 };
 
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
-  GET_USERS: "GET_USERS",
+  USERS: "USERS",
 };
 
 export const USER_ROLES = {

@@ -5,7 +5,7 @@ import { COPY } from "@/copy";
 function View() {
   return (
     <Page>
-      <Header title={COPY["pages.businesses.title"]} />
+      <Header title={COPY["businesses.title"]} />
     </Page>
   );
 }

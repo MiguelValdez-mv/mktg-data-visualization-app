@@ -22,17 +22,16 @@ export function AvatarInput({
 
   const handleClick = () => inputRef.current?.click();
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (!avatar) {
-      setPreview(undefined);
-      return;
+    if (typeof avatar === "object") {
+      const objectUrl = URL.createObjectURL(avatar);
+      setPreview(objectUrl);
+
+      return () => URL.revokeObjectURL(objectUrl);
     }
 
-    const objectUrl = URL.createObjectURL(avatar);
-    setPreview(objectUrl);
-
-    // eslint-disable-next-line consistent-return
-    return () => URL.revokeObjectURL(objectUrl);
+    setPreview(avatar);
   }, [avatar]);
 
   return (

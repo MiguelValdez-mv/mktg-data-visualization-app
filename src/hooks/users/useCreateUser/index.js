@@ -14,7 +14,7 @@ export const useCreateUser = (opts = {}) => {
     select,
     ...opts,
     onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEYS.GET_USERS]);
+      queryClient.invalidateQueries([QUERY_KEYS.USERS]);
       opts.onSuccess?.();
     },
   });

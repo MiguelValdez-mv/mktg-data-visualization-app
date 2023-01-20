@@ -99,7 +99,7 @@ export function Table({
                 <MenuOption
                   onClick={() => onEditRow({ selectedRows, closeMenu })}
                 >
-                  {COPY["table.opts.edit"]}
+                  {COPY["table.edit"]}
                 </MenuOption>
               )}
             </Menu>
@@ -142,7 +142,11 @@ export function Table({
                 <Fragment key={row.id}>
                   <tr {...row.getRowProps()}>
                     {row.cells.map((cell) => (
-                      <td {...cell.getCellProps({ className: "pr-2 py-4" })}>
+                      <td
+                        {...cell.getCellProps({
+                          className: "py-4 pr-4 lg:pr-0",
+                        })}
+                      >
                         {cell.render("Cell")}
                       </td>
                     ))}

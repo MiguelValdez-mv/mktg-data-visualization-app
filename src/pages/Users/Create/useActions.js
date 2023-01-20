@@ -17,7 +17,7 @@ const useActions = () => {
     mutate(formData, {
       onSuccess: () => {
         navigate("/users");
-        alert.success(COPY["pages.users.creation.success"]);
+        alert.success(COPY["users.creation.success"]);
       },
       onError: (err) => alert.error(err.message),
     });

@@ -7,7 +7,7 @@ export function SearchBar(props) {
     <TextInput
       id="search-bar"
       startAdornment={<IconSearch className="text-primary" />}
-      placeholder={COPY["searchBar.placeholder"]}
+      placeholder={COPY["searchBar.search"]}
       {...props}
     />
   );

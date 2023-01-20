@@ -1,3 +1,5 @@
+import { setDefaultOptions } from "date-fns";
+import { es } from "date-fns/locale";
 import { Provider as AlertProvider } from "react-alert";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -16,6 +18,7 @@ import { startSupertokens } from "@/thirdParty/supertokens";
 import "./global.css";
 
 startSupertokens();
+setDefaultOptions({ locale: es });
 
 const queryClient = new QueryClient();
 

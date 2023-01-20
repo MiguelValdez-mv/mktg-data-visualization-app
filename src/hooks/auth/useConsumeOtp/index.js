@@ -11,7 +11,7 @@ const mutationFn = async ({ otp }) => {
     await consumeCode({ userInputCode: otp });
 
   if (status === "OK") {
-    const { data: user } = await axios.get(API_URLS.GET_USER_FROM_SESSION);
+    const { data: user } = await axios.get(API_URLS.USER_BY_SESSION);
 
     return Promise.resolve(user);
   }
@@ -30,7 +30,7 @@ const mutationFn = async ({ otp }) => {
   throw new Error(COPY["errors.unexpectedError"]);
 };
 
-export const useValidateOtp = (opts = {}) => {
+export const useConsumeOtp = (opts = {}) => {
   const queryClient = useQueryClient();
   const authCtx = useAuth();
 

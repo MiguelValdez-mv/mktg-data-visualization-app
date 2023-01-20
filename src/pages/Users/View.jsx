@@ -15,19 +15,19 @@ import { COPY } from "@/copy";
 function View({ users, isLoading }) {
   return (
     <Page>
-      <Header title={COPY["pages.users.title"]} />
+      <Header title={COPY["users.title"]} />
       <Spacing bottom={4} />
 
       <Content isLoading={isLoading}>
         <Link className="self-end" to="/users/create-user">
           <Button startIcon={<IconAdd />}>
-            {COPY["pages.users.creation.title"]}
+            {COPY["users.creation.title"]}
           </Button>
         </Link>
         <Spacing bottom={4} />
 
         <Surface>
-          <UserList title={COPY["pages.users.title"]} users={users} />
+          <UserList title={COPY["users.title"]} users={users} />
         </Surface>
       </Content>
     </Page>
