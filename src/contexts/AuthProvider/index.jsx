@@ -1,7 +1,7 @@
 import { createContext, useReducer, useMemo } from "react";
 
 import { PROP } from "@/constants";
-import { useDoesSessionExist } from "@/hooks/useDoesSessionExist";
+import { useDoesSessionExist } from "@/hooks/auth/useDoesSessionExist";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +16,11 @@ const reducer = (state, action) => {
         ...state,
         user: undefined,
         isLoggedIn: false,
+      };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload.user,
       };
     default:
       return state;
@@ -34,18 +39,15 @@ export function AuthProvider({ children }) {
 
   const login = (user) => dispatch({ type: "LOGIN", payload: { user } });
   const logout = () => dispatch({ type: "LOGOUT" });
+  const setUser = (user) => dispatch({ type: "SET_USER", payload: { user } });
 
   const { isLoading: isCheckingSession } = useDoesSessionExist({
-    onSuccess: ({ sessionExist, user }) => {
-      const { isLoggedIn } = state;
-
-      if (sessionExist) login(user);
-      else if (isLoggedIn) logout();
-    },
+    staleTime: Infinity,
+    onSuccess: ({ sessionExist, user }) => sessionExist && login(user),
   });
 
   const value = useMemo(
-    () => ({ ...state, isCheckingSession, login, logout }),
+    () => ({ ...state, isCheckingSession, login, logout, setUser }),
     [state, isCheckingSession]
   );
 

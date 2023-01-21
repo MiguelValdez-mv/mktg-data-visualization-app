@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { object, string, setLocale } from "yup";
+import { setLocale, object, string, mixed, boolean } from "yup";
 
 import { COPY } from "@/copy";
 
@@ -12,12 +12,25 @@ setLocale({
   },
 });
 
-export const FORM_VALIDATION_SCHEMES = {
+export const FORM_SCHEMES = {
   OTP_CREATION: object().shape({
     email: string().email().required(),
   }),
-  OTP_VALIDATION: object().shape({
+  OTP_CONSUMPTION: object().shape({
     otp: string().required(),
+  }),
+  USER_CREATION: object().shape({
+    name: string().required(),
+    email: string().email().required(),
+    role: string().required(),
+    avatar: mixed(),
+    notifyRegistration: boolean().required(),
+  }),
+  USER_UPDATE: object().shape({
+    name: string().required(),
+    email: string().email().required(),
+    role: string().required(),
+    avatar: mixed(),
   }),
 };
 
@@ -25,16 +38,21 @@ export const PROP = {
   CHILDREN: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
+    PropTypes.func,
   ]),
-  USER: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
-  }),
   REF: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
+  USER: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+  }),
+  get USERS() {
+    return PropTypes.arrayOf(this.USER);
+  },
 };
 
 export const LINKS = {
@@ -45,12 +63,15 @@ export const LINKS = {
 };
 
 export const API_URLS = {
-  CHECK_USER_EXISTENCE_BY_EMAIL: `${LINKS.API}/users/user-by-email-exists`,
-  GET_USER_DETAILS_FROM_SUPERTOKENS_ID: `${LINKS.API}/users/get-user-details-from-supertokens-id`,
+  USERS: `${LINKS.API}/users`,
+  USER_BY_EMAIL_EXISTS: `${LINKS.API}/users/user-by-email-exists`,
+  USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
+  USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
 };
 
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
+  USERS: "USERS",
 };
 
 export const USER_ROLES = {

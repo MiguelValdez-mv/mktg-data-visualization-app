@@ -3,6 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
+const forms = require("@tailwindcss/forms");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -24,9 +25,9 @@ module.exports = {
       fontSize: {
         tiny: defaultTheme.fontSize.xs,
         small: defaultTheme.fontSize.sm,
-        subtitle: defaultTheme.fontSize["2xl"],
-        title: defaultTheme.fontSize["3xl"],
-        caption: defaultTheme.fontSize["4xl"],
+        subtitle: defaultTheme.fontSize.xl,
+        title: defaultTheme.fontSize["2xl"],
+        caption: defaultTheme.fontSize["3xl"],
       },
       dropShadow: {
         surface: defaultTheme.dropShadow.xl,
@@ -36,5 +37,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [forms],
 };

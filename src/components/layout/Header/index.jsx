@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 
 import { IconMenu } from "@/assets/svgs/IconMenu";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Text } from "@/components/atoms/Text";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
@@ -18,13 +18,13 @@ export function Header({ title, topContent = null, bottomContent = null }) {
   const { isLargeScreen } = useDimensions();
   const { pathname } = useLocation();
 
-  const [, pathnameBase] = pathname.split("/");
   const isMainRoute = [
     "/users",
     "/connections",
     "/businesses",
     "/panels",
   ].includes(pathname);
+  const [, pathnameBase] = pathname.split("/");
 
   const Icon = PAGE_ICONS[pathnameBase.toUpperCase()];
 
@@ -39,38 +39,38 @@ export function Header({ title, topContent = null, bottomContent = null }) {
 
       <Row className="justify-between">
         {!isLargeScreen && (
-          <ButtonIcon onClick={openSidebar}>
-            <IconMenu className="text-primary" />
-          </ButtonIcon>
+          <IconButton onClick={openSidebar} primary>
+            <IconMenu />
+          </IconButton>
         )}
 
         <Col>
           {isLargeScreen && (
             <>
               <Row className="items-center">
-                <Icon className="text-muted" />
+                <Icon className="text-muted w-4 h-4" />
                 <Spacing right={1} />
 
-                <Text muted bold>
+                <Text muted bold small>
                   /
                 </Text>
                 <Spacing right={1} />
 
                 {!isMainRoute && (
                   <>
-                    <Text capitalize>
-                      {COPY[`pages.${pathnameBase.toLowerCase()}.title`]}
+                    <Text capitalize small>
+                      {COPY[`${pathnameBase.toLowerCase()}.title`]}
                     </Text>
                     <Spacing right={1} />
 
-                    <Text muted bold>
+                    <Text muted bold small>
                       /
                     </Text>
                     <Spacing right={1} />
                   </>
                 )}
 
-                <Text>{title}</Text>
+                <Text small>{title}</Text>
               </Row>
               <Spacing bottom={1} />
             </>

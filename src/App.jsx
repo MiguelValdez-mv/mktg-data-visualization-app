@@ -1,3 +1,5 @@
+import { setDefaultOptions } from "date-fns";
+import { es } from "date-fns/locale";
 import { Provider as AlertProvider } from "react-alert";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -9,13 +11,14 @@ import { Row } from "@/components/layout/Row";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { AuthProvider } from "@/contexts/AuthProvider";
 import { SidebarProvider } from "@/contexts/SidebarProvider";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { AppRouter } from "@/router";
-import { startSuperTokens } from "@/thirdParty/superTokens";
+import { startSupertokens } from "@/thirdParty/supertokens";
 
 import "./global.css";
 
-startSuperTokens();
+startSupertokens();
+setDefaultOptions({ locale: es });
 
 const queryClient = new QueryClient();
 

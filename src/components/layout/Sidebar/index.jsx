@@ -1,23 +1,22 @@
 import { useNavigate } from "react-router-dom";
 
 import { IconChevronLeft } from "@/assets/svgs/IconChevronLeft";
-import { IconCircleUser } from "@/assets/svgs/IconCircleUser";
 import { IconExit } from "@/assets/svgs/IconExit";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
-import { Button } from "@/components/atoms/Button";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
+import { Avatar } from "@/components/atoms/Avatar";
 import { Divider } from "@/components/atoms/Divider";
+import { Button } from "@/components/atoms/buttons/Button";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
-import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
+import { useLogout } from "@/hooks/auth/useLogout";
 import { useAlert } from "@/hooks/useAlert";
 import { useDimensions } from "@/hooks/useDimensions";
-import { useLogout } from "@/hooks/useLogout";
 import { useSidebar } from "@/hooks/useSidebar";
 import { PAGE_ICONS } from "@/router/config";
 import { isUserAdmin } from "@/utils/isUserAdmin";
@@ -61,7 +60,7 @@ export function Sidebar({ user }) {
             <>
               <SidebarOption
                 to="/users"
-                name={COPY["pages.users.title"]}
+                name={COPY["users.title"]}
                 icon={PAGE_ICONS.USERS}
                 closeSidebar={closeSidebar}
               />
@@ -69,7 +68,7 @@ export function Sidebar({ user }) {
 
               <SidebarOption
                 to="/connections"
-                name={COPY["pages.connections.title"]}
+                name={COPY["connections.title"]}
                 icon={PAGE_ICONS.CONNECTIONS}
                 closeSidebar={closeSidebar}
               />
@@ -79,7 +78,7 @@ export function Sidebar({ user }) {
 
           <SidebarOption
             to="/businesses"
-            name={COPY["pages.businesses.title"]}
+            name={COPY["businesses.title"]}
             icon={PAGE_ICONS.BUSINESSES}
             closeSidebar={closeSidebar}
           />
@@ -87,7 +86,7 @@ export function Sidebar({ user }) {
 
           <SidebarOption
             to="/panels"
-            name={COPY["pages.panels.title"]}
+            name={COPY["panels.title"]}
             icon={PAGE_ICONS.PANELS}
             closeSidebar={closeSidebar}
           />
@@ -98,13 +97,9 @@ export function Sidebar({ user }) {
             <Button
               className="justify-start border-muted text-muted"
               variant="outline"
-              startIcon={
-                <Row className="bg-muted p-2 rounded-full">
-                  <IconCircleUser className="text-white" />
-                </Row>
-              }
+              startIcon={<Avatar name={user.name} src={user.avatar} />}
             >
-              {user.fullName}
+              {user.name}
             </Button>
           }
         >
@@ -113,16 +108,16 @@ export function Sidebar({ user }) {
             isLoading={logoutMutation.isLoading}
             startIcon={<IconExit />}
           >
-            {COPY["app.sidebar.logout"]}
+            {COPY["sidebar.logout"]}
           </MenuOption>
         </Menu>
       </Col>
 
       {!isLargeScreen && (
         <Surface className="self-center p-2">
-          <ButtonIcon onClick={closeSidebar}>
-            <IconChevronLeft className="text-primary" />
-          </ButtonIcon>
+          <IconButton onClick={closeSidebar} primary>
+            <IconChevronLeft />
+          </IconButton>
         </Surface>
       )}
     </Col>

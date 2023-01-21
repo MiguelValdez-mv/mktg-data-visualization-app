@@ -1,36 +1,53 @@
 export const COPY = {
-  // APP
-  "app.sidebar.logout": "Cerrar sesión",
-
-  // PAGES
-  "pages.login.welcome": "¡Bienvenido!",
-  "pages.login.continue": "Continuar",
-  "pages.login.cta": "Iniciar sesión",
-  "pages.login.changeEmail": "Cambiar correo electrónico",
-  "pages.login.productCreatedBy": "Un producto creado por",
-  "pages.login.otpCreation.success": (email) =>
+  "login.welcome": "¡Bienvenido!",
+  "login.email": "Correo electrónico",
+  "login.continue": "Continuar",
+  "login.otp": "Código de verificación",
+  "login.cta": "Iniciar sesión",
+  "login.changeEmail": "Cambiar correo electrónico",
+  "login.productCreatedBy": "Un producto creado por",
+  "login.otpCreation.success": (email) =>
     `Código de verificación enviado a ${email}`,
-  "pages.login.otpValidation.success": (name) => `Bienvenid@, ${name}`,
+  "login.otpConsumption.success": (name) => `Bienvenid@, ${name}`,
 
-  "pages.users.title": "Usuarios",
-  "pages.users.details.title": "Detalles de Usuario",
+  "users.title": "Usuarios",
+  "users.creation.title": "Añadir Usuario",
+  "users.creation.success": "Usuario creado exitosamente",
+  "users.details.title": "Detalles de Usuario",
+  "users.details.userRegistrationDate": "Fecha de registro",
+  "users.details.update.success": "Usuario actualizado exitosamente",
 
-  "pages.connections.title": "Conexiones",
+  "connections.title": "Conexiones",
 
-  "pages.businesses.title": "Negocios",
-  "pages.businesses.details.title": "Detalles de Negocio",
+  "businesses.title": "Negocios",
+  "businesses.details.title": "Detalles de Negocio",
 
-  "pages.panels.title": "Paneles",
+  "panels.title": "Paneles",
 
-  // FORMS
-  "forms.labels.email": "Correo electrónico",
-  "forms.placeholder.otp": "Código de verificación",
-  "forms.placeholder.searchUser": "Buscar usuario",
-  "forms.placeholder.searchConnection": "Buscar conexión",
-  "forms.placeholder.searchBusiness": "Buscar negocio",
-  "forms.placeholder.searchPanel": "Buscar panel",
+  "sidebar.logout": "Cerrar sesión",
 
-  // ERRORS
+  "searchBar.search": "Buscar...",
+
+  "userList.user": "Usuario",
+  "userList.role": "Función",
+  "userList.role.admin": "Administrador",
+  "userList.role.owner": "Propietario",
+  "userList.role.employee": "Empleado",
+  "userList.date": "Fecha",
+
+  "userForm.name": "Nombre",
+  "userForm.email": "Correo electrónico",
+  "userForm.role": "Función",
+  "userForm.role.admin": "Administrador",
+  "userForm.role.owner": "Propietario",
+  "userForm.role.employee": "Empleado",
+  "userForm.avatar": "Avatar",
+  "userForm.notifyRegistration": "Notificar registro",
+  "userForm.add": "Añadir",
+  "userForm.save": "Guardar",
+
+  "table.edit": "Editar",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":

@@ -6,17 +6,17 @@ import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
 import { IconSquareInstagram } from "@/assets/svgs/IconSquareInstagram";
 import { OpenTechDarkLogo } from "@/assets/svgs/OpenTechDarkLogo";
 import { OpenTechLogo } from "@/assets/svgs/OpenTechLogo";
-import { Button } from "@/components/atoms/Button";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
+import { Form } from "@/components/atoms/Form";
 import { Text } from "@/components/atoms/Text";
-import { TextInput } from "@/components/atoms/TextInput";
+import { Button } from "@/components/atoms/buttons/Button";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
+import { TextInput } from "@/components/atoms/inputs/TextInput";
 import { Col } from "@/components/layout/Col";
 import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { Form } from "@/components/molecules/Form";
-import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
+import { LINKS, FORM_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
@@ -24,13 +24,13 @@ function View({
   otpCreationIsSuccessful,
   changeEmail,
   handleOtpCreationFormSubmit,
-  handleOtpValidationFormSubmit,
+  handleOtpConsumptionFormSubmit,
   redirectTo,
 }) {
   return (
     <Page className="h-screen justify-around items-center">
       <Text caption bold>
-        {COPY["pages.login.welcome"]}
+        {COPY["login.welcome"]}
       </Text>
 
       <Surface className="py-20">
@@ -41,48 +41,70 @@ function View({
           <Formik
             key="otp-creation"
             initialValues={{ email: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
+            validationSchema={FORM_SCHEMES.OTP_CREATION}
             onSubmit={handleOtpCreationFormSubmit}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              errors,
+              touched,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
-                  name="email"
-                  placeholder={COPY["forms.labels.email"]}
+                  id="email"
+                  placeholder={COPY["login.email"]}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.email}
+                  error={touched.email && errors.email}
                 />
                 <Spacing bottom={2} />
 
-                <Button type="submit" isLoading={isLoading}>
-                  {COPY["pages.login.continue"]}
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                >
+                  {COPY["login.continue"]}
                 </Button>
               </Form>
             )}
           </Formik>
         ) : (
           <Formik
-            key="otp-validation"
+            key="otp-consumption"
             initialValues={{ otp: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_VALIDATION}
-            onSubmit={handleOtpValidationFormSubmit}
+            validationSchema={FORM_SCHEMES.OTP_CONSUMPTION}
+            onSubmit={handleOtpConsumptionFormSubmit}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, errors }) => (
+            {({
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              errors,
+              touched,
+            }) => (
               <Form onSubmit={handleSubmit}>
                 <TextInput
-                  name="otp"
-                  placeholder={COPY["forms.placeholder.otp"]}
+                  id="otp"
+                  placeholder={COPY["login.otp"]}
                   value={values.otp}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.otp}
+                  error={touched.otp && errors.otp}
                 />
                 <Spacing bottom={2} />
 
-                <Button type="submit" isLoading={isLoading}>
-                  {COPY["pages.login.cta"]}
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                >
+                  {COPY["login.cta"]}
                 </Button>
                 <Spacing bottom={2} />
 
@@ -91,7 +113,7 @@ function View({
                   onClick={changeEmail}
                   startIcon={<IconArrowLeft />}
                 >
-                  {COPY["pages.login.changeEmail"]}
+                  {COPY["login.changeEmail"]}
                 </Button>
               </Form>
             )}
@@ -101,26 +123,26 @@ function View({
 
       <Col className="items-center">
         <Row>
-          <ButtonIcon onClick={redirectTo(LINKS.FACEBOOK)} muted>
+          <IconButton onClick={redirectTo(LINKS.FACEBOOK)} muted>
             <IconSquareFacebook />
-          </ButtonIcon>
+          </IconButton>
           <Spacing right={1} />
 
-          <ButtonIcon onClick={redirectTo(LINKS.INSTAGRAM)} muted>
+          <IconButton onClick={redirectTo(LINKS.INSTAGRAM)} muted>
             <IconSquareInstagram />
-          </ButtonIcon>
+          </IconButton>
         </Row>
         <Spacing bottom={2} />
 
         <Row>
           <Text className="whitespace-nowrap" muted small>
-            {COPY["pages.login.productCreatedBy"]}
+            {COPY["login.productCreatedBy"]}
           </Text>
           <Spacing right={1} />
 
-          <ButtonIcon onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)} muted>
+          <IconButton onClick={redirectTo(LINKS.OFFICIAL_WEBSITE)} muted>
             <OpenTechDarkLogo className="w-24 h-auto" />
-          </ButtonIcon>
+          </IconButton>
         </Row>
       </Col>
     </Page>
@@ -132,7 +154,7 @@ View.propTypes = {
   otpCreationIsSuccessful: PropTypes.bool.isRequired,
   changeEmail: PropTypes.func.isRequired,
   handleOtpCreationFormSubmit: PropTypes.func.isRequired,
-  handleOtpValidationFormSubmit: PropTypes.func.isRequired,
+  handleOtpConsumptionFormSubmit: PropTypes.func.isRequired,
   redirectTo: PropTypes.func.isRequired,
 };
 

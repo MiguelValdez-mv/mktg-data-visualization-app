@@ -4,8 +4,8 @@ import { IconBxErrorCircle } from "@/assets/svgs/IconBxErrorCircle";
 import { IconCheckCircle } from "@/assets/svgs/IconCheckCircle";
 import { IconClose } from "@/assets/svgs/IconClose";
 import { IconInfoCircle } from "@/assets/svgs/IconInfoCircle";
-import { ButtonIcon } from "@/components/atoms/ButtonIcon";
 import { Text } from "@/components/atoms/Text";
+import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
@@ -36,9 +36,9 @@ export function AlertTemplate({ options, message, close }) {
       </Row>
       <Spacing right={4} />
 
-      <ButtonIcon className="self-start" onClick={close} muted>
+      <IconButton className="self-start" onClick={close} muted>
         <IconClose className="w-auto h-auto" />
-      </ButtonIcon>
+      </IconButton>
     </Surface>
   );
 }
