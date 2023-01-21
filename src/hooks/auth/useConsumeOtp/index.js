@@ -39,7 +39,7 @@ export const useConsumeOtp = (opts = {}) => {
     onSuccess: (user) => {
       queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
       authCtx.login(user);
-      opts.onSuccess?.();
+      opts.onSuccess?.(user);
     },
   });
 };
