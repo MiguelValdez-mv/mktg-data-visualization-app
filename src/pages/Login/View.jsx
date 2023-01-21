@@ -16,7 +16,7 @@ import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { LINKS, FORM_VALIDATION_SCHEMES } from "@/constants";
+import { LINKS, FORM_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
@@ -41,7 +41,7 @@ function View({
           <Formik
             key="otp-creation"
             initialValues={{ email: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CREATION}
+            validationSchema={FORM_SCHEMES.OTP_CREATION}
             onSubmit={handleOtpCreationFormSubmit}
           >
             {({
@@ -77,7 +77,7 @@ function View({
           <Formik
             key="otp-consumption"
             initialValues={{ otp: "" }}
-            validationSchema={FORM_VALIDATION_SCHEMES.OTP_CONSUMPTION}
+            validationSchema={FORM_SCHEMES.OTP_CONSUMPTION}
             onSubmit={handleOtpConsumptionFormSubmit}
           >
             {({

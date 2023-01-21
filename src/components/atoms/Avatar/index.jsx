@@ -3,7 +3,7 @@ import ReactAvatar from "react-avatar";
 
 import { twMerge } from "@/utils/twMerge";
 
-export function Avatar({ className, email, name, value = "?", src }) {
+export function Avatar({ className, email, name, value = "?", src, size }) {
   return (
     <ReactAvatar
       className={twMerge("rounded-xl", className)}
@@ -11,7 +11,7 @@ export function Avatar({ className, email, name, value = "?", src }) {
       name={name}
       value={value}
       src={src}
-      size={40}
+      size={size || 40}
       maxInitials={2}
     />
   );
@@ -23,4 +23,5 @@ Avatar.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   src: PropTypes.string,
+  size: PropTypes.number,
 };

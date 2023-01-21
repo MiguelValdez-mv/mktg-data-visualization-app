@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import { UserForm } from "@/components/app/users/UserForm";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
 import { Content } from "@/components/layout/Content";
@@ -7,9 +8,15 @@ import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { FORM_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ isLoading, userRegistrationDate }) {
+function View({
+  isLoading,
+  userRegistrationDate,
+  initialValues,
+  handleUserUpdateFormSubmit,
+}) {
   return (
     <Page>
       <Header title={COPY["users.details.title"]} />
@@ -34,6 +41,13 @@ function View({ isLoading, userRegistrationDate }) {
             </Col>
           </Col>
           <Spacing bottom={4} />
+
+          <UserForm
+            initialValues={initialValues}
+            validationSchema={FORM_SCHEMES.USER_UPDATE}
+            onSubmit={handleUserUpdateFormSubmit}
+            action="update"
+          />
         </Surface>
       </Content>
     </Page>
@@ -43,6 +57,8 @@ function View({ isLoading, userRegistrationDate }) {
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   userRegistrationDate: PropTypes.string.isRequired,
+  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  handleUserUpdateFormSubmit: PropTypes.func.isRequired,
 };
 
 export default View;

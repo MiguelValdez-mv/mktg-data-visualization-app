@@ -38,6 +38,7 @@ export function UserForm({
         errors,
         touched,
         setFieldValue,
+        dirty,
       }) => (
         <Form onSubmit={handleSubmit}>
           <TextInput
@@ -115,7 +116,7 @@ export function UserForm({
             className="sm:self-end"
             type="submit"
             isLoading={isLoading}
-            disabled={isLoading}
+            disabled={createUser ? isLoading : isLoading || !dirty}
           >
             {COPY[`userForm.${createUser ? "add" : "save"}`]}
           </Button>

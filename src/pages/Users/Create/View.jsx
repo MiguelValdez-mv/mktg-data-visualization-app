@@ -7,10 +7,10 @@ import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { USER_ROLES, FORM_VALIDATION_SCHEMES } from "@/constants";
+import { FORM_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ isLoading, handleUserCreationFormSubmit }) {
+function View({ isLoading, initialValues, handleUserCreationFormSubmit }) {
   return (
     <Page>
       <Header title={COPY["users.creation.title"]} />
@@ -24,14 +24,8 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
           <Spacing bottom={4} />
 
           <UserForm
-            initialValues={{
-              name: "",
-              email: "",
-              role: USER_ROLES.ADMIN,
-              avatar: undefined,
-              notifyRegistration: false,
-            }}
-            validationSchema={FORM_VALIDATION_SCHEMES.USER_CREATION}
+            initialValues={initialValues}
+            validationSchema={FORM_SCHEMES.USER_CREATION}
             onSubmit={handleUserCreationFormSubmit}
             isLoading={isLoading}
           />
@@ -43,6 +37,7 @@ function View({ isLoading, handleUserCreationFormSubmit }) {
 
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleUserCreationFormSubmit: PropTypes.func.isRequired,
 };
 

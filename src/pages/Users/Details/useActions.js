@@ -26,10 +26,13 @@ const useActions = () => {
     avatar,
   };
 
+  const handleUserUpdateFormSubmit = () => {};
+
   return {
     isLoading,
     userRegistrationDate,
     initialValues,
+    handleUserUpdateFormSubmit,
   };
 };
 

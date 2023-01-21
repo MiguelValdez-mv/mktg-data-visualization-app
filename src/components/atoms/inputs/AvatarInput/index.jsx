@@ -44,14 +44,14 @@ export function AvatarInput({
       )}
 
       <Col className="relative">
-        <Avatar name={name} src={preview} />
+        <Avatar name={name} src={preview} size={100} />
 
         <IconButton
-          className="bg-cyan drop-shadow-surface p-1 rounded-full absolute top-6 left-6"
+          className="bg-primary drop-shadow-surface p-2 rounded-full absolute top-16 left-20"
           onClick={handleClick}
           hoverable={false}
         >
-          <IconEdit className="w-4 h-4 text-white" />
+          <IconEdit className="text-white" />
         </IconButton>
       </Col>
 
@@ -69,7 +69,7 @@ export function AvatarInput({
 }
 
 AvatarInput.propTypes = {
-  avatar: PropTypes.object, // eslint-disable-line
+  avatar: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
