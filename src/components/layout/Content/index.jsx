@@ -9,6 +9,7 @@ export function Content({ isLoading, className, children }) {
   return (
     <Col
       className={twMerge(
+        "max-w-7xl w-full self-center",
         isLoading && "h-full justify-center items-center",
         className
       )}
