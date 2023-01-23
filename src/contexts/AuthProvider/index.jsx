@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
 
   const { isLoading: isCheckingSession } = useDoesSessionExist({
     staleTime: Infinity,
-    onSuccess: ({ sessionExist, user }) => sessionExist && login(user),
+    onSuccess: ({ sessionExist, user }) => sessionExist && user && login(user),
   });
 
   const value = useMemo(
