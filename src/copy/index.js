@@ -47,6 +47,7 @@ export const COPY = {
   "userForm.save": "Guardar",
 
   "table.edit": "Editar",
+  "table.delete": "Eliminar",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

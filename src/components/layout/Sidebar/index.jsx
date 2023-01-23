@@ -95,8 +95,8 @@ export function Sidebar({ user }) {
         <Menu
           trigger={
             <Button
-              className="justify-start border-muted text-muted"
-              variant="outline"
+              className="justify-start"
+              variant="outline-primary"
               startIcon={<Avatar name={user.name} src={user.avatar} />}
             >
               {user.name}

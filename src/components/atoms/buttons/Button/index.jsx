@@ -10,6 +10,7 @@ import { twMerge } from "@/utils/twMerge";
 const baseStyles = {
   solid: "text-white bg-gradient-to-r from-primary to-secondary",
   outline: "border border-cyan text-cyan",
+  "outline-primary": "border border-muted text-primary",
   ghost: "text-primary hover:text-white hover:bg-primary",
 };
 
@@ -60,7 +61,7 @@ export const Button = forwardRef(
 );
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["solid", "outline", "ghost"]),
+  variant: PropTypes.oneOf(["solid", "outline", "outline-primary", "ghost"]),
   disabled: PropTypes.bool,
   className: PropTypes.string,
   type: PropTypes.string,

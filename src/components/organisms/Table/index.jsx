@@ -8,6 +8,7 @@ import { SearchBar } from "@/components/app/SearchBar";
 import { Divider } from "@/components/atoms/Divider";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Text } from "@/components/atoms/Text";
+import { Button } from "@/components/atoms/buttons/Button";
 import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Checkbox } from "@/components/atoms/inputs/Checkbox";
 import { Col } from "@/components/layout/Col";
@@ -16,36 +17,25 @@ import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { COPY } from "@/copy";
+import { useDimensions } from "@/hooks/useDimensions";
 
 export function Table({
   title,
   data,
   columns,
   selectRows,
-  selectSingleRow,
   onEditRow,
+  onDeleteRows,
   filterGlobally,
   divideContent,
 }) {
+  const { isLargeScreen } = useDimensions();
   const table = useTable(
     {
       data,
       columns,
       defaultColumn: {
         Cell: ({ value }) => <Cell>{value}</Cell>,
-      },
-      stateReducer: (newState, action) => {
-        switch (action.type) {
-          case "toggleRowSelected":
-            return {
-              ...newState,
-              ...(selectSingleRow && {
-                selectedRowIds: { [action.id]: action.value },
-              }),
-            };
-          default:
-            return newState;
-        }
       },
     },
     useGlobalFilter,
@@ -75,7 +65,11 @@ export function Table({
     setGlobalFilter,
     selectedFlatRows: selectedRows,
   } = table;
+  const disableEditOpt = selectedRows.length !== 1;
+  const disableDeleteOpt = !selectedRows.length;
 
+  const handleEditRow = () => onEditRow(selectedRows);
+  const handleDeleteRows = () => onDeleteRows(selectedRows);
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 
   return (
@@ -86,7 +80,26 @@ export function Table({
             {title}
           </Text>
 
-          {!!selectedRows.length && (
+          {isLargeScreen ? (
+            <Row>
+              <Button
+                variant="outline-primary"
+                onClick={handleEditRow}
+                disabled={disableEditOpt}
+              >
+                {COPY["table.edit"]}
+              </Button>
+              <Spacing right={2} />
+
+              <Button
+                variant="outline-primary"
+                onClick={handleDeleteRows}
+                disabled={disableDeleteOpt}
+              >
+                {COPY["table.delete"]}
+              </Button>
+            </Row>
+          ) : (
             <Menu
               trigger={
                 <IconButton primary>
@@ -96,11 +109,23 @@ export function Table({
               position="bottom right"
             >
               {(closeMenu) => (
-                <MenuOption
-                  onClick={() => onEditRow({ selectedRows, closeMenu })}
-                >
-                  {COPY["table.edit"]}
-                </MenuOption>
+                <>
+                  <MenuOption
+                    onClick={handleEditRow}
+                    disabled={disableEditOpt}
+                    closeMenu={closeMenu}
+                  >
+                    {COPY["table.edit"]}
+                  </MenuOption>
+
+                  <MenuOption
+                    onClick={handleDeleteRows}
+                    disabled={disableDeleteOpt}
+                    closeMenu={closeMenu}
+                  >
+                    {COPY["table.delete"]}
+                  </MenuOption>
+                </>
               )}
             </Menu>
           )}
@@ -174,8 +199,8 @@ Table.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
   columns: PropTypes.array.isRequired, // eslint-disable-line
   selectRows: PropTypes.bool,
-  selectSingleRow: PropTypes.bool,
   onEditRow: PropTypes.func,
+  onDeleteRows: PropTypes.func,
   filterGlobally: PropTypes.bool,
   divideContent: PropTypes.bool,
 };

@@ -13,12 +13,10 @@ export function UserList({
   users = [],
   title,
   selectRows = true,
-  selectSingleRow = true,
   filterGlobally = true,
   divideContent = true,
 }) {
   const navigate = useNavigate();
-
   const data = useMemo(() => users, [users]);
   const columns = useMemo(
     () => [
@@ -43,11 +41,11 @@ export function UserList({
     []
   );
 
-  const handleEditRow = ({ selectedRows, closeMenu }) => {
+  const handleEditRow = (selectedRows) => {
     const [{ original: user }] = selectedRows;
     navigate(`/users/${user._id}`);
-    closeMenu();
   };
+  const handleDeleteRows = () => {};
 
   return (
     <Table
@@ -55,8 +53,8 @@ export function UserList({
       data={data}
       columns={columns}
       selectRows={selectRows}
-      selectSingleRow={selectSingleRow}
       onEditRow={handleEditRow}
+      onDeleteRows={handleDeleteRows}
       filterGlobally={filterGlobally}
       divideContent={divideContent}
     />
@@ -67,7 +65,6 @@ UserList.propTypes = {
   users: PROP.USERS,
   title: PropTypes.string.isRequired,
   selectRows: PropTypes.bool,
-  selectSingleRow: PropTypes.bool,
   filterGlobally: PropTypes.bool,
   divideContent: PropTypes.bool,
 };

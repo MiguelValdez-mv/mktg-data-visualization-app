@@ -67,8 +67,8 @@ export function UserForm({
           <Menu
             trigger={(menuIsOpen) => (
               <Button
-                className="justify-between border-muted text-primary font-normal"
-                variant="outline"
+                className="justify-between font-normal"
+                variant="outline-primary"
                 endIcon={<ToggleMenuIcon menuIsOpen={menuIsOpen} />}
               >
                 {COPY[`userForm.role.${values.role.toLowerCase()}`]}
@@ -79,10 +79,8 @@ export function UserForm({
               Object.values(USER_ROLES).map((opt) => (
                 <MenuOption
                   key={opt}
-                  onClick={() => {
-                    setFieldValue("role", opt);
-                    closeMenu();
-                  }}
+                  onClick={() => setFieldValue("role", opt)}
+                  closeMenu={closeMenu}
                 >
                   {COPY[`userForm.role.${opt.toLowerCase()}`]}
                 </MenuOption>
