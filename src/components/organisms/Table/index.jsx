@@ -6,6 +6,7 @@ import { useTable, useGlobalFilter, useRowSelect } from "react-table";
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
 import { SearchBar } from "@/components/app/SearchBar";
 import { Divider } from "@/components/atoms/Divider";
+import { Spinner } from "@/components/atoms/Spinner";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
@@ -17,20 +18,30 @@ import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { COPY } from "@/copy";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { useDimensions } from "@/hooks/useDimensions";
+import { isUserAdmin } from "@/utils/isUserAdmin";
 
 export function Table({
-  title,
   data,
   columns,
-  selectRows,
-  onEditRow,
-  onDeleteRows,
-  filterGlobally,
-  divideContent,
+  title,
+  isLoading,
+  viewItemDetail,
+  deleteItems,
 }) {
   const { isLargeScreen } = useDimensions();
-  const table = useTable(
+  const { user } = useAuth();
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state: { globalFilter },
+    setGlobalFilter,
+    selectedFlatRows,
+  } = useTable(
     {
       data,
       columns,
@@ -41,63 +52,70 @@ export function Table({
     useGlobalFilter,
     useRowSelect,
     (hooks) => {
-      hooks.visibleColumns.push((cols) =>
-        [
-          selectRows && {
-            id: "selection",
-            Cell: ({ row }) => (
-              <Checkbox {...row.getToggleRowSelectedProps({ id: row.id })} />
-            ),
-          },
-          ...cols,
-        ].filter(Boolean)
-      );
+      hooks.visibleColumns.push((c) => [
+        {
+          id: "selection",
+          Cell: ({ row }) => (
+            <Checkbox {...row.getToggleRowSelectedProps({ id: row.id })} />
+          ),
+        },
+        ...c,
+      ]);
     }
   );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    state: { globalFilter },
-    setGlobalFilter,
-    selectedFlatRows: selectedRows,
-  } = table;
-  const disableEditOpt = selectedRows.length !== 1;
-  const disableDeleteOpt = !selectedRows.length;
+  const selectedItems = selectedFlatRows.map((row) => row.original);
+  const actions = [
+    {
+      id: "view-detail",
+      onClick: () => {
+        const [selectedItem] = selectedItems;
+        viewItemDetail(selectedItem);
+      },
+      disabled: selectedFlatRows.length !== 1,
+      msg: COPY["table.viewDetail"],
+    },
+    isUserAdmin(user) && {
+      id: "delete",
+      onClick: () => deleteItems(selectedItems),
+      disabled: !selectedFlatRows.length,
+      msg: COPY["table.delete"],
+    },
+  ].filter(Boolean);
 
-  const handleEditRow = () => onEditRow(selectedRows);
-  const handleDeleteRows = () => onDeleteRows(selectedRows);
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 
   return (
     <Col>
-      <Col className="sm:flex-row">
-        <Row className="justify-between sm:items-center sm:w-full">
-          <Text subtitle bold>
-            {title}
-          </Text>
+      <Col className="xl:flex-row">
+        <Row className="justify-between items-center flex-1">
+          <Row>
+            <Text subtitle bold>
+              {title}
+            </Text>
+
+            {isLoading && (
+              <>
+                <Spacing left={2} />
+                <Spinner primary />
+              </>
+            )}
+          </Row>
 
           {isLargeScreen ? (
             <Row>
-              <Button
-                variant="outline-primary"
-                onClick={handleEditRow}
-                disabled={disableEditOpt}
-              >
-                {COPY["table.edit"]}
-              </Button>
-              <Spacing right={2} />
-
-              <Button
-                variant="outline-primary"
-                onClick={handleDeleteRows}
-                disabled={disableDeleteOpt}
-              >
-                {COPY["table.delete"]}
-              </Button>
+              {actions.map(({ id, onClick, disabled, msg }) => (
+                <Fragment key={id}>
+                  <Spacing left={2} />
+                  <Button
+                    variant="outline-primary"
+                    onClick={onClick}
+                    disabled={disabled}
+                  >
+                    {msg}
+                  </Button>
+                </Fragment>
+              ))}
             </Row>
           ) : (
             <Menu
@@ -108,38 +126,27 @@ export function Table({
               }
               position="bottom right"
             >
-              {(closeMenu) => (
-                <>
+              {(closeMenu) =>
+                actions.map(({ id, onClick, disabled, msg }) => (
                   <MenuOption
-                    onClick={handleEditRow}
-                    disabled={disableEditOpt}
+                    key={id}
+                    onClick={onClick}
+                    disabled={disabled}
                     closeMenu={closeMenu}
                   >
-                    {COPY["table.edit"]}
+                    {msg}
                   </MenuOption>
-
-                  <MenuOption
-                    onClick={handleDeleteRows}
-                    disabled={disableDeleteOpt}
-                    closeMenu={closeMenu}
-                  >
-                    {COPY["table.delete"]}
-                  </MenuOption>
-                </>
-              )}
+                ))
+              }
             </Menu>
           )}
         </Row>
+        <Spacing spacing={1} />
 
-        {filterGlobally && (
-          <>
-            <Spacing spacing={1} />
-            <SearchBar
-              value={globalFilter || ""}
-              onChange={handleChangeGlobalFilter}
-            />
-          </>
-        )}
+        <SearchBar
+          value={globalFilter || ""}
+          onChange={handleChangeGlobalFilter}
+        />
       </Col>
       <Spacing bottom={4} />
 
@@ -159,8 +166,6 @@ export function Table({
 
           <tbody {...getTableBodyProps()}>
             {rows.map((row, idx) => {
-              const showDivider = divideContent && idx !== rows.length - 1;
-
               prepareRow(row);
 
               return (
@@ -177,7 +182,7 @@ export function Table({
                     ))}
                   </tr>
 
-                  {showDivider && (
+                  {idx !== rows.length - 1 && (
                     <tr>
                       <td colSpan={row.cells.length}>
                         <Divider />
@@ -195,12 +200,10 @@ export function Table({
 }
 
 Table.propTypes = {
-  title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired, // eslint-disable-line
   columns: PropTypes.array.isRequired, // eslint-disable-line
-  selectRows: PropTypes.bool,
-  onEditRow: PropTypes.func,
-  onDeleteRows: PropTypes.func,
-  filterGlobally: PropTypes.bool,
-  divideContent: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
+  viewItemDetail: PropTypes.func.isRequired,
+  deleteItems: PropTypes.func.isRequired,
 };

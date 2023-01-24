@@ -20,20 +20,20 @@ function View({
 }) {
   return (
     <Page>
-      <Header title={COPY["users.details.title"]} />
+      <Header title={COPY["users.detail.title"]} />
       <Spacing bottom={4} />
 
       <Content isLoading={isLoading}>
         <Surface>
           <Col className="sm:flex-row sm:justify-between">
             <Text subtitle bold>
-              {COPY["users.details.title"]}
+              {COPY["users.detail.title"]}
             </Text>
             <Spacing bottom={2} />
 
             <Col className="self-end sm:self-auto">
               <Text bold end>
-                {COPY["users.details.userRegistrationDate"]}:
+                {COPY["users.detail.userRegistrationDate"]}:
               </Text>
 
               <Text muted bold capitalize>

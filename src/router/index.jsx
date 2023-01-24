@@ -10,14 +10,14 @@ const Default = LazyPage(lazy(() => import("@/pages/Default")));
 const Login = LazyPage(lazy(() => import("@/pages/Login")));
 const Users = LazyPage(lazy(() => import("@/pages/Users")));
 const CreateUser = LazyPage(lazy(() => import("@/pages/Users/Create")));
-const UserDetails = LazyPage(lazy(() => import("@/pages/Users/Details")));
+const UserDetail = LazyPage(lazy(() => import("@/pages/Users/Detail")));
 const Connections = LazyPage(lazy(() => import("@/pages/Connections")));
 const Businesses = LazyPage(lazy(() => import("@/pages/Businesses")));
-const BusinessDetails = LazyPage(
-  lazy(() => import("@/pages/Businesses/Details"))
+const BusinessDetail = LazyPage(
+  lazy(() => import("@/pages/Businesses/Detail"))
 );
 const Panels = LazyPage(lazy(() => import("@/pages/Panels")));
-const PanelDetails = LazyPage(lazy(() => import("@/pages/Panels/Details")));
+const PanelDetail = LazyPage(lazy(() => import("@/pages/Panels/Detail")));
 const NotFound = LazyPage(lazy(() => import("@/pages/NotFound")));
 
 export function AppRouter() {
@@ -47,7 +47,7 @@ export function AppRouter() {
         path="users/:userId"
         element={
           <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
-            <UserDetails />
+            <UserDetail />
           </RequireAuth>
         }
       />
@@ -73,7 +73,7 @@ export function AppRouter() {
         path="businesses/:businessId"
         element={
           <RequireAuth>
-            <BusinessDetails />
+            <BusinessDetail />
           </RequireAuth>
         }
       />
@@ -90,7 +90,7 @@ export function AppRouter() {
         path="panels/:panelId"
         element={
           <RequireAuth>
-            <PanelDetails />
+            <PanelDetail />
           </RequireAuth>
         }
       />

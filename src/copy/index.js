@@ -13,14 +13,14 @@ export const COPY = {
   "users.title": "Usuarios",
   "users.creation.title": "Añadir Usuario",
   "users.creation.success": "Usuario creado exitosamente",
-  "users.details.title": "Detalles de Usuario",
-  "users.details.userRegistrationDate": "Fecha de registro",
-  "users.details.update.success": "Usuario actualizado exitosamente",
+  "users.detail.title": "Detalle de Usuario",
+  "users.detail.userRegistrationDate": "Fecha de registro",
+  "users.detail.update.success": "Usuario actualizado exitosamente",
 
   "connections.title": "Conexiones",
 
   "businesses.title": "Negocios",
-  "businesses.details.title": "Detalles de Negocio",
+  "businesses.detail.title": "Detalle de Negocio",
 
   "panels.title": "Paneles",
 
@@ -46,7 +46,7 @@ export const COPY = {
   "userForm.add": "Añadir",
   "userForm.save": "Guardar",
 
-  "table.edit": "Editar",
+  "table.viewDetail": "Ver detalle",
   "table.delete": "Eliminar",
 
   "errors.requiredField": "Campo requerido",

@@ -9,12 +9,12 @@ import { useUpdateUserById } from "@/hooks/users/useUpdateUserById";
 
 const useActions = () => {
   const { userId } = useParams();
-  const userDetailsQuery = useGetUserById(userId);
+  const userDetailQuery = useGetUserById(userId);
   const userUpdateMutation = useUpdateUserById();
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: user = {} } = userDetailsQuery;
+  const { data: user = {} } = userDetailQuery;
   const {
     _id,
     name = "",
@@ -44,7 +44,7 @@ const useActions = () => {
       {
         onSuccess: () => {
           navigate("/users");
-          alert.success(COPY["users.details.update.success"]);
+          alert.success(COPY["users.detail.update.success"]);
         },
         onError: (err) => alert.error(err.message),
       }
@@ -52,7 +52,7 @@ const useActions = () => {
   };
 
   return {
-    isLoading: userDetailsQuery.isLoading,
+    isLoading: userDetailQuery.isLoading,
     isUpdating: userUpdateMutation.isLoading,
     userRegistrationDate,
     initialValues,

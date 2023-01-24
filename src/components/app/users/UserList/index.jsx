@@ -9,13 +9,7 @@ import { Table } from "@/components/organisms/Table";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-export function UserList({
-  users = [],
-  title,
-  selectRows = true,
-  filterGlobally = true,
-  divideContent = true,
-}) {
+export function UserList({ users = [], title }) {
   const navigate = useNavigate();
   const data = useMemo(() => users, [users]);
   const columns = useMemo(
@@ -41,22 +35,16 @@ export function UserList({
     []
   );
 
-  const handleEditRow = (selectedRows) => {
-    const [{ original: user }] = selectedRows;
-    navigate(`/users/${user._id}`);
-  };
-  const handleDeleteRows = () => {};
+  const viewItemDetail = (user) => navigate(`/users/${user._id}`);
+  const deleteItems = () => {};
 
   return (
     <Table
-      title={title}
       data={data}
       columns={columns}
-      selectRows={selectRows}
-      onEditRow={handleEditRow}
-      onDeleteRows={handleDeleteRows}
-      filterGlobally={filterGlobally}
-      divideContent={divideContent}
+      title={title}
+      viewItemDetail={viewItemDetail}
+      deleteItems={deleteItems}
     />
   );
 }
@@ -64,7 +52,4 @@ export function UserList({
 UserList.propTypes = {
   users: PROP.USERS,
   title: PropTypes.string.isRequired,
-  selectRows: PropTypes.bool,
-  filterGlobally: PropTypes.bool,
-  divideContent: PropTypes.bool,
 };
