@@ -11,6 +11,7 @@ export const COPY = {
   "login.otpConsumption.success": (name) => `Bienvenid@, ${name}`,
 
   "users.title": "Usuarios",
+  "users.removal.success": "Eliminación realizada exitosamente",
   "users.creation.title": "Añadir Usuario",
   "users.creation.success": "Usuario creado exitosamente",
   "users.detail.title": "Detalle de Usuario",

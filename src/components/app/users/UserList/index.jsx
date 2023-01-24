@@ -9,7 +9,13 @@ import { Table } from "@/components/organisms/Table";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-export function UserList({ users = [], title }) {
+export function UserList({
+  users = [],
+  title,
+  goToUserDetail,
+  deleteUsers,
+  isLoading,
+}) {
   const navigate = useNavigate();
   const data = useMemo(() => users, [users]);
   const columns = useMemo(
@@ -35,16 +41,16 @@ export function UserList({ users = [], title }) {
     []
   );
 
-  const viewItemDetail = (user) => navigate(`/users/${user._id}`);
-  const deleteItems = () => {};
-
   return (
     <Table
       data={data}
       columns={columns}
       title={title}
-      viewItemDetail={viewItemDetail}
-      deleteItems={deleteItems}
+      viewItemDetail={
+        goToUserDetail || ((user) => navigate(`/users/${user._id}`))
+      }
+      deleteItems={deleteUsers}
+      isLoading={isLoading}
     />
   );
 }
@@ -52,4 +58,7 @@ export function UserList({ users = [], title }) {
 UserList.propTypes = {
   users: PROP.USERS,
   title: PropTypes.string.isRequired,
+  goToUserDetail: PropTypes.func,
+  deleteUsers: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
 };

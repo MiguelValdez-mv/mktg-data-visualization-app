@@ -12,7 +12,7 @@ import { Surface } from "@/components/layout/Surface";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ users, isLoading }) {
+function View({ users, isLoading, deleteUsers, isDeletingUsers }) {
   return (
     <Page>
       <Header title={COPY["users.title"]} />
@@ -27,7 +27,12 @@ function View({ users, isLoading }) {
         <Spacing bottom={4} />
 
         <Surface>
-          <UserList title={COPY["users.title"]} users={users} />
+          <UserList
+            title={COPY["users.title"]}
+            users={users}
+            deleteUsers={deleteUsers}
+            isLoading={isDeletingUsers}
+          />
         </Surface>
       </Content>
     </Page>
@@ -37,6 +42,8 @@ function View({ users, isLoading }) {
 View.propTypes = {
   users: PROP.USERS,
   isLoading: PropTypes.bool.isRequired,
+  deleteUsers: PropTypes.func.isRequired,
+  isDeletingUsers: PropTypes.bool.isRequired,
 };
 
 export default View;
