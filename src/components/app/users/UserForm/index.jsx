@@ -115,6 +115,7 @@ export function UserForm({
             type="submit"
             isLoading={isLoading}
             disabled={createUser ? isLoading : isLoading || !dirty}
+            spacing
           >
             {COPY[`userForm.${createUser ? "add" : "save"}`]}
           </Button>

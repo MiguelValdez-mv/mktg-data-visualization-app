@@ -19,6 +19,7 @@ export const Button = forwardRef(
     {
       variant = "solid",
       disabled,
+      spacing,
       className,
       type = "button",
       onClick,
@@ -35,6 +36,7 @@ export const Button = forwardRef(
         "flex justify-center items-center rounded-xl font-bold p-2 outline-none active:drop-shadow-surface",
         baseStyles[variant],
         disabled && "opacity-25",
+        spacing && "px-7",
         className
       )}
       type={type}
@@ -63,6 +65,7 @@ export const Button = forwardRef(
 Button.propTypes = {
   variant: PropTypes.oneOf(["solid", "outline", "outline-primary", "ghost"]),
   disabled: PropTypes.bool,
+  spacing: PropTypes.bool,
   className: PropTypes.string,
   type: PropTypes.string,
   onClick: PropTypes.func,
