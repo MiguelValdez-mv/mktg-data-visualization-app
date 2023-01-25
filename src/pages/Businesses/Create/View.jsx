@@ -1,33 +1,30 @@
 import PropTypes from "prop-types";
 
-import { UserForm } from "@/components/app/users/UserForm";
+import { BusinessForm } from "@/components/app/businesses/BusinessForm";
 import { Text } from "@/components/atoms/Text";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { FORM_SCHEMES } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ isLoading, initialValues, handleUserCreationFormSubmit }) {
+function View({ initialValues, handleBusinessCreationFormSubmit }) {
   return (
     <Page>
-      <Header title={COPY["users.creation.title"]} />
+      <Header title={COPY["businesses.creation.title"]} />
       <Spacing bottom={8} />
 
       <Content>
         <Surface>
           <Text subtitle bold>
-            {COPY["users.creation.title"]}
+            {COPY["businesses.creation.title"]}
           </Text>
           <Spacing bottom={4} />
 
-          <UserForm
+          <BusinessForm
             initialValues={initialValues}
-            validationSchema={FORM_SCHEMES.USER_CREATION}
-            onSubmit={handleUserCreationFormSubmit}
-            isLoading={isLoading}
+            onSubmit={handleBusinessCreationFormSubmit}
           />
         </Surface>
       </Content>
@@ -36,9 +33,8 @@ function View({ isLoading, initialValues, handleUserCreationFormSubmit }) {
 }
 
 View.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
-  handleUserCreationFormSubmit: PropTypes.func.isRequired,
+  handleBusinessCreationFormSubmit: PropTypes.func.isRequired,
 };
 
 export default View;

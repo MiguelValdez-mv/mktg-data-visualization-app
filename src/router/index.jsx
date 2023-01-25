@@ -13,6 +13,9 @@ const CreateUser = LazyPage(lazy(() => import("@/pages/Users/Create")));
 const UserDetail = LazyPage(lazy(() => import("@/pages/Users/Detail")));
 const Connections = LazyPage(lazy(() => import("@/pages/Connections")));
 const Businesses = LazyPage(lazy(() => import("@/pages/Businesses")));
+const CreateBusiness = LazyPage(
+  lazy(() => import("@/pages/Businesses/Create"))
+);
 const BusinessDetail = LazyPage(
   lazy(() => import("@/pages/Businesses/Detail"))
 );
@@ -66,6 +69,14 @@ export function AppRouter() {
         element={
           <RequireAuth>
             <Businesses />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="businesses/create-business"
+        element={
+          <RequireAuth allowedRoles={[USER_ROLES.ADMIN]}>
+            <CreateBusiness />
           </RequireAuth>
         }
       />

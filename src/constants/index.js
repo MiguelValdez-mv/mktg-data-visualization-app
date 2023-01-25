@@ -32,6 +32,12 @@ export const FORM_SCHEMES = {
     role: string().required(),
     avatar: mixed(),
   }),
+  BUSINESS: object().shape({
+    name: string().required(),
+    type: string().required(),
+    description: string(),
+    avatar: mixed(),
+  }),
 };
 
 export const PROP = {
@@ -78,4 +84,10 @@ export const USER_ROLES = {
   ADMIN: "ADMIN",
   OWNER: "OWNER",
   EMPLOYEE: "EMPLOYEE",
+};
+
+export const BUSINESS_TYPES = {
+  SERVICE: "SERVICE",
+  COMMERCIAL: "COMMERCIAL",
+  INDUSTRIAL: "INDUSTRIAL",
 };

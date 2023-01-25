@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ProfileCard } from "@/components/app/ProfileCard";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
+import { Surface } from "@/components/layout/Surface";
 import { Table } from "@/components/organisms/Table";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
@@ -42,16 +43,18 @@ export function UserList({
   );
 
   return (
-    <Table
-      data={data}
-      columns={columns}
-      title={title}
-      viewItemDetail={
-        goToUserDetail || ((user) => navigate(`/users/${user._id}`))
-      }
-      deleteItems={deleteUsers}
-      isLoading={isLoading}
-    />
+    <Surface>
+      <Table
+        data={data}
+        columns={columns}
+        title={title}
+        viewItemDetail={
+          goToUserDetail || ((user) => navigate(`/users/${user._id}`))
+        }
+        deleteItems={deleteUsers}
+        isLoading={isLoading}
+      />
+    </Surface>
   );
 }
 

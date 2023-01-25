@@ -21,7 +21,7 @@ function View({
   return (
     <Page>
       <Header title={COPY["users.detail.title"]} />
-      <Spacing bottom={4} />
+      <Spacing bottom={8} />
 
       <Content isLoading={isLoading}>
         <Surface>

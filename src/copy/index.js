@@ -21,6 +21,7 @@ export const COPY = {
   "connections.title": "Conexiones",
 
   "businesses.title": "Negocios",
+  "businesses.creation.title": "Añadir Negocio",
   "businesses.detail.title": "Detalle de Negocio",
 
   "panels.title": "Paneles",
@@ -47,7 +48,17 @@ export const COPY = {
   "userForm.add": "Añadir",
   "userForm.save": "Guardar",
 
-  "table.viewDetail": "Ver detalle",
+  "businessForm.name": "Nombre",
+  "businessForm.type": "Categoria",
+  "businessForm.type.service": "Empresa de Servicios",
+  "businessForm.type.commercial": "Empresa Comercial",
+  "businessForm.type.industrial": "Empresa Industrial",
+  "businessForm.description": "Descripción",
+  "businessForm.avatar": "Avatar",
+  "businessForm.add": "Añadir",
+  "businessForm.save": "Guardar",
+
+  "table.viewDetail": "Ver Detalle",
   "table.delete": "Eliminar",
 
   "errors.requiredField": "Campo requerido",

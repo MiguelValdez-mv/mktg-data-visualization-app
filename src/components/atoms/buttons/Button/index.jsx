@@ -36,7 +36,7 @@ export const Button = forwardRef(
         "flex justify-center items-center rounded-xl font-bold p-2 outline-none active:drop-shadow-surface",
         baseStyles[variant],
         disabled && "opacity-25",
-        spacing && "px-7",
+        spacing && "px-8",
         className
       )}
       type={type}

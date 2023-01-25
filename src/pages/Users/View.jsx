@@ -8,7 +8,6 @@ import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
-import { Surface } from "@/components/layout/Surface";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
@@ -16,7 +15,7 @@ function View({ users, isLoading, deleteUsers, isDeletingUsers }) {
   return (
     <Page>
       <Header title={COPY["users.title"]} />
-      <Spacing bottom={4} />
+      <Spacing bottom={8} />
 
       <Content isLoading={isLoading}>
         <Link className="self-end" to="/users/create-user">
@@ -26,14 +25,12 @@ function View({ users, isLoading, deleteUsers, isDeletingUsers }) {
         </Link>
         <Spacing bottom={4} />
 
-        <Surface>
-          <UserList
-            title={COPY["users.title"]}
-            users={users}
-            deleteUsers={deleteUsers}
-            isLoading={isDeletingUsers}
-          />
-        </Surface>
+        <UserList
+          title={COPY["users.title"]}
+          users={users}
+          deleteUsers={deleteUsers}
+          isLoading={isDeletingUsers}
+        />
       </Content>
     </Page>
   );
