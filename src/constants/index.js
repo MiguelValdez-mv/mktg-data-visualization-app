@@ -36,6 +36,7 @@ export const FORM_SCHEMES = {
     name: string().required(),
     type: string().required(),
     description: string(),
+    owner: object().required(),
     avatar: mixed(),
   }),
 };

@@ -16,5 +16,5 @@ svg {
 }
 
 .modal-content {
-  @apply max-w-lg w-full;
+  @apply sm:max-w-lg sm:w-full;
 }

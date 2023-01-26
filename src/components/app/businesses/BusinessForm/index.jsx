@@ -1,9 +1,10 @@
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 
+import { IconBxErrorCircle } from "@/assets/svgs/IconBxErrorCircle";
 import { ProfileCard } from "@/components/app/ProfileCard";
-import { Divider } from "@/components/atoms/Divider";
 import { Form } from "@/components/atoms/Form";
+import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
 import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
 import { Button } from "@/components/atoms/buttons/Button";
@@ -13,8 +14,9 @@ import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Modal } from "@/components/layout/Modal";
+import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
-import { BUSINESS_TYPES, FORM_SCHEMES, PROP } from "@/constants";
+import { BUSINESS_TYPES, FORM_SCHEMES, PROP, USER_ROLES } from "@/constants";
 import { COPY } from "@/copy";
 
 export function BusinessForm({
@@ -58,22 +60,22 @@ export function BusinessForm({
           <Spacing bottom={1} />
 
           <Menu
-            trigger={(menuIsOpen) => (
+            trigger={(isOpen) => (
               <Button
                 className="justify-between font-normal"
                 variant="outline-primary"
-                endIcon={<ToggleMenuIcon menuIsOpen={menuIsOpen} />}
+                endIcon={<ToggleMenuIcon isOpen={isOpen} />}
               >
                 {COPY[`businessForm.type.${values.type.toLowerCase()}`]}
               </Button>
             )}
           >
-            {(closeMenu) =>
+            {(close) =>
               Object.values(BUSINESS_TYPES).map((opt) => (
                 <MenuOption
                   key={opt}
                   onClick={() => setFieldValue("type", opt)}
-                  closeMenu={closeMenu}
+                  close={close}
                 >
                   {COPY[`businessForm.type.${opt.toLowerCase()}`]}
                 </MenuOption>
@@ -95,40 +97,59 @@ export function BusinessForm({
           <Text bold>{COPY["businessForm.owner"]}</Text>
           <Spacing bottom={1} />
 
-          <Col className="sm:flex-row sm:justify-between sm:items-center">
-            <ProfileCard {...values.owner} />
-            <Spacing bottom={1} />
+          {owners.length ? (
+            <Col className="sm:flex-row sm:justify-between sm:items-center">
+              <ProfileCard {...values.owner} />
+              <Spacing bottom={1} />
 
-            <Modal
-              title={COPY["businessForm.owner.modal.title"]}
-              trigger={
-                <Button variant="outline-primary" spacing>
-                  {COPY["businessForm.avatar.change"]}
-                </Button>
-              }
-            >
-              {(closeModal) =>
-                owners.map((owner, idx) => (
-                  <Col key={owner._id}>
+              <Modal
+                title={COPY["businessForm.owner.modal.title"]}
+                trigger={
+                  <Button variant="outline-primary" spacing>
+                    {COPY["businessForm.avatar.change"]}
+                  </Button>
+                }
+                fullScreenOnMobile
+              >
+                {(close) =>
+                  owners.map((owner) => (
                     <ProfileCard
+                      key={owner._id}
                       onClick={() => {
                         setFieldValue("owner", owner);
-                        closeModal();
+                        close();
                       }}
                       pressable
                       {...owner}
                     />
+                  ))
+                }
+              </Modal>
+            </Col>
+          ) : (
+            <Col className="justify-between sm:items-center sm:flex-row">
+              <Row>
+                <IconBxErrorCircle className="text-primary" />
+                <Spacing right={1} />
 
-                    {idx !== owners.length - 1 && (
-                      <Spacing vertical={1}>
-                        <Divider />
-                      </Spacing>
-                    )}
-                  </Col>
-                ))
-              }
-            </Modal>
-          </Col>
+                <Text>{COPY["businessForm.owner.noOwners"]}</Text>
+              </Row>
+              <Spacing bottom={1} />
+
+              <Link to={`/users/create-user?role=${USER_ROLES.OWNER}`}>
+                <Button className="w-full sm:w-auto" variant="outline-primary">
+                  {COPY["businessForm.owner.addOwner"]}
+                </Button>
+              </Link>
+            </Col>
+          )}
+
+          {touched.owner && !!errors.owner && (
+            <>
+              <Spacing top={1} />
+              <Text error>{errors.owner}</Text>
+            </>
+          )}
           <Spacing bottom={2} />
 
           <AvatarInput

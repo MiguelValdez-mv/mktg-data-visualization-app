@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { USER_ROLES } from "@/constants";
 import { COPY } from "@/copy";
@@ -9,11 +9,12 @@ const useActions = () => {
   const { isLoading, mutate } = useCreateUser();
   const navigate = useNavigate();
   const alert = useAlert();
+  const [searchParams] = useSearchParams();
 
   const initialValues = {
     name: "",
     email: "",
-    role: USER_ROLES.ADMIN,
+    role: searchParams.get("role") ?? USER_ROLES.ADMIN,
     avatar: undefined,
     notifyRegistration: false,
   };

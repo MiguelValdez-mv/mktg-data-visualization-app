@@ -56,6 +56,8 @@ export const COPY = {
   "businessForm.description": "Descripción",
   "businessForm.owner": "Propietario",
   "businessForm.owner.modal.title": "Selecciona un propietario",
+  "businessForm.owner.noOwners": "Actualmente no hay propietarios registrados",
+  "businessForm.owner.addOwner": "Agregar Propietario",
   "businessForm.avatar": "Avatar",
   "businessForm.avatar.change": "Cambiar",
   "businessForm.add": "Añadir",

@@ -12,9 +12,9 @@ export function Menu({
 }) {
   return (
     <Popup trigger={trigger} position={position} arrow={arrow}>
-      {(closeMenu) => (
+      {(close) => (
         <Surface className="p-0">
-          {typeof children === "function" ? children(closeMenu) : children}
+          {typeof children === "function" ? children(close) : children}
         </Surface>
       )}
     </Popup>

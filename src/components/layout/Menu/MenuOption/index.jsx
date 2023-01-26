@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { Button } from "@/components/atoms/buttons/Button";
 import { PROP } from "@/constants";
 
-export function MenuOption({ onClick, closeMenu, children, ...rest }) {
+export function MenuOption({ onClick, close, children, ...rest }) {
   const handleClickMenuOpt = () => {
     onClick();
-    closeMenu?.();
+    close?.();
   };
 
   return (
@@ -23,6 +23,6 @@ export function MenuOption({ onClick, closeMenu, children, ...rest }) {
 
 MenuOption.propTypes = {
   onClick: PropTypes.func.isRequired,
-  closeMenu: PropTypes.func,
+  close: PropTypes.func,
   children: PROP.CHILDREN.isRequired,
 };

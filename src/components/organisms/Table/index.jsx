@@ -126,13 +126,13 @@ export function Table({
               }
               position="bottom right"
             >
-              {(closeMenu) =>
+              {(close) =>
                 actions.map(({ id, onClick, disabled, msg }) => (
                   <MenuOption
                     key={id}
                     onClick={onClick}
                     disabled={disabled}
-                    closeMenu={closeMenu}
+                    close={close}
                   >
                     {msg}
                   </MenuOption>

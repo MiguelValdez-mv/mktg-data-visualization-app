@@ -5,7 +5,7 @@ const useActions = () => {
   const getOwnersQuery = useGetUsers({ role: USER_ROLES.OWNER });
 
   const { data: owners = [] } = getOwnersQuery;
-  const [defaultOwner = {}] = owners;
+  const [defaultOwner] = owners;
   const initialValues = {
     name: "",
     type: BUSINESS_TYPES.SERVICE,
