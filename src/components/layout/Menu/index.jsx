@@ -22,7 +22,7 @@ export function Menu({
 }
 
 Menu.propTypes = {
-  trigger: PROP.CHILDREN,
+  trigger: PROP.CHILDREN.isRequired,
   position: PropTypes.string,
   children: PROP.CHILDREN.isRequired,
   arrow: PropTypes.bool,

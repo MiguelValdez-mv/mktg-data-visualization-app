@@ -16,10 +16,10 @@ import { USER_ROLES } from "@/constants";
 import { COPY } from "@/copy";
 
 export function UserForm({
+  action = "create",
   initialValues,
   validationSchema,
   onSubmit,
-  action = "create",
   isLoading,
 }) {
   const createUser = action === "create";
@@ -29,6 +29,7 @@ export function UserForm({
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize
     >
       {({
         handleSubmit,
@@ -126,9 +127,9 @@ export function UserForm({
 }
 
 UserForm.propTypes = {
+  action: PropTypes.oneOf(["create", "update"]),
   initialValues: PropTypes.object.isRequired,
   validationSchema: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  action: PropTypes.oneOf(["create", "update"]),
   isLoading: PropTypes.bool,
 };

@@ -12,6 +12,7 @@ const baseStyles = {
   outline: "border border-cyan text-cyan",
   "outline-primary": "border border-muted text-primary",
   ghost: "text-primary hover:text-white hover:bg-primary",
+  none: "",
 };
 
 export const Button = forwardRef(
@@ -43,27 +44,25 @@ export const Button = forwardRef(
       disabled={disabled}
       onClick={onClick}
     >
-      {isLoading || startIcon ? (
-        <>
-          {isLoading ? <Spinner /> : startIcon}
-          <Spacing right={2} />
-        </>
-      ) : null}
+      {(isLoading || startIcon) && (
+        <Spacing right={2}>{isLoading ? <Spinner /> : startIcon}</Spacing>
+      )}
 
       {children}
 
-      {endIcon && (
-        <>
-          <Spacing left={2} />
-          {endIcon}
-        </>
-      )}
+      {endIcon && <Spacing left={2}>{endIcon}</Spacing>}
     </button>
   )
 );
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(["solid", "outline", "outline-primary", "ghost"]),
+  variant: PropTypes.oneOf([
+    "solid",
+    "outline",
+    "outline-primary",
+    "ghost",
+    "none",
+  ]),
   disabled: PropTypes.bool,
   spacing: PropTypes.bool,
   className: PropTypes.string,

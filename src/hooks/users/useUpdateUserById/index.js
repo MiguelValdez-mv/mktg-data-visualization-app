@@ -17,7 +17,7 @@ export const useUpdateUserById = (opts = {}) => {
     select,
     ...opts,
     onSuccess: ({ data: updatedUser }) => {
-      queryClient.invalidateQueries([QUERY_KEYS.USERS]);
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] });
 
       if (authCtx.user._id === updatedUser._id) {
         authCtx.setUser(updatedUser);

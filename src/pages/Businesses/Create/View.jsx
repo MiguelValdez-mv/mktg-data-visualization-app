@@ -7,15 +7,21 @@ import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ initialValues, handleBusinessCreationFormSubmit }) {
+function View({
+  isLoading,
+  owners,
+  initialValues,
+  handleBusinessCreationFormSubmit,
+}) {
   return (
     <Page>
       <Header title={COPY["businesses.creation.title"]} />
       <Spacing bottom={8} />
 
-      <Content>
+      <Content isLoading={isLoading}>
         <Surface>
           <Text subtitle bold>
             {COPY["businesses.creation.title"]}
@@ -25,6 +31,7 @@ function View({ initialValues, handleBusinessCreationFormSubmit }) {
           <BusinessForm
             initialValues={initialValues}
             onSubmit={handleBusinessCreationFormSubmit}
+            owners={owners}
           />
         </Surface>
       </Content>
@@ -33,6 +40,8 @@ function View({ initialValues, handleBusinessCreationFormSubmit }) {
 }
 
 View.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  owners: PROP.USERS.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleBusinessCreationFormSubmit: PropTypes.func.isRequired,
 };

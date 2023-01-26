@@ -1,22 +1,27 @@
 import { Formik } from "formik";
 import PropTypes from "prop-types";
 
+import { ProfileCard } from "@/components/app/ProfileCard";
+import { Divider } from "@/components/atoms/Divider";
 import { Form } from "@/components/atoms/Form";
 import { Text } from "@/components/atoms/Text";
 import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
 import { Button } from "@/components/atoms/buttons/Button";
 import { AvatarInput } from "@/components/atoms/inputs/AvatarInput";
 import { TextInput } from "@/components/atoms/inputs/TextInput";
+import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
+import { Modal } from "@/components/layout/Modal";
 import { Spacing } from "@/components/layout/Spacing";
-import { BUSINESS_TYPES, FORM_SCHEMES } from "@/constants";
+import { BUSINESS_TYPES, FORM_SCHEMES, PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 export function BusinessForm({
+  action = "create",
   initialValues,
   onSubmit,
-  action = "create",
+  owners,
   isLoading,
 }) {
   const createBusiness = action === "create";
@@ -26,6 +31,7 @@ export function BusinessForm({
       initialValues={initialValues}
       validationSchema={FORM_SCHEMES.BUSINESS}
       onSubmit={onSubmit}
+      enableReinitialize
     >
       {({
         handleSubmit,
@@ -86,6 +92,45 @@ export function BusinessForm({
           />
           <Spacing bottom={2} />
 
+          <Text bold>{COPY["businessForm.owner"]}</Text>
+          <Spacing bottom={1} />
+
+          <Col className="sm:flex-row sm:justify-between sm:items-center">
+            <ProfileCard {...values.owner} />
+            <Spacing bottom={1} />
+
+            <Modal
+              title={COPY["businessForm.owner.modal.title"]}
+              trigger={
+                <Button variant="outline-primary" spacing>
+                  {COPY["businessForm.avatar.change"]}
+                </Button>
+              }
+            >
+              {(closeModal) =>
+                owners.map((owner, idx) => (
+                  <Col key={owner._id}>
+                    <ProfileCard
+                      onClick={() => {
+                        setFieldValue("owner", owner);
+                        closeModal();
+                      }}
+                      pressable
+                      {...owner}
+                    />
+
+                    {idx !== owners.length - 1 && (
+                      <Spacing vertical={1}>
+                        <Divider />
+                      </Spacing>
+                    )}
+                  </Col>
+                ))
+              }
+            </Modal>
+          </Col>
+          <Spacing bottom={2} />
+
           <AvatarInput
             id="avatar"
             label={COPY["businessForm.avatar"]}
@@ -111,8 +156,9 @@ export function BusinessForm({
 }
 
 BusinessForm.propTypes = {
+  action: PropTypes.oneOf(["create", "update"]),
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   onSubmit: PropTypes.func.isRequired,
-  action: PropTypes.oneOf(["create", "update"]),
+  owners: PROP.USERS.isRequired,
   isLoading: PropTypes.bool,
 };

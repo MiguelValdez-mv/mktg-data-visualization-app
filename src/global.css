@@ -3,12 +3,18 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-@layer base {
-  html {
-    @apply font-poppins bg-tertiary;
-  }
+html {
+  @apply font-poppins bg-tertiary;
+}
 
-  svg {
-    @apply min-w-fit w-6 h-6;
-  }
+svg {
+  @apply min-w-fit w-6 h-6;
+}
+
+.modal-overlay {
+  @apply bg-primary bg-opacity-50;
+}
+
+.modal-content {
+  @apply max-w-lg w-full;
 }

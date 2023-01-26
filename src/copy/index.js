@@ -54,7 +54,10 @@ export const COPY = {
   "businessForm.type.commercial": "Empresa Comercial",
   "businessForm.type.industrial": "Empresa Industrial",
   "businessForm.description": "Descripción",
+  "businessForm.owner": "Propietario",
+  "businessForm.owner.modal.title": "Selecciona un propietario",
   "businessForm.avatar": "Avatar",
+  "businessForm.avatar.change": "Cambiar",
   "businessForm.add": "Añadir",
   "businessForm.save": "Guardar",
 
