@@ -12,6 +12,7 @@ import { COPY } from "@/copy";
 
 function View({
   isLoading,
+  isCreatingBusiness,
   owners,
   initialValues,
   handleBusinessCreationFormSubmit,
@@ -32,6 +33,7 @@ function View({
             initialValues={initialValues}
             onSubmit={handleBusinessCreationFormSubmit}
             owners={owners}
+            isLoading={isCreatingBusiness}
           />
         </Surface>
       </Content>
@@ -41,6 +43,7 @@ function View({
 
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isCreatingBusiness: PropTypes.bool.isRequired,
   owners: PROP.USERS.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleBusinessCreationFormSubmit: PropTypes.func.isRequired,

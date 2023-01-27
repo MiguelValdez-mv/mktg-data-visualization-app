@@ -1,8 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 import { BUSINESS_TYPES, USER_ROLES } from "@/constants";
+import { COPY } from "@/copy";
+import { useCreateBusiness } from "@/hooks/businesses/useCreateBusiness";
+import { useAlert } from "@/hooks/useAlert";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 const useActions = () => {
   const getOwnersQuery = useGetUsers({ role: USER_ROLES.OWNER });
+  const createBusinessMutation = useCreateBusiness();
+  const navigate = useNavigate();
+  const alert = useAlert();
 
   const { data: owners = [] } = getOwnersQuery;
   const [defaultOwner] = owners;
@@ -14,10 +22,27 @@ const useActions = () => {
     avatar: undefined,
   };
 
-  const handleBusinessCreationFormSubmit = () => {};
+  const handleBusinessCreationFormSubmit = ({ owner, ...rest }) => {
+    const values = {
+      ownerId: owner._id,
+      ...rest,
+    };
+
+    const formData = new FormData();
+    Object.keys(values).forEach((key) => formData.append(key, values[key]));
+
+    createBusinessMutation.mutate(formData, {
+      onSuccess: () => {
+        navigate("/businesses");
+        alert.success(COPY["businesses.creation.success"]);
+      },
+      onError: (err) => alert.error(err.message),
+    });
+  };
 
   return {
     isLoading: getOwnersQuery.isLoading,
+    isCreatingBusiness: createBusinessMutation.isLoading,
     owners,
     initialValues,
     handleBusinessCreationFormSubmit,

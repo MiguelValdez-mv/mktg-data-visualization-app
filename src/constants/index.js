@@ -74,11 +74,13 @@ export const API_URLS = {
   USER_BY_EMAIL_EXISTS: `${LINKS.API}/users/user-by-email-exists`,
   USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
   USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
+  BUSINESSES: `${LINKS.API}/businesses`,
 };
 
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
   USERS: "USERS",
+  BUSINESSES: "BUSINESSES",
 };
 
 export const USER_ROLES = {
