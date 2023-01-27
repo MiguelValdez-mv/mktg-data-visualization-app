@@ -18,9 +18,7 @@ import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { COPY } from "@/copy";
-import { useAuth } from "@/hooks/auth/useAuth";
 import { useDimensions } from "@/hooks/useDimensions";
-import { isUserAdmin } from "@/utils/isUserAdmin";
 
 export function Table({
   data,
@@ -31,7 +29,6 @@ export function Table({
   deleteItems,
 }) {
   const { isLargeScreen } = useDimensions();
-  const { user } = useAuth();
   const {
     getTableProps,
     getTableBodyProps,
@@ -75,13 +72,13 @@ export function Table({
       disabled: selectedFlatRows.length !== 1,
       msg: COPY["table.viewDetail"],
     },
-    isUserAdmin(user) && {
+    {
       id: "delete",
       onClick: () => deleteItems(selectedItems),
       disabled: !selectedFlatRows.length,
       msg: COPY["table.delete"],
     },
-  ].filter(Boolean);
+  ];
 
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 

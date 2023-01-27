@@ -16,7 +16,6 @@ const useActions = () => {
 
   const { data: user = {} } = queryToGetUserDetail;
   const {
-    _id,
     name = "",
     email = "",
     role = USER_ROLES.ADMIN,
@@ -40,7 +39,7 @@ const useActions = () => {
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
 
     userUpdateMutation.mutate(
-      { id: _id, formData },
+      { id: userId, formData },
       {
         onSuccess: () => {
           navigate("/users");
@@ -53,7 +52,7 @@ const useActions = () => {
 
   return {
     isLoading: queryToGetUserDetail.isLoading,
-    isUpdating: userUpdateMutation.isLoading,
+    isUpdatingUser: userUpdateMutation.isLoading,
     userRegistrationDate,
     initialValues,
     handleUserUpdateFormSubmit,

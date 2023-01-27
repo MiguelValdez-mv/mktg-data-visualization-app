@@ -24,6 +24,8 @@ export const COPY = {
   "businesses.creation.title": "Añadir Negocio",
   "businesses.creation.success": "Negocio creado exitosamente",
   "businesses.detail.title": "Detalle de Negocio",
+  "businesses.detail.businessRegistrationDate": "Fecha de registro",
+  "businesses.detail.update.success": "Negocio actualizado exitosamente",
 
   "panels.title": "Paneles",
 

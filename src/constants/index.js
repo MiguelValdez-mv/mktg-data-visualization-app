@@ -86,6 +86,7 @@ export const API_URLS = {
   USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
   USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
   BUSINESSES: `${LINKS.API}/businesses`,
+  BUSINESS_BY_ID: (id) => `${LINKS.API}/businesses/business-by-id/${id}`,
   BUSINESSES_BY_USER_ID: (id) =>
     `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
 };

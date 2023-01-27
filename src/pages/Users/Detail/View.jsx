@@ -13,7 +13,7 @@ import { COPY } from "@/copy";
 
 function View({
   isLoading,
-  isUpdating,
+  isUpdatingUser,
   userRegistrationDate,
   initialValues,
   handleUserUpdateFormSubmit,
@@ -48,7 +48,7 @@ function View({
             initialValues={initialValues}
             validationSchema={FORM_SCHEMES.USER_UPDATE}
             onSubmit={handleUserUpdateFormSubmit}
-            isLoading={isUpdating}
+            isLoading={isUpdatingUser}
           />
         </Surface>
       </Content>
@@ -58,7 +58,7 @@ function View({
 
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  isUpdating: PropTypes.bool.isRequired,
+  isUpdatingUser: PropTypes.bool.isRequired,
   userRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleUserUpdateFormSubmit: PropTypes.func.isRequired,
