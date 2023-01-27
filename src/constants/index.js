@@ -60,6 +60,17 @@ export const PROP = {
   get USERS() {
     return PropTypes.arrayOf(this.USER);
   },
+  BUSINESS: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    ownerId: PropTypes.string.isRequired,
+    employeeIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    avatar: PropTypes.string,
+  }),
+  get BUSINESSES() {
+    return PropTypes.arrayOf(this.BUSINESS);
+  },
 };
 
 export const LINKS = {
@@ -75,6 +86,8 @@ export const API_URLS = {
   USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
   USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
   BUSINESSES: `${LINKS.API}/businesses`,
+  BUSINESSES_BY_USER_ID: (id) =>
+    `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
 };
 
 export const QUERY_KEYS = {

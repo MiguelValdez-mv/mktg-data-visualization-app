@@ -11,7 +11,7 @@ import { Spacing } from "@/components/layout/Spacing";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ users, isLoading, deleteUsers, isDeletingUsers }) {
+function View({ isLoading, users, deleteUsers, isDeletingUsers }) {
   return (
     <Page>
       <Header title={COPY["users.title"]} />
@@ -37,8 +37,8 @@ function View({ users, isLoading, deleteUsers, isDeletingUsers }) {
 }
 
 View.propTypes = {
-  users: PROP.USERS,
   isLoading: PropTypes.bool.isRequired,
+  users: PROP.USERS,
   deleteUsers: PropTypes.func.isRequired,
   isDeletingUsers: PropTypes.bool.isRequired,
 };

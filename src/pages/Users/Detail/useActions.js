@@ -9,12 +9,12 @@ import { useUpdateUserById } from "@/hooks/users/useUpdateUserById";
 
 const useActions = () => {
   const { userId } = useParams();
-  const getUserDetailQuery = useGetUserById(userId);
+  const queryToGetUserDetail = useGetUserById(userId);
   const userUpdateMutation = useUpdateUserById();
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: user = {} } = getUserDetailQuery;
+  const { data: user = {} } = queryToGetUserDetail;
   const {
     _id,
     name = "",
@@ -52,7 +52,7 @@ const useActions = () => {
   };
 
   return {
-    isLoading: getUserDetailQuery.isLoading,
+    isLoading: queryToGetUserDetail.isLoading,
     isUpdating: userUpdateMutation.isLoading,
     userRegistrationDate,
     initialValues,

@@ -4,7 +4,7 @@ import { useDeleteUsers } from "@/hooks/users/useDeleteUsers";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 const useActions = () => {
-  const getUsersQuery = useGetUsers();
+  const queryToGetUsers = useGetUsers();
   const deleteUsersMutation = useDeleteUsers();
   const alert = useAlert();
 
@@ -16,8 +16,8 @@ const useActions = () => {
   };
 
   return {
-    users: getUsersQuery.data,
-    isLoading: getUsersQuery.isLoading,
+    isLoading: queryToGetUsers.isLoading,
+    users: queryToGetUsers.data,
     deleteUsers,
     isDeletingUsers: deleteUsersMutation.isLoading,
   };

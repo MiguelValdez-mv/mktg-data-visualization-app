@@ -7,12 +7,12 @@ import { useAlert } from "@/hooks/useAlert";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 const useActions = () => {
-  const getOwnersQuery = useGetUsers({ role: USER_ROLES.OWNER });
+  const queryToGetOwners = useGetUsers({ role: USER_ROLES.OWNER });
   const createBusinessMutation = useCreateBusiness();
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: owners = [] } = getOwnersQuery;
+  const { data: owners = [] } = queryToGetOwners;
   const [defaultOwner] = owners;
   const initialValues = {
     name: "",
@@ -41,7 +41,7 @@ const useActions = () => {
   };
 
   return {
-    isLoading: getOwnersQuery.isLoading,
+    isLoading: queryToGetOwners.isLoading,
     isCreatingBusiness: createBusinessMutation.isLoading,
     owners,
     initialValues,

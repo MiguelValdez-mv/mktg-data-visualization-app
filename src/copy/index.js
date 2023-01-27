@@ -38,6 +38,13 @@ export const COPY = {
   "userList.role.employee": "Empleado",
   "userList.date": "Fecha",
 
+  "businessList.company": "Compañía",
+  "businessList.type": "Categoría",
+  "businessList.type.service": "Empresa de Servicios",
+  "businessList.type.commercial": "Empresa Comercial",
+  "businessList.type.industrial": "Empresa Industrial",
+  "businessList.description": "Descripción",
+
   "userForm.name": "Nombre",
   "userForm.email": "Correo electrónico",
   "userForm.role": "Función",
@@ -50,7 +57,7 @@ export const COPY = {
   "userForm.save": "Guardar",
 
   "businessForm.name": "Nombre",
-  "businessForm.type": "Categoria",
+  "businessForm.type": "Categoría",
   "businessForm.type.service": "Empresa de Servicios",
   "businessForm.type.commercial": "Empresa Comercial",
   "businessForm.type.industrial": "Empresa Industrial",
