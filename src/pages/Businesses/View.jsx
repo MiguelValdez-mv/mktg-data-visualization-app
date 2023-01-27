@@ -16,6 +16,7 @@ function View({
   showBusinessCreationBtn,
   businesses,
   deleteBusinesses,
+  isDeletingBusinesses,
 }) {
   return (
     <Page>
@@ -38,6 +39,7 @@ function View({
           title={COPY["businesses.title"]}
           businesses={businesses}
           deleteBusinesses={deleteBusinesses}
+          isLoading={isDeletingBusinesses}
         />
       </Content>
     </Page>
@@ -49,6 +51,7 @@ View.propTypes = {
   showBusinessCreationBtn: PropTypes.bool.isRequired,
   businesses: PROP.BUSINESSES,
   deleteBusinesses: PropTypes.func.isRequired,
+  isDeletingBusinesses: PropTypes.bool.isRequired,
 };
 
 export default View;

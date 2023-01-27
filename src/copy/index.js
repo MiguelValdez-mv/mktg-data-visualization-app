@@ -21,6 +21,7 @@ export const COPY = {
   "connections.title": "Conexiones",
 
   "businesses.title": "Negocios",
+  "businesses.removal.success": "Eliminación realizada exitosamente",
   "businesses.creation.title": "Añadir Negocio",
   "businesses.creation.success": "Negocio creado exitosamente",
   "businesses.detail.title": "Detalle de Negocio",
