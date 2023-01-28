@@ -3,19 +3,23 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { USER_ROLES } from "@/constants";
 import { COPY } from "@/copy";
+import { useGetBusinessesByUserId } from "@/hooks/businesses/useGetBusinessesByUserId";
 import { useAlert } from "@/hooks/useAlert";
 import { useGetUserById } from "@/hooks/users/useGetUserById";
 import { useUpdateUserById } from "@/hooks/users/useUpdateUserById";
+import { isAdminUser } from "@/utils/checkUserRole";
 
 const useActions = () => {
   const { userId } = useParams();
-  const queryToGetUserDetail = useGetUserById(userId);
-  const userUpdateMutation = useUpdateUserById();
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: { name, email, role, avatar, createdAt } = {} } =
-    queryToGetUserDetail;
+  const queryToGetUserDetail = useGetUserById(userId);
+  const queryToGetBusinesses = useGetBusinessesByUserId(userId);
+  const userUpdateMutation = useUpdateUserById();
+
+  const { data: user = {} } = queryToGetUserDetail;
+  const { name, email, role, avatar, createdAt } = user;
   const userRegistrationDate = format(
     createdAt ? new Date(createdAt) : new Date(),
     "PPPP"
@@ -44,12 +48,16 @@ const useActions = () => {
     );
   };
 
+  const showBusinessList = !isAdminUser(user);
+
   return {
-    isLoading: queryToGetUserDetail.isLoading,
+    isLoading: queryToGetUserDetail.isLoading || queryToGetBusinesses.isLoading,
+    businesses: queryToGetBusinesses.data,
     isUpdatingUser: userUpdateMutation.isLoading,
     userRegistrationDate,
     initialValues,
     handleUserUpdateFormSubmit,
+    showBusinessList,
   };
 };
 

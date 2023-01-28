@@ -17,6 +17,7 @@ export const COPY = {
   "users.detail.title": "Detalle de Usuario",
   "users.detail.userRegistrationDate": "Fecha de registro",
   "users.detail.update.success": "Usuario actualizado exitosamente",
+  "user.details.businessList.title": "Negocios",
 
   "connections.title": "Conexiones",
 

@@ -10,7 +10,7 @@ import { useGetBusinessById } from "@/hooks/businesses/useGetBusinessById";
 import { useUpdateBusinessById } from "@/hooks/businesses/useUpdateBusinessById";
 import { useAlert } from "@/hooks/useAlert";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
-import { isUserAdmin } from "@/utils/isUserAdmin";
+import { isAdminUser } from "@/utils/checkUserRole";
 
 const useActions = () => {
   const { businessId } = useParams();
@@ -151,7 +151,7 @@ const useActions = () => {
     handleBusinessUpdateFormSubmit,
     addEmployeeToBusiness,
     deleteBusinessEmployees,
-    showAddEmployeeBtn: isUserAdmin(user),
+    showAddEmployeeBtn: isAdminUser(user),
   };
 };
 

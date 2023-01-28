@@ -9,6 +9,7 @@ import { openUrl } from "@/utils/openUrl";
 const useActions = () => {
   const navigate = useNavigate();
   const alert = useAlert();
+
   const otpCreationMutation = useCreateOtp();
   const otpConsumptionMutation = useConsumeOtp();
 

@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/auth/useAuth";
-import { isUserAdmin } from "@/utils/isUserAdmin";
+import { isAdminUser } from "@/utils/checkUserRole";
 
 const useActions = () => {
   const { isLoggedIn, user } = useAuth();
@@ -7,7 +7,7 @@ const useActions = () => {
   let to;
   if (!isLoggedIn) {
     to = "/login";
-  } else if (isUserAdmin(user)) {
+  } else if (isAdminUser(user)) {
     to = "/users";
   } else {
     to = "/businesses";

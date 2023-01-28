@@ -6,10 +6,11 @@ import { useAlert } from "@/hooks/useAlert";
 import { useCreateUser } from "@/hooks/users/useCreateUser";
 
 const useActions = () => {
-  const { isLoading, mutate } = useCreateUser();
   const navigate = useNavigate();
   const alert = useAlert();
   const [searchParams] = useSearchParams();
+
+  const { isLoading, mutate } = useCreateUser();
 
   const initialValues = {
     name: "",

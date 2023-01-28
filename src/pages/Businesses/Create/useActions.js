@@ -7,10 +7,11 @@ import { useAlert } from "@/hooks/useAlert";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 const useActions = () => {
-  const queryToGetOwners = useGetUsers({ role: USER_ROLES.OWNER });
-  const createBusinessMutation = useCreateBusiness();
   const navigate = useNavigate();
   const alert = useAlert();
+
+  const queryToGetOwners = useGetUsers({ role: USER_ROLES.OWNER });
+  const createBusinessMutation = useCreateBusiness();
 
   const { data: owners = [] } = queryToGetOwners;
   const [defaultOwner] = owners;

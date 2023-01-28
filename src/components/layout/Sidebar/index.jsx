@@ -19,7 +19,7 @@ import { useAlert } from "@/hooks/useAlert";
 import { useDimensions } from "@/hooks/useDimensions";
 import { useSidebar } from "@/hooks/useSidebar";
 import { PAGE_ICONS } from "@/router/config";
-import { isUserAdmin } from "@/utils/isUserAdmin";
+import { isAdminUser } from "@/utils/checkUserRole";
 import { twMerge } from "@/utils/twMerge";
 
 import { SidebarOption } from "./SidebarOption";
@@ -56,7 +56,7 @@ export function Sidebar({ user }) {
 
       <Col className="flex-1 justify-around">
         <Col>
-          {isUserAdmin(user) && (
+          {isAdminUser(user) && (
             <>
               <SidebarOption
                 to="/users"

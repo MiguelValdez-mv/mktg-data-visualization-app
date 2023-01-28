@@ -4,9 +4,10 @@ import { useDeleteUsers } from "@/hooks/users/useDeleteUsers";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
 
 const useActions = () => {
+  const alert = useAlert();
+
   const queryToGetUsers = useGetUsers();
   const deleteUsersMutation = useDeleteUsers();
-  const alert = useAlert();
 
   const deleteUsers = (users) => {
     const userIds = users.map(({ _id }) => _id);

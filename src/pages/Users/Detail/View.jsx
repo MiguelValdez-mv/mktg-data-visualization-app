@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import { BusinessList } from "@/components/app/businesses/BusinessList";
 import { UserForm } from "@/components/app/users/UserForm";
 import { Text } from "@/components/atoms/Text";
 import { Col } from "@/components/layout/Col";
@@ -8,15 +9,17 @@ import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { FORM_SCHEMES } from "@/constants";
+import { FORM_SCHEMES, PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
   isLoading,
+  businesses,
   isUpdatingUser,
   userRegistrationDate,
   initialValues,
   handleUserUpdateFormSubmit,
+  showBusinessList,
 }) {
   return (
     <Page>
@@ -51,6 +54,14 @@ function View({
             isLoading={isUpdatingUser}
           />
         </Surface>
+        <Spacing bottom={8} />
+
+        {showBusinessList && (
+          <BusinessList
+            businesses={businesses}
+            title={COPY["user.details.businessList.title"]}
+          />
+        )}
       </Content>
     </Page>
   );
@@ -58,10 +69,12 @@ function View({
 
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  businesses: PROP.BUSINESSES,
   isUpdatingUser: PropTypes.bool.isRequired,
   userRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleUserUpdateFormSubmit: PropTypes.func.isRequired,
+  showBusinessList: PropTypes.bool.isRequired,
 };
 
 export default View;

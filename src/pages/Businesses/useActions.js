@@ -3,13 +3,14 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { useDeleteBusinesses } from "@/hooks/businesses/useDeleteBusinesses";
 import { useGetBusinessesByUserId } from "@/hooks/businesses/useGetBusinessesByUserId";
 import { useAlert } from "@/hooks/useAlert";
-import { isUserAdmin } from "@/utils/isUserAdmin";
+import { isAdminUser } from "@/utils/checkUserRole";
 
 const useActions = () => {
   const { user } = useAuth();
+  const alert = useAlert();
+
   const queryToGetBusiness = useGetBusinessesByUserId(user._id);
   const deleteBusinessesMutation = useDeleteBusinesses();
-  const alert = useAlert();
 
   const deleteBusinesses = (businesses) => {
     const businessIds = businesses.map(({ _id }) => _id);
@@ -21,7 +22,7 @@ const useActions = () => {
   };
 
   return {
-    showBusinessCreationBtn: isUserAdmin(user),
+    showBusinessCreationBtn: isAdminUser(user),
     isLoading: queryToGetBusiness.isLoading,
     businesses: queryToGetBusiness.data,
     deleteBusinesses,
