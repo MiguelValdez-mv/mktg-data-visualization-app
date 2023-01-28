@@ -16,14 +16,16 @@ export const useUpdateUserById = (opts = {}) => {
   return useMutation(mutationFn, {
     select,
     ...opts,
-    onSuccess: ({ data: updatedUser }) => {
+    onSuccess: (res) => {
+      const { data: updatedUser } = res;
+
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] });
 
       if (authCtx.user._id === updatedUser._id) {
         authCtx.setUser(updatedUser);
       }
 
-      opts.onSuccess?.(updatedUser);
+      opts.onSuccess?.(res);
     },
   });
 };

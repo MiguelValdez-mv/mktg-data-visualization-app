@@ -82,11 +82,15 @@ export const LINKS = {
 
 export const API_URLS = {
   USERS: `${LINKS.API}/users`,
-  USER_BY_EMAIL_EXISTS: `${LINKS.API}/users/user-by-email-exists`,
+  USER_BY_EMAIL_EXISTS: (email) =>
+    `${LINKS.API}/users/user-by-email-exists/${email}`,
   USER_BY_ID: (id) => `${LINKS.API}/users/user-by-id/${id}`,
   USER_BY_SESSION: `${LINKS.API}/users/user-by-session`,
+
   BUSINESSES: `${LINKS.API}/businesses`,
   BUSINESS_BY_ID: (id) => `${LINKS.API}/businesses/business-by-id/${id}`,
+  BUSINESS_EMPLOYEES: (id) =>
+    `${LINKS.API}/businesses/business-by-id/${id}/employees`,
   BUSINESSES_BY_USER_ID: (id) =>
     `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
 };

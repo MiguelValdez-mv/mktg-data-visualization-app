@@ -23,7 +23,7 @@ export function BusinessForm({
   action = "create",
   initialValues,
   onSubmit,
-  owners,
+  owners = [],
   isLoading,
 }) {
   const createBusiness = action === "create";
@@ -182,6 +182,6 @@ BusinessForm.propTypes = {
   action: PropTypes.oneOf(["create", "update"]),
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   onSubmit: PropTypes.func.isRequired,
-  owners: PROP.USERS.isRequired,
+  owners: PROP.USERS,
   isLoading: PropTypes.bool,
 };

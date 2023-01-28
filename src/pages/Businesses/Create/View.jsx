@@ -44,7 +44,7 @@ function View({
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isCreatingBusiness: PropTypes.bool.isRequired,
-  owners: PROP.USERS.isRequired,
+  owners: PROP.USERS,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleBusinessCreationFormSubmit: PropTypes.func.isRequired,
 };

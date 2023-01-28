@@ -9,7 +9,9 @@ const useActions = () => {
   const alert = useAlert();
 
   const deleteUsers = (users) => {
-    deleteUsersMutation.mutate(users, {
+    const userIds = users.map(({ _id }) => _id);
+
+    deleteUsersMutation.mutate(userIds, {
       onSuccess: () => alert.success(COPY["users.removal.success"]),
       onError: (err) => alert.error(err.message),
     });

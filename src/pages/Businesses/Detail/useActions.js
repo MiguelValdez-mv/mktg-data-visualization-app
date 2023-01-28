@@ -1,48 +1,99 @@
 import { format } from "date-fns";
-import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { USER_ROLES, BUSINESS_TYPES } from "@/constants";
 import { COPY } from "@/copy";
+import { useAuth } from "@/hooks/auth/useAuth";
+import { useAddEmployeesToBusiness } from "@/hooks/businesses/useAddEmployeesToBusiness";
+import { useDeleteBusinessEmployees } from "@/hooks/businesses/useDeleteBusinessEmployees";
 import { useGetBusinessById } from "@/hooks/businesses/useGetBusinessById";
 import { useUpdateBusinessById } from "@/hooks/businesses/useUpdateBusinessById";
 import { useAlert } from "@/hooks/useAlert";
 import { useGetUsers } from "@/hooks/users/useGetUsers";
+import { isUserAdmin } from "@/utils/isUserAdmin";
 
 const useActions = () => {
   const { businessId } = useParams();
-  const queryToGetBusinessDetail = useGetBusinessById(businessId);
-  const queryToGetOwners = useGetUsers({ role: USER_ROLES.OWNER });
-  const businessUpdateMutation = useUpdateBusinessById();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: business = {} } = queryToGetBusinessDetail;
+  const queryToGetBusinessDetail = useGetBusinessById(businessId);
   const {
-    name = "",
-    type = BUSINESS_TYPES.SERVICE,
-    description = "",
-    avatar = "",
-    createdAt,
-  } = business;
+    data: {
+      name,
+      type,
+      description,
+      ownerId,
+      employeeIds,
+      avatar,
+      createdAt,
+    } = {},
+  } = queryToGetBusinessDetail;
 
-  const { data: owners = [] } = queryToGetOwners;
-  const owner = useMemo(
-    () => owners.find(({ _id }) => _id === business.ownerId),
-    [business, owners]
+  const queryToGetEmployees = useGetUsers(
+    { role: USER_ROLES.EMPLOYEE },
+    {
+      enabled: !!employeeIds,
+      select: ({ data: employees }) =>
+        employees.reduce(
+          (acum, curr) => {
+            const key = employeeIds.includes(curr._id)
+              ? "businessEmployees"
+              : "nonBusinessEmployees";
+
+            return {
+              ...acum,
+              [key]: [...acum[key], curr],
+            };
+          },
+          {
+            businessEmployees: [],
+            nonBusinessEmployees: [],
+          }
+        ),
+    }
   );
+  const { data: { businessEmployees, nonBusinessEmployees } = {} } =
+    queryToGetEmployees;
+
+  const queryToGetOwners = useGetUsers(
+    { role: USER_ROLES.OWNER },
+    {
+      enabled: !!ownerId,
+      select: ({ data: owners }) => ({
+        businessOwner: owners.find((o) => o._id === ownerId),
+        owners,
+      }),
+    }
+  );
+  const { data: { businessOwner, owners } = {} } = queryToGetOwners;
+
+  const businessUpdateMutation = useUpdateBusinessById();
+
+  const employeeAdditionMutation = useAddEmployeesToBusiness();
+  const employeeDeletionMutation = useDeleteBusinessEmployees();
+
+  const isLoading = [
+    queryToGetBusinessDetail.isLoading,
+    queryToGetEmployees.isLoading,
+    queryToGetOwners.isLoading,
+  ].includes(true);
 
   const businessRegistrationDate = format(
     createdAt ? new Date(createdAt) : new Date(),
     "PPPP"
   );
+
   const initialValues = {
-    name,
-    type,
-    description,
-    owner,
-    avatar,
+    name: name ?? "",
+    type: type ?? BUSINESS_TYPES.SERVICE,
+    description: description ?? "",
+    owner: businessOwner,
+    avatar: avatar ?? "",
   };
+
+  const onError = (err) => alert.error(err.message);
 
   const handleBusinessUpdateFormSubmit = ({ owner: ownerInput, ...rest }) => {
     const values = {
@@ -60,18 +111,47 @@ const useActions = () => {
           navigate("/businesses");
           alert.success(COPY["businesses.detail.update.success"]);
         },
-        onError: (err) => alert.error(err.message),
+        onError,
+      }
+    );
+  };
+
+  const addEmployeeToBusiness = (employee) => {
+    employeeAdditionMutation.mutate(
+      { businessId, employeeIds: [employee._id] },
+      {
+        onSuccess: () =>
+          alert.success(COPY["businesses.detail.employeeAddition.success"]),
+        onError,
+      }
+    );
+  };
+  const deleteBusinessEmployees = (employees) => {
+    employeeDeletionMutation.mutate(
+      {
+        businessId,
+        employeeIds: employees.map(({ _id }) => _id),
+      },
+      {
+        onSuccess: () =>
+          alert.success(COPY["businesses.detail.employeeDeletion.success"]),
+        onError,
       }
     );
   };
 
   return {
-    isLoading: queryToGetBusinessDetail.isLoading || queryToGetOwners.isLoading,
-    isUpdatingBusiness: businessUpdateMutation.isLoading,
+    businessEmployees,
+    nonBusinessEmployees,
     owners,
+    isUpdatingBusiness: businessUpdateMutation.isLoading,
+    isLoading,
     businessRegistrationDate,
     initialValues,
     handleBusinessUpdateFormSubmit,
+    addEmployeeToBusiness,
+    deleteBusinessEmployees,
+    showAddEmployeeBtn: isUserAdmin(user),
   };
 };
 

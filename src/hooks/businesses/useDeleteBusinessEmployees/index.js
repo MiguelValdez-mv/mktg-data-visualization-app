@@ -3,11 +3,14 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { API_URLS, QUERY_KEYS } from "@/constants";
 
-const mutationFn = (formData) => axios.post(API_URLS.BUSINESSES, formData);
+const mutationFn = ({ businessId, employeeIds }) =>
+  axios.delete(API_URLS.BUSINESS_EMPLOYEES(businessId), {
+    params: { employeeIds: employeeIds.join(",") },
+  });
 
 const select = ({ data }) => data;
 
-export const useCreateBusiness = (opts = {}) => {
+export const useDeleteBusinessEmployees = (opts = {}) => {
   const queryClient = useQueryClient();
 
   return useMutation(mutationFn, {

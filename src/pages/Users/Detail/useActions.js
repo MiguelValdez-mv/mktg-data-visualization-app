@@ -14,23 +14,17 @@ const useActions = () => {
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const { data: user = {} } = queryToGetUserDetail;
-  const {
-    name = "",
-    email = "",
-    role = USER_ROLES.ADMIN,
-    avatar = "",
-    createdAt,
-  } = user;
+  const { data: { name, email, role, avatar, createdAt } = {} } =
+    queryToGetUserDetail;
   const userRegistrationDate = format(
     createdAt ? new Date(createdAt) : new Date(),
     "PPPP"
   );
   const initialValues = {
-    name,
-    email,
-    role,
-    avatar,
+    name: name ?? "",
+    email: email ?? "",
+    role: role ?? USER_ROLES.ADMIN,
+    avatar: avatar ?? "",
   };
 
   const handleUserUpdateFormSubmit = (values) => {

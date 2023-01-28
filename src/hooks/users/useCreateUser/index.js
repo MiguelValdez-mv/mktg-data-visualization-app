@@ -13,9 +13,9 @@ export const useCreateUser = (opts = {}) => {
   return useMutation(mutationFn, {
     select,
     ...opts,
-    onSuccess: () => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] });
-      opts.onSuccess?.();
+      opts.onSuccess?.(res);
     },
   });
 };

@@ -7,8 +7,7 @@ import { COPY } from "@/copy";
 
 const mutationFn = async ({ email }) => {
   const { data: userIsRegistered } = await axios.get(
-    API_URLS.USER_BY_EMAIL_EXISTS,
-    { params: { email } }
+    API_URLS.USER_BY_EMAIL_EXISTS(email)
   );
 
   if (!userIsRegistered) {

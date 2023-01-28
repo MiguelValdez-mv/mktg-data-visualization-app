@@ -12,7 +12,9 @@ const useActions = () => {
   const alert = useAlert();
 
   const deleteBusinesses = (businesses) => {
-    deleteBusinessesMutation.mutate(businesses, {
+    const businessIds = businesses.map(({ _id }) => _id);
+
+    deleteBusinessesMutation.mutate(businessIds, {
       onSuccess: () => alert.success(COPY["businesses.removal.success"]),
       onError: (err) => alert.error(err.message),
     });

@@ -27,6 +27,14 @@ export const COPY = {
   "businesses.detail.title": "Detalle de Negocio",
   "businesses.detail.businessRegistrationDate": "Fecha de registro",
   "businesses.detail.update.success": "Negocio actualizado exitosamente",
+  "businesses.detail.addEmployee": "Añadir Empleado",
+  "businesses.detail.employees": "Empleados",
+  "businesses.detail.addEmployee.modal.title": "Selecciona un empleado",
+  "businesses.detail.addEmployee.modal.noEmployees":
+    "No hay empleados disponibles en este momento...",
+  "businesses.detail.employeeAddition.success": "Empleado añadido exitosamente",
+  "businesses.detail.employeeDeletion.success":
+    "Eliminación realizada exitosamente",
 
   "panels.title": "Paneles",
 
@@ -40,6 +48,9 @@ export const COPY = {
   "userList.role.owner": "Propietario",
   "userList.role.employee": "Empleado",
   "userList.date": "Fecha",
+
+  "employeeList.name": "Nombre",
+  "employeeList.email": "Email",
 
   "businessList.company": "Compañía",
   "businessList.type": "Categoría",

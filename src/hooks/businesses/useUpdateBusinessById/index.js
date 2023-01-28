@@ -14,9 +14,9 @@ export const useUpdateBusinessById = (opts = {}) => {
   return useMutation(mutationFn, {
     select,
     ...opts,
-    onSuccess: ({ data: updatedBusiness }) => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.BUSINESSES] });
-      opts.onSuccess?.(updatedBusiness);
+      opts.onSuccess?.(res);
     },
   });
 };

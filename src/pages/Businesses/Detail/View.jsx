@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
 
+import { IconAdd } from "@/assets/svgs/IconAdd";
+import { ProfileCard } from "@/components/app/ProfileCard";
 import { BusinessForm } from "@/components/app/businesses/BusinessForm";
+import { EmployeeList } from "@/components/app/users/EmployeeList";
 import { Text } from "@/components/atoms/Text";
+import { Button } from "@/components/atoms/buttons/Button";
 import { Col } from "@/components/layout/Col";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
+import { Modal } from "@/components/layout/Modal";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
@@ -12,12 +17,17 @@ import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
-  isLoading,
-  isUpdatingBusiness,
+  businessEmployees,
+  nonBusinessEmployees,
   owners,
+  isUpdatingBusiness,
+  isLoading,
   businessRegistrationDate,
   initialValues,
   handleBusinessUpdateFormSubmit,
+  addEmployeeToBusiness,
+  deleteBusinessEmployees,
+  showAddEmployeeBtn,
 }) {
   return (
     <Page>
@@ -52,18 +62,65 @@ function View({
             isLoading={isUpdatingBusiness}
           />
         </Surface>
+        <Spacing bottom={8} />
+
+        {showAddEmployeeBtn && (
+          <>
+            <Modal
+              title={COPY["businesses.detail.addEmployee.modal.title"]}
+              trigger={
+                <Button className="self-end" startIcon={<IconAdd />}>
+                  {COPY["businesses.detail.addEmployee"]}
+                </Button>
+              }
+              fullScreenOnMobile
+            >
+              {(close) =>
+                nonBusinessEmployees.length ? (
+                  nonBusinessEmployees.map((employee) => (
+                    <ProfileCard
+                      key={employee._id}
+                      onClick={() => {
+                        addEmployeeToBusiness(employee);
+                        close();
+                      }}
+                      pressable
+                      {...employee}
+                    />
+                  ))
+                ) : (
+                  <Text>
+                    {COPY["businesses.detail.addEmployee.modal.noEmployees"]}
+                  </Text>
+                )
+              }
+            </Modal>
+            <Spacing bottom={4} />
+          </>
+        )}
+
+        <EmployeeList
+          employees={businessEmployees}
+          title={COPY["businesses.detail.employees"]}
+          deleteEmployees={deleteBusinessEmployees}
+        />
       </Content>
     </Page>
   );
 }
 
 View.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  businessEmployees: PROP.USERS,
+  nonBusinessEmployees: PROP.USERS,
+  owners: PROP.USERS,
   isUpdatingBusiness: PropTypes.bool.isRequired,
-  owners: PROP.USERS.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   businessRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   handleBusinessUpdateFormSubmit: PropTypes.func.isRequired,
+  addEmployeeToBusiness: PropTypes.func.isRequired,
+  deleteBusinessEmployees: PropTypes.func.isRequired,
+  showAddEmployeeBtn: PropTypes.bool.isRequired,
 };
 
 export default View;

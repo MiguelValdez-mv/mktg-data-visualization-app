@@ -3,10 +3,8 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { API_URLS, QUERY_KEYS } from "@/constants";
 
-const mutationFn = (users) => {
-  const ids = users.map(({ _id }) => _id).join(",");
-  return axios.delete(API_URLS.USERS, { params: { ids } });
-};
+const mutationFn = (ids) =>
+  axios.delete(API_URLS.USERS, { params: { ids: ids.join(",") } });
 
 const select = ({ data }) => data;
 
@@ -16,9 +14,9 @@ export const useDeleteUsers = (opts = {}) => {
   return useMutation(mutationFn, {
     select,
     ...opts,
-    onSuccess: ({ data: result }) => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] });
-      opts.onSuccess?.(result);
+      opts.onSuccess?.(res);
     },
   });
 };
