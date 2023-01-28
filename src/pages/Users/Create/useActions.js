@@ -15,7 +15,7 @@ const useActions = () => {
     name: "",
     email: "",
     role: searchParams.get("role") ?? USER_ROLES.ADMIN,
-    avatar: undefined,
+    avatar: "",
     notifyRegistration: false,
   };
 

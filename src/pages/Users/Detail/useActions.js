@@ -19,7 +19,7 @@ const useActions = () => {
     name = "",
     email = "",
     role = USER_ROLES.ADMIN,
-    avatar,
+    avatar = "",
     createdAt,
   } = user;
   const userRegistrationDate = format(

@@ -18,7 +18,7 @@ export function AvatarInput({
   multiple,
 }) {
   const inputRef = useRef();
-  const [preview, setPreview] = useState(undefined);
+  const [preview, setPreview] = useState("");
 
   const handleClick = () => inputRef.current?.click();
 

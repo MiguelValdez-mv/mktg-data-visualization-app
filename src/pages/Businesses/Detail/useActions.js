@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { USER_ROLES } from "@/constants";
+import { USER_ROLES, BUSINESS_TYPES } from "@/constants";
 import { COPY } from "@/copy";
 import { useGetBusinessById } from "@/hooks/businesses/useGetBusinessById";
 import { useUpdateBusinessById } from "@/hooks/businesses/useUpdateBusinessById";
@@ -18,7 +18,13 @@ const useActions = () => {
   const alert = useAlert();
 
   const { data: business = {} } = queryToGetBusinessDetail;
-  const { name, type, description, avatar, createdAt } = business;
+  const {
+    name = "",
+    type = BUSINESS_TYPES.SERVICE,
+    description = "",
+    avatar = "",
+    createdAt,
+  } = business;
 
   const { data: owners = [] } = queryToGetOwners;
   const owner = useMemo(

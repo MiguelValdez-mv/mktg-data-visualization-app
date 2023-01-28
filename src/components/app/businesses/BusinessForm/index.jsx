@@ -157,7 +157,9 @@ export function BusinessForm({
             label={COPY["businessForm.avatar"]}
             avatar={values.avatar}
             name={values.name}
-            onChange={(e) => setFieldValue("avatar", e.currentTarget.files[0])}
+            onChange={(e) =>
+              setFieldValue("avatar", e.currentTarget.files[0] ?? "")
+            }
           />
           <Spacing bottom={2} />
 

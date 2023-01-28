@@ -19,7 +19,7 @@ const useActions = () => {
     type: BUSINESS_TYPES.SERVICE,
     description: "",
     owner: defaultOwner,
-    avatar: undefined,
+    avatar: "",
   };
 
   const handleBusinessCreationFormSubmit = ({ owner, ...rest }) => {
