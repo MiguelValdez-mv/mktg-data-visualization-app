@@ -32,8 +32,9 @@ const useActions = () => {
   } = queryToGetBusinessDetail;
 
   const queryToGetEmployees = useGetUsers({
-    params: { role: USER_ROLES.EMPLOYEE },
+    queryKey: [businessId],
     enabled: !!employeeIds,
+    params: { role: USER_ROLES.EMPLOYEE },
     select: ({ data: employees }) =>
       employees.reduce(
         (acum, curr) => {
@@ -56,8 +57,9 @@ const useActions = () => {
     queryToGetEmployees;
 
   const queryToGetOwners = useGetUsers({
-    params: { role: USER_ROLES.OWNER },
+    queryKey: [businessId],
     enabled: !!ownerId,
+    params: { role: USER_ROLES.OWNER },
     select: ({ data: owners }) => ({
       businessOwner: owners.find((o) => o._id === ownerId),
       owners,

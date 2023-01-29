@@ -9,4 +9,9 @@ const queryFn = ({ queryKey: [, params = {}] }) =>
   axios.get(API_URLS.USERS, { params });
 
 export const useGetUsers = ({ params, ...opts } = {}) =>
-  useQuery({ select, ...opts, queryKey: [QUERY_KEYS.USERS, params], queryFn });
+  useQuery({
+    select,
+    ...opts,
+    queryKey: [QUERY_KEYS.USERS, params, ...(opts?.queryKey ?? [])],
+    queryFn,
+  });
