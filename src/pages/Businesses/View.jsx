@@ -17,6 +17,7 @@ function View({
   businesses,
   deleteBusinesses,
   isDeletingBusinesses,
+  allowedActions,
 }) {
   return (
     <Page>
@@ -37,6 +38,7 @@ function View({
 
         <BusinessList
           title={COPY["businesses.title"]}
+          allowedActions={allowedActions}
           businesses={businesses}
           deleteBusinesses={deleteBusinesses}
           isLoading={isDeletingBusinesses}
@@ -52,6 +54,7 @@ View.propTypes = {
   businesses: PROP.BUSINESSES,
   deleteBusinesses: PropTypes.func.isRequired,
   isDeletingBusinesses: PropTypes.bool.isRequired,
+  allowedActions: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default View;

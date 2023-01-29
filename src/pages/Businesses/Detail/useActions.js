@@ -93,6 +93,10 @@ const useActions = () => {
     avatar: avatar ?? "",
   };
 
+  const currentUserIsAdmin = isAdminUser(user);
+
+  const allowedActions = currentUserIsAdmin ? ["view-detail", "delete"] : [];
+
   const onError = (err) => alert.error(err.message);
 
   const handleBusinessUpdateFormSubmit = ({ owner: ownerInput, ...rest }) => {
@@ -145,13 +149,17 @@ const useActions = () => {
     nonBusinessEmployees,
     owners,
     isUpdatingBusiness: businessUpdateMutation.isLoading,
+    isAddingEmployee: employeeAdditionMutation.isLoading,
+    isDeletingEmployees: employeeDeletionMutation.isLoading,
     isLoading,
     businessRegistrationDate,
     initialValues,
+    allowedActions,
     handleBusinessUpdateFormSubmit,
     addEmployeeToBusiness,
     deleteBusinessEmployees,
-    showAddEmployeeBtn: isAdminUser(user),
+    showAddEmployeeBtn: currentUserIsAdmin,
+    selectRows: currentUserIsAdmin,
   };
 };
 

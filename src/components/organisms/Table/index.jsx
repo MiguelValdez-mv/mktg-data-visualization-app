@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import { useTable, useGlobalFilter, useRowSelect } from "react-table";
 
+import { IconDocumentList } from "@/assets/svgs/IconDocumentList";
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
 import { SearchBar } from "@/components/app/SearchBar";
 import { Divider } from "@/components/atoms/Divider";
@@ -23,6 +24,8 @@ import { useDimensions } from "@/hooks/useDimensions";
 export function Table({
   data,
   columns,
+  selectRows = true,
+  allowedActions = ["view-detail", "delete"],
   title,
   isLoading,
   viewItemDetail,
@@ -49,15 +52,17 @@ export function Table({
     useGlobalFilter,
     useRowSelect,
     (hooks) => {
-      hooks.visibleColumns.push((c) => [
-        {
-          id: "selection",
-          Cell: ({ row }) => (
-            <Checkbox {...row.getToggleRowSelectedProps({ id: row.id })} />
-          ),
-        },
-        ...c,
-      ]);
+      hooks.visibleColumns.push((cols) =>
+        [
+          selectRows && {
+            id: "selection",
+            Cell: ({ row }) => (
+              <Checkbox {...row.getToggleRowSelectedProps({ id: row.id })} />
+            ),
+          },
+          ...cols,
+        ].filter(Boolean)
+      );
     }
   );
 
@@ -67,20 +72,59 @@ export function Table({
       id: "view-detail",
       onClick: () => {
         const [selectedItem] = selectedItems;
-        viewItemDetail(selectedItem);
+        viewItemDetail?.(selectedItem);
       },
       disabled: selectedFlatRows.length !== 1,
       msg: COPY["table.viewDetail"],
     },
     {
       id: "delete",
-      onClick: () => deleteItems(selectedItems),
+      onClick: () => deleteItems?.(selectedItems),
       disabled: !selectedFlatRows.length,
       msg: COPY["table.delete"],
     },
-  ];
+  ].filter((action) => allowedActions.includes(action.id));
 
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
+
+  const actionBtnsRender = isLargeScreen ? (
+    <Row>
+      {actions.map(({ id, onClick, disabled, msg }) => (
+        <Fragment key={id}>
+          <Spacing left={2} />
+          <Button
+            variant="outline-primary"
+            onClick={onClick}
+            disabled={disabled}
+          >
+            {msg}
+          </Button>
+        </Fragment>
+      ))}
+    </Row>
+  ) : (
+    <Menu
+      trigger={
+        <IconButton primary>
+          <IconMenuRight />
+        </IconButton>
+      }
+      position="bottom right"
+    >
+      {(close) =>
+        actions.map(({ id, onClick, disabled, msg }) => (
+          <MenuOption
+            key={id}
+            onClick={onClick}
+            disabled={disabled}
+            close={close}
+          >
+            {msg}
+          </MenuOption>
+        ))
+      }
+    </Menu>
+  );
 
   return (
     <Col>
@@ -99,44 +143,7 @@ export function Table({
             )}
           </Row>
 
-          {isLargeScreen ? (
-            <Row>
-              {actions.map(({ id, onClick, disabled, msg }) => (
-                <Fragment key={id}>
-                  <Spacing left={2} />
-                  <Button
-                    variant="outline-primary"
-                    onClick={onClick}
-                    disabled={disabled}
-                  >
-                    {msg}
-                  </Button>
-                </Fragment>
-              ))}
-            </Row>
-          ) : (
-            <Menu
-              trigger={
-                <IconButton primary>
-                  <IconMenuRight />
-                </IconButton>
-              }
-              position="bottom right"
-            >
-              {(close) =>
-                actions.map(({ id, onClick, disabled, msg }) => (
-                  <MenuOption
-                    key={id}
-                    onClick={onClick}
-                    disabled={disabled}
-                    close={close}
-                  >
-                    {msg}
-                  </MenuOption>
-                ))
-              }
-            </Menu>
-          )}
+          {!!actions.length && actionBtnsRender}
         </Row>
         <Spacing spacing={1} />
 
@@ -147,51 +154,60 @@ export function Table({
       </Col>
       <Spacing bottom={4} />
 
-      <Col className="overflow-x-auto">
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
+      {data.length ? (
+        <Col className="overflow-x-auto">
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()}>
+                      {column.render("Header")}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
 
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row, idx) => {
-              prepareRow(row);
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, idx) => {
+                prepareRow(row);
 
-              return (
-                <Fragment key={row.id}>
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell) => (
-                      <td
-                        {...cell.getCellProps({
-                          className: "py-4 pr-4 lg:pr-0",
-                        })}
-                      >
-                        {cell.render("Cell")}
-                      </td>
-                    ))}
-                  </tr>
-
-                  {idx !== rows.length - 1 && (
-                    <tr>
-                      <td colSpan={row.cells.length}>
-                        <Divider />
-                      </td>
+                return (
+                  <Fragment key={row.id}>
+                    <tr {...row.getRowProps()}>
+                      {row.cells.map((cell) => (
+                        <td
+                          {...cell.getCellProps({
+                            className: "py-4 pr-4 lg:pr-0",
+                          })}
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      ))}
                     </tr>
-                  )}
-                </Fragment>
-              );
-            })}
-          </tbody>
-        </table>
-      </Col>
+
+                    {idx !== rows.length - 1 && (
+                      <tr>
+                        <td colSpan={row.cells.length}>
+                          <Divider />
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </Col>
+      ) : (
+        <Col className="items-center">
+          <IconDocumentList className="text-muted w-24 h-24" />
+          <Spacing bottom={1} />
+
+          <Text bold>{COPY["table.noData"]}</Text>
+        </Col>
+      )}
     </Col>
   );
 }
@@ -199,8 +215,10 @@ export function Table({
 Table.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
   columns: PropTypes.array.isRequired, // eslint-disable-line
+  selectRows: PropTypes.bool,
+  allowedActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
-  viewItemDetail: PropTypes.func.isRequired,
-  deleteItems: PropTypes.func.isRequired,
+  viewItemDetail: PropTypes.func,
+  deleteItems: PropTypes.func,
 };

@@ -11,6 +11,8 @@ import { COPY } from "@/copy";
 
 export function EmployeeList({
   employees = [],
+  selectRows,
+  allowedActions,
   title,
   goToEmployeeDetail,
   deleteEmployees,
@@ -41,6 +43,8 @@ export function EmployeeList({
       <Table
         data={data}
         columns={columns}
+        selectRows={selectRows}
+        allowedActions={allowedActions}
         title={title}
         viewItemDetail={
           goToEmployeeDetail ||
@@ -55,8 +59,10 @@ export function EmployeeList({
 
 EmployeeList.propTypes = {
   employees: PROP.USERS,
+  selectRows: PropTypes.bool,
+  allowedActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   goToEmployeeDetail: PropTypes.func,
-  deleteEmployees: PropTypes.func.isRequired,
+  deleteEmployees: PropTypes.func,
   isLoading: PropTypes.bool,
 };

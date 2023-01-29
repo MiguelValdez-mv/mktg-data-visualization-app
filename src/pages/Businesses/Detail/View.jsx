@@ -21,13 +21,17 @@ function View({
   nonBusinessEmployees,
   owners,
   isUpdatingBusiness,
+  isAddingEmployee,
+  isDeletingEmployees,
   isLoading,
   businessRegistrationDate,
   initialValues,
+  allowedActions,
   handleBusinessUpdateFormSubmit,
   addEmployeeToBusiness,
   deleteBusinessEmployees,
   showAddEmployeeBtn,
+  selectRows,
 }) {
   return (
     <Page>
@@ -101,8 +105,11 @@ function View({
 
         <EmployeeList
           employees={businessEmployees}
+          selectRows={selectRows}
+          allowedActions={allowedActions}
           title={COPY["businesses.detail.employees"]}
           deleteEmployees={deleteBusinessEmployees}
+          isLoading={isAddingEmployee || isDeletingEmployees}
         />
       </Content>
     </Page>
@@ -114,13 +121,17 @@ View.propTypes = {
   nonBusinessEmployees: PROP.USERS,
   owners: PROP.USERS,
   isUpdatingBusiness: PropTypes.bool.isRequired,
+  isAddingEmployee: PropTypes.bool.isRequired,
+  isDeletingEmployees: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   businessRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  allowedActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleBusinessUpdateFormSubmit: PropTypes.func.isRequired,
   addEmployeeToBusiness: PropTypes.func.isRequired,
   deleteBusinessEmployees: PropTypes.func.isRequired,
   showAddEmployeeBtn: PropTypes.bool.isRequired,
+  selectRows: PropTypes.bool.isRequired,
 };
 
 export default View;

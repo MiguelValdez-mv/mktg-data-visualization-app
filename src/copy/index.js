@@ -88,6 +88,7 @@ export const COPY = {
 
   "table.viewDetail": "Ver Detalle",
   "table.delete": "Eliminar",
+  "table.noData": "Sin datos",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

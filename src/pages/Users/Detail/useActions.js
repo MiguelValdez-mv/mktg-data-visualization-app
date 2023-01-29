@@ -31,6 +31,9 @@ const useActions = () => {
     avatar: avatar ?? "",
   };
 
+  const showBusinessList = !isAdminUser(user);
+  const allowedActions = ["view-detail"];
+
   const handleUserUpdateFormSubmit = (values) => {
     const formData = new FormData();
 
@@ -48,16 +51,15 @@ const useActions = () => {
     );
   };
 
-  const showBusinessList = !isAdminUser(user);
-
   return {
     isLoading: queryToGetUserDetail.isLoading || queryToGetBusinesses.isLoading,
     businesses: queryToGetBusinesses.data,
     isUpdatingUser: userUpdateMutation.isLoading,
     userRegistrationDate,
     initialValues,
-    handleUserUpdateFormSubmit,
     showBusinessList,
+    allowedActions,
+    handleUserUpdateFormSubmit,
   };
 };
 

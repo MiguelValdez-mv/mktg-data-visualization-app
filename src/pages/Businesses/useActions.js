@@ -21,12 +21,18 @@ const useActions = () => {
     });
   };
 
+  const currentUserIsAdmin = isAdminUser(user);
+  const allowedActions = ["view-detail", currentUserIsAdmin && "delete"].filter(
+    Boolean
+  );
+
   return {
-    showBusinessCreationBtn: isAdminUser(user),
+    showBusinessCreationBtn: currentUserIsAdmin,
     isLoading: queryToGetBusiness.isLoading,
     businesses: queryToGetBusiness.data,
     deleteBusinesses,
     isDeletingBusinesses: deleteBusinessesMutation.isLoading,
+    allowedActions,
   };
 };
 

@@ -18,8 +18,9 @@ function View({
   isUpdatingUser,
   userRegistrationDate,
   initialValues,
-  handleUserUpdateFormSubmit,
   showBusinessList,
+  allowedActions,
+  handleUserUpdateFormSubmit,
 }) {
   return (
     <Page>
@@ -59,6 +60,7 @@ function View({
         {showBusinessList && (
           <BusinessList
             businesses={businesses}
+            allowedActions={allowedActions}
             title={COPY["user.details.businessList.title"]}
           />
         )}
@@ -73,8 +75,9 @@ View.propTypes = {
   isUpdatingUser: PropTypes.bool.isRequired,
   userRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
-  handleUserUpdateFormSubmit: PropTypes.func.isRequired,
   showBusinessList: PropTypes.bool.isRequired,
+  allowedActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleUserUpdateFormSubmit: PropTypes.func.isRequired,
 };
 
 export default View;
