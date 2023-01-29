@@ -12,6 +12,12 @@ const useActions = () => {
   const queryToGetBusiness = useGetBusinessesByUserId(user._id);
   const deleteBusinessesMutation = useDeleteBusinesses();
 
+  const currentUserIsAdmin = isAdminUser(user);
+  const businessListActions = [
+    "view-detail",
+    currentUserIsAdmin && "delete",
+  ].filter(Boolean);
+
   const deleteBusinesses = (businesses) => {
     const businessIds = businesses.map(({ _id }) => _id);
 
@@ -21,18 +27,13 @@ const useActions = () => {
     });
   };
 
-  const currentUserIsAdmin = isAdminUser(user);
-  const allowedActions = ["view-detail", currentUserIsAdmin && "delete"].filter(
-    Boolean
-  );
-
   return {
     showBusinessCreationBtn: currentUserIsAdmin,
     isLoading: queryToGetBusiness.isLoading,
     businesses: queryToGetBusiness.data,
-    deleteBusinesses,
     isDeletingBusinesses: deleteBusinessesMutation.isLoading,
-    allowedActions,
+    businessListActions,
+    deleteBusinesses,
   };
 };
 

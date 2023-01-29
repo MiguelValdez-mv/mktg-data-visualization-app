@@ -11,8 +11,8 @@ import { COPY } from "@/copy";
 
 export function EmployeeList({
   employees = [],
-  selectRows,
-  allowedActions,
+  selectEmployees,
+  employeeActions,
   title,
   goToEmployeeDetail,
   deleteEmployees,
@@ -43,8 +43,8 @@ export function EmployeeList({
       <Table
         data={data}
         columns={columns}
-        selectRows={selectRows}
-        allowedActions={allowedActions}
+        selectRows={selectEmployees}
+        allowedRowActions={employeeActions}
         title={title}
         viewItemDetail={
           goToEmployeeDetail ||
@@ -59,8 +59,8 @@ export function EmployeeList({
 
 EmployeeList.propTypes = {
   employees: PROP.USERS,
-  selectRows: PropTypes.bool,
-  allowedActions: PropTypes.arrayOf(PropTypes.string),
+  selectEmployees: PropTypes.bool,
+  employeeActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   goToEmployeeDetail: PropTypes.func,
   deleteEmployees: PropTypes.func,

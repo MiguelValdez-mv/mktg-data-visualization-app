@@ -32,7 +32,7 @@ const useActions = () => {
   };
 
   const showBusinessList = !isAdminUser(user);
-  const allowedActions = ["view-detail"];
+  const businessListActions = ["view-detail"];
 
   const handleUserUpdateFormSubmit = (values) => {
     const formData = new FormData();
@@ -58,7 +58,7 @@ const useActions = () => {
     userRegistrationDate,
     initialValues,
     showBusinessList,
-    allowedActions,
+    businessListActions,
     handleUserUpdateFormSubmit,
   };
 };

@@ -12,8 +12,8 @@ import { COPY } from "@/copy";
 
 export function UserList({
   users = [],
-  selectRows,
-  allowedActions,
+  selectUsers,
+  userActions,
   title,
   goToUserDetail,
   deleteUsers,
@@ -49,8 +49,8 @@ export function UserList({
       <Table
         data={data}
         columns={columns}
-        selectRows={selectRows}
-        allowedActions={allowedActions}
+        selectRows={selectUsers}
+        allowedRowActions={userActions}
         title={title}
         viewItemDetail={
           goToUserDetail || ((user) => navigate(`/users/${user._id}`))
@@ -64,8 +64,8 @@ export function UserList({
 
 UserList.propTypes = {
   users: PROP.USERS,
-  selectRows: PropTypes.bool,
-  allowedActions: PropTypes.arrayOf(PropTypes.string),
+  selectUsers: PropTypes.bool,
+  userActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   goToUserDetail: PropTypes.func,
   deleteUsers: PropTypes.func,

@@ -11,8 +11,8 @@ import { COPY } from "@/copy";
 
 export function BusinessList({
   businesses = [],
-  selectRows,
-  allowedActions,
+  selectBusinesses,
+  businessActions,
   title,
   goToBusinessDetail,
   deleteBusinesses,
@@ -50,8 +50,8 @@ export function BusinessList({
       <Table
         data={data}
         columns={columns}
-        selectRows={selectRows}
-        allowedActions={allowedActions}
+        selectRows={selectBusinesses}
+        allowedRowActions={businessActions}
         title={title}
         viewItemDetail={
           goToBusinessDetail ||
@@ -66,8 +66,8 @@ export function BusinessList({
 
 BusinessList.propTypes = {
   businesses: PROP.BUSINESSES,
-  selectRows: PropTypes.bool,
-  allowedActions: PropTypes.arrayOf(PropTypes.string),
+  selectBusinesses: PropTypes.bool,
+  businessActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   goToBusinessDetail: PropTypes.func,
   deleteBusinesses: PropTypes.func,

@@ -25,7 +25,7 @@ export function Table({
   data,
   columns,
   selectRows = true,
-  allowedActions = ["view-detail", "delete"],
+  allowedRowActions = ["view-detail", "delete"],
   title,
   isLoading,
   viewItemDetail,
@@ -67,7 +67,7 @@ export function Table({
   );
 
   const selectedItems = selectedFlatRows.map((row) => row.original);
-  const actions = [
+  const rowActions = [
     {
       id: "view-detail",
       onClick: () => {
@@ -83,13 +83,13 @@ export function Table({
       disabled: !selectedFlatRows.length,
       msg: COPY["table.delete"],
     },
-  ].filter((action) => allowedActions.includes(action.id));
+  ].filter((action) => allowedRowActions.includes(action.id));
 
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 
   const actionBtnsRender = isLargeScreen ? (
     <Row>
-      {actions.map(({ id, onClick, disabled, msg }) => (
+      {rowActions.map(({ id, onClick, disabled, msg }) => (
         <Fragment key={id}>
           <Spacing left={2} />
           <Button
@@ -112,7 +112,7 @@ export function Table({
       position="bottom right"
     >
       {(close) =>
-        actions.map(({ id, onClick, disabled, msg }) => (
+        rowActions.map(({ id, onClick, disabled, msg }) => (
           <MenuOption
             key={id}
             onClick={onClick}
@@ -143,7 +143,7 @@ export function Table({
             )}
           </Row>
 
-          {!!actions.length && actionBtnsRender}
+          {!!rowActions.length && actionBtnsRender}
         </Row>
         <Spacing spacing={1} />
 
@@ -216,7 +216,7 @@ Table.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
   columns: PropTypes.array.isRequired, // eslint-disable-line
   selectRows: PropTypes.bool,
-  allowedActions: PropTypes.arrayOf(PropTypes.string),
+  allowedRowActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
   viewItemDetail: PropTypes.func,

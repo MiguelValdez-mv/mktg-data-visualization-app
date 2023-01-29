@@ -95,7 +95,9 @@ const useActions = () => {
 
   const currentUserIsAdmin = isAdminUser(user);
 
-  const allowedActions = currentUserIsAdmin ? ["view-detail", "delete"] : [];
+  const employeeListActions = currentUserIsAdmin
+    ? ["view-detail", "delete"]
+    : [];
 
   const onError = (err) => alert.error(err.message);
 
@@ -154,12 +156,12 @@ const useActions = () => {
     isLoading,
     businessRegistrationDate,
     initialValues,
-    allowedActions,
+    employeeListActions,
     handleBusinessUpdateFormSubmit,
     addEmployeeToBusiness,
     deleteBusinessEmployees,
     showAddEmployeeBtn: currentUserIsAdmin,
-    selectRows: currentUserIsAdmin,
+    selectEmployees: currentUserIsAdmin,
   };
 };
 
