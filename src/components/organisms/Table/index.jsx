@@ -46,7 +46,7 @@ export function Table({
       data,
       columns,
       defaultColumn: {
-        Cell: ({ value }) => <Cell>{value}</Cell>,
+        Cell: ({ value }) => <Cell>{value || "-"}</Cell>,
       },
     },
     useGlobalFilter,
