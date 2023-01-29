@@ -26,12 +26,11 @@ function View({
   isLoading,
   businessRegistrationDate,
   initialValues,
-  employeeListActions,
+  businessEmployeeListActions,
   handleBusinessUpdateFormSubmit,
   addEmployeeToBusiness,
   deleteBusinessEmployees,
-  showAddEmployeeBtn,
-  selectEmployees,
+  authUserIsAdmin,
 }) {
   return (
     <Page>
@@ -64,11 +63,12 @@ function View({
             onSubmit={handleBusinessUpdateFormSubmit}
             owners={owners}
             isLoading={isUpdatingBusiness}
+            disabledForm={!authUserIsAdmin}
           />
         </Surface>
         <Spacing bottom={8} />
 
-        {showAddEmployeeBtn && (
+        {authUserIsAdmin && (
           <>
             <Modal
               title={COPY["businesses.detail.addEmployee.modal.title"]}
@@ -105,8 +105,8 @@ function View({
 
         <EmployeeList
           employees={businessEmployees}
-          selectEmployees={selectEmployees}
-          employeeActions={employeeListActions}
+          selectEmployees={authUserIsAdmin}
+          employeeActions={businessEmployeeListActions}
           title={COPY["businesses.detail.employees"]}
           deleteEmployees={deleteBusinessEmployees}
           isLoading={isAddingEmployee || isDeletingEmployees}
@@ -126,12 +126,11 @@ View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   businessRegistrationDate: PropTypes.string.isRequired,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
-  employeeListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  businessEmployeeListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleBusinessUpdateFormSubmit: PropTypes.func.isRequired,
   addEmployeeToBusiness: PropTypes.func.isRequired,
   deleteBusinessEmployees: PropTypes.func.isRequired,
-  showAddEmployeeBtn: PropTypes.bool.isRequired,
-  selectEmployees: PropTypes.bool.isRequired,
+  authUserIsAdmin: PropTypes.bool.isRequired,
 };
 
 export default View;

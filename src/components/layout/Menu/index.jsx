@@ -9,9 +9,15 @@ export function Menu({
   position = "bottom left",
   children,
   arrow = false,
+  disabled = false,
 }) {
   return (
-    <Popup trigger={trigger} position={position} arrow={arrow}>
+    <Popup
+      trigger={trigger}
+      position={position}
+      arrow={arrow}
+      disabled={disabled}
+    >
       {(close) => (
         <Surface className="p-0">
           {typeof children === "function" ? children(close) : children}
@@ -26,4 +32,5 @@ Menu.propTypes = {
   position: PropTypes.string,
   children: PROP.CHILDREN.isRequired,
   arrow: PropTypes.bool,
+  disabled: PropTypes.bool,
 };

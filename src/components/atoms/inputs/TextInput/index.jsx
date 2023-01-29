@@ -18,6 +18,7 @@ export function TextInput({
   onBlur,
   placeholder,
   autoComplete = "off",
+  disabled,
   endAdornment = null,
 }) {
   return (
@@ -53,6 +54,7 @@ export function TextInput({
           onBlur={onBlur}
           placeholder={placeholder}
           autoComplete={autoComplete}
+          disabled={disabled}
         />
 
         {endAdornment && (
@@ -83,5 +85,6 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   placeholder: PropTypes.string,
   autoComplete: PropTypes.string,
+  disabled: PropTypes.bool,
   endAdornment: PropTypes.node,
 };

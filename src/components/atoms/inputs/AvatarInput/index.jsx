@@ -13,6 +13,7 @@ export function AvatarInput({
   label,
   id,
   name,
+  disabled,
   onChange,
   accept = ".jpg, .jpeg, .png",
   multiple,
@@ -46,13 +47,15 @@ export function AvatarInput({
       <Col className="relative">
         <Avatar name={name} src={preview} size={100} />
 
-        <IconButton
-          className="bg-primary drop-shadow-surface p-2 rounded-full absolute top-16 left-20"
-          onClick={handleClick}
-          hoverable={false}
-        >
-          <IconEdit className="text-white" />
-        </IconButton>
+        {!disabled && (
+          <IconButton
+            className="bg-primary drop-shadow-surface p-2 rounded-full absolute top-16 left-20"
+            onClick={handleClick}
+            hoverable={false}
+          >
+            <IconEdit className="text-white" />
+          </IconButton>
+        )}
       </Col>
 
       <input
@@ -73,6 +76,7 @@ AvatarInput.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
   accept: PropTypes.string,
   multiple: PropTypes.bool,

@@ -25,6 +25,7 @@ export function BusinessForm({
   onSubmit,
   owners = [],
   isLoading,
+  disabledForm,
 }) {
   const createBusiness = action === "create";
 
@@ -53,6 +54,7 @@ export function BusinessForm({
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.name && errors.name}
+            disabled={disabledForm}
           />
           <Spacing bottom={2} />
 
@@ -64,11 +66,12 @@ export function BusinessForm({
               <Button
                 className="justify-between font-normal"
                 variant="outline-primary"
-                endIcon={<ToggleMenuIcon isOpen={isOpen} />}
+                endIcon={!disabledForm && <ToggleMenuIcon isOpen={isOpen} />}
               >
                 {COPY[`businessForm.type.${values.type.toLowerCase()}`]}
               </Button>
             )}
+            disabled={disabledForm}
           >
             {(close) =>
               Object.values(BUSINESS_TYPES).map((opt) => (
@@ -91,6 +94,7 @@ export function BusinessForm({
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.description && errors.description}
+            disabled={disabledForm}
           />
           <Spacing bottom={2} />
 
@@ -100,31 +104,35 @@ export function BusinessForm({
           {owners.length ? (
             <Col className="sm:flex-row sm:justify-between sm:items-center">
               <ProfileCard {...values.owner} />
-              <Spacing bottom={1} />
 
-              <Modal
-                title={COPY["businessForm.owner.modal.title"]}
-                trigger={
-                  <Button variant="outline-primary" spacing>
-                    {COPY["businessForm.avatar.change"]}
-                  </Button>
-                }
-                fullScreenOnMobile
-              >
-                {(close) =>
-                  owners.map((owner) => (
-                    <ProfileCard
-                      key={owner._id}
-                      onClick={() => {
-                        setFieldValue("owner", owner);
-                        close();
-                      }}
-                      pressable
-                      {...owner}
-                    />
-                  ))
-                }
-              </Modal>
+              {!disabledForm && (
+                <>
+                  <Spacing top={1} />
+                  <Modal
+                    title={COPY["businessForm.owner.modal.title"]}
+                    trigger={
+                      <Button variant="outline-primary" spacing>
+                        {COPY["businessForm.avatar.change"]}
+                      </Button>
+                    }
+                    fullScreenOnMobile
+                  >
+                    {(close) =>
+                      owners.map((owner) => (
+                        <ProfileCard
+                          key={owner._id}
+                          onClick={() => {
+                            setFieldValue("owner", owner);
+                            close();
+                          }}
+                          pressable
+                          {...owner}
+                        />
+                      ))
+                    }
+                  </Modal>
+                </>
+              )}
             </Col>
           ) : (
             <Col className="justify-between sm:items-center sm:flex-row">
@@ -160,18 +168,21 @@ export function BusinessForm({
             onChange={(e) =>
               setFieldValue("avatar", e.currentTarget.files[0] ?? "")
             }
+            disabled={disabledForm}
           />
           <Spacing bottom={2} />
 
-          <Button
-            className="sm:self-end"
-            type="submit"
-            isLoading={isLoading}
-            disabled={createBusiness ? isLoading : isLoading || !dirty}
-            spacing
-          >
-            {COPY[`userForm.${createBusiness ? "add" : "save"}`]}
-          </Button>
+          {!disabledForm && (
+            <Button
+              className="sm:self-end"
+              type="submit"
+              isLoading={isLoading}
+              disabled={createBusiness ? isLoading : isLoading || !dirty}
+              spacing
+            >
+              {COPY[`userForm.${createBusiness ? "add" : "save"}`]}
+            </Button>
+          )}
         </Form>
       )}
     </Formik>
@@ -184,4 +195,5 @@ BusinessForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   owners: PROP.USERS,
   isLoading: PropTypes.bool,
+  disabledForm: PropTypes.bool,
 };

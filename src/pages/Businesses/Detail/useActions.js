@@ -93,9 +93,9 @@ const useActions = () => {
     avatar: avatar ?? "",
   };
 
-  const currentUserIsAdmin = isAdminUser(user);
+  const authUserIsAdmin = isAdminUser(user);
 
-  const employeeListActions = currentUserIsAdmin
+  const businessEmployeeListActions = authUserIsAdmin
     ? ["view-detail", "delete"]
     : [];
 
@@ -156,12 +156,11 @@ const useActions = () => {
     isLoading,
     businessRegistrationDate,
     initialValues,
-    employeeListActions,
+    businessEmployeeListActions,
     handleBusinessUpdateFormSubmit,
     addEmployeeToBusiness,
     deleteBusinessEmployees,
-    showAddEmployeeBtn: currentUserIsAdmin,
-    selectEmployees: currentUserIsAdmin,
+    authUserIsAdmin,
   };
 };
 
