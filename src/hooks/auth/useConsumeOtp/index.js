@@ -30,16 +30,17 @@ const mutationFn = async ({ otp }) => {
   throw new Error(COPY["errors.unexpectedError"]);
 };
 
-export const useConsumeOtp = (opts = {}) => {
+export const useConsumeOtp = (opts) => {
   const queryClient = useQueryClient();
   const authCtx = useAuth();
 
-  return useMutation(mutationFn, {
+  return useMutation({
     ...opts,
+    mutationFn,
     onSuccess: (user) => {
       queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
       authCtx.login(user);
-      opts.onSuccess?.(user);
+      opts?.onSuccess?.(user);
     },
   });
 };

@@ -14,8 +14,8 @@ const useActions = () => {
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const queryToGetUserDetail = useGetUserById(userId);
-  const queryToGetBusinesses = useGetBusinessesByUserId(userId);
+  const queryToGetUserDetail = useGetUserById({ id: userId });
+  const queryToGetBusinesses = useGetBusinessesByUserId({ id: userId });
   const userUpdateMutation = useUpdateUserById();
 
   const { data: user = {} } = queryToGetUserDetail;

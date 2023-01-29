@@ -19,4 +19,4 @@ const mutationFn = async ({ email }) => {
   return Promise.resolve(res);
 };
 
-export const useCreateOtp = (opts = {}) => useMutation(mutationFn, opts);
+export const useCreateOtp = (opts) => useMutation({ ...opts, mutationFn });

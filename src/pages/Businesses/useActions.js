@@ -9,7 +9,7 @@ const useActions = () => {
   const { user } = useAuth();
   const alert = useAlert();
 
-  const queryToGetBusiness = useGetBusinessesByUserId(user._id);
+  const queryToGetBusiness = useGetBusinessesByUserId({ id: user._id });
   const deleteBusinessesMutation = useDeleteBusinesses();
 
   const currentUserIsAdmin = isAdminUser(user);

@@ -4,18 +4,19 @@ import { useMutation, useQueryClient } from "react-query";
 import { API_URLS, QUERY_KEYS } from "@/constants";
 import { useAuth } from "@/hooks/auth/useAuth";
 
+const select = ({ data }) => data;
+
 const mutationFn = ({ id, formData }) =>
   axios.put(API_URLS.USER_BY_ID(id), formData);
 
-const select = ({ data }) => data;
-
-export const useUpdateUserById = (opts = {}) => {
+export const useUpdateUserById = (opts) => {
   const queryClient = useQueryClient();
   const authCtx = useAuth();
 
-  return useMutation(mutationFn, {
+  return useMutation({
     select,
     ...opts,
+    mutationFn,
     onSuccess: (res) => {
       const { data: updatedUser } = res;
 
@@ -25,7 +26,7 @@ export const useUpdateUserById = (opts = {}) => {
         authCtx.setUser(updatedUser);
       }
 
-      opts.onSuccess?.(res);
+      opts?.onSuccess?.(res);
     },
   });
 };

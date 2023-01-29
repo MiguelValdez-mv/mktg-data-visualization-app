@@ -16,5 +16,5 @@ const queryFn = async () => {
   return Promise.resolve({ sessionExist, user });
 };
 
-export const useDoesSessionExist = (opts = {}) =>
-  useQuery([QUERY_KEYS.DOES_SESSION_EXIST], queryFn, opts);
+export const useDoesSessionExist = (opts) =>
+  useQuery({ ...opts, queryKey: [QUERY_KEYS.DOES_SESSION_EXIST], queryFn });

@@ -87,45 +87,6 @@ export function Table({
 
   const handleChangeGlobalFilter = (e) => setGlobalFilter(e.target.value);
 
-  const actionBtnsRender = isLargeScreen ? (
-    <Row>
-      {rowActions.map(({ id, onClick, disabled, msg }) => (
-        <Fragment key={id}>
-          <Spacing left={2} />
-          <Button
-            variant="outline-primary"
-            onClick={onClick}
-            disabled={disabled}
-          >
-            {msg}
-          </Button>
-        </Fragment>
-      ))}
-    </Row>
-  ) : (
-    <Menu
-      trigger={
-        <IconButton primary>
-          <IconMenuRight />
-        </IconButton>
-      }
-      position="bottom right"
-    >
-      {(close) =>
-        rowActions.map(({ id, onClick, disabled, msg }) => (
-          <MenuOption
-            key={id}
-            onClick={onClick}
-            disabled={disabled}
-            close={close}
-          >
-            {msg}
-          </MenuOption>
-        ))
-      }
-    </Menu>
-  );
-
   return (
     <Col>
       <Col className="xl:flex-row">
@@ -143,7 +104,45 @@ export function Table({
             )}
           </Row>
 
-          {!!rowActions.length && actionBtnsRender}
+          {!!rowActions.length &&
+            (isLargeScreen ? (
+              <Row>
+                {rowActions.map(({ id, onClick, disabled, msg }) => (
+                  <Fragment key={id}>
+                    <Spacing left={2} />
+                    <Button
+                      variant="outline-primary"
+                      onClick={onClick}
+                      disabled={disabled}
+                    >
+                      {msg}
+                    </Button>
+                  </Fragment>
+                ))}
+              </Row>
+            ) : (
+              <Menu
+                trigger={
+                  <IconButton primary>
+                    <IconMenuRight />
+                  </IconButton>
+                }
+                position="bottom right"
+              >
+                {(close) =>
+                  rowActions.map(({ id, onClick, disabled, msg }) => (
+                    <MenuOption
+                      key={id}
+                      onClick={onClick}
+                      disabled={disabled}
+                      close={close}
+                    >
+                      {msg}
+                    </MenuOption>
+                  ))
+                }
+              </Menu>
+            ))}
         </Row>
         <Spacing spacing={1} />
 

@@ -6,16 +6,17 @@ import { useAuth } from "@/hooks/auth/useAuth";
 
 const mutationFn = () => Session.signOut();
 
-export const useLogout = (opts = {}) => {
+export const useLogout = (opts) => {
   const queryClient = useQueryClient();
   const authCtx = useAuth();
 
-  return useMutation(mutationFn, {
+  return useMutation({
     ...opts,
+    mutationFn,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEYS.DOES_SESSION_EXIST]);
       authCtx.logout();
-      opts.onSuccess?.();
+      opts?.onSuccess?.();
     },
   });
 };

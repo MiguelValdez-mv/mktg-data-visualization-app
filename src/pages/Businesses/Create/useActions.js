@@ -10,7 +10,7 @@ const useActions = () => {
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const queryToGetOwners = useGetUsers({ role: USER_ROLES.OWNER });
+  const queryToGetOwners = useGetUsers({ params: { role: USER_ROLES.OWNER } });
   const createBusinessMutation = useCreateBusiness();
 
   const { data: owners = [] } = queryToGetOwners;

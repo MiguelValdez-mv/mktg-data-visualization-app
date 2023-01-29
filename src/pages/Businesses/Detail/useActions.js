@@ -18,7 +18,7 @@ const useActions = () => {
   const navigate = useNavigate();
   const alert = useAlert();
 
-  const queryToGetBusinessDetail = useGetBusinessById(businessId);
+  const queryToGetBusinessDetail = useGetBusinessById({ id: businessId });
   const {
     data: {
       name,
@@ -31,42 +31,38 @@ const useActions = () => {
     } = {},
   } = queryToGetBusinessDetail;
 
-  const queryToGetEmployees = useGetUsers(
-    { role: USER_ROLES.EMPLOYEE },
-    {
-      enabled: !!employeeIds,
-      select: ({ data: employees }) =>
-        employees.reduce(
-          (acum, curr) => {
-            const key = employeeIds.includes(curr._id)
-              ? "businessEmployees"
-              : "nonBusinessEmployees";
+  const queryToGetEmployees = useGetUsers({
+    params: { role: USER_ROLES.EMPLOYEE },
+    enabled: !!employeeIds,
+    select: ({ data: employees }) =>
+      employees.reduce(
+        (acum, curr) => {
+          const key = employeeIds.includes(curr._id)
+            ? "businessEmployees"
+            : "nonBusinessEmployees";
 
-            return {
-              ...acum,
-              [key]: [...acum[key], curr],
-            };
-          },
-          {
-            businessEmployees: [],
-            nonBusinessEmployees: [],
-          }
-        ),
-    }
-  );
+          return {
+            ...acum,
+            [key]: [...acum[key], curr],
+          };
+        },
+        {
+          businessEmployees: [],
+          nonBusinessEmployees: [],
+        }
+      ),
+  });
   const { data: { businessEmployees, nonBusinessEmployees } = {} } =
     queryToGetEmployees;
 
-  const queryToGetOwners = useGetUsers(
-    { role: USER_ROLES.OWNER },
-    {
-      enabled: !!ownerId,
-      select: ({ data: owners }) => ({
-        businessOwner: owners.find((o) => o._id === ownerId),
-        owners,
-      }),
-    }
-  );
+  const queryToGetOwners = useGetUsers({
+    params: { role: USER_ROLES.OWNER },
+    enabled: !!ownerId,
+    select: ({ data: owners }) => ({
+      businessOwner: owners.find((o) => o._id === ownerId),
+      owners,
+    }),
+  });
   const { data: { businessOwner, owners } = {} } = queryToGetOwners;
 
   const businessUpdateMutation = useUpdateBusinessById();
