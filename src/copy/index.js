@@ -20,6 +20,7 @@ export const COPY = {
   "user.details.businessList.title": "Negocios",
 
   "connections.title": "Conexiones",
+  "connections.creation.title": "Añadir Conexión",
 
   "businesses.title": "Negocios",
   "businesses.removal.success": "Eliminación realizada exitosamente",
