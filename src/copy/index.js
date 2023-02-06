@@ -21,6 +21,8 @@ export const COPY = {
 
   "connections.title": "Conexiones",
   "connections.creation.title": "Añadir Conexión",
+  "connections.creation.googleAnalytics": "Google Analytics 4",
+  "connections.creation.facebookAds": "Facebook Ads",
 
   "businesses.title": "Negocios",
   "businesses.removal.success": "Eliminación realizada exitosamente",

@@ -12,6 +12,7 @@ const baseStyles = {
   outline: "border border-cyan text-cyan",
   "outline-primary": "border border-muted text-primary",
   ghost: "text-primary hover:text-white hover:bg-primary",
+  surface: "bg-white text-primary drop-shadow-surface",
   none: "",
 };
 
@@ -61,6 +62,7 @@ Button.propTypes = {
     "outline",
     "outline-primary",
     "ghost",
+    "surface",
     "none",
   ]),
   disabled: PropTypes.bool,

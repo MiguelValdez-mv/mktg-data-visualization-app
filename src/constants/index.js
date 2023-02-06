@@ -3,6 +3,11 @@ import { setLocale, object, string, mixed, boolean } from "yup";
 
 import { COPY } from "@/copy";
 
+export const ENV = {
+  FACEBOOK_APP_ID: process.env.REACT_APP_FACEBOOK_APP_ID,
+  GOOGLE_APP_CLIENT_ID: process.env.REACT_APP_GOOGLE_APP_CLIENT_ID,
+};
+
 setLocale({
   mixed: {
     required: COPY["errors.requiredField"],
