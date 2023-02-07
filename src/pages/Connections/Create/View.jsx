@@ -1,7 +1,7 @@
-import FacebookLogin from "@greatsumini/react-facebook-login";
+import PropTypes from "prop-types";
 
-import { FacebookAdsLogo } from "@/assets/svgs/FacebookAdsLogo";
 import { GoogleAnalyticsLogo } from "@/assets/svgs/GoogleAnalyticsLogo";
+import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
 import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
 import { Content } from "@/components/layout/Content";
@@ -9,10 +9,9 @@ import { GridContainer } from "@/components/layout/GridContainer";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
-import { ENV } from "@/constants";
 import { COPY } from "@/copy";
 
-function View() {
+function View({ authenticateWithGoogle, authenticateWithFacebook }) {
   return (
     <Page>
       <Header title={COPY["connections.creation.title"]} />
@@ -29,27 +28,28 @@ function View() {
             className="p-4"
             variant="surface"
             startIcon={<GoogleAnalyticsLogo />}
+            onClick={authenticateWithGoogle}
           >
             {COPY["connections.creation.googleAnalytics"]}
           </Button>
 
-          <FacebookLogin
-            appId={ENV.FACEBOOK_APP_ID}
-            render={({ onClick }) => (
-              <Button
-                className="p-4"
-                variant="surface"
-                onClick={onClick}
-                startIcon={<FacebookAdsLogo />}
-              >
-                {COPY["connections.creation.facebookAds"]}
-              </Button>
-            )}
-          />
+          <Button
+            className="p-4"
+            variant="surface"
+            startIcon={<IconSquareFacebook className="text-primary" />}
+            onClick={authenticateWithFacebook}
+          >
+            {COPY["connections.creation.facebookAds"]}
+          </Button>
         </GridContainer>
       </Content>
     </Page>
   );
 }
+
+View.propTypes = {
+  authenticateWithGoogle: PropTypes.func.isRequired,
+  authenticateWithFacebook: PropTypes.func.isRequired,
+};
 
 export default View;
