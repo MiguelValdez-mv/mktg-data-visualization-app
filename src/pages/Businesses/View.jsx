@@ -12,12 +12,12 @@ import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
-  isLoading,
   showBusinessCreationBtn,
+  isLoading,
   businesses,
-  deleteBusinesses,
   isDeletingBusinesses,
   businessListActions,
+  deleteBusinesses,
 }) {
   return (
     <Page>
@@ -49,12 +49,12 @@ function View({
 }
 
 View.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   showBusinessCreationBtn: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   businesses: PROP.BUSINESSES,
-  deleteBusinesses: PropTypes.func.isRequired,
   isDeletingBusinesses: PropTypes.bool.isRequired,
   businessListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  deleteBusinesses: PropTypes.func.isRequired,
 };
 
 export default View;

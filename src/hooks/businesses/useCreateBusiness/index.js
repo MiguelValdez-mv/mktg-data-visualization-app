@@ -5,7 +5,7 @@ import { API_URLS, QUERY_KEYS } from "@/constants";
 
 const select = ({ data }) => data;
 
-const mutationFn = (formData) => axios.post(API_URLS.BUSINESSES, formData);
+const mutationFn = (data) => axios.post(API_URLS.BUSINESSES, data);
 
 export const useCreateBusiness = (opts) => {
   const queryClient = useQueryClient();

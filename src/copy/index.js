@@ -20,9 +20,11 @@ export const COPY = {
   "user.details.businessList.title": "Negocios",
 
   "connections.title": "Conexiones",
+  "connections.removal.success": "Eliminación realizada exitosamente",
   "connections.creation.title": "Añadir Conexión",
   "connections.creation.googleAnalytics": "Google Analytics 4",
   "connections.creation.facebookAds": "Facebook Ads",
+  "connections.creation.success": "Conexión creada exitosamente",
 
   "businesses.title": "Negocios",
   "businesses.removal.success": "Eliminación realizada exitosamente",
@@ -62,6 +64,12 @@ export const COPY = {
   "businessList.type.commercial": "Empresa Comercial",
   "businessList.type.industrial": "Empresa Industrial",
   "businessList.description": "Descripción",
+
+  "connectionList.connection": "Conexión",
+  "connectionList.connection.facebook_ads": "Facebook Ads",
+  "connectionList.connection.google_analytics": "Google Analytics",
+  "connectionList.email": "Correo electrónico",
+  "connectionList.date": "Fecha",
 
   "userForm.name": "Nombre",
   "userForm.email": "Correo electrónico",

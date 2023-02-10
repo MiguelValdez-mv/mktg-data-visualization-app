@@ -76,6 +76,16 @@ export const PROP = {
   get BUSINESSES() {
     return PropTypes.arrayOf(this.BUSINESS);
   },
+  CONNECTION: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    accessToken: PropTypes.string,
+    refreshToken: PropTypes.string,
+    userId: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }),
+  get CONNECTIONS() {
+    return PropTypes.arrayOf(this.CONNECTION);
+  },
 };
 
 export const LINKS = {
@@ -98,12 +108,15 @@ export const API_URLS = {
     `${LINKS.API}/businesses/business-by-id/${id}/employees`,
   BUSINESSES_BY_USER_ID: (id) =>
     `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
+
+  CONNECTIONS: `${LINKS.API}/connections`,
 };
 
 export const QUERY_KEYS = {
   DOES_SESSION_EXIST: "DOES_SESSION_EXIST",
   USERS: "USERS",
   BUSINESSES: "BUSINESSES",
+  CONNECTIONS: "CONNECTIONS",
 };
 
 export const USER_ROLES = {
@@ -116,4 +129,9 @@ export const BUSINESS_TYPES = {
   SERVICE: "SERVICE",
   COMMERCIAL: "COMMERCIAL",
   INDUSTRIAL: "INDUSTRIAL",
+};
+
+export const CONNECTION_TYPES = {
+  GOOGLE_ANALYTICS: "GOOGLE_ANALYTICS",
+  FACEBOOK_ADS: "FACEBOOK_ADS",
 };

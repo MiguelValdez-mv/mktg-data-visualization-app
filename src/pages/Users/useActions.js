@@ -21,8 +21,8 @@ const useActions = () => {
   return {
     isLoading: queryToGetUsers.isLoading,
     users: queryToGetUsers.data,
-    deleteUsers,
     isDeletingUsers: deleteUsersMutation.isLoading,
+    deleteUsers,
   };
 };
 

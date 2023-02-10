@@ -5,9 +5,10 @@ import { API_URLS, QUERY_KEYS } from "@/constants";
 
 const select = ({ data }) => data;
 
-const mutationFn = (data) => axios.post(API_URLS.USERS, data);
+const mutationFn = (ids) =>
+  axios.delete(API_URLS.CONNECTIONS, { params: { ids: ids.join(",") } });
 
-export const useCreateUser = (opts) => {
+export const useDeleteConnections = (opts) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -15,7 +16,7 @@ export const useCreateUser = (opts) => {
     ...opts,
     mutationFn,
     onSuccess: (res) => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CONNECTIONS] });
       opts?.onSuccess?.(res);
     },
   });
