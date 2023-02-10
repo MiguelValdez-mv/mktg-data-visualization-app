@@ -11,7 +11,7 @@ import { Spacing } from "@/components/layout/Spacing";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ isLoading, users, deleteUsers, isDeletingUsers }) {
+function View({ isLoading, users, isDeletingUsers, deleteUsers }) {
   return (
     <Page>
       <Header title={COPY["users.title"]} />
@@ -26,8 +26,8 @@ function View({ isLoading, users, deleteUsers, isDeletingUsers }) {
         <Spacing bottom={4} />
 
         <UserList
-          title={COPY["users.title"]}
           users={users}
+          title={COPY["users.title"]}
           deleteUsers={deleteUsers}
           isLoading={isDeletingUsers}
         />
@@ -39,8 +39,8 @@ function View({ isLoading, users, deleteUsers, isDeletingUsers }) {
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   users: PROP.USERS,
-  deleteUsers: PropTypes.func.isRequired,
   isDeletingUsers: PropTypes.bool.isRequired,
+  deleteUsers: PropTypes.func.isRequired,
 };
 
 export default View;

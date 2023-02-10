@@ -7,11 +7,19 @@ import { Button } from "@/components/atoms/buttons/Button";
 import { Col } from "@/components/layout/Col";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { PROP } from "@/constants";
 
-export function ProfileCard({ name, email, avatar, pressable, onClick }) {
+export function ProfileCard({
+  avatarRender,
+  name,
+  email,
+  avatar,
+  pressable,
+  onClick,
+}) {
   const content = (
     <Row className="items-center">
-      <Avatar name={name} src={avatar} />
+      {avatarRender ?? <Avatar name={name} src={avatar} />}
       <Spacing right={2} />
 
       <Col className="justify-center">
@@ -37,6 +45,7 @@ export function ProfileCard({ name, email, avatar, pressable, onClick }) {
 }
 
 ProfileCard.propTypes = {
+  avatarRender: PROP.CHILDREN,
   name: PropTypes.string.isRequired,
   email: PropTypes.string,
   avatar: PropTypes.string,

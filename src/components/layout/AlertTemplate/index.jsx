@@ -11,7 +11,7 @@ import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
 
 export function AlertTemplate({ options, message, close }) {
-  const renderIcon = () => {
+  const iconRender = () => {
     switch (options.type) {
       case "info":
         return <IconInfoCircle className="text-info" />;
@@ -27,7 +27,7 @@ export function AlertTemplate({ options, message, close }) {
   return (
     <Surface className="flex-row m-2 pointer-events-auto">
       <Row className="items-center">
-        {renderIcon()}
+        {iconRender()}
         <Spacing right={1} />
 
         <Text bold small>
