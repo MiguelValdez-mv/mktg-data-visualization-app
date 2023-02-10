@@ -36,14 +36,12 @@ export function ConnectionList({
     {
       id: "connection",
       Header: () => <Cell header>{COPY["connectionList.connection"]}</Cell>,
-      Cell: ({
-        row: {
-          original: { type },
-        },
-      }) => (
+      Cell: ({ row: { original: connection } }) => (
         <ProfileCard
-          avatarRender={iconRender(type)}
-          name={COPY[`connectionList.connection.${type.toLowerCase()}`]}
+          avatarRender={iconRender(connection.type)}
+          name={
+            COPY[`connectionList.connection.${connection.type.toLowerCase()}`]
+          }
         />
       ),
     },

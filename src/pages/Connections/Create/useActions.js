@@ -28,7 +28,9 @@ const useActions = () => {
 
   const authenticateWithFacebook = () => {
     FacebookLoginClient.login(
-      ({ authResponse: { accessToken } }) => {
+      ({ status, authResponse: { accessToken } = {} }) => {
+        if (status !== "connected") return;
+
         mutate({ type: CONNECTION_TYPES.FACEBOOK_ADS, accessToken });
       },
       {
