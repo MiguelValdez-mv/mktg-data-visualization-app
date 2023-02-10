@@ -67,7 +67,7 @@ export const COPY = {
 
   "connectionList.connection": "Conexión",
   "connectionList.connection.facebook_ads": "Facebook Ads",
-  "connectionList.connection.google_analytics": "Google Analytics",
+  "connectionList.connection.google_analytics": "Google Analytics 4",
   "connectionList.email": "Correo electrónico",
   "connectionList.date": "Fecha",
 
