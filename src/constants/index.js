@@ -44,6 +44,11 @@ export const FORM_SCHEMES = {
     owner: object().required(),
     avatar: mixed(),
   }),
+  PANEL: object().shape({
+    name: string().required(),
+    description: string(),
+    business: object().required(),
+  }),
 };
 
 export const PROP = {
@@ -86,6 +91,14 @@ export const PROP = {
   get CONNECTIONS() {
     return PropTypes.arrayOf(this.CONNECTION);
   },
+  PANEL: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    businessId: PropTypes.string.isRequired,
+  }),
+  get PANELS() {
+    return PropTypes.arrayOf(this.PANELS);
+  },
 };
 
 export const LINKS = {
@@ -110,6 +123,8 @@ export const API_URLS = {
     `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
 
   CONNECTIONS: `${LINKS.API}/connections`,
+
+  PANELS: `${LINKS.API}/panels`,
 };
 
 export const QUERY_KEYS = {
@@ -117,6 +132,7 @@ export const QUERY_KEYS = {
   USERS: "USERS",
   BUSINESSES: "BUSINESSES",
   CONNECTIONS: "CONNECTIONS",
+  PANELS: "PANELS",
 };
 
 export const USER_ROLES = {

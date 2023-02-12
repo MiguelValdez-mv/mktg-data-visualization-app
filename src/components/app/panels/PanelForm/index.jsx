@@ -6,33 +6,29 @@ import { ProfileCard } from "@/components/app/ProfileCard";
 import { Form } from "@/components/atoms/Form";
 import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
-import { ToggleMenuIcon } from "@/components/atoms/ToggleMenuIcon";
 import { Button } from "@/components/atoms/buttons/Button";
-import { AvatarInput } from "@/components/atoms/inputs/AvatarInput";
 import { TextInput } from "@/components/atoms/inputs/TextInput";
 import { Col } from "@/components/layout/Col";
-import { Menu } from "@/components/layout/Menu";
-import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Modal } from "@/components/layout/Modal";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
-import { BUSINESS_TYPES, FORM_SCHEMES, PROP, USER_ROLES } from "@/constants";
+import { FORM_SCHEMES, PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-export function BusinessForm({
+export function PanelForm({
   action = "create",
   initialValues,
   onSubmit,
-  owners = [],
+  businesses = [],
   isLoading,
   disabledForm,
 }) {
-  const createBusiness = action === "create";
+  const createPanel = action === "create";
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={FORM_SCHEMES.BUSINESS}
+      validationSchema={FORM_SCHEMES.PANEL}
       onSubmit={onSubmit}
       enableReinitialize
     >
@@ -49,7 +45,7 @@ export function BusinessForm({
         <Form onSubmit={handleSubmit}>
           <TextInput
             id="name"
-            label={COPY["businessForm.name"]}
+            label={COPY["panelForm.name"]}
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -58,38 +54,9 @@ export function BusinessForm({
           />
           <Spacing bottom={2} />
 
-          <Text bold>{COPY["businessForm.type"]}</Text>
-          <Spacing bottom={1} />
-
-          <Menu
-            trigger={(isOpen) => (
-              <Button
-                className="justify-between font-normal"
-                variant="outline-primary"
-                endIcon={!disabledForm && <ToggleMenuIcon isOpen={isOpen} />}
-              >
-                {COPY[`businessForm.type.${values.type.toLowerCase()}`]}
-              </Button>
-            )}
-            disabled={disabledForm}
-          >
-            {(close) =>
-              Object.values(BUSINESS_TYPES).map((opt) => (
-                <MenuOption
-                  key={opt}
-                  onClick={() => setFieldValue("type", opt)}
-                  close={close}
-                >
-                  {COPY[`businessForm.type.${opt.toLowerCase()}`]}
-                </MenuOption>
-              ))
-            }
-          </Menu>
-          <Spacing bottom={2} />
-
           <TextInput
             id="description"
-            label={COPY["businessForm.description"]}
+            label={COPY["panelForm.description"]}
             value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -98,35 +65,35 @@ export function BusinessForm({
           />
           <Spacing bottom={2} />
 
-          <Text bold>{COPY["businessForm.owner"]}</Text>
+          <Text bold>{COPY["panelForm.business"]}</Text>
           <Spacing bottom={1} />
 
-          {owners.length ? (
+          {businesses.length ? (
             <Col className="sm:flex-row sm:justify-between sm:items-center">
-              <ProfileCard {...values.owner} />
+              <ProfileCard {...values.business} />
 
               {!disabledForm && (
                 <>
                   <Spacing top={1} />
                   <Modal
-                    title={COPY["businessForm.owner.modal.title"]}
+                    title={COPY["panelForm.business.modal.title"]}
                     trigger={
                       <Button variant="outline-primary" spacing>
-                        {COPY["businessForm.owner.change"]}
+                        {COPY["panelForm.business.change"]}
                       </Button>
                     }
                     fullScreenOnMobile
                   >
                     {(close) =>
-                      owners.map((owner) => (
+                      businesses.map((business) => (
                         <ProfileCard
-                          key={owner._id}
+                          key={business._id}
                           onClick={() => {
-                            setFieldValue("owner", owner);
+                            setFieldValue("business", business);
                             close();
                           }}
                           pressable
-                          {...owner}
+                          {...business}
                         />
                       ))
                     }
@@ -140,13 +107,13 @@ export function BusinessForm({
                 <IconBxErrorCircle className="text-primary" />
                 <Spacing right={1} />
 
-                <Text>{COPY["businessForm.owner.noOwners"]}</Text>
+                <Text>{COPY["panelForm.business.noBusinesses"]}</Text>
               </Row>
               <Spacing bottom={1} />
 
-              <Link to={`/users/create-user?role=${USER_ROLES.OWNER}`}>
+              <Link to="/businesses/create-business">
                 <Button className="w-full sm:w-auto" variant="outline-primary">
-                  {COPY["businessForm.owner.addOwner"]}
+                  {COPY["panelForm.business.addBusiness"]}
                 </Button>
               </Link>
             </Col>
@@ -158,18 +125,6 @@ export function BusinessForm({
               <Text error>{errors.owner}</Text>
             </>
           )}
-          <Spacing bottom={2} />
-
-          <AvatarInput
-            id="avatar"
-            label={COPY["businessForm.avatar"]}
-            avatar={values.avatar}
-            name={values.name}
-            onChange={(e) =>
-              setFieldValue("avatar", e.currentTarget.files[0] ?? "")
-            }
-            disabled={disabledForm}
-          />
           <Spacing bottom={4} />
 
           {!disabledForm && (
@@ -177,10 +132,10 @@ export function BusinessForm({
               className="sm:self-end"
               type="submit"
               isLoading={isLoading}
-              disabled={createBusiness ? isLoading : isLoading || !dirty}
+              disabled={createPanel ? isLoading : isLoading || !dirty}
               spacing
             >
-              {COPY[`userForm.${createBusiness ? "add" : "save"}`]}
+              {COPY[`panelForm.${createPanel ? "add" : "save"}`]}
             </Button>
           )}
         </Form>
@@ -189,11 +144,11 @@ export function BusinessForm({
   );
 }
 
-BusinessForm.propTypes = {
+PanelForm.propTypes = {
   action: PropTypes.oneOf(["create", "update"]),
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
   onSubmit: PropTypes.func.isRequired,
-  owners: PROP.USERS,
+  businesses: PROP.BUSINESSES,
   isLoading: PropTypes.bool,
   disabledForm: PropTypes.bool,
 };

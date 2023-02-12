@@ -99,7 +99,7 @@ export function UserForm({
               setFieldValue("avatar", e.currentTarget.files[0] ?? "")
             }
           />
-          <Spacing bottom={2} />
+          <Spacing bottom={createUser ? 2 : 4} />
 
           {createUser && (
             <>
@@ -109,7 +109,7 @@ export function UserForm({
                 checked={values.notifyRegistration}
                 onChange={handleChange}
               />
-              <Spacing bottom={2} />
+              <Spacing bottom={4} />
             </>
           )}
 

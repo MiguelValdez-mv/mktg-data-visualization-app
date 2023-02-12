@@ -43,6 +43,8 @@ export const COPY = {
     "Eliminación realizada exitosamente",
 
   "panels.title": "Paneles",
+  "panels.creation.title": "Añadir Panel",
+  "panels.creation.success": "Panel añadido exitosamente",
 
   "sidebar.logout": "Cerrar sesión",
 
@@ -93,9 +95,19 @@ export const COPY = {
   "businessForm.owner.noOwners": "Actualmente no hay propietarios registrados",
   "businessForm.owner.addOwner": "Agregar Propietario",
   "businessForm.avatar": "Avatar",
-  "businessForm.avatar.change": "Cambiar",
+  "businessForm.owner.change": "Cambiar",
   "businessForm.add": "Añadir",
   "businessForm.save": "Guardar",
+
+  "panelForm.name": "Nombre",
+  "panelForm.description": "Descripción",
+  "panelForm.business": "Negocio",
+  "panelForm.business.modal.title": "Selecciona un negocio",
+  "panelForm.business.change": "Cambiar",
+  "panelForm.business.noBusinesses": "Actualmente no hay negocios registrados",
+  "panelForm.business.addBusiness": "Agregar Negocio",
+  "panelForm.add": "Añadir",
+  "panelForm.save": "Guardar",
 
   "table.viewDetail": "Ver Detalle",
   "table.delete": "Eliminar",
