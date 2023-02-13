@@ -113,6 +113,9 @@ export const COPY = {
   "table.delete": "Eliminar",
   "table.noData": "Sin datos",
 
+  "panelListItem.businessName": (businessName) => `Negocio: ${businessName}`,
+  "panelListItem.viewDetail": "Ver Detalle",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":

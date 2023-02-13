@@ -91,13 +91,16 @@ export const PROP = {
   get CONNECTIONS() {
     return PropTypes.arrayOf(this.CONNECTION);
   },
-  PANEL: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    businessId: PropTypes.string.isRequired,
-  }),
+  get PANEL() {
+    return PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      businessId: PropTypes.string,
+      business: this.BUSINESS,
+    });
+  },
   get PANELS() {
-    return PropTypes.arrayOf(this.PANELS);
+    return PropTypes.arrayOf(this.PANEL);
   },
 };
 
@@ -125,6 +128,7 @@ export const API_URLS = {
   CONNECTIONS: `${LINKS.API}/connections`,
 
   PANELS: `${LINKS.API}/panels`,
+  PANELS_BY_USER_ID: (id) => `${LINKS.API}/panels/panels-by-user-id/${id}`,
 };
 
 export const QUERY_KEYS = {

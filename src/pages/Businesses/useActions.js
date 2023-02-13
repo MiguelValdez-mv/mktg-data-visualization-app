@@ -9,7 +9,7 @@ const useActions = () => {
   const { user } = useAuth();
   const alert = useAlert();
 
-  const queryToGetBusiness = useGetBusinessesByUserId({ id: user._id });
+  const queryToGetBusinesses = useGetBusinessesByUserId({ id: user._id });
   const deleteBusinessesMutation = useDeleteBusinesses();
 
   const currentUserIsAdmin = isAdminUser(user);
@@ -29,8 +29,8 @@ const useActions = () => {
 
   return {
     showBusinessCreationBtn: currentUserIsAdmin,
-    isLoading: queryToGetBusiness.isLoading,
-    businesses: queryToGetBusiness.data,
+    isLoading: queryToGetBusinesses.isLoading,
+    businesses: queryToGetBusinesses.data,
     isDeletingBusinesses: deleteBusinessesMutation.isLoading,
     businessListActions,
     deleteBusinesses,
