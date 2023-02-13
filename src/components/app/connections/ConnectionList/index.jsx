@@ -5,9 +5,9 @@ import { useMemo } from "react";
 
 import { GoogleAnalyticsLogo } from "@/assets/svgs/GoogleAnalyticsLogo";
 import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
-import { ProfileCard } from "@/components/app/ProfileCard";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Surface } from "@/components/layout/Surface";
+import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { Table } from "@/components/organisms/Table";
 import { PROP, CONNECTION_TYPES } from "@/constants";
 import { COPY } from "@/copy";

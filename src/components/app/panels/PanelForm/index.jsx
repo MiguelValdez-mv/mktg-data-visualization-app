@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import PropTypes from "prop-types";
 
 import { IconBxErrorCircle } from "@/assets/svgs/IconBxErrorCircle";
-import { ProfileCard } from "@/components/app/ProfileCard";
 import { Form } from "@/components/atoms/Form";
 import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
@@ -12,6 +11,7 @@ import { Col } from "@/components/layout/Col";
 import { Modal } from "@/components/layout/Modal";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { FORM_SCHEMES, PROP } from "@/constants";
 import { COPY } from "@/copy";
 

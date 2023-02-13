@@ -111,10 +111,11 @@ export const COPY = {
 
   "table.viewDetail": "Ver Detalle",
   "table.delete": "Eliminar",
-  "table.noData": "Sin datos",
 
   "panelListItem.businessName": (businessName) => `Negocio: ${businessName}`,
   "panelListItem.viewDetail": "Ver Detalle",
+
+  noDataYet: "Sin datos",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

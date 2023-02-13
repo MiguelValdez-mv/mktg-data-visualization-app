@@ -4,6 +4,7 @@ import { Text } from "@/components/atoms/Text";
 import { GridContainer } from "@/components/layout/GridContainer";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { NoDataYet } from "@/components/molecules/NoDataYet";
 import { PROP } from "@/constants";
 
 import { PanelListItem } from "../PanelListItem";
@@ -16,11 +17,15 @@ export function PanelList({ title, panels = [] }) {
       </Text>
       <Spacing bottom={2} />
 
-      <GridContainer className="gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {panels.map((panel) => (
-          <PanelListItem key={panel._id} panel={panel} />
-        ))}
-      </GridContainer>
+      {panels.length ? (
+        <GridContainer className="gap-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {panels.map((panel) => (
+            <PanelListItem key={panel._id} panel={panel} />
+          ))}
+        </GridContainer>
+      ) : (
+        <NoDataYet />
+      )}
     </Surface>
   );
 }

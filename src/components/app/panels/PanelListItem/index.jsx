@@ -14,14 +14,17 @@ export function PanelListItem({ panel = {} }) {
   } = panel;
 
   return (
-    <Col>
-      <Col className="h-40 justify-center items-center rounded-xl bg-primary">
+    <Col className="justify-between">
+      <Col className="h-40 bg-primary justify-center items-center rounded-xl drop-shadow-surface">
         <IconChartLine className="text-white" />
       </Col>
       <Spacing bottom={2} />
 
-      <Text bold>{name}</Text>
-      {description && <Text muted>{description}</Text>}
+      <Col>
+        <Text bold>{name}</Text>
+
+        {description && <Text muted>{description}</Text>}
+      </Col>
       <Spacing bottom={2} />
 
       <Text bold>{COPY["panelListItem.businessName"](businessName)}</Text>

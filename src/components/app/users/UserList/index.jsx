@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ProfileCard } from "@/components/app/ProfileCard";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Surface } from "@/components/layout/Surface";
+import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { Table } from "@/components/organisms/Table";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
