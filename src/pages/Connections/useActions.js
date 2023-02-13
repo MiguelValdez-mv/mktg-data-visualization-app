@@ -7,14 +7,14 @@ const useActions = () => {
   const alert = useAlert();
 
   const queryToGetConnections = useGetConnections();
-  const deleteConnectionsMutation = useDeleteConnections();
+  const connectionDeletionMutation = useDeleteConnections();
 
   const connectionListActions = ["delete"];
 
   const deleteConnections = (connections) => {
     const connectionIds = connections.map(({ _id }) => _id);
 
-    deleteConnectionsMutation.mutate(connectionIds, {
+    connectionDeletionMutation.mutate(connectionIds, {
       onSuccess: () => alert.success(COPY["connections.removal.success"]),
       onError: (err) => alert.error(err.message),
     });
@@ -23,7 +23,7 @@ const useActions = () => {
   return {
     isLoading: queryToGetConnections.isLoading,
     connections: queryToGetConnections.data,
-    isDeletingConnections: deleteConnectionsMutation.isLoading,
+    isDeletingConnections: connectionDeletionMutation.isLoading,
     connectionListActions,
     deleteConnections,
   };

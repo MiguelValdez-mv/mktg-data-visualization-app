@@ -12,7 +12,7 @@ const useActions = () => {
   const alert = useAlert();
 
   const queryToGetBusinesses = useGetBusinessesByUserId({ id: user._id });
-  const createPanelMutation = useCreatePanel();
+  const panelCreationMutation = useCreatePanel();
 
   const { data: businesses = [] } = queryToGetBusinesses;
   const [defaultBusiness] = businesses;
@@ -28,7 +28,7 @@ const useActions = () => {
       ...rest,
     };
 
-    createPanelMutation.mutate(values, {
+    panelCreationMutation.mutate(values, {
       onSuccess: () => {
         navigate("/panels");
         alert.success(COPY["panels.creation.success"]);
@@ -39,7 +39,7 @@ const useActions = () => {
 
   return {
     isLoading: queryToGetBusinesses.isLoading,
-    isCreatingPanel: createPanelMutation.isLoading,
+    isCreatingPanel: panelCreationMutation.isLoading,
     businesses,
     initialValues,
     handlePanelCreationFormSubmit,

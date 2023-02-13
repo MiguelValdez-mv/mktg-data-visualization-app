@@ -3,17 +3,16 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { API_URLS, QUERY_KEYS } from "@/constants";
 
-const mutationFn = (ids) =>
-  axios.delete(API_URLS.BUSINESSES, { params: { ids: ids.join(",") } });
+const mutationFn = (id) => axios.delete(API_URLS.PANEL_BY_ID(id));
 
-export const useDeleteBusinesses = (opts) => {
+export const useDeletePanelById = (opts) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     ...opts,
     mutationFn,
     onSuccess: (res) => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.BUSINESSES] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PANELS] });
       opts?.onSuccess?.(res);
     },
   });

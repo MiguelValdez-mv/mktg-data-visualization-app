@@ -11,7 +11,13 @@ import { Spacing } from "@/components/layout/Spacing";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-function View({ showPanelCreationBtn, isLoading, panels }) {
+function View({
+  showPanelCreationBtn,
+  isLoading,
+  panels,
+  isDeletingPanel,
+  deletePanel,
+}) {
   return (
     <Page>
       <Header title={COPY["panels.title"]} />
@@ -29,7 +35,12 @@ function View({ showPanelCreationBtn, isLoading, panels }) {
           </>
         )}
 
-        <PanelList title={COPY["panels.title"]} panels={panels} />
+        <PanelList
+          title={COPY["panels.title"]}
+          panels={panels}
+          isLoading={isDeletingPanel}
+          deletePanel={deletePanel}
+        />
       </Content>
     </Page>
   );
@@ -39,6 +50,8 @@ View.propTypes = {
   showPanelCreationBtn: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   panels: PROP.PANELS,
+  isDeletingPanel: PropTypes.bool.isRequired,
+  deletePanel: PropTypes.func.isRequired,
 };
 
 export default View;

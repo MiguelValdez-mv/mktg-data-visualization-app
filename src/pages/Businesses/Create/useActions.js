@@ -11,7 +11,7 @@ const useActions = () => {
   const alert = useAlert();
 
   const queryToGetOwners = useGetUsers({ params: { role: USER_ROLES.OWNER } });
-  const createBusinessMutation = useCreateBusiness();
+  const businessCreationMutation = useCreateBusiness();
 
   const { data: owners = [] } = queryToGetOwners;
   const [defaultOwner] = owners;
@@ -32,7 +32,7 @@ const useActions = () => {
     const formData = new FormData();
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
 
-    createBusinessMutation.mutate(formData, {
+    businessCreationMutation.mutate(formData, {
       onSuccess: () => {
         navigate("/businesses");
         alert.success(COPY["businesses.creation.success"]);
@@ -43,7 +43,7 @@ const useActions = () => {
 
   return {
     isLoading: queryToGetOwners.isLoading,
-    isCreatingBusiness: createBusinessMutation.isLoading,
+    isCreatingBusiness: businessCreationMutation.isLoading,
     owners,
     initialValues,
     handleBusinessCreationFormSubmit,

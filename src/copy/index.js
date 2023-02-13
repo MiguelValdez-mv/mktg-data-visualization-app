@@ -43,6 +43,7 @@ export const COPY = {
     "Eliminación realizada exitosamente",
 
   "panels.title": "Paneles",
+  "panels.removal.success": "Eliminación realizada exitosamente",
   "panels.creation.title": "Añadir Panel",
   "panels.creation.success": "Panel añadido exitosamente",
 
@@ -114,6 +115,7 @@ export const COPY = {
 
   "panelListItem.businessName": (businessName) => `Negocio: ${businessName}`,
   "panelListItem.viewDetail": "Ver Detalle",
+  "panelListItem.delete": "Eliminar",
 
   noDataYet: "Sin datos",
 

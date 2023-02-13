@@ -10,7 +10,7 @@ const useActions = () => {
   const alert = useAlert();
 
   const queryToGetBusinesses = useGetBusinessesByUserId({ id: user._id });
-  const deleteBusinessesMutation = useDeleteBusinesses();
+  const businessDeletionMutation = useDeleteBusinesses();
 
   const currentUserIsAdmin = isAdminUser(user);
   const businessListActions = [
@@ -21,7 +21,7 @@ const useActions = () => {
   const deleteBusinesses = (businesses) => {
     const businessIds = businesses.map(({ _id }) => _id);
 
-    deleteBusinessesMutation.mutate(businessIds, {
+    businessDeletionMutation.mutate(businessIds, {
       onSuccess: () => alert.success(COPY["businesses.removal.success"]),
       onError: (err) => alert.error(err.message),
     });
@@ -31,7 +31,7 @@ const useActions = () => {
     showBusinessCreationBtn: currentUserIsAdmin,
     isLoading: queryToGetBusinesses.isLoading,
     businesses: queryToGetBusinesses.data,
-    isDeletingBusinesses: deleteBusinessesMutation.isLoading,
+    isDeletingBusinesses: businessDeletionMutation.isLoading,
     businessListActions,
     deleteBusinesses,
   };
