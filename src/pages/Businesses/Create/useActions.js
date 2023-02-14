@@ -28,8 +28,8 @@ const useActions = () => {
       ownerId: owner._id,
       ...rest,
     };
-
     const formData = new FormData();
+
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
 
     businessCreationMutation.mutate(formData, {

@@ -46,6 +46,9 @@ export const COPY = {
   "panels.removal.success": "Eliminación realizada exitosamente",
   "panels.creation.title": "Añadir Panel",
   "panels.creation.success": "Panel añadido exitosamente",
+  "panels.settings.title": "Ajustes de Panel",
+  "panels.settings.panelRegistrationDate": "Fecha de registro",
+  "panels.settings.update.success": "Panel actualizado exitosamente",
 
   "sidebar.logout": "Cerrar sesión",
 
