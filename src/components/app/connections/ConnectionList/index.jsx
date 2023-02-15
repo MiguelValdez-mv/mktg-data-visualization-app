@@ -3,25 +3,14 @@ import { format } from "date-fns";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 
-import { GoogleAnalyticsLogo } from "@/assets/svgs/GoogleAnalyticsLogo";
-import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
 import { Surface } from "@/components/layout/Surface";
 import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { Table } from "@/components/organisms/Table";
-import { PROP, CONNECTION_TYPES } from "@/constants";
+import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
-const iconRender = (connectionType) => {
-  switch (connectionType) {
-    case CONNECTION_TYPES.GOOGLE_ANALYTICS:
-      return <GoogleAnalyticsLogo />;
-    case CONNECTION_TYPES.FACEBOOK_ADS:
-      return <IconSquareFacebook className="text-primary" />;
-    default:
-      return null;
-  }
-};
+import { ConnectionIcon } from "../ConnectionIcon";
 
 export function ConnectionList({
   connections = [],
@@ -38,7 +27,7 @@ export function ConnectionList({
       Header: () => <Cell header>{COPY["connectionList.connection"]}</Cell>,
       Cell: ({ row: { original: connection } }) => (
         <ProfileCard
-          avatarRender={iconRender(connection.type)}
+          avatarRender={<ConnectionIcon type={connection.type} />}
           name={
             COPY[`connectionList.connection.${connection.type.toLowerCase()}`]
           }

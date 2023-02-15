@@ -74,13 +74,13 @@ export function BusinessForm({
             disabled={disabledForm}
           >
             {(close) =>
-              Object.values(BUSINESS_TYPES).map((opt) => (
+              Object.values(BUSINESS_TYPES).map((type) => (
                 <MenuOption
-                  key={opt}
-                  onClick={() => setFieldValue("type", opt)}
+                  key={type}
+                  onClick={() => setFieldValue("type", type)}
                   close={close}
                 >
-                  {COPY[`businessForm.type.${opt.toLowerCase()}`]}
+                  {COPY[`businessForm.type.${type.toLowerCase()}`]}
                 </MenuOption>
               ))
             }

@@ -15,6 +15,7 @@ function View({
   setConnectionType,
   isLoading,
   panel,
+  initialValues,
   openWidgetMenu,
   closeWidgetMenu,
 }) {
@@ -31,6 +32,7 @@ function View({
           close={closeWidgetMenu}
           connectionType={connectionType}
           setConnectionType={setConnectionType}
+          initialValues={initialValues}
         />
       </Content>
     </Page>
@@ -43,6 +45,7 @@ View.propTypes = {
   setConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
+  initialValues: PropTypes.object.isRequired, // eslint-disable-line
   openWidgetMenu: PropTypes.func.isRequired,
   closeWidgetMenu: PropTypes.func.isRequired,
 };

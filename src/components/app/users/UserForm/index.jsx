@@ -77,13 +77,13 @@ export function UserForm({
             )}
           >
             {(close) =>
-              Object.values(USER_ROLES).map((opt) => (
+              Object.values(USER_ROLES).map((role) => (
                 <MenuOption
-                  key={opt}
-                  onClick={() => setFieldValue("role", opt)}
+                  key={role}
+                  onClick={() => setFieldValue("role", role)}
                   close={close}
                 >
-                  {COPY[`userForm.role.${opt.toLowerCase()}`]}
+                  {COPY[`userForm.role.${role.toLowerCase()}`]}
                 </MenuOption>
               ))
             }

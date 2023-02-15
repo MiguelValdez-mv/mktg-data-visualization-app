@@ -129,6 +129,12 @@ export const COPY = {
   "widgetMenu.google_analytics": "Google Analytics 4",
   "widgetMenu.facebook_ads": "Facebook Ads",
 
+  "googleAnalyticsWidgetForm.metric": "Métrica",
+  "googleAnalyticsWidgetForm.dimension": "Dimensión",
+  "googleAnalyticsWidgetForm.title": "Título",
+  "googleAnalyticsWidgetForm.add": "Añadir",
+  "googleAnalyticsWidgetForm.save": "Guardar",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":

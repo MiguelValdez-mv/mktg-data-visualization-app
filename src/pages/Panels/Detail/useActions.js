@@ -10,6 +10,8 @@ const useActions = () => {
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
 
+  const initialValues = {};
+
   const openWidgetMenu = () => setWidgetMenuIsOpen(true);
   const closeWidgetMenu = () => setWidgetMenuIsOpen(false);
 
@@ -23,6 +25,7 @@ const useActions = () => {
     setConnectionType,
     isLoading: queryToGetPanelDetail.isLoading,
     panel: queryToGetPanelDetail.data,
+    initialValues,
     openWidgetMenu,
     closeWidgetMenu,
   };
