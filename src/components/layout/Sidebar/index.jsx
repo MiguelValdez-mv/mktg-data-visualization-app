@@ -44,8 +44,8 @@ export function Sidebar({ user }) {
   return (
     <Col
       className={twMerge(
-        "max-w-xs w-full h-screen bg-tertiary p-5 ease-in-out duration-300 z-50",
-        !isLargeScreen && "fixed top-0 left-0 drop-shadow-surface",
+        "max-w-xs w-full h-screen bg-tertiary p-5 ease-in-out duration-300",
+        !isLargeScreen && "fixed top-0 left-0 z-50 drop-shadow-surface",
         !isLargeScreen && !isSidebarOpen && "-translate-x-full"
       )}
     >

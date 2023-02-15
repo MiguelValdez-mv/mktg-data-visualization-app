@@ -1,27 +1,22 @@
 import PropTypes from "prop-types";
 
-import { IconAdd } from "@/assets/svgs/IconAdd";
-import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
-import { IconSettings } from "@/assets/svgs/IconSettings";
-import { Link } from "@/components/atoms/Link";
-import { Text } from "@/components/atoms/Text";
-import { Button } from "@/components/atoms/buttons/Button";
-import { IconButton } from "@/components/atoms/buttons/IconButton";
+import { PanelNavbar } from "@/components/app/panels/PanelNavbar";
+import { WidgetMenu } from "@/components/app/widgets/WidgetMenu";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
-import { Menu } from "@/components/layout/Menu";
-import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Page } from "@/components/layout/Page";
-import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
-  panelSettingsPath,
-  isLargeScreen,
+  widgetMenuIsOpen,
+  connectionType,
+  setConnectionType,
   isLoading,
-  panelName,
-  currentUserIsAdmin,
+  panel,
+  openWidgetMenu,
+  closeWidgetMenu,
 }) {
   return (
     <Page>
@@ -29,64 +24,27 @@ function View({
       <Spacing bottom={8} />
 
       <Content isLoading={isLoading}>
-        <Row className="justify-between items-center">
-          <Text subtitle bold>
-            {panelName}
-          </Text>
+        <PanelNavbar panel={panel} openWidgetMenu={openWidgetMenu} />
 
-          {isLargeScreen ? (
-            <Row>
-              <Link to={panelSettingsPath}>
-                <Button variant="outline-primary" startIcon={<IconSettings />}>
-                  {COPY["panels.detail.settings"]}
-                </Button>
-              </Link>
-
-              {currentUserIsAdmin && (
-                <>
-                  <Spacing left={2} />
-                  <Button startIcon={<IconAdd />}>
-                    {COPY["panels.detail.addWidget"]}
-                  </Button>
-                </>
-              )}
-            </Row>
-          ) : (
-            <Menu
-              trigger={
-                <IconButton primary>
-                  <IconMenuRight />
-                </IconButton>
-              }
-              position="bottom right"
-            >
-              {(close) => (
-                <>
-                  {currentUserIsAdmin && (
-                    <MenuOption startIcon={<IconAdd />} close={close}>
-                      {COPY["panels.detail.addWidget"]}
-                    </MenuOption>
-                  )}
-
-                  <MenuOption startIcon={<IconSettings />} close={close}>
-                    {COPY["panels.detail.settings"]}
-                  </MenuOption>
-                </>
-              )}
-            </Menu>
-          )}
-        </Row>
+        <WidgetMenu
+          isOpen={widgetMenuIsOpen}
+          close={closeWidgetMenu}
+          connectionType={connectionType}
+          setConnectionType={setConnectionType}
+        />
       </Content>
     </Page>
   );
 }
 
 View.propTypes = {
-  panelSettingsPath: PropTypes.string.isRequired,
-  isLargeScreen: PropTypes.bool.isRequired,
+  widgetMenuIsOpen: PropTypes.bool.isRequired,
+  connectionType: PropTypes.string,
+  setConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  panelName: PropTypes.string,
-  currentUserIsAdmin: PropTypes.bool.isRequired,
+  panel: PROP.PANEL,
+  openWidgetMenu: PropTypes.func.isRequired,
+  closeWidgetMenu: PropTypes.func.isRequired,
 };
 
 export default View;

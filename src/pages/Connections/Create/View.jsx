@@ -40,7 +40,7 @@ function View({ isLoading, authenticateWithGoogle, authenticateWithFacebook }) {
             startIcon={<GoogleAnalyticsLogo />}
             onClick={authenticateWithGoogle}
           >
-            {COPY["connections.creation.googleAnalytics"]}
+            {COPY["connections.creation.google_analytics"]}
           </Button>
 
           <Button
@@ -49,7 +49,7 @@ function View({ isLoading, authenticateWithGoogle, authenticateWithFacebook }) {
             startIcon={<IconSquareFacebook className="text-primary" />}
             onClick={authenticateWithFacebook}
           >
-            {COPY["connections.creation.facebookAds"]}
+            {COPY["connections.creation.facebook_ads"]}
           </Button>
         </GridContainer>
       </Content>

@@ -1,26 +1,30 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { useAuth } from "@/hooks/auth/useAuth";
 import { useGetPanelById } from "@/hooks/panels/useGetPanelById";
-import { useDimensions } from "@/hooks/useDimensions";
-import { isAdminUser } from "@/utils/checkUserRole";
 
 const useActions = () => {
   const { panelId } = useParams();
-  const { user } = useAuth();
-  const { isLargeScreen } = useDimensions();
+  const [widgetMenuIsOpen, setWidgetMenuIsOpen] = useState(false);
+  const [connectionType, setConnectionType] = useState("");
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
-  const { data: { name = "" } = {} } = queryToGetPanelDetail;
 
-  const currentUserIsAdmin = isAdminUser(user);
+  const openWidgetMenu = () => setWidgetMenuIsOpen(true);
+  const closeWidgetMenu = () => setWidgetMenuIsOpen(false);
+
+  useEffect(() => {
+    if (!widgetMenuIsOpen) setConnectionType("");
+  }, [widgetMenuIsOpen]);
 
   return {
-    panelSettingsPath: `/panels/${panelId}/settings`,
-    isLargeScreen,
+    widgetMenuIsOpen,
+    connectionType,
+    setConnectionType,
     isLoading: queryToGetPanelDetail.isLoading,
-    panelName: name,
-    currentUserIsAdmin,
+    panel: queryToGetPanelDetail.data,
+    openWidgetMenu,
+    closeWidgetMenu,
   };
 };
 

@@ -22,8 +22,8 @@ export const COPY = {
   "connections.title": "Conexiones",
   "connections.removal.success": "Eliminación realizada exitosamente",
   "connections.creation.title": "Añadir Conexión",
-  "connections.creation.googleAnalytics": "Google Analytics 4",
-  "connections.creation.facebookAds": "Facebook Ads",
+  "connections.creation.google_analytics": "Google Analytics 4",
+  "connections.creation.facebook_ads": "Facebook Ads",
   "connections.creation.success": "Conexión creada exitosamente",
 
   "businesses.title": "Negocios",
@@ -47,8 +47,8 @@ export const COPY = {
   "panels.creation.title": "Añadir Panel",
   "panels.creation.success": "Panel añadido exitosamente",
   "panels.detail.title": "Detalle de Panel",
-  "panels.detail.settings": "Ajustes",
-  "panels.detail.addWidget": "Añadir Widget",
+  "panelNavbar.settings": "Ajustes",
+  "panelNavbar.addWidget": "Añadir Widget",
   "panels.settings.title": "Ajustes de Panel",
   "panels.settings.panelRegistrationDate": "Fecha de registro",
   "panels.settings.update.success": "Panel actualizado exitosamente",
@@ -124,6 +124,10 @@ export const COPY = {
   "panelListItem.delete": "Eliminar",
 
   noDataYet: "Sin datos",
+
+  "widgetMenu.selectConnectionType": "Selecciona un tipo de conexión",
+  "widgetMenu.google_analytics": "Google Analytics 4",
+  "widgetMenu.facebook_ads": "Facebook Ads",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
