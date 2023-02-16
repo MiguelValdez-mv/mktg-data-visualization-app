@@ -37,7 +37,7 @@ export const COPY = {
   "businesses.detail.employees": "Empleados",
   "businesses.detail.addEmployee.modal.title": "Selecciona un empleado",
   "businesses.detail.addEmployee.modal.noEmployees":
-    "No hay empleados disponibles en este momento...",
+    "No hay empleados disponibles en este momento",
   "businesses.detail.employeeAddition.success": "Empleado añadido exitosamente",
   "businesses.detail.employeeDeletion.success":
     "Eliminación realizada exitosamente",
@@ -100,7 +100,7 @@ export const COPY = {
   "businessForm.owner": "Propietario",
   "businessForm.owner.modal.title": "Selecciona un propietario",
   "businessForm.owner.noOwners": "Actualmente no hay propietarios registrados",
-  "businessForm.owner.addOwner": "Agregar Propietario",
+  "businessForm.owner.addOwner": "Añadir Propietario",
   "businessForm.avatar": "Avatar",
   "businessForm.owner.change": "Cambiar",
   "businessForm.add": "Añadir",
@@ -112,7 +112,7 @@ export const COPY = {
   "panelForm.business.modal.title": "Selecciona un negocio",
   "panelForm.business.change": "Cambiar",
   "panelForm.business.noBusinesses": "Actualmente no hay negocios registrados",
-  "panelForm.business.addBusiness": "Agregar Negocio",
+  "panelForm.business.addBusiness": "Añadir Negocio",
   "panelForm.add": "Añadir",
   "panelForm.save": "Guardar",
 
@@ -128,12 +128,24 @@ export const COPY = {
   "widgetMenu.selectConnectionType": "Selecciona un tipo de conexión",
   "widgetMenu.google_analytics": "Google Analytics 4",
   "widgetMenu.facebook_ads": "Facebook Ads",
+  "widgetMenu.noConnections": "Actualmente no hay conexiones registradas",
+  "widgetMenu.addConnection": "Añadir Conexión",
 
   "googleAnalyticsWidgetForm.metric": "Métrica",
   "googleAnalyticsWidgetForm.dimension": "Dimensión",
+  "googleAnalyticsWidgetForm.timespan": "Tiempo",
   "googleAnalyticsWidgetForm.title": "Título",
   "googleAnalyticsWidgetForm.add": "Añadir",
   "googleAnalyticsWidgetForm.save": "Guardar",
+
+  "timespans.past7Days": "Últimos 7 días",
+  "timespans.past14Days": "Últimos 14 días",
+  "timespans.past28Days": "Últimos 28 días",
+  "timespans.past30Days": "Últimos 30 días",
+  "timespans.past90Days": "Últimos 90 días",
+  "timespans.thisWeek": "Esta semana",
+  "timespans.thisMonth": "Este mes",
+  "timespans.thisYear": "Este año",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

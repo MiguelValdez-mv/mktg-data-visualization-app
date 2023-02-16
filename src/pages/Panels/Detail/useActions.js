@@ -1,31 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
+import { TIMESPANS } from "@/constants";
+import { useGetConnections } from "@/hooks/connections/useGetConnections";
 import { useGetPanelById } from "@/hooks/panels/useGetPanelById";
 
 const useActions = () => {
   const { panelId } = useParams();
   const [widgetMenuIsOpen, setWidgetMenuIsOpen] = useState(false);
-  const [connectionType, setConnectionType] = useState("");
+  const [selectedConnectionType, setSelectedConnectionType] = useState("");
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
+  const queryToGetConnections = useGetConnections();
 
-  const initialValues = {};
+  const [defaultTimespan] = TIMESPANS;
+  const initialValues = {
+    timespan: defaultTimespan,
+    title: "",
+  };
+  const noConnections = useMemo(
+    () =>
+      !(queryToGetConnections.data ?? []).some(
+        (c) => c.type === selectedConnectionType
+      ),
+    [selectedConnectionType]
+  );
 
   const openWidgetMenu = () => setWidgetMenuIsOpen(true);
   const closeWidgetMenu = () => setWidgetMenuIsOpen(false);
 
   useEffect(() => {
-    if (!widgetMenuIsOpen) setConnectionType("");
+    if (!widgetMenuIsOpen) setSelectedConnectionType("");
   }, [widgetMenuIsOpen]);
 
   return {
     widgetMenuIsOpen,
-    connectionType,
-    setConnectionType,
-    isLoading: queryToGetPanelDetail.isLoading,
+    selectedConnectionType,
+    setSelectedConnectionType,
+    isLoading:
+      queryToGetPanelDetail.isLoading || queryToGetConnections.isLoading,
     panel: queryToGetPanelDetail.data,
     initialValues,
+    noConnections,
     openWidgetMenu,
     closeWidgetMenu,
   };

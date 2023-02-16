@@ -7,3 +7,5 @@ export { QUERY_KEYS } from "./queryKeys";
 export { USER_ROLES } from "./userRoles";
 export { BUSINESS_TYPES } from "./businessTypes";
 export { CONNECTION_TYPES } from "./connectionTypes";
+export { TIMESPANS } from "./timespans";
+export { BREAKPOINTS } from "./breakpoints";

@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 
+import { IconBxErrorCircle } from "@/assets/svgs/IconBxErrorCircle";
 import { IconClose } from "@/assets/svgs/IconClose";
 import { ConnectionIcon } from "@/components/app/connections/ConnectionIcon";
+import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
 import { IconButton } from "@/components/atoms/buttons/IconButton";
@@ -18,10 +20,70 @@ import { WidgetForm } from "../WidgetForm";
 export function WidgetMenu({
   isOpen,
   close,
-  connectionType,
-  setConnectionType,
+  selectedConnectionType,
+  setSelectedConnectionType,
+  noConnections,
   ...rest
 }) {
+  let content = null;
+
+  if (selectedConnectionType) {
+    content = noConnections ? (
+      <Col className="items-center">
+        <IconBxErrorCircle className="text-primary" />
+        <Spacing bottom={2} />
+
+        <Text subtitle bold>
+          {COPY["widgetMenu.noConnections"]}
+        </Text>
+        <Spacing bottom={4} />
+
+        <Link to="/connections/create-connection">
+          <Button variant="outline-primary">
+            {COPY["widgetMenu.addConnection"]}
+          </Button>
+        </Link>
+      </Col>
+    ) : (
+      <>
+        <Row>
+          <ConnectionIcon type={selectedConnectionType} />
+          <Spacing right={2} />
+
+          <Text subtitle bold>
+            {COPY[`widgetMenu.${selectedConnectionType.toLowerCase()}`]}
+          </Text>
+        </Row>
+        <Spacing bottom={4} />
+
+        <WidgetForm connectionType={selectedConnectionType} {...rest} />
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <Text subtitle bold>
+          {COPY["widgetMenu.selectConnectionType"]}
+        </Text>
+        <Spacing bottom={4} />
+
+        {Object.values(CONNECTION_TYPES).map((type) => (
+          <Fragment key={type}>
+            <Button
+              className="p-4"
+              variant="surface"
+              onClick={() => setSelectedConnectionType(type)}
+              startIcon={<ConnectionIcon type={type} />}
+            >
+              {COPY[`widgetMenu.${type.toLowerCase()}`]}
+            </Button>
+            <Spacing bottom={2} />
+          </Fragment>
+        ))}
+      </>
+    );
+  }
+
   return (
     <Col
       className={twMerge(
@@ -34,42 +96,7 @@ export function WidgetMenu({
       </IconButton>
       <Spacing bottom={2} />
 
-      {connectionType ? (
-        <>
-          <Row>
-            <ConnectionIcon type={connectionType} />
-            <Spacing right={2} />
-
-            <Text subtitle bold>
-              {COPY[`widgetMenu.${connectionType.toLowerCase()}`]}
-            </Text>
-          </Row>
-          <Spacing bottom={4} />
-
-          <WidgetForm connectionType={connectionType} {...rest} />
-        </>
-      ) : (
-        <>
-          <Text subtitle bold>
-            {COPY["widgetMenu.selectConnectionType"]}
-          </Text>
-          <Spacing bottom={4} />
-
-          {Object.values(CONNECTION_TYPES).map((type) => (
-            <Fragment key={type}>
-              <Button
-                className="p-4"
-                variant="surface"
-                onClick={() => setConnectionType(type)}
-                startIcon={<ConnectionIcon type={type} />}
-              >
-                {COPY[`widgetMenu.${type.toLowerCase()}`]}
-              </Button>
-              <Spacing bottom={2} />
-            </Fragment>
-          ))}
-        </>
-      )}
+      {content}
     </Col>
   );
 }
@@ -77,6 +104,7 @@ export function WidgetMenu({
 WidgetMenu.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
-  connectionType: PropTypes.string,
-  setConnectionType: PropTypes.func.isRequired,
+  selectedConnectionType: PropTypes.string,
+  setSelectedConnectionType: PropTypes.func.isRequired,
+  noConnections: PropTypes.bool.isRequired,
 };

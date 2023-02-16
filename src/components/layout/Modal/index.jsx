@@ -7,18 +7,24 @@ import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
-import { PROP } from "@/constants";
-import { twMerge } from "@/utils/twMerge";
+import { PROP, BREAKPOINTS } from "@/constants";
+import { useDimensions } from "@/hooks/useDimensions";
 
-export function Modal({ title, trigger, fullScreenOnMobile, children }) {
+export function Modal({
+  breakpoint = BREAKPOINTS.SMALL,
+  title,
+  trigger,
+  fullScreenOnMobile,
+  children,
+}) {
+  const { isLargeScreen } = useDimensions({ breakpoint });
+  const className =
+    fullScreenOnMobile && !isLargeScreen ? "w-screen h-screen" : "";
+
   return (
     <Popup className="modal" trigger={trigger} modal>
       {(close) => (
-        <Surface
-          className={twMerge(
-            fullScreenOnMobile && "w-screen h-screen sm:w-auto sm:h-auto"
-          )}
-        >
+        <Surface className={className}>
           <Row className="justify-between">
             <Text subtitle bold>
               {title}
@@ -38,6 +44,7 @@ export function Modal({ title, trigger, fullScreenOnMobile, children }) {
 }
 
 Modal.propTypes = {
+  breakpoint: PropTypes.number,
   title: PropTypes.string.isRequired,
   trigger: PROP.CHILDREN.isRequired,
   fullScreenOnMobile: PropTypes.bool,

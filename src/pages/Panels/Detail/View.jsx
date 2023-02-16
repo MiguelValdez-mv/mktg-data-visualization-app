@@ -11,11 +11,12 @@ import { COPY } from "@/copy";
 
 function View({
   widgetMenuIsOpen,
-  connectionType,
-  setConnectionType,
+  selectedConnectionType,
+  setSelectedConnectionType,
   isLoading,
   panel,
   initialValues,
+  noConnections,
   openWidgetMenu,
   closeWidgetMenu,
 }) {
@@ -30,9 +31,10 @@ function View({
         <WidgetMenu
           isOpen={widgetMenuIsOpen}
           close={closeWidgetMenu}
-          connectionType={connectionType}
-          setConnectionType={setConnectionType}
+          selectedConnectionType={selectedConnectionType}
+          setSelectedConnectionType={setSelectedConnectionType}
           initialValues={initialValues}
+          noConnections={noConnections}
         />
       </Content>
     </Page>
@@ -41,11 +43,12 @@ function View({
 
 View.propTypes = {
   widgetMenuIsOpen: PropTypes.bool.isRequired,
-  connectionType: PropTypes.string,
-  setConnectionType: PropTypes.func.isRequired,
+  selectedConnectionType: PropTypes.string,
+  setSelectedConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
   initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  noConnections: PropTypes.bool.isRequired,
   openWidgetMenu: PropTypes.func.isRequired,
   closeWidgetMenu: PropTypes.func.isRequired,
 };

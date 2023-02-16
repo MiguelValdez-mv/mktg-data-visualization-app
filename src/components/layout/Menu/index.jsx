@@ -19,7 +19,7 @@ export function Menu({
       disabled={disabled}
     >
       {(close) => (
-        <Surface className="p-0">
+        <Surface className="max-h-60 p-0 overflow-x-auto">
           {typeof children === "function" ? children(close) : children}
         </Surface>
       )}
