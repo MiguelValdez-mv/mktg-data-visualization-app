@@ -133,6 +133,7 @@ export const COPY = {
 
   "googleAnalyticsWidgetForm.metric": "Métrica",
   "googleAnalyticsWidgetForm.dimension": "Dimensión",
+  "googleAnalyticsWidgetForm.chart": "Gráfico",
   "googleAnalyticsWidgetForm.timespan": "Tiempo",
   "googleAnalyticsWidgetForm.title": "Título",
   "googleAnalyticsWidgetForm.add": "Añadir",
@@ -146,6 +147,12 @@ export const COPY = {
   "timespans.thisWeek": "Esta semana",
   "timespans.thisMonth": "Este mes",
   "timespans.thisYear": "Este año",
+
+  "charts.number": "Número",
+  "charts.line": "Línea",
+  "charts.verticalBar": "Barras Verticales",
+  "charts.horizontalBar": "Barras Horizontales",
+  "charts.doughnut": "Donut",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

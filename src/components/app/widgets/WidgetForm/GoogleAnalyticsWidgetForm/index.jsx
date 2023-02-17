@@ -9,7 +9,7 @@ import { TextInput } from "@/components/atoms/inputs/TextInput";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { ResponsiveMenu } from "@/components/layout/ResponsiveMenu";
 import { Spacing } from "@/components/layout/Spacing";
-import { TIMESPANS } from "@/constants";
+import { CHARTS, TIMESPANS } from "@/constants";
 import { COPY } from "@/copy";
 
 export function GoogleAnalyticsWidgetForm({
@@ -31,58 +31,101 @@ export function GoogleAnalyticsWidgetForm({
         touched,
         setFieldValue,
         dirty,
-      }) => (
-        <Form onSubmit={handleSubmit}>
-          <Text bold>{COPY["googleAnalyticsWidgetForm.timespan"]}</Text>
-          <Spacing bottom={1} />
+      }) => {
+        const { Icon: SelectedChartIcon } = values.chart;
 
-          <ResponsiveMenu
-            title={COPY["googleAnalyticsWidgetForm.timespan"]}
-            trigger={(isOpen) => (
-              <Button
-                className="justify-between font-normal"
-                variant="outline-primary"
-                endIcon={<ToggleMenuIcon isOpen={isOpen} />}
-              >
-                {values.timespan.copy}
-              </Button>
-            )}
-          >
-            {(close) =>
-              TIMESPANS.map((timespan) => (
-                <MenuOption
-                  key={timespan.id}
-                  onClick={() => setFieldValue("timespan", timespan)}
-                  close={close}
+        return (
+          <Form onSubmit={handleSubmit}>
+            <Text bold>{COPY["googleAnalyticsWidgetForm.chart"]}</Text>
+            <Spacing bottom={1} />
+
+            <ResponsiveMenu
+              title={COPY["googleAnalyticsWidgetForm.chart"]}
+              trigger={(isOpen) => (
+                <Button
+                  className="justify-between font-normal text-left"
+                  variant="outline-primary"
+                  startIcon={<SelectedChartIcon />}
+                  endIcon={<ToggleMenuIcon isOpen={isOpen} />}
                 >
-                  {timespan.copy}
-                </MenuOption>
-              ))
-            }
-          </ResponsiveMenu>
-          <Spacing bottom={2} />
+                  <Text className="flex-1">{values.chart.copy}</Text>
+                </Button>
+              )}
+            >
+              {(close) =>
+                CHARTS.map((chart) => {
+                  const { Icon: CurrChartIcon } = chart;
 
-          <TextInput
-            id="title"
-            label={COPY["googleAnalyticsWidgetForm.title"]}
-            value={values.title}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.title && errors.title}
-          />
-          <Spacing bottom={4} />
+                  return (
+                    <MenuOption
+                      key={chart.name}
+                      startIcon={<CurrChartIcon />}
+                      onClick={() => setFieldValue("chart", chart)}
+                      close={close}
+                    >
+                      {chart.copy}
+                    </MenuOption>
+                  );
+                })
+              }
+            </ResponsiveMenu>
+            <Spacing bottom={2} />
 
-          <Button
-            className="sm:self-end"
-            type="submit"
-            isLoading={isLoading}
-            disabled={createWidget ? isLoading : isLoading || !dirty}
-            spacing
-          >
-            {COPY[`googleAnalyticsWidgetForm.${createWidget ? "add" : "save"}`]}
-          </Button>
-        </Form>
-      )}
+            <Text bold>{COPY["googleAnalyticsWidgetForm.timespan"]}</Text>
+            <Spacing bottom={1} />
+
+            <ResponsiveMenu
+              title={COPY["googleAnalyticsWidgetForm.timespan"]}
+              trigger={(isOpen) => (
+                <Button
+                  className="justify-between font-normal"
+                  variant="outline-primary"
+                  endIcon={<ToggleMenuIcon isOpen={isOpen} />}
+                >
+                  {values.timespan.copy}
+                </Button>
+              )}
+            >
+              {(close) =>
+                TIMESPANS.map((timespan) => (
+                  <MenuOption
+                    key={timespan.id}
+                    onClick={() => setFieldValue("timespan", timespan)}
+                    close={close}
+                  >
+                    {timespan.copy}
+                  </MenuOption>
+                ))
+              }
+            </ResponsiveMenu>
+            <Spacing bottom={2} />
+
+            <TextInput
+              id="title"
+              label={COPY["googleAnalyticsWidgetForm.title"]}
+              value={values.title}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.title && errors.title}
+            />
+            <Spacing bottom={4} />
+
+            <Button
+              className="sm:self-end"
+              type="submit"
+              isLoading={isLoading}
+              disabled={createWidget ? isLoading : isLoading || !dirty}
+              spacing
+            >
+              {
+                COPY[
+                  `googleAnalyticsWidgetForm.${createWidget ? "add" : "save"}`
+                ]
+              }
+            </Button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }

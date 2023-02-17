@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
-import { TIMESPANS } from "@/constants";
+import { CHARTS, TIMESPANS } from "@/constants";
 import { useGetConnections } from "@/hooks/connections/useGetConnections";
 import { useGetPanelById } from "@/hooks/panels/useGetPanelById";
 
@@ -13,8 +13,10 @@ const useActions = () => {
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
   const queryToGetConnections = useGetConnections();
 
+  const [defaultChart] = CHARTS;
   const [defaultTimespan] = TIMESPANS;
   const initialValues = {
+    chart: defaultChart,
     timespan: defaultTimespan,
     title: "",
   };

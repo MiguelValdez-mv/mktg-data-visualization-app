@@ -88,7 +88,7 @@ export function WidgetMenu({
     <Col
       className={twMerge(
         "fixed top-0 right-0 z-50 w-full max-w-lg h-screen bg-white p-5 drop-shadow-surface ease-in-out duration-300",
-        isOpen ? "translate-x-0 " : "translate-x-full"
+        isOpen ? "translate-x-0" : "translate-x-full"
       )}
     >
       <IconButton className="self-end" onClick={close} primary>
