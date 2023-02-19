@@ -17,20 +17,21 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { useDimensions } from "@/hooks/useDimensions";
 import { isAdminUser } from "@/utils/checkUserRole";
 
-export function PanelNavbar({ panel, openWidgetMenu }) {
-  const { user } = useAuth();
+export function PanelNavbar({ panel = {}, openWidgetMenu }) {
   const { isLargeScreen } = useDimensions();
+  const { user } = useAuth();
 
-  const { _id, name } = panel ?? {};
+  const { _id, name = "" } = panel;
   const panelSettingsPath = `/panels/${_id}/settings`;
+
   const currentUserIsAdmin = isAdminUser(user);
 
-  const handleOptClickAddWidget = () => openWidgetMenu();
+  const handleClickOnAddWidgetOpt = () => openWidgetMenu();
 
   return (
     <Row className="justify-between items-center">
       <Text subtitle bold>
-        {name ?? ""}
+        {name}
       </Text>
 
       {isLargeScreen ? (
@@ -44,7 +45,10 @@ export function PanelNavbar({ panel, openWidgetMenu }) {
           {currentUserIsAdmin && (
             <>
               <Spacing left={2} />
-              <Button onClick={handleOptClickAddWidget} startIcon={<IconAdd />}>
+              <Button
+                onClick={handleClickOnAddWidgetOpt}
+                startIcon={<IconAdd />}
+              >
                 {COPY["panelNavbar.addWidget"]}
               </Button>
             </>
@@ -63,7 +67,7 @@ export function PanelNavbar({ panel, openWidgetMenu }) {
             <>
               {currentUserIsAdmin && (
                 <MenuOption
-                  onClick={handleOptClickAddWidget}
+                  onClick={handleClickOnAddWidgetOpt}
                   startIcon={<IconAdd />}
                   close={close}
                 >

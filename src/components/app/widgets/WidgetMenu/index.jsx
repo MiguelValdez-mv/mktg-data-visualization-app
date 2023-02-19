@@ -20,15 +20,15 @@ import { WidgetForm } from "../WidgetForm";
 export function WidgetMenu({
   isOpen,
   close,
-  selectedConnectionType,
-  setSelectedConnectionType,
-  noConnections,
+  currConnectionType,
+  setCurrConnectionType,
+  noSelectors,
   ...rest
 }) {
   let content = null;
 
-  if (selectedConnectionType) {
-    content = noConnections ? (
+  if (currConnectionType) {
+    content = noSelectors ? (
       <Col className="items-center">
         <IconBxErrorCircle className="text-primary" />
         <Spacing bottom={2} />
@@ -47,16 +47,16 @@ export function WidgetMenu({
     ) : (
       <>
         <Row>
-          <ConnectionIcon type={selectedConnectionType} />
+          <ConnectionIcon type={currConnectionType} />
           <Spacing right={2} />
 
           <Text subtitle bold>
-            {COPY[`widgetMenu.${selectedConnectionType.toLowerCase()}`]}
+            {COPY[`widgetMenu.${currConnectionType.toLowerCase()}`]}
           </Text>
         </Row>
         <Spacing bottom={4} />
 
-        <WidgetForm connectionType={selectedConnectionType} {...rest} />
+        <WidgetForm connectionType={currConnectionType} {...rest} />
       </>
     );
   } else {
@@ -72,11 +72,12 @@ export function WidgetMenu({
             <Button
               className="p-4"
               variant="surface"
-              onClick={() => setSelectedConnectionType(type)}
+              onClick={() => setCurrConnectionType(type)}
               startIcon={<ConnectionIcon type={type} />}
             >
               {COPY[`widgetMenu.${type.toLowerCase()}`]}
             </Button>
+
             <Spacing bottom={2} />
           </Fragment>
         ))}
@@ -104,7 +105,7 @@ export function WidgetMenu({
 WidgetMenu.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
-  selectedConnectionType: PropTypes.string,
-  setSelectedConnectionType: PropTypes.func.isRequired,
-  noConnections: PropTypes.bool.isRequired,
+  currConnectionType: PropTypes.string,
+  setCurrConnectionType: PropTypes.func.isRequired,
+  noSelectors: PropTypes.bool.isRequired,
 };

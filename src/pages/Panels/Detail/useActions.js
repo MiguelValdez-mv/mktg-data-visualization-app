@@ -1,51 +1,41 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
-import { CHARTS, TIMESPANS } from "@/constants";
-import { useGetConnections } from "@/hooks/connections/useGetConnections";
+import { useGetConnectionsMetadata } from "@/hooks/connections/useGetConnectionsMetadata";
 import { useGetPanelById } from "@/hooks/panels/useGetPanelById";
 
 const useActions = () => {
   const { panelId } = useParams();
+
   const [widgetMenuIsOpen, setWidgetMenuIsOpen] = useState(false);
-  const [selectedConnectionType, setSelectedConnectionType] = useState("");
+  const [currConnectionType, setCurrConnectionType] = useState("");
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
-  const queryToGetConnections = useGetConnections();
 
-  const [defaultChart] = CHARTS;
-  const [defaultTimespan] = TIMESPANS;
-  const initialValues = {
-    chart: defaultChart,
-    timespan: defaultTimespan,
-    title: "",
-  };
-  const noConnections = useMemo(
-    () =>
-      !(queryToGetConnections.data ?? []).some(
-        (c) => c.type === selectedConnectionType
-      ),
-    [selectedConnectionType]
+  const queryToGetCnxsMetadata = useGetConnectionsMetadata();
+  const { data: cnxsMetadata = {} } = queryToGetCnxsMetadata;
+
+  const currCnxMetadata = cnxsMetadata[currConnectionType];
+  const noSelectors = useMemo(
+    () => !currCnxMetadata?.selectors?.length,
+    [currConnectionType]
   );
 
-  const openWidgetMenu = () => setWidgetMenuIsOpen(true);
-  const closeWidgetMenu = () => setWidgetMenuIsOpen(false);
+  const toggleWidgetMenu = () => setWidgetMenuIsOpen((prev) => !prev);
 
   useEffect(() => {
-    if (!widgetMenuIsOpen) setSelectedConnectionType("");
+    if (!widgetMenuIsOpen) setCurrConnectionType("");
   }, [widgetMenuIsOpen]);
 
   return {
     widgetMenuIsOpen,
-    selectedConnectionType,
-    setSelectedConnectionType,
+    currConnectionType,
+    setCurrConnectionType,
     isLoading:
-      queryToGetPanelDetail.isLoading || queryToGetConnections.isLoading,
+      queryToGetPanelDetail.isLoading || queryToGetCnxsMetadata.isLoading,
     panel: queryToGetPanelDetail.data,
-    initialValues,
-    noConnections,
-    openWidgetMenu,
-    closeWidgetMenu,
+    noSelectors,
+    toggleWidgetMenu,
   };
 };
 

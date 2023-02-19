@@ -11,14 +11,12 @@ import { COPY } from "@/copy";
 
 function View({
   widgetMenuIsOpen,
-  selectedConnectionType,
-  setSelectedConnectionType,
+  currConnectionType,
+  setCurrConnectionType,
   isLoading,
   panel,
-  initialValues,
-  noConnections,
-  openWidgetMenu,
-  closeWidgetMenu,
+  noSelectors,
+  toggleWidgetMenu,
 }) {
   return (
     <Page>
@@ -26,15 +24,14 @@ function View({
       <Spacing bottom={8} />
 
       <Content isLoading={isLoading}>
-        <PanelNavbar panel={panel} openWidgetMenu={openWidgetMenu} />
+        <PanelNavbar panel={panel} openWidgetMenu={toggleWidgetMenu} />
 
         <WidgetMenu
           isOpen={widgetMenuIsOpen}
-          close={closeWidgetMenu}
-          selectedConnectionType={selectedConnectionType}
-          setSelectedConnectionType={setSelectedConnectionType}
-          initialValues={initialValues}
-          noConnections={noConnections}
+          close={toggleWidgetMenu}
+          currConnectionType={currConnectionType}
+          setCurrConnectionType={setCurrConnectionType}
+          noSelectors={noSelectors}
         />
       </Content>
     </Page>
@@ -43,14 +40,12 @@ function View({
 
 View.propTypes = {
   widgetMenuIsOpen: PropTypes.bool.isRequired,
-  selectedConnectionType: PropTypes.string,
-  setSelectedConnectionType: PropTypes.func.isRequired,
+  currConnectionType: PropTypes.string,
+  setCurrConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
-  noConnections: PropTypes.bool.isRequired,
-  openWidgetMenu: PropTypes.func.isRequired,
-  closeWidgetMenu: PropTypes.func.isRequired,
+  noSelectors: PropTypes.bool.isRequired,
+  toggleWidgetMenu: PropTypes.func.isRequired,
 };
 
 export default View;

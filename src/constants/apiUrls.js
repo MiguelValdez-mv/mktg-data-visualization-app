@@ -15,6 +15,7 @@ export const API_URLS = {
     `${LINKS.API}/businesses/businesses-by-user-id/${id}`,
 
   CONNECTIONS: `${LINKS.API}/connections`,
+  CONNECTIONS_METADATA: `${LINKS.API}/connections/metadata`,
 
   PANELS: `${LINKS.API}/panels`,
   PANEL_BY_ID: (id) => `${LINKS.API}/panels/panel-by-id/${id}`,
