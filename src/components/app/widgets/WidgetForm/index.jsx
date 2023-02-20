@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 
 import { CONNECTION_TYPES } from "@/constants";
@@ -5,7 +6,14 @@ import { CONNECTION_TYPES } from "@/constants";
 import { FacebookAdsWidgetForm } from "./FacebookAdsWidgetForm";
 import { GoogleAnalyticsWidgetForm } from "./GoogleAnalyticsWidgetForm";
 
-export function WidgetForm({ connectionType, ...rest }) {
+export function WidgetForm({
+  connectionType,
+  selectors,
+  metrics,
+  dimensions,
+  initialValues,
+  handleSubmit,
+}) {
   const Form = (() => {
     switch (connectionType) {
       case CONNECTION_TYPES.GOOGLE_ANALYTICS:
@@ -17,9 +25,22 @@ export function WidgetForm({ connectionType, ...rest }) {
     }
   })();
 
-  return <Form {...rest} />;
+  return (
+    <Form
+      selectors={selectors}
+      metrics={metrics}
+      dimensions={dimensions}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+    />
+  );
 }
 
 WidgetForm.propTypes = {
   connectionType: PropTypes.oneOf(Object.values(CONNECTION_TYPES)).isRequired,
+  selectors: PropTypes.array.isRequired,
+  metrics: PropTypes.array.isRequired,
+  dimensions: PropTypes.array.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };

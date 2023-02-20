@@ -9,26 +9,26 @@ export const CHARTS = [
   {
     name: "NUMBER",
     copy: COPY["charts.number"],
-    Icon: IconNumber,
+    icon: <IconNumber />,
   },
   {
     name: "LINE",
     copy: COPY["charts.line"],
-    Icon: IconChartLineVariant,
+    icon: <IconChartLineVariant />,
   },
   {
     name: "VERTICAL_BAR",
     copy: COPY["charts.verticalBar"],
-    Icon: IconStatsChart,
+    icon: <IconStatsChart />,
   },
   {
     name: "HORIZONTAL_BAR",
     copy: COPY["charts.horizontalBar"],
-    Icon: IconBarChartHorizontalFill,
+    icon: <IconBarChartHorizontalFill />,
   },
   {
     name: "DOUGHNUT",
     copy: COPY["charts.doughnut"],
-    Icon: IconChartDonut,
+    icon: <IconChartDonut />,
   },
 ];

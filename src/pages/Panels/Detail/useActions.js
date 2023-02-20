@@ -1,8 +1,9 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useGetConnectionsMetadata } from "@/hooks/connections/useGetConnectionsMetadata";
 import { useGetPanelById } from "@/hooks/panels/useGetPanelById";
+import { getWidgetFormParams } from "@/utils/getWidgetFormParams";
 
 const useActions = () => {
   const { panelId } = useParams();
@@ -12,14 +13,21 @@ const useActions = () => {
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
 
-  const queryToGetCnxsMetadata = useGetConnectionsMetadata();
-  const { data: cnxsMetadata = {} } = queryToGetCnxsMetadata;
+  const queryToGetConnectionsMetadata = useGetConnectionsMetadata({
+    refetchOnWindowFocus: false,
+  });
+  const { data: connectionsMetadata = {} } = queryToGetConnectionsMetadata;
 
-  const currCnxMetadata = cnxsMetadata[currConnectionType];
-  const noSelectors = useMemo(
-    () => !currCnxMetadata?.selectors?.length,
-    [currConnectionType]
-  );
+  const {
+    selectors,
+    metrics,
+    dimensions,
+    initialValues: widgetFormInitialValues,
+    handleSubmit: handleWidgetFormSubmit,
+  } = getWidgetFormParams({
+    currConnectionType,
+    connectionsMetadata,
+  });
 
   const toggleWidgetMenu = () => setWidgetMenuIsOpen((prev) => !prev);
 
@@ -32,9 +40,14 @@ const useActions = () => {
     currConnectionType,
     setCurrConnectionType,
     isLoading:
-      queryToGetPanelDetail.isLoading || queryToGetCnxsMetadata.isLoading,
+      queryToGetPanelDetail.isLoading ||
+      queryToGetConnectionsMetadata.isLoading,
     panel: queryToGetPanelDetail.data,
-    noSelectors,
+    selectors,
+    metrics,
+    dimensions,
+    widgetFormInitialValues,
+    handleWidgetFormSubmit,
     toggleWidgetMenu,
   };
 };

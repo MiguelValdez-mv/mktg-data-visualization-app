@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 
@@ -22,13 +23,37 @@ export function WidgetMenu({
   close,
   currConnectionType,
   setCurrConnectionType,
-  noSelectors,
-  ...rest
+  selectors,
+  metrics,
+  dimensions,
+  widgetFormInitialValues,
+  handleWidgetFormSubmit,
 }) {
   let content = null;
 
   if (currConnectionType) {
-    content = noSelectors ? (
+    content = selectors?.length ? (
+      <>
+        <Row>
+          <ConnectionIcon type={currConnectionType} />
+          <Spacing right={2} />
+
+          <Text subtitle bold>
+            {COPY[`widgetMenu.${currConnectionType.toLowerCase()}`]}
+          </Text>
+        </Row>
+        <Spacing bottom={4} />
+
+        <WidgetForm
+          connectionType={currConnectionType}
+          selectors={selectors}
+          metrics={metrics}
+          dimensions={dimensions}
+          initialValues={widgetFormInitialValues}
+          handleSubmit={handleWidgetFormSubmit}
+        />
+      </>
+    ) : (
       <Col className="items-center">
         <IconBxErrorCircle className="text-primary" />
         <Spacing bottom={2} />
@@ -44,20 +69,6 @@ export function WidgetMenu({
           </Button>
         </Link>
       </Col>
-    ) : (
-      <>
-        <Row>
-          <ConnectionIcon type={currConnectionType} />
-          <Spacing right={2} />
-
-          <Text subtitle bold>
-            {COPY[`widgetMenu.${currConnectionType.toLowerCase()}`]}
-          </Text>
-        </Row>
-        <Spacing bottom={4} />
-
-        <WidgetForm connectionType={currConnectionType} {...rest} />
-      </>
     );
   } else {
     content = (
@@ -88,7 +99,7 @@ export function WidgetMenu({
   return (
     <Col
       className={twMerge(
-        "fixed top-0 right-0 z-50 w-full max-w-lg h-screen bg-white p-5 drop-shadow-surface ease-in-out duration-300",
+        "fixed top-0 right-0 z-50 w-full max-w-xl h-screen bg-white p-5 drop-shadow-surface ease-in-out duration-300 overflow-y-auto",
         isOpen ? "translate-x-0" : "translate-x-full"
       )}
     >
@@ -107,5 +118,11 @@ WidgetMenu.propTypes = {
   close: PropTypes.func.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
-  noSelectors: PropTypes.bool.isRequired,
+
+  // WidgetForm props
+  selectors: PropTypes.array,
+  metrics: PropTypes.array,
+  dimensions: PropTypes.array,
+  widgetFormInitialValues: PropTypes.object,
+  handleWidgetFormSubmit: PropTypes.func,
 };

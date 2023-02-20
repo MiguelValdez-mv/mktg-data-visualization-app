@@ -131,10 +131,18 @@ export const COPY = {
   "widgetMenu.noConnections": "Actualmente no hay conexiones registradas",
   "widgetMenu.addConnection": "Añadir Conexión",
 
+  "googleAnalyticsWidgetForm.property": "Propiedad",
+  "googleAnalyticsWidgetForm.property.modal.title": "Selecciona una propiedad",
   "googleAnalyticsWidgetForm.metric": "Métrica",
+  "googleAnalyticsWidgetForm.metric.modal.title": "Selecciona una métrica",
+  "googleAnalyticsWidgetForm.chartType": "Tipo de gráfico",
+  "googleAnalyticsWidgetForm.chartType.modal.title":
+    "Selecciona un tipo de gráfico",
+  "googleAnalyticsWidgetForm.timespan": "Periodo de tiempo",
+  "googleAnalyticsWidgetForm.timespan.modal.title":
+    "Selecciona un periodo de tiempo",
   "googleAnalyticsWidgetForm.dimension": "Dimensión",
-  "googleAnalyticsWidgetForm.chart": "Gráfico",
-  "googleAnalyticsWidgetForm.timespan": "Tiempo",
+  "googleAnalyticsWidgetForm.dimension.modal.title": "Selecciona una dimensión",
   "googleAnalyticsWidgetForm.title": "Título",
   "googleAnalyticsWidgetForm.add": "Añadir",
   "googleAnalyticsWidgetForm.save": "Guardar",
