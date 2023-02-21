@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, react/forbid-prop-types */
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import { useTable, useGlobalFilter, useRowSelect } from "react-table";
@@ -207,8 +207,8 @@ export function Table({
 }
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired, // eslint-disable-line
-  columns: PropTypes.array.isRequired, // eslint-disable-line
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
   selectRows: PropTypes.bool,
   allowedRowActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,

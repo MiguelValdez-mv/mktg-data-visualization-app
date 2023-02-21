@@ -146,7 +146,8 @@ export function PanelForm({
 
 PanelForm.propTypes = {
   action: PropTypes.oneOf(["create", "update"]),
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   businesses: PROP.BUSINESSES,
   isLoading: PropTypes.bool,

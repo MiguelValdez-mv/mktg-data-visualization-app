@@ -125,7 +125,8 @@ View.propTypes = {
   isDeletingEmployees: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   businessRegistrationDate: PropTypes.string.isRequired,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   businessEmployeeListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleBusinessUpdateFormSubmit: PropTypes.func.isRequired,
   addEmployeeToBusiness: PropTypes.func.isRequired,

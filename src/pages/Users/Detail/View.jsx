@@ -74,7 +74,8 @@ View.propTypes = {
   businesses: PROP.BUSINESSES,
   isUpdatingUser: PropTypes.bool.isRequired,
   userRegistrationDate: PropTypes.string.isRequired,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   showBusinessList: PropTypes.bool.isRequired,
   businessListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleUserUpdateFormSubmit: PropTypes.func.isRequired,

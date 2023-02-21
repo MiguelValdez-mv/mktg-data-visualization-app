@@ -191,7 +191,8 @@ export function BusinessForm({
 
 BusinessForm.propTypes = {
   action: PropTypes.oneOf(["create", "update"]),
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   owners: PROP.USERS,
   isLoading: PropTypes.bool,

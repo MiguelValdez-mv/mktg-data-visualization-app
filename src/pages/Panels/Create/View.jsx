@@ -45,7 +45,8 @@ View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isCreatingPanel: PropTypes.bool.isRequired,
   businesses: PROP.BUSINESSES,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   handlePanelCreationFormSubmit: PropTypes.func.isRequired,
 };
 
