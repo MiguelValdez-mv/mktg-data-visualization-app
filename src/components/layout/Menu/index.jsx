@@ -10,6 +10,7 @@ export function Menu({
   children,
   arrow = false,
   disabled = false,
+  nested = false,
 }) {
   return (
     <Popup
@@ -17,6 +18,7 @@ export function Menu({
       position={position}
       arrow={arrow}
       disabled={disabled}
+      nested={nested}
     >
       {(close) => (
         <Surface className="max-h-60 p-0 overflow-x-auto">
@@ -33,4 +35,5 @@ Menu.propTypes = {
   children: PROP.CHILDREN.isRequired,
   arrow: PropTypes.bool,
   disabled: PropTypes.bool,
+  nested: PropTypes.bool,
 };

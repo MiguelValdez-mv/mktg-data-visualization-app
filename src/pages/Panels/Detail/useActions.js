@@ -18,13 +18,7 @@ const useActions = () => {
   });
   const { data: connectionsMetadata = {} } = queryToGetConnectionsMetadata;
 
-  const {
-    selectors,
-    metrics,
-    dimensions,
-    initialValues: widgetFormInitialValues,
-    handleSubmit: handleWidgetFormSubmit,
-  } = getWidgetFormParams({
+  const widgetFormParams = getWidgetFormParams({
     currConnectionType,
     connectionsMetadata,
   });
@@ -43,11 +37,7 @@ const useActions = () => {
       queryToGetPanelDetail.isLoading ||
       queryToGetConnectionsMetadata.isLoading,
     panel: queryToGetPanelDetail.data,
-    selectors,
-    metrics,
-    dimensions,
-    widgetFormInitialValues,
-    handleWidgetFormSubmit,
+    widgetFormParams,
     toggleWidgetMenu,
   };
 };

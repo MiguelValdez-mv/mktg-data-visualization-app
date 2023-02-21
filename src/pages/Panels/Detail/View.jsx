@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 
 import { PanelNavbar } from "@/components/app/panels/PanelNavbar";
@@ -16,11 +15,7 @@ function View({
   setCurrConnectionType,
   isLoading,
   panel,
-  selectors,
-  metrics,
-  dimensions,
-  widgetFormInitialValues,
-  handleWidgetFormSubmit,
+  widgetFormParams,
   toggleWidgetMenu,
 }) {
   return (
@@ -36,11 +31,7 @@ function View({
           close={toggleWidgetMenu}
           currConnectionType={currConnectionType}
           setCurrConnectionType={setCurrConnectionType}
-          selectors={selectors}
-          metrics={metrics}
-          dimensions={dimensions}
-          widgetFormInitialValues={widgetFormInitialValues}
-          handleWidgetFormSubmit={handleWidgetFormSubmit}
+          widgetFormParams={widgetFormParams}
         />
       </Content>
     </Page>
@@ -53,11 +44,8 @@ View.propTypes = {
   setCurrConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
-  selectors: PropTypes.array,
-  metrics: PropTypes.array,
-  dimensions: PropTypes.array,
-  widgetFormInitialValues: PropTypes.object,
-  handleWidgetFormSubmit: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  widgetFormParams: PropTypes.object.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,
 };
 

@@ -9,17 +9,18 @@ export function ResponsiveMenu({
   breakpoint = BREAKPOINTS.SMALL,
   title,
   trigger,
+  nested,
   position,
   children,
 }) {
   const { isLargeScreen } = useDimensions({ breakpoint });
 
   return isLargeScreen ? (
-    <Menu trigger={trigger} position={position}>
+    <Menu trigger={trigger} nested={nested} position={position}>
       {children}
     </Menu>
   ) : (
-    <Modal title={title} trigger={trigger} fullScreenOnMobile>
+    <Modal title={title} trigger={trigger} nested={nested} fullScreenOnMobile>
       {children}
     </Modal>
   );
@@ -29,6 +30,7 @@ ResponsiveMenu.propTypes = {
   breakpoint: PropTypes.number,
   title: PropTypes.string.isRequired,
   trigger: PROP.CHILDREN.isRequired,
+  nested: PropTypes.bool,
   position: PropTypes.string,
   children: PROP.CHILDREN.isRequired,
 };

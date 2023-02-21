@@ -162,6 +162,20 @@ export const COPY = {
   "charts.horizontalBar": "Barras Horizontales",
   "charts.doughnut": "Donut",
 
+  "filterInput.filter": "Filtro",
+
+  "filterForm.field.modal.title": "Selecciona un campo",
+  "filterForm.operator.modal.title": "Selecciona un operador",
+  "filterForm.operator.equal": "Igual a",
+  "filterForm.operator.not_equal": "No es igual a",
+  "filterForm.operator.starts_with": "Empieza por",
+  "filterForm.operator.ends_with": "Termina por",
+  "filterForm.operator.contain": "Contiene",
+  "filterForm.operator.not_contain": "No contiene",
+  "filterForm.operand": "Expresión",
+  "filterForm.add": "Añadir",
+  "filterForm.save": "Guardar",
+
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",
   "errors.unregisteredUser":

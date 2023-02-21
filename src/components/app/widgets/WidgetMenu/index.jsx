@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 
@@ -23,15 +22,14 @@ export function WidgetMenu({
   close,
   currConnectionType,
   setCurrConnectionType,
-  selectors,
-  metrics,
-  dimensions,
-  widgetFormInitialValues,
-  handleWidgetFormSubmit,
+  widgetFormParams,
 }) {
   let content = null;
 
   if (currConnectionType) {
+    const { selectors, metrics, dimensions, initialValues, handleSubmit } =
+      widgetFormParams;
+
     content = selectors?.length ? (
       <>
         <Row>
@@ -49,8 +47,8 @@ export function WidgetMenu({
           selectors={selectors}
           metrics={metrics}
           dimensions={dimensions}
-          initialValues={widgetFormInitialValues}
-          handleSubmit={handleWidgetFormSubmit}
+          initialValues={initialValues}
+          handleSubmit={handleSubmit}
         />
       </>
     ) : (
@@ -118,11 +116,6 @@ WidgetMenu.propTypes = {
   close: PropTypes.func.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
-
-  // WidgetForm props
-  selectors: PropTypes.array,
-  metrics: PropTypes.array,
-  dimensions: PropTypes.array,
-  widgetFormInitialValues: PropTypes.object,
-  handleWidgetFormSubmit: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  widgetFormParams: PropTypes.object.isRequired,
 };

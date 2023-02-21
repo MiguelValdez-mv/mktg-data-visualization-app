@@ -16,13 +16,14 @@ export function Modal({
   breakpoint = BREAKPOINTS.SMALL,
   title,
   trigger,
+  nested = false,
   fullScreenOnMobile,
   children,
 }) {
   const { isLargeScreen } = useDimensions({ breakpoint });
 
   return (
-    <Popup className="modal" trigger={trigger} modal>
+    <Popup className="modal" trigger={trigger} nested={nested} modal>
       {(close) => (
         <Surface
           className={twMerge(
@@ -59,6 +60,7 @@ Modal.propTypes = {
   breakpoint: PropTypes.number,
   title: PropTypes.string.isRequired,
   trigger: PROP.CHILDREN.isRequired,
+  nested: PropTypes.bool,
   fullScreenOnMobile: PropTypes.bool,
   children: PROP.CHILDREN.isRequired,
 };

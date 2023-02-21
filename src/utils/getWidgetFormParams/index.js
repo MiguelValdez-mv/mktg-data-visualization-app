@@ -25,6 +25,7 @@ export const getWidgetFormParams = ({
     dimension: defaultDimension,
     timespan: defaultTimespan,
     title: "",
+    filters: [],
   };
 
   const handleSubmit = () => {};

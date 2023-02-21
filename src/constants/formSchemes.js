@@ -43,4 +43,9 @@ export const FORM_SCHEMES = {
     description: string(),
     business: object().required(),
   }),
+  WIDGET_FILTER: object().shape({
+    field: object().required(),
+    operator: string().required(),
+    operand: string().required(),
+  }),
 };

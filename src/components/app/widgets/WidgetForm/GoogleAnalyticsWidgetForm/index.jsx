@@ -13,8 +13,10 @@ import { Spacing } from "@/components/layout/Spacing";
 import { CHARTS, TIMESPANS } from "@/constants";
 import { COPY } from "@/copy";
 
+import { FilterInput } from "../../FilterInput";
+
 export function GoogleAnalyticsWidgetForm({
-  action,
+  action = "create",
   selectors,
   metrics,
   dimensions,
@@ -71,7 +73,7 @@ export function GoogleAnalyticsWidgetForm({
             title={COPY["googleAnalyticsWidgetForm.metric.modal.title"]}
             trigger={(isOpen) => (
               <Button
-                className="justify-between font-normal truncate"
+                className="justify-between font-normal"
                 variant="outline-primary"
                 endIcon={<ToggleMenuIcon isOpen={isOpen} />}
               >
@@ -102,12 +104,12 @@ export function GoogleAnalyticsWidgetForm({
             title={COPY["googleAnalyticsWidgetForm.chartType.modal.title"]}
             trigger={(isOpen) => (
               <Button
-                className="justify-between font-normal text-left"
+                className="justify-between font-normal"
                 variant="outline-primary"
                 startIcon={values.chart.icon}
                 endIcon={<ToggleMenuIcon isOpen={isOpen} />}
               >
-                <Text className="flex-1">{values.chart.copy}</Text>
+                <Text className="flex-1 text-left">{values.chart.copy}</Text>
               </Button>
             )}
           >
@@ -133,7 +135,7 @@ export function GoogleAnalyticsWidgetForm({
             title={COPY["googleAnalyticsWidgetForm.dimension.modal.title"]}
             trigger={(isOpen) => (
               <Button
-                className="justify-between font-normal truncate"
+                className="justify-between font-normal"
                 variant="outline-primary"
                 endIcon={<ToggleMenuIcon isOpen={isOpen} />}
               >
@@ -195,6 +197,13 @@ export function GoogleAnalyticsWidgetForm({
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.title && errors.title}
+          />
+          <Spacing bottom={2} />
+
+          <FilterInput
+            fields={dimensions}
+            filters={values.filters}
+            setFilters={(filters) => setFieldValue("filters", filters)}
           />
           <Spacing bottom={4} />
 
