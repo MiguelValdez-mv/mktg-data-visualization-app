@@ -55,7 +55,7 @@ export function FacebookAdsWidgetForm({
             {(close) =>
               selectors.map((selector) => (
                 <MenuOption
-                  key={selector.id}
+                  key={selector._id}
                   onClick={() => setFieldValue("selector", selector)}
                   close={close}
                 >
@@ -116,7 +116,7 @@ export function FacebookAdsWidgetForm({
             {(close) =>
               CHARTS.map((chart) => (
                 <MenuOption
-                  key={chart.name}
+                  key={chart.type}
                   startIcon={chart.icon}
                   onClick={() => setFieldValue("chart", chart)}
                   close={close}

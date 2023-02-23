@@ -10,4 +10,4 @@ export { CONNECTION_TYPES } from "./connectionTypes";
 export { TIMESPANS } from "./timespans";
 export { BREAKPOINTS } from "./breakpoints";
 export { CHARTS } from "./charts";
-export { OPERATORS } from "./widgetFilters";
+export { OPERATORS } from "./operators";

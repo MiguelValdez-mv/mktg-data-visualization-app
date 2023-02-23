@@ -7,27 +7,27 @@ import { COPY } from "@/copy";
 
 export const CHARTS = [
   {
-    name: "NUMBER",
+    type: "NUMBER",
     copy: COPY["charts.number"],
     icon: <IconNumber />,
   },
   {
-    name: "LINE",
+    type: "LINE",
     copy: COPY["charts.line"],
     icon: <IconChartLineVariant />,
   },
   {
-    name: "VERTICAL_BAR",
+    type: "VERTICAL_BAR",
     copy: COPY["charts.verticalBar"],
     icon: <IconStatsChart />,
   },
   {
-    name: "HORIZONTAL_BAR",
+    type: "HORIZONTAL_BAR",
     copy: COPY["charts.horizontalBar"],
     icon: <IconBarChartHorizontalFill />,
   },
   {
-    name: "DOUGHNUT",
+    type: "DOUGHNUT",
     copy: COPY["charts.doughnut"],
     icon: <IconChartDonut />,
   },
