@@ -55,7 +55,7 @@ export function GoogleAnalyticsWidgetForm({
             {(close) =>
               selectors.map((selector) => (
                 <MenuOption
-                  key={selector.name}
+                  key={selector.id}
                   onClick={() => setFieldValue("selector", selector)}
                   close={close}
                 >

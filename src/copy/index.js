@@ -147,6 +147,23 @@ export const COPY = {
   "googleAnalyticsWidgetForm.add": "Añadir",
   "googleAnalyticsWidgetForm.save": "Guardar",
 
+  "facebookAdsWidgetForm.adAccount": "Cuenta publicitaria",
+  "facebookAdsWidgetForm.adAccount.modal.title":
+    "Selecciona una cuenta publicitaria",
+  "facebookAdsWidgetForm.metric": "Métrica",
+  "facebookAdsWidgetForm.metric.modal.title": "Selecciona una métrica",
+  "facebookAdsWidgetForm.chartType": "Tipo de gráfico",
+  "facebookAdsWidgetForm.chartType.modal.title":
+    "Selecciona un tipo de gráfico",
+  "facebookAdsWidgetForm.timespan": "Periodo de tiempo",
+  "facebookAdsWidgetForm.timespan.modal.title":
+    "Selecciona un periodo de tiempo",
+  "facebookAdsWidgetForm.dimension": "Dimensión",
+  "facebookAdsWidgetForm.dimension.modal.title": "Selecciona una dimensión",
+  "facebookAdsWidgetForm.title": "Título",
+  "facebookAdsWidgetForm.add": "Añadir",
+  "facebookAdsWidgetForm.save": "Guardar",
+
   "timespans.past7Days": "Últimos 7 días",
   "timespans.past14Days": "Últimos 14 días",
   "timespans.past28Days": "Últimos 28 días",
