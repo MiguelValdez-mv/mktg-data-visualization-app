@@ -8,6 +8,7 @@ import { GoogleAnalyticsWidgetForm } from "./GoogleAnalyticsWidgetForm";
 
 export function WidgetForm({
   connectionType,
+  action,
   selectors,
   metrics,
   dimensions,
@@ -27,6 +28,7 @@ export function WidgetForm({
 
   return (
     <Form
+      action={action}
       selectors={selectors}
       metrics={metrics}
       dimensions={dimensions}
@@ -38,6 +40,7 @@ export function WidgetForm({
 
 WidgetForm.propTypes = {
   connectionType: PropTypes.oneOf(Object.values(CONNECTION_TYPES)).isRequired,
+  action: PropTypes.oneOf(["create", "update"]),
   selectors: PropTypes.array.isRequired,
   metrics: PropTypes.array.isRequired,
   dimensions: PropTypes.array.isRequired,

@@ -12,6 +12,7 @@ import { ResponsiveMenu } from "@/components/layout/ResponsiveMenu";
 import { Spacing } from "@/components/layout/Spacing";
 import { CHARTS, TIMESPANS } from "@/constants";
 import { COPY } from "@/copy";
+import { isDimensionRequired } from "@/utils/isDimensionRequired";
 
 import { FilterInput } from "../../FilterInput";
 
@@ -128,38 +129,42 @@ export function GoogleAnalyticsWidgetForm({
           </ResponsiveMenu>
           <Spacing bottom={2} />
 
-          <Text bold>{COPY["googleAnalyticsWidgetForm.dimension"]}</Text>
-          <Spacing bottom={1} />
+          {isDimensionRequired(values.chart.type) && (
+            <>
+              <Text bold>{COPY["googleAnalyticsWidgetForm.dimension"]}</Text>
+              <Spacing bottom={1} />
 
-          <ResponsiveMenu
-            title={COPY["googleAnalyticsWidgetForm.dimension.modal.title"]}
-            trigger={(isOpen) => (
-              <Button
-                className="justify-between font-normal"
-                variant="outline-primary"
-                endIcon={<ToggleMenuIcon isOpen={isOpen} />}
+              <ResponsiveMenu
+                title={COPY["googleAnalyticsWidgetForm.dimension.modal.title"]}
+                trigger={(isOpen) => (
+                  <Button
+                    className="justify-between font-normal"
+                    variant="outline-primary"
+                    endIcon={<ToggleMenuIcon isOpen={isOpen} />}
+                  >
+                    <Text className="truncate">
+                      {values.dimension.copy.spanish}
+                    </Text>
+                  </Button>
+                )}
               >
-                <Text className="truncate">
-                  {values.dimension.copy.spanish}
-                </Text>
-              </Button>
-            )}
-          >
-            {(close) =>
-              dimensions.map((dimension) => (
-                <MenuOption
-                  key={dimension.name}
-                  onClick={() => setFieldValue("dimension", dimension)}
-                  close={close}
-                >
-                  <Text className="text-inherit truncate">
-                    {dimension.copy.spanish}
-                  </Text>
-                </MenuOption>
-              ))
-            }
-          </ResponsiveMenu>
-          <Spacing bottom={2} />
+                {(close) =>
+                  dimensions.map((dimension) => (
+                    <MenuOption
+                      key={dimension.name}
+                      onClick={() => setFieldValue("dimension", dimension)}
+                      close={close}
+                    >
+                      <Text className="text-inherit truncate">
+                        {dimension.copy.spanish}
+                      </Text>
+                    </MenuOption>
+                  ))
+                }
+              </ResponsiveMenu>
+              <Spacing bottom={2} />
+            </>
+          )}
 
           <Text bold>{COPY["googleAnalyticsWidgetForm.timespan"]}</Text>
           <Spacing bottom={1} />

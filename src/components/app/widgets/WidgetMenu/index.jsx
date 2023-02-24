@@ -27,8 +27,14 @@ export function WidgetMenu({
   let content = null;
 
   if (currConnectionType) {
-    const { selectors, metrics, dimensions, initialValues, handleSubmit } =
-      widgetFormParams;
+    const {
+      action,
+      selectors,
+      metrics,
+      dimensions,
+      initialValues,
+      handleSubmit,
+    } = widgetFormParams;
 
     content = selectors?.length ? (
       <>
@@ -44,6 +50,7 @@ export function WidgetMenu({
 
         <WidgetForm
           connectionType={currConnectionType}
+          action={action}
           selectors={selectors}
           metrics={metrics}
           dimensions={dimensions}

@@ -4,6 +4,7 @@ import { IconAdd } from "@/assets/svgs/IconAdd";
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
 import { IconSettings } from "@/assets/svgs/IconSettings";
 import { Link } from "@/components/atoms/Link";
+import { Spinner } from "@/components/atoms/Spinner";
 import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
 import { IconButton } from "@/components/atoms/buttons/IconButton";
@@ -17,7 +18,7 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { useDimensions } from "@/hooks/useDimensions";
 import { isAdminUser } from "@/utils/checkUserRole";
 
-export function PanelNavbar({ panel = {}, openWidgetMenu }) {
+export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
   const { isLargeScreen } = useDimensions();
   const { user } = useAuth();
 
@@ -30,9 +31,17 @@ export function PanelNavbar({ panel = {}, openWidgetMenu }) {
 
   return (
     <Row className="justify-between items-center">
-      <Text subtitle bold>
-        {name}
-      </Text>
+      <Row>
+        <Text subtitle bold>
+          {name}
+        </Text>
+
+        {isLoading && (
+          <Spacing left={2}>
+            <Spinner primary />
+          </Spacing>
+        )}
+      </Row>
 
       {isLargeScreen ? (
         <Row>
@@ -91,4 +100,5 @@ export function PanelNavbar({ panel = {}, openWidgetMenu }) {
 PanelNavbar.propTypes = {
   panel: PROP.PANEL,
   openWidgetMenu: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };

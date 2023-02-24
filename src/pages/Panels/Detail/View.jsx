@@ -14,6 +14,7 @@ function View({
   currConnectionType,
   setCurrConnectionType,
   isLoading,
+  isCreatingWidget,
   panel,
   widgetFormParams,
   toggleWidgetMenu,
@@ -24,7 +25,11 @@ function View({
       <Spacing bottom={8} />
 
       <Content isLoading={isLoading}>
-        <PanelNavbar panel={panel} openWidgetMenu={toggleWidgetMenu} />
+        <PanelNavbar
+          panel={panel}
+          openWidgetMenu={toggleWidgetMenu}
+          isLoading={isCreatingWidget}
+        />
 
         <WidgetMenu
           isOpen={widgetMenuIsOpen}
@@ -43,6 +48,7 @@ View.propTypes = {
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isCreatingWidget: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
   // eslint-disable-next-line react/forbid-prop-types
   widgetFormParams: PropTypes.object.isRequired,
