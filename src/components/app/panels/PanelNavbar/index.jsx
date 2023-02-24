@@ -100,5 +100,5 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
 PanelNavbar.propTypes = {
   panel: PROP.PANEL,
   openWidgetMenu: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
 };

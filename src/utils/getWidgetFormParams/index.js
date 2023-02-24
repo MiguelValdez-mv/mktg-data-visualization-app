@@ -2,6 +2,24 @@ import { CHARTS, TIMESPANS } from "@/constants";
 
 import { isDimensionRequired } from "../isDimensionRequired";
 
+const getInitialValues = ({ selectors, metrics, dimensions }) => {
+  const [defaultSelector] = selectors;
+  const [defaultMetric] = metrics;
+  const [defaultChart] = CHARTS;
+  const [defaultDimension] = dimensions;
+  const [defaultTimespan] = TIMESPANS;
+
+  return {
+    selector: defaultSelector,
+    metric: defaultMetric,
+    chart: defaultChart,
+    dimension: defaultDimension,
+    timespan: defaultTimespan,
+    title: "",
+    filters: [],
+  };
+};
+
 export const getWidgetFormParams = ({
   panelId,
   currConnectionType,
@@ -18,44 +36,52 @@ export const getWidgetFormParams = ({
     selectors = [],
   } = connectionsMetadata[currConnectionType];
 
-  const [defaultSelector] = selectors;
-  const [defaultMetric] = metrics;
-  const [defaultChart] = CHARTS;
-  const [defaultDimension] = dimensions;
-  const [defaultTimespan] = TIMESPANS;
+  const initialValues = getInitialValues({ selectors, metrics, dimensions });
 
-  const initialValues = {
-    selector: defaultSelector,
-    metric: defaultMetric,
-    chart: defaultChart,
-    dimension: defaultDimension,
-    timespan: defaultTimespan,
-    title: "",
-    filters: [],
-  };
+  const handleSubmit = ({
+    selector,
+    metric,
+    chart,
+    dimension,
+    timespan,
+    title,
+    filters,
+  }) => {
+    const { name: metricName } = metric;
+    const { type: chartType } = chart;
+    const { name: dimensionName } = dimension;
+    const { amount, unit } = timespan;
 
-  const handleSubmit = (values) => {
     const params = {
       panelId,
-      selector: values.selector,
-      metricName: values.metric.name,
-      chartType: values.chart.type,
-      dimensionName: isDimensionRequired(values.chart.type)
-        ? values.dimension.name
-        : "",
+      selector,
+      metricName,
+      chartType,
+      dimensionName: isDimensionRequired(chartType) ? dimensionName : "",
       timespan: {
-        amount: values.timespan.amount,
-        unit: values.timespan.unit,
+        amount,
+        unit,
       },
-      title: values.title,
-      filters: values.filters.map(({ field, operator, operand }) => ({
-        fieldName: field.name,
-        operator,
-        operand,
-      })),
+      title,
+      filters: filters.map(
+        ({ field: { name: fieldName }, operator, operand }) => ({
+          fieldName,
+          operator,
+          operand,
+        })
+      ),
     };
 
-    createWidget(params);
+    if (action === "create") {
+      const defaultLayout = {
+        x: 0,
+        y: 0,
+        w: 4,
+        h: 4,
+      };
+
+      createWidget({ ...params, layout: defaultLayout });
+    }
   };
 
   return {

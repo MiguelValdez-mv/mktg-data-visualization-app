@@ -20,6 +20,4 @@ export const API_URLS = {
   PANELS: `${LINKS.API}/panels`,
   PANEL_BY_ID: (id) => `${LINKS.API}/panels/panel-by-id/${id}`,
   PANELS_BY_USER_ID: (id) => `${LINKS.API}/panels/panels-by-user-id/${id}`,
-
-  WIDGETS: `${LINKS.API}/widgets`,
 };
