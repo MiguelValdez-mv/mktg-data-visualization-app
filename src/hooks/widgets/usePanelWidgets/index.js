@@ -51,11 +51,13 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
   });
 
   useEffect(() => {
-    setWidgets(
-      widgetsResponse.map((widget) => ({ ...widget, status: "saved" }))
-    );
+    if (widgetsResponse) {
+      setWidgets(
+        widgetsResponse.map((widget) => ({ ...widget, status: "saved" }))
+      );
 
-    setLayout(widgetsResponse.map((widget) => widget.layout));
+      setLayout(widgetsResponse.map((widget) => widget.layout));
+    }
   }, [widgetsResponse]);
 
   useEffect(() => {

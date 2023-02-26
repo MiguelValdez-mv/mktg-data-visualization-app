@@ -9,7 +9,7 @@ const useActions = () => {
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
   const queryToGetConnectionsMetadata = useGetConnectionsMetadata({
-    refetchOnWindowFocus: false,
+    staleTime: Infinity,
   });
 
   const {

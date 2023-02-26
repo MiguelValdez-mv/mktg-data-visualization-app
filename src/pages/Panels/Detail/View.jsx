@@ -2,16 +2,19 @@
 import PropTypes from "prop-types";
 import RGridLayout, { WidthProvider } from "react-grid-layout";
 
+import { IconBxsWidget } from "@/assets/svgs/IconBxsWidget";
 import { PanelNavbar } from "@/components/app/panels/PanelNavbar";
 import { Widget } from "@/components/app/widgets/Widget";
 import { WidgetMenu } from "@/components/app/widgets/WidgetMenu";
+import { Text } from "@/components/atoms/Text";
+import { Col } from "@/components/layout/Col";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
-import { NoDataYet } from "@/components/molecules/NoDataYet";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
+import { twMerge } from "@/utils/twMerge";
 
 const GridLayout = WidthProvider(RGridLayout);
 
@@ -32,7 +35,10 @@ function View({
       <Header title={COPY["panels.detail.title"]} />
       <Spacing bottom={8} />
 
-      <Content isLoading={isLoading}>
+      <Content
+        className={twMerge(!widgets.length && "h-full")}
+        isLoading={isLoading}
+      >
         <PanelNavbar panel={panel} openWidgetMenu={toggleWidgetMenu} />
 
         <WidgetMenu
@@ -57,7 +63,12 @@ function View({
             ))}
           </GridLayout>
         ) : (
-          <NoDataYet />
+          <Col className="flex-1 items-center justify-center">
+            <IconBxsWidget className="text-muted w-24 h-24" />
+            <Spacing bottom={1} />
+
+            <Text bold>{COPY["panels.detail.noWidgets"]}</Text>
+          </Col>
         )}
       </Content>
     </Page>
