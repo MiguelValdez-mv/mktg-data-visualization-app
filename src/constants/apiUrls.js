@@ -16,8 +16,11 @@ export const API_URLS = {
 
   CONNECTIONS: `${LINKS.API}/connections`,
   CONNECTIONS_METADATA: `${LINKS.API}/connections/metadata`,
+  REPORTS: `${LINKS.API}/connections/reports`,
 
   PANELS: `${LINKS.API}/panels`,
   PANEL_BY_ID: (id) => `${LINKS.API}/panels/panel-by-id/${id}`,
   PANELS_BY_USER_ID: (id) => `${LINKS.API}/panels/panels-by-user-id/${id}`,
+
+  WIDGETS_BY_PANEL_ID: (id) => `${LINKS.API}/widgets/widgets-by-panel-id/${id}`,
 };

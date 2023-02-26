@@ -10,11 +10,11 @@ import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
+  isLoading,
+  panel,
   widgetMenuIsOpen,
   currConnectionType,
   setCurrConnectionType,
-  isLoading,
-  panel,
   widgetFormParams,
   toggleWidgetMenu,
 }) {
@@ -39,11 +39,11 @@ function View({
 }
 
 View.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  panel: PROP.PANEL,
   widgetMenuIsOpen: PropTypes.bool.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  panel: PROP.PANEL,
   // eslint-disable-next-line react/forbid-prop-types
   widgetFormParams: PropTypes.object.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,
