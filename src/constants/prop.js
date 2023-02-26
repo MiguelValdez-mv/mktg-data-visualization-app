@@ -51,4 +51,36 @@ export const PROP = {
   get PANELS() {
     return PropTypes.arrayOf(this.PANEL);
   },
+  WIDGET: PropTypes.shape({
+    panelId: PropTypes.string.isRequired,
+    selector: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      connectionId: PropTypes.string.isRequired,
+    }).isRequired,
+    metricName: PropTypes.string.isRequired,
+    chartType: PropTypes.string.isRequired,
+    dimensionName: PropTypes.string,
+    timespan: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      unit: PropTypes.string.isRequired,
+    }).isRequired,
+    title: PropTypes.string,
+    filters: PropTypes.arrayOf(
+      PropTypes.shape({
+        fieldName: PropTypes.string.isRequired,
+        operator: PropTypes.string.isRequired,
+        operand: PropTypes.string.isRequired,
+      })
+    ),
+    layout: PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      w: PropTypes.number.isRequired,
+      h: PropTypes.number.isRequired,
+    }),
+  }),
+  get WIDGETS() {
+    return PropTypes.arrayOf(this.WIDGET);
+  },
 };

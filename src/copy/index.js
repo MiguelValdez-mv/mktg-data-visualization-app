@@ -49,6 +49,7 @@ export const COPY = {
   "panels.detail.title": "Detalle de Panel",
   "panels.detail.widgetCreation.success": "Widget añadido exitosamente",
   "panelNavbar.settings": "Ajustes",
+  "panelNavbar.saveChanges": "Guardar",
   "panelNavbar.addWidget": "Añadir Widget",
   "panels.settings.title": "Ajustes de Panel",
   "panels.settings.panelRegistrationDate": "Fecha de registro",

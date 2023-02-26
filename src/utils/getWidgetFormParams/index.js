@@ -25,6 +25,7 @@ export const getWidgetFormParams = ({
   currConnectionType,
   connectionsMetadata,
   createWidget,
+  toggleWidgetMenu,
 }) => {
   if (!currConnectionType) return {};
 
@@ -47,6 +48,8 @@ export const getWidgetFormParams = ({
     title,
     filters,
   }) => {
+    toggleWidgetMenu();
+
     const { name: metricName } = metric;
     const { type: chartType } = chart;
     const { name: dimensionName } = dimension;

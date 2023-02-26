@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import { IconAdd } from "@/assets/svgs/IconAdd";
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
+import { IconSave } from "@/assets/svgs/IconSave";
 import { IconSettings } from "@/assets/svgs/IconSettings";
 import { Link } from "@/components/atoms/Link";
 import { Spinner } from "@/components/atoms/Spinner";
@@ -27,8 +28,6 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
 
   const currentUserIsAdmin = isAdminUser(user);
 
-  const handleClickOnAddWidgetOpt = () => openWidgetMenu();
-
   return (
     <Row className="justify-between items-center">
       <Row>
@@ -51,13 +50,15 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
             </Button>
           </Link>
 
+          <Spacing left={2} />
+          <Button variant="outline-primary" startIcon={<IconSave />}>
+            {COPY["panelNavbar.saveChanges"]}
+          </Button>
+
           {currentUserIsAdmin && (
             <>
               <Spacing left={2} />
-              <Button
-                onClick={handleClickOnAddWidgetOpt}
-                startIcon={<IconAdd />}
-              >
+              <Button onClick={openWidgetMenu} startIcon={<IconAdd />}>
                 {COPY["panelNavbar.addWidget"]}
               </Button>
             </>
@@ -76,13 +77,17 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
             <>
               {currentUserIsAdmin && (
                 <MenuOption
-                  onClick={handleClickOnAddWidgetOpt}
+                  onClick={openWidgetMenu}
                   startIcon={<IconAdd />}
                   close={close}
                 >
                   {COPY["panelNavbar.addWidget"]}
                 </MenuOption>
               )}
+
+              <MenuOption startIcon={<IconSave />} close={close}>
+                {COPY["panelNavbar.saveChanges"]}
+              </MenuOption>
 
               <Link to={panelSettingsPath}>
                 <MenuOption startIcon={<IconSettings />} close={close}>

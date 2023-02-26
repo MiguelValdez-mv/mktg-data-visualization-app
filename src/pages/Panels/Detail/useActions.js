@@ -13,6 +13,9 @@ const useActions = () => {
   });
 
   const {
+    widgets,
+    layout,
+    setLayout,
     widgetMenuIsOpen,
     currConnectionType,
     setCurrConnectionType,
@@ -30,6 +33,9 @@ const useActions = () => {
       queryToGetConnectionsMetadata.isLoading ||
       isGettingWidgets,
     panel: queryToGetPanelDetail.data,
+    widgets,
+    layout,
+    setLayout,
     widgetMenuIsOpen,
     currConnectionType,
     setCurrConnectionType,
