@@ -9,9 +9,7 @@ const useActions = () => {
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
 
-  const queryToGetConnectionsMetadata = useGetConnectionsMetadata({
-    staleTime: Infinity,
-  });
+  const queryToGetConnectionsMetadata = useGetConnectionsMetadata();
   const { data: connectionsMetadata } = queryToGetConnectionsMetadata;
 
   const {

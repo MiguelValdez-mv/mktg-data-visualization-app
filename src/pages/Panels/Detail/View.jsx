@@ -58,22 +58,24 @@ function View({
         <Spacing bottom={4} />
 
         {widgets.length ? (
-          <GridLayout
-            className="layout"
-            layout={layout}
-            onLayoutChange={onLayoutChange}
-          >
-            {widgets.map((widget, idx) => (
-              <div key={idx}>
-                <Widget
-                  idx={idx}
-                  widget={widget}
-                  onClickEditOpt={onClickEditWidgetOpt}
-                  onClickDeleteOpt={onClickDeleteWidgetOpt}
-                />
-              </div>
-            ))}
-          </GridLayout>
+          <Col className="overflow-y-auto">
+            <GridLayout
+              className="layout min-w-[768px]"
+              layout={layout}
+              onLayoutChange={onLayoutChange}
+            >
+              {widgets.map((widget, idx) => (
+                <div key={idx}>
+                  <Widget
+                    idx={idx}
+                    widget={widget}
+                    onClickEditOpt={onClickEditWidgetOpt}
+                    onClickDeleteOpt={onClickDeleteWidgetOpt}
+                  />
+                </div>
+              ))}
+            </GridLayout>
+          </Col>
         ) : (
           <Col className="flex-1 items-center justify-center">
             <IconBxsWidget className="text-muted w-24 h-24" />

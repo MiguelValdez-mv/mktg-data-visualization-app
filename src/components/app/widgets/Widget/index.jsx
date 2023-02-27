@@ -23,7 +23,7 @@ export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
 
   return (
     <Surface className="w-full h-full">
-      <Row className="justify-between">
+      <Row className="justify-between items-center">
         {title && <Text bold>{title}</Text>}
 
         {isAdminUser(user) && (
@@ -31,7 +31,7 @@ export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
             <Spacing left={2} />
             <Menu
               trigger={
-                <IconButton className="self-end" primary>
+                <IconButton primary>
                   <HorizontalMenuIcon />
                 </IconButton>
               }
