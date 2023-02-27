@@ -48,7 +48,9 @@ export const COPY = {
   "panels.creation.success": "Panel añadido exitosamente",
   "panels.detail.title": "Detalle de Panel",
   "panels.detail.noWidgets": "Aún no hay widgets en este panel",
-  "panels.detail.widgetCreation.success": "Widget añadido exitosamente",
+  "panels.detail.widget.create.success": "Widget añadido exitosamente",
+  "panels.detail.widget.update.success": "Widget actualizado exitosamente",
+  "panels.detail.widget.delete.success": "Eliminación realizada exitosamente",
   "panelNavbar.settings": "Ajustes",
   "panelNavbar.saveChanges": "Guardar",
   "panelNavbar.addWidget": "Añadir Widget",
@@ -195,6 +197,9 @@ export const COPY = {
   "filterForm.operand": "Expresión",
   "filterForm.add": "Añadir",
   "filterForm.save": "Guardar",
+
+  "widget.edit": "Editar",
+  "widget.delete": "Eliminar",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

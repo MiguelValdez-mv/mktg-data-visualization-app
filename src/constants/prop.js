@@ -79,6 +79,12 @@ export const PROP = {
       w: PropTypes.number.isRequired,
       h: PropTypes.number.isRequired,
     }),
+    report: PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      // eslint-disable-next-line react/forbid-prop-types
+      rows: PropTypes.array,
+      error: PropTypes.string,
+    }),
   }),
   get WIDGETS() {
     return PropTypes.arrayOf(this.WIDGET);

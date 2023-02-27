@@ -2,7 +2,37 @@ import { CHARTS, TIMESPANS } from "@/constants";
 
 import { isDimensionRequired } from "../isDimensionRequired";
 
-const getInitialValues = ({ selectors, metrics, dimensions }) => {
+const getInitialValues = ({ selectors, metrics, dimensions, currWidget }) => {
+  if (currWidget) {
+    const {
+      selector,
+      metricName,
+      chartType,
+      dimensionName,
+      timespan,
+      title = "",
+      filters = [],
+    } = currWidget;
+
+    return {
+      selector,
+      metric: metrics.find((m) => m.name === metricName),
+      chart: CHARTS.find((c) => c.type === chartType),
+      dimension: dimensionName
+        ? dimensions.find((d) => d.name === dimensionName)
+        : "",
+      timespan: TIMESPANS.find(
+        (t) => t.amount === timespan.amount && t.unit === timespan.unit
+      ),
+      title,
+      filters: filters.map(({ fieldName, operator, operand }) => ({
+        field: dimensions.find((d) => d.name === fieldName),
+        operator,
+        operand,
+      })),
+    };
+  }
+
   const [defaultSelector] = selectors;
   const [defaultMetric] = metrics;
   const [defaultChart] = CHARTS;
@@ -24,12 +54,12 @@ export const getWidgetFormParams = ({
   panelId,
   currConnectionType,
   connectionsMetadata,
-  createWidget,
-  toggleWidgetMenu,
+  onSubmit,
+  currWidget,
 }) => {
   if (!currConnectionType) return {};
 
-  const action = "create";
+  const action = currWidget ? "update" : "create";
 
   const {
     metrics,
@@ -37,7 +67,12 @@ export const getWidgetFormParams = ({
     selectors = [],
   } = connectionsMetadata[currConnectionType];
 
-  const initialValues = getInitialValues({ selectors, metrics, dimensions });
+  const initialValues = getInitialValues({
+    selectors,
+    metrics,
+    dimensions,
+    currWidget,
+  });
 
   const handleSubmit = ({
     selector,
@@ -48,8 +83,6 @@ export const getWidgetFormParams = ({
     title,
     filters,
   }) => {
-    toggleWidgetMenu();
-
     const { name: metricName } = metric;
     const { type: chartType } = chart;
     const { name: dimensionName } = dimension;
@@ -75,16 +108,7 @@ export const getWidgetFormParams = ({
       ),
     };
 
-    if (action === "create") {
-      const defaultLayout = {
-        x: 0,
-        y: 0,
-        w: 4,
-        h: 4,
-      };
-
-      createWidget({ ...params, layout: defaultLayout });
-    }
+    onSubmit(params, action);
   };
 
   return {

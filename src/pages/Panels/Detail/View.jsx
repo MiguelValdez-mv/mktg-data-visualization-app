@@ -23,12 +23,15 @@ function View({
   panel,
   widgets,
   layout,
-  setLayout,
+  onLayoutChange,
   widgetMenuIsOpen,
   currConnectionType,
   setCurrConnectionType,
   widgetFormParams,
+  isCreatingReport,
   toggleWidgetMenu,
+  onClickEditWidgetOpt,
+  onClickDeleteWidgetOpt,
 }) {
   return (
     <Page>
@@ -39,7 +42,11 @@ function View({
         className={twMerge(!widgets.length && "h-full")}
         isLoading={isLoading}
       >
-        <PanelNavbar panel={panel} openWidgetMenu={toggleWidgetMenu} />
+        <PanelNavbar
+          panel={panel}
+          openWidgetMenu={toggleWidgetMenu}
+          isLoading={isCreatingReport}
+        />
 
         <WidgetMenu
           isOpen={widgetMenuIsOpen}
@@ -54,11 +61,16 @@ function View({
           <GridLayout
             className="layout"
             layout={layout}
-            onLayoutChange={setLayout}
+            onLayoutChange={onLayoutChange}
           >
             {widgets.map((widget, idx) => (
               <div key={idx}>
-                <Widget widget={widget} />
+                <Widget
+                  idx={idx}
+                  widget={widget}
+                  onClickEditOpt={onClickEditWidgetOpt}
+                  onClickDeleteOpt={onClickDeleteWidgetOpt}
+                />
               </div>
             ))}
           </GridLayout>
@@ -78,14 +90,17 @@ function View({
 View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
-  widgets: PROP.WIDGETS,
+  widgets: PROP.WIDGETS.isRequired,
   layout: PropTypes.array.isRequired,
-  setLayout: PropTypes.func.isRequired,
+  onLayoutChange: PropTypes.func.isRequired,
   widgetMenuIsOpen: PropTypes.bool.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
+  isCreatingReport: PropTypes.bool.isRequired,
   widgetFormParams: PropTypes.object.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,
+  onClickEditWidgetOpt: PropTypes.func.isRequired,
+  onClickDeleteWidgetOpt: PropTypes.func.isRequired,
 };
 
 export default View;

@@ -50,13 +50,13 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
             </Button>
           </Link>
 
-          <Spacing left={2} />
-          <Button variant="outline-primary" startIcon={<IconSave />}>
-            {COPY["panelNavbar.saveChanges"]}
-          </Button>
-
           {currentUserIsAdmin && (
             <>
+              <Spacing left={2} />
+              <Button variant="outline-primary" startIcon={<IconSave />}>
+                {COPY["panelNavbar.saveChanges"]}
+              </Button>
+
               <Spacing left={2} />
               <Button onClick={openWidgetMenu} startIcon={<IconAdd />}>
                 {COPY["panelNavbar.addWidget"]}
@@ -76,18 +76,20 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
           {(close) => (
             <>
               {currentUserIsAdmin && (
-                <MenuOption
-                  onClick={openWidgetMenu}
-                  startIcon={<IconAdd />}
-                  close={close}
-                >
-                  {COPY["panelNavbar.addWidget"]}
-                </MenuOption>
-              )}
+                <>
+                  <MenuOption
+                    onClick={openWidgetMenu}
+                    startIcon={<IconAdd />}
+                    close={close}
+                  >
+                    {COPY["panelNavbar.addWidget"]}
+                  </MenuOption>
 
-              <MenuOption startIcon={<IconSave />} close={close}>
-                {COPY["panelNavbar.saveChanges"]}
-              </MenuOption>
+                  <MenuOption startIcon={<IconSave />} close={close}>
+                    {COPY["panelNavbar.saveChanges"]}
+                  </MenuOption>
+                </>
+              )}
 
               <Link to={panelSettingsPath}>
                 <MenuOption startIcon={<IconSettings />} close={close}>

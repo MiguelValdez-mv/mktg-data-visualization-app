@@ -11,7 +11,7 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
   const alert = useAlert();
 
   const [widgets, setWidgets] = useState([]);
-  const [layout, setLayout] = useState([]);
+  const [currWidget, setCurrWidget] = useState(undefined);
   const [widgetMenuIsOpen, setWidgetMenuIsOpen] = useState(false);
   const [currConnectionType, setCurrConnectionType] = useState("");
 
@@ -23,31 +23,78 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
 
   const reportCreationMutation = useCreateReport();
 
-  const toggleWidgetMenu = () => setWidgetMenuIsOpen((prev) => !prev);
-  const createWidget = (widget) => {
-    const { selector, metricName, dimensionName, timespan, filters } = widget;
+  const toggleWidgetMenu = () => setWidgetMenuIsOpen((prevState) => !prevState);
+  const onSubmit = (values, action) => {
+    toggleWidgetMenu();
+
+    const { selector, metricName, dimensionName, timespan, filters } = values;
 
     reportCreationMutation.mutate(
       { selector, metricName, dimensionName, timespan, filters },
       {
         onSuccess: ({ data: report }) => {
-          setWidgets((prev) => [
-            ...prev,
-            { ...widget, report, status: "pendingToSave" },
-          ]);
+          if (action === "create") {
+            const newWidget = {
+              ...values,
+              report,
+              layout: {
+                x: 0,
+                y: 0,
+                w: 4,
+                h: 4,
+              },
+              status: "pendingToSave",
+            };
 
-          alert.success(COPY["panels.detail.widgetCreation.success"]);
+            setWidgets((prevState) => [...prevState, newWidget]);
+          } else if (action === "update") {
+            const { layout, status } = currWidget;
+
+            const editedWidget = {
+              ...values,
+              report,
+              layout,
+              status:
+                status === "pendingToSave"
+                  ? "pendingToSave"
+                  : "pendingToUpdate",
+            };
+
+            setWidgets((prevState) =>
+              prevState.map((w, currIdx) =>
+                currIdx === currWidget.idx ? editedWidget : w
+              )
+            );
+          }
+
+          alert.success(COPY[`panels.detail.widget.${action}.success`]);
         },
       }
     );
   };
+  const onClickEditWidgetOpt = (widget, idx) => {
+    setCurrConnectionType(widget.report.type);
+    setCurrWidget({ idx, ...widget });
+    toggleWidgetMenu();
+  };
+  const onClickDeleteWidgetOpt = (widget, idx) => {
+    setWidgets((prevState) =>
+      prevState.filter((w, currIdx) => currIdx !== idx)
+    );
+
+    alert.success(COPY["panels.detail.widget.delete.success"]);
+  };
+  const onLayoutChange = (newLayout) =>
+    setWidgets((prevState) =>
+      prevState.map((w, currIdx) => ({ ...w, layout: newLayout[currIdx] }))
+    );
 
   const widgetFormParams = getWidgetFormParams({
     panelId,
     currConnectionType,
     connectionsMetadata,
-    createWidget,
-    toggleWidgetMenu,
+    onSubmit,
+    currWidget,
   });
 
   useEffect(() => {
@@ -55,24 +102,28 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
       setWidgets(
         widgetsResponse.map((widget) => ({ ...widget, status: "saved" }))
       );
-
-      setLayout(widgetsResponse.map((widget) => widget.layout));
     }
   }, [widgetsResponse]);
 
   useEffect(() => {
-    if (!widgetMenuIsOpen) setCurrConnectionType("");
+    if (!widgetMenuIsOpen) {
+      setCurrConnectionType("");
+      setCurrWidget(undefined);
+    }
   }, [widgetMenuIsOpen]);
 
   return {
     widgets,
-    layout,
-    setLayout,
+    layout: widgets.map(({ layout }) => layout),
+    onLayoutChange,
     widgetMenuIsOpen,
     currConnectionType,
     setCurrConnectionType,
     isGettingWidgets: queryToGetWidgets.isLoading,
+    isCreatingReport: reportCreationMutation.isLoading,
     widgetFormParams,
     toggleWidgetMenu,
+    onClickEditWidgetOpt,
+    onClickDeleteWidgetOpt,
   };
 };

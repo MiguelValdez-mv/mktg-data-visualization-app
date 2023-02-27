@@ -8,23 +8,28 @@ const useActions = () => {
   const { panelId } = useParams();
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
+
   const queryToGetConnectionsMetadata = useGetConnectionsMetadata({
     staleTime: Infinity,
   });
+  const { data: connectionsMetadata } = queryToGetConnectionsMetadata;
 
   const {
     widgets,
     layout,
-    setLayout,
+    onLayoutChange,
     widgetMenuIsOpen,
     currConnectionType,
     setCurrConnectionType,
     isGettingWidgets,
+    isCreatingReport,
     widgetFormParams,
     toggleWidgetMenu,
+    onClickEditWidgetOpt,
+    onClickDeleteWidgetOpt,
   } = usePanelWidgets({
     panelId,
-    connectionsMetadata: queryToGetConnectionsMetadata.data,
+    connectionsMetadata,
   });
 
   return {
@@ -35,12 +40,15 @@ const useActions = () => {
     panel: queryToGetPanelDetail.data,
     widgets,
     layout,
-    setLayout,
+    onLayoutChange,
     widgetMenuIsOpen,
     currConnectionType,
     setCurrConnectionType,
+    isCreatingReport,
     widgetFormParams,
     toggleWidgetMenu,
+    onClickEditWidgetOpt,
+    onClickDeleteWidgetOpt,
   };
 };
 
