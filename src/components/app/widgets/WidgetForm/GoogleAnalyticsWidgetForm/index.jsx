@@ -36,6 +36,7 @@ export function GoogleAnalyticsWidgetForm({
         errors,
         touched,
         setFieldValue,
+        dirty,
       }) => (
         <Form onSubmit={handleSubmit}>
           <Text bold>{COPY["googleAnalyticsWidgetForm.property"]}</Text>
@@ -212,7 +213,12 @@ export function GoogleAnalyticsWidgetForm({
           />
           <Spacing bottom={4} />
 
-          <Button className="sm:self-end" type="submit" spacing>
+          <Button
+            className="sm:self-end"
+            type="submit"
+            disabled={createWidget ? false : !dirty}
+            spacing
+          >
             {COPY[`googleAnalyticsWidgetForm.${createWidget ? "add" : "save"}`]}
           </Button>
         </Form>

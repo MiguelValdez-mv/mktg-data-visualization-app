@@ -200,6 +200,8 @@ export const COPY = {
 
   "widget.edit": "Editar",
   "widget.delete": "Eliminar",
+  "widget.anErrorHasOcurred": "¡Ha ocurrido un error!",
+  "widget.noData": "Sin datos",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

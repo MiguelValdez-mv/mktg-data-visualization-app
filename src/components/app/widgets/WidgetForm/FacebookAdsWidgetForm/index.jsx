@@ -36,6 +36,7 @@ export function FacebookAdsWidgetForm({
         errors,
         touched,
         setFieldValue,
+        dirty,
       }) => (
         <Form onSubmit={handleSubmit}>
           <Text bold>{COPY["facebookAdsWidgetForm.adAccount"]}</Text>
@@ -212,7 +213,12 @@ export function FacebookAdsWidgetForm({
           />
           <Spacing bottom={4} />
 
-          <Button className="sm:self-end" type="submit" spacing>
+          <Button
+            className="sm:self-end"
+            type="submit"
+            disabled={createWidget ? false : !dirty}
+            spacing
+          >
             {COPY[`facebookAdsWidgetForm.${createWidget ? "add" : "save"}`]}
           </Button>
         </Form>

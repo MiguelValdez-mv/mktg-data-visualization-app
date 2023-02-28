@@ -6,12 +6,11 @@ import { IconBxsWidget } from "@/assets/svgs/IconBxsWidget";
 import { PanelNavbar } from "@/components/app/panels/PanelNavbar";
 import { Widget } from "@/components/app/widgets/Widget";
 import { WidgetMenu } from "@/components/app/widgets/WidgetMenu";
-import { Text } from "@/components/atoms/Text";
-import { Col } from "@/components/layout/Col";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
+import { NoDataYet } from "@/components/molecules/NoDataYet";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 import { twMerge } from "@/utils/twMerge";
@@ -58,31 +57,28 @@ function View({
         <Spacing bottom={4} />
 
         {widgets.length ? (
-          <Col className="overflow-y-auto">
-            <GridLayout
-              className="layout min-w-[768px]"
-              layout={layout}
-              onLayoutChange={onLayoutChange}
-            >
-              {widgets.map((widget, idx) => (
-                <div key={idx}>
-                  <Widget
-                    idx={idx}
-                    widget={widget}
-                    onClickEditOpt={onClickEditWidgetOpt}
-                    onClickDeleteOpt={onClickDeleteWidgetOpt}
-                  />
-                </div>
-              ))}
-            </GridLayout>
-          </Col>
+          <GridLayout
+            className="layout"
+            layout={layout}
+            onLayoutChange={onLayoutChange}
+          >
+            {widgets.map((widget, idx) => (
+              <div key={idx}>
+                <Widget
+                  idx={idx}
+                  widget={widget}
+                  onClickEditOpt={onClickEditWidgetOpt}
+                  onClickDeleteOpt={onClickDeleteWidgetOpt}
+                />
+              </div>
+            ))}
+          </GridLayout>
         ) : (
-          <Col className="flex-1 items-center justify-center">
-            <IconBxsWidget className="text-muted w-24 h-24" />
-            <Spacing bottom={1} />
-
-            <Text bold>{COPY["panels.detail.noWidgets"]}</Text>
-          </Col>
+          <NoDataYet
+            className="h-full"
+            icon={<IconBxsWidget className="text-muted w-24 h-24" />}
+            msg={COPY["panels.detail.noWidgets"]}
+          />
         )}
       </Content>
     </Page>

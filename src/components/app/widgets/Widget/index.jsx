@@ -13,10 +13,46 @@ import { COPY } from "@/copy";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { isAdminUser } from "@/utils/checkUserRole";
 
+import { Chart } from "../Chart";
+
 export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
   const { user } = useAuth();
 
-  const { title } = widget;
+  const {
+    title,
+    metricName,
+    chartType,
+    dimensionName,
+    report: { rows, error },
+  } = widget;
+
+  let content = null;
+  if (error) {
+    content = (
+      <Text bold truncate>
+        {COPY["widget.anErrorHasOcurred"]}
+      </Text>
+    );
+  } else if (!rows.length) {
+    content = (
+      <Text bold truncate>
+        {COPY["widget.noData"]}
+      </Text>
+    );
+  } else {
+    const data = rows.reduce(
+      (acum, curr) => ({
+        metricValues: [...acum.metricValues, curr[metricName]],
+        dimensionValues: [
+          ...acum.dimensionValues,
+          ...(dimensionName ? [curr[dimensionName]] : []),
+        ],
+      }),
+      { metricValues: [], dimensionValues: [] }
+    );
+
+    content = <Chart type={chartType} {...data} />;
+  }
 
   const handleClickEditOpt = () => onClickEditOpt(widget, idx);
   const handleClickDeleteOpt = () => onClickDeleteOpt(widget, idx);
@@ -24,7 +60,11 @@ export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
   return (
     <Surface className="w-full h-full">
       <Row className="justify-between items-center">
-        {title && <Text bold>{title}</Text>}
+        {title && (
+          <Text bold truncate>
+            {title}
+          </Text>
+        )}
 
         {isAdminUser(user) && (
           <>
@@ -52,6 +92,9 @@ export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
           </>
         )}
       </Row>
+      <Spacing bottom={2} />
+
+      {content}
     </Surface>
   );
 }

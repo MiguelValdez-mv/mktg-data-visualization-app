@@ -9,7 +9,9 @@ const useActions = () => {
 
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
 
-  const queryToGetConnectionsMetadata = useGetConnectionsMetadata();
+  const queryToGetConnectionsMetadata = useGetConnectionsMetadata({
+    refetchOnWindowFocus: false,
+  });
   const { data: connectionsMetadata } = queryToGetConnectionsMetadata;
 
   const {
