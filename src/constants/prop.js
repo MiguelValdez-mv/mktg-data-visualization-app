@@ -82,11 +82,26 @@ export const PROP = {
     report: PropTypes.shape({
       type: PropTypes.string.isRequired,
       // eslint-disable-next-line react/forbid-prop-types
-      rows: PropTypes.array,
+      rows: PropTypes.arrayOf(PropTypes.object),
       error: PropTypes.string,
     }),
   }),
   get WIDGETS() {
     return PropTypes.arrayOf(this.WIDGET);
   },
+  CHART_DATA: PropTypes.arrayOf(
+    PropTypes.shape({
+      metric: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      dimension: PropTypes.string,
+    })
+  ),
+  LAYOUT: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.number.isRequired,
+      y: PropTypes.number.isRequired,
+      w: PropTypes.number.isRequired,
+      h: PropTypes.number.isRequired,
+    })
+  ),
 };

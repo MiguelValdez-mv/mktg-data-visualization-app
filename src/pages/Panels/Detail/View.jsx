@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key, react/forbid-prop-types */
 import PropTypes from "prop-types";
 import RGridLayout, { WidthProvider } from "react-grid-layout";
 
@@ -63,14 +62,13 @@ function View({
             onLayoutChange={onLayoutChange}
           >
             {widgets.map((widget, idx) => (
-              <div key={idx}>
-                <Widget
-                  idx={idx}
-                  widget={widget}
-                  onClickEditOpt={onClickEditWidgetOpt}
-                  onClickDeleteOpt={onClickDeleteWidgetOpt}
-                />
-              </div>
+              <Widget
+                // eslint-disable-next-line react/no-array-index-key
+                key={idx}
+                widget={widget}
+                onClickEditOpt={() => onClickEditWidgetOpt(idx)}
+                onClickDeleteOpt={() => onClickDeleteWidgetOpt(idx)}
+              />
             ))}
           </GridLayout>
         ) : (
@@ -89,12 +87,13 @@ View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   panel: PROP.PANEL,
   widgets: PROP.WIDGETS.isRequired,
-  layout: PropTypes.array.isRequired,
+  layout: PROP.LAYOUT.isRequired,
   onLayoutChange: PropTypes.func.isRequired,
   widgetMenuIsOpen: PropTypes.bool.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
   isCreatingReport: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   widgetFormParams: PropTypes.object.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,
   onClickEditWidgetOpt: PropTypes.func.isRequired,

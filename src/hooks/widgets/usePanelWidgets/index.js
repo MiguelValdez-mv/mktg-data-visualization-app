@@ -72,14 +72,20 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
       }
     );
   };
-  const onClickEditWidgetOpt = (widget, idx) => {
-    setCurrConnectionType(widget.report.type);
+  const onClickEditWidgetOpt = (idx) => {
+    const widget = widgets.find((_, currIdx) => currIdx === idx);
     setCurrWidget({ idx, ...widget });
+
+    const {
+      report: { type: typeConnection },
+    } = widget;
+    setCurrConnectionType(typeConnection);
+
     toggleWidgetMenu();
   };
-  const onClickDeleteWidgetOpt = (widget, idx) => {
+  const onClickDeleteWidgetOpt = (idx) => {
     setWidgets((prevState) =>
-      prevState.filter((w, currIdx) => currIdx !== idx)
+      prevState.filter((_, currIdx) => currIdx !== idx)
     );
 
     alert.success(COPY["panels.detail.widget.delete.success"]);

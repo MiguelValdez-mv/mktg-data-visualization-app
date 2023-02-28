@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 
 import { HorizontalMenuIcon } from "@/assets/svgs/HorizontalMenuIcon";
 import { Text } from "@/components/atoms/Text";
@@ -13,89 +14,100 @@ import { COPY } from "@/copy";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { isAdminUser } from "@/utils/checkUserRole";
 
-import { Chart } from "../Chart";
+import { WidgetChart } from "../WidgetChart";
 
-export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
-  const { user } = useAuth();
+export const Widget = forwardRef(
+  (
+    { idx, widget, onClickEditOpt, onClickDeleteOpt, children, ...rest },
+    ref
+  ) => {
+    const { user } = useAuth();
 
-  const {
-    title,
-    metricName,
-    chartType,
-    dimensionName,
-    report: { rows, error },
-  } = widget;
+    const {
+      title,
+      metricName,
+      chartType,
+      dimensionName,
+      report: { rows, error },
+    } = widget;
 
-  let content = null;
-  if (error) {
-    content = (
-      <Text bold truncate>
-        {COPY["widget.anErrorHasOcurred"]}
-      </Text>
+    let content = null;
+    if (rows.length) {
+      const data = rows.map((row) => ({
+        metric: row[metricName],
+        ...(dimensionName && { dimension: row[dimensionName] }),
+      }));
+
+      const width = parseInt(rest.style.width, 10);
+      const height = parseInt(rest.style.height, 10);
+
+      content = (
+        <WidgetChart
+          type={chartType}
+          data={data}
+          width={width}
+          height={height}
+        />
+      );
+    } else {
+      content = (
+        <Text bold truncate>
+          {COPY[`widget.${error ? "anErrorHasOcurred" : "noData"}`]}
+        </Text>
+      );
+    }
+
+    return (
+      <div ref={ref} {...rest}>
+        <Surface>
+          <Row className="justify-between items-center">
+            {title && (
+              <Text bold truncate>
+                {title}
+              </Text>
+            )}
+
+            {isAdminUser(user) && (
+              <>
+                <Spacing left={2} />
+                <Menu
+                  trigger={
+                    <IconButton primary>
+                      <HorizontalMenuIcon />
+                    </IconButton>
+                  }
+                  position="bottom right"
+                >
+                  {(close) => (
+                    <>
+                      <MenuOption onClick={onClickEditOpt} close={close}>
+                        {COPY["widget.edit"]}
+                      </MenuOption>
+
+                      <MenuOption onClick={onClickDeleteOpt} close={close}>
+                        {COPY["widget.delete"]}
+                      </MenuOption>
+                    </>
+                  )}
+                </Menu>
+              </>
+            )}
+          </Row>
+          <Spacing bottom={2} />
+
+          {content}
+        </Surface>
+
+        {children}
+      </div>
     );
-  } else if (!rows.length) {
-    content = (
-      <Text bold truncate>
-        {COPY["widget.noData"]}
-      </Text>
-    );
-  } else {
-    const data = rows.map((row) => ({
-      metricValue: row[metricName],
-      ...(dimensionName && { dimensionValue: row[dimensionName] }),
-    }));
-
-    content = <Chart type={chartType} data={data} />;
   }
-
-  const handleClickEditOpt = () => onClickEditOpt(widget, idx);
-  const handleClickDeleteOpt = () => onClickDeleteOpt(widget, idx);
-
-  return (
-    <Surface className="w-full h-full">
-      <Row className="justify-between items-center">
-        {title && (
-          <Text bold truncate>
-            {title}
-          </Text>
-        )}
-
-        {isAdminUser(user) && (
-          <>
-            <Spacing left={2} />
-            <Menu
-              trigger={
-                <IconButton primary>
-                  <HorizontalMenuIcon />
-                </IconButton>
-              }
-              position="bottom right"
-            >
-              {(close) => (
-                <>
-                  <MenuOption onClick={handleClickEditOpt} close={close}>
-                    {COPY["widget.edit"]}
-                  </MenuOption>
-
-                  <MenuOption onClick={handleClickDeleteOpt} close={close}>
-                    {COPY["widget.delete"]}
-                  </MenuOption>
-                </>
-              )}
-            </Menu>
-          </>
-        )}
-      </Row>
-      <Spacing bottom={2} />
-
-      {content}
-    </Surface>
-  );
-}
+);
 
 Widget.propTypes = {
   idx: PropTypes.number.isRequired,
   widget: PROP.WIDGET.isRequired,
   onClickEditOpt: PropTypes.func.isRequired,
   onClickDeleteOpt: PropTypes.func.isRequired,
+  children: PROP.CHILDREN.isRequired,
 };
