@@ -17,10 +17,7 @@ import { isAdminUser } from "@/utils/checkUserRole";
 import { WidgetChart } from "../WidgetChart";
 
 export const Widget = forwardRef(
-  (
-    { idx, widget, onClickEditOpt, onClickDeleteOpt, children, ...rest },
-    ref
-  ) => {
+  ({ widget, onClickEditOpt, onClickDeleteOpt, children, ...rest }, ref) => {
     const { user } = useAuth();
 
     const {
@@ -38,8 +35,8 @@ export const Widget = forwardRef(
         ...(dimensionName && { dimension: row[dimensionName] }),
       }));
 
-      const width = parseInt(rest.style.width, 10);
-      const height = parseInt(rest.style.height, 10);
+      const width = parseInt(rest.style.width, 10) - 60;
+      const height = parseInt(rest.style.height, 10) - 60;
 
       content = (
         <WidgetChart
@@ -59,7 +56,7 @@ export const Widget = forwardRef(
 
     return (
       <div ref={ref} {...rest}>
-        <Surface>
+        <Surface className="w-full h-full">
           <Row className="justify-between items-center">
             {title && (
               <Text bold truncate>
@@ -105,7 +102,6 @@ export const Widget = forwardRef(
 );
 
 Widget.propTypes = {
-  idx: PropTypes.number.isRequired,
   widget: PROP.WIDGET.isRequired,
   onClickEditOpt: PropTypes.func.isRequired,
   onClickDeleteOpt: PropTypes.func.isRequired,

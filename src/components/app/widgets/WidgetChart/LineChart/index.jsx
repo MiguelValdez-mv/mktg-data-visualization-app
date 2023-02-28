@@ -12,7 +12,12 @@ import { PROP } from "@/constants";
 
 export function LineChart({ data, width, height }) {
   return (
-    <RLineChart data={data} width={width} height={height}>
+    <RLineChart
+      data={data}
+      width={width}
+      height={height}
+      className="self-center"
+    >
       <CartesianGrid strokeDasharray="3 3" />
 
       <XAxis dataKey="dimension" />
@@ -20,7 +25,7 @@ export function LineChart({ data, width, height }) {
 
       <Tooltip />
 
-      <Line type="monotone" dataKey="metric" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="metric" stroke="#344767" />
     </RLineChart>
   );
 }
