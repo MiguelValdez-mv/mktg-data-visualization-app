@@ -1,12 +1,17 @@
-export function OpenTechDarkLogo(props) {
+import PropTypes from "prop-types";
+
+import { twMerge } from "@/utils/twMerge";
+
+export function OpenTechDarkLogo({ className, ...rest }) {
   return (
     <svg
+      className={twMerge("min-w-fit w-6 h-6", className)}
       viewBox="47.871 19.13 88.822 15.313"
       style={{
         enableBackground: "new 0 0 158.76 49.48",
       }}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      {...rest}
     >
       <path
         className="st0"
@@ -18,3 +23,7 @@ export function OpenTechDarkLogo(props) {
     </svg>
   );
 }
+
+OpenTechDarkLogo.propTypes = {
+  className: PropTypes.string,
+};

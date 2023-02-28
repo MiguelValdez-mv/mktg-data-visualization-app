@@ -1,11 +1,16 @@
-export function IconAdd(props) {
+import PropTypes from "prop-types";
+
+import { twMerge } from "@/utils/twMerge";
+
+export function IconAdd({ className, ...rest }) {
   return (
     <svg
+      className={twMerge("min-w-fit w-6 h-6", className)}
       viewBox="0 0 512 512"
       fill="currentColor"
       height="1em"
       width="1em"
-      {...props}
+      {...rest}
     >
       <path
         fill="none"
@@ -18,3 +23,7 @@ export function IconAdd(props) {
     </svg>
   );
 }
+
+IconAdd.propTypes = {
+  className: PropTypes.string,
+};

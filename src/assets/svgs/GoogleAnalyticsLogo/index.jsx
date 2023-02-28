@@ -1,13 +1,18 @@
-export function GoogleAnalyticsLogo(props) {
+import PropTypes from "prop-types";
+
+import { twMerge } from "@/utils/twMerge";
+
+export function GoogleAnalyticsLogo({ className, ...rest }) {
   return (
     <svg
+      className={twMerge("min-w-fit w-6 h-6", className)}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 500 500"
       style={{
         enableBackground: "new 0 0 500 500",
       }}
       xmlSpace="preserve"
-      {...props}
+      {...rest}
     >
       <path
         d="M475.8 437.2c0 34-27.6 62.7-61.6 62.7h-7.4c-31.9-4.3-55.3-32.9-54.2-64.8V65.3C351.5 33.4 374.9 5.8 406.8.5c34-4.3 64.8 20.2 69.1 54.2v382.5z"
@@ -24,3 +29,7 @@ export function GoogleAnalyticsLogo(props) {
     </svg>
   );
 }
+
+GoogleAnalyticsLogo.propTypes = {
+  className: PropTypes.string,
+};

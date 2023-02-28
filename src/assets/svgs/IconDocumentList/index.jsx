@@ -1,11 +1,16 @@
-export function IconDocumentList(props) {
+import PropTypes from "prop-types";
+
+import { twMerge } from "@/utils/twMerge";
+
+export function IconDocumentList({ className, ...rest }) {
   return (
     <svg
+      className={twMerge("min-w-fit w-6 h-6", className)}
       viewBox="0 0 21 21"
       fill="currentColor"
       height="1em"
       width="1em"
-      {...props}
+      {...rest}
     >
       <g
         fill="none"
@@ -19,3 +24,7 @@ export function IconDocumentList(props) {
     </svg>
   );
 }
+
+IconDocumentList.propTypes = {
+  className: PropTypes.string,
+};

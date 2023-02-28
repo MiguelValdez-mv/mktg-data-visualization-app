@@ -7,10 +7,6 @@ html {
   @apply font-poppins bg-tertiary overflow-hidden;
 }
 
-svg {
-  @apply min-w-fit w-6 h-6;
-}
-
 .modal-overlay {
   @apply bg-primary bg-opacity-50;
 }

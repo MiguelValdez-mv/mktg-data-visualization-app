@@ -1,6 +1,17 @@
-export function IconSpinner(props) {
+import PropTypes from "prop-types";
+
+import { twMerge } from "@/utils/twMerge";
+
+export function IconSpinner({ className, ...rest }) {
   return (
-    <svg fill="none" viewBox="0 0 24 24" height="1em" width="1em" {...props}>
+    <svg
+      className={twMerge("min-w-fit w-6 h-6", className)}
+      fill="none"
+      viewBox="0 0 24 24"
+      height="1em"
+      width="1em"
+      {...rest}
+    >
       <path
         fill="currentColor"
         fillRule="evenodd"
@@ -15,3 +26,7 @@ export function IconSpinner(props) {
     </svg>
   );
 }
+
+IconSpinner.propTypes = {
+  className: PropTypes.string,
+};
