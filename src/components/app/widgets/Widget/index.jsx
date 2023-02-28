@@ -40,18 +40,12 @@ export function Widget({ idx, widget, onClickEditOpt, onClickDeleteOpt }) {
       </Text>
     );
   } else {
-    const data = rows.reduce(
-      (acum, curr) => ({
-        metricValues: [...acum.metricValues, curr[metricName]],
-        dimensionValues: [
-          ...acum.dimensionValues,
-          ...(dimensionName ? [curr[dimensionName]] : []),
-        ],
-      }),
-      { metricValues: [], dimensionValues: [] }
-    );
+    const data = rows.map((row) => ({
+      metricValue: row[metricName],
+      ...(dimensionName && { dimensionValue: row[dimensionName] }),
+    }));
 
-    content = <Chart type={chartType} {...data} />;
+    content = <Chart type={chartType} data={data} />;
   }
 
   const handleClickEditOpt = () => onClickEditOpt(widget, idx);

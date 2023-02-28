@@ -1,4 +1,3 @@
-import { IconBarChartHorizontalFill } from "@/assets/svgs/IconBarChartHorizontalFill";
 import { IconChartDonut } from "@/assets/svgs/IconChartDonut";
 import { IconChartLineVariant } from "@/assets/svgs/IconChartLineVariant";
 import { IconNumber } from "@/assets/svgs/IconNumber";
@@ -17,14 +16,9 @@ export const CHARTS = [
     icon: <IconChartLineVariant />,
   },
   {
-    type: "VERTICAL_BAR",
-    copy: COPY["charts.verticalBar"],
+    type: "BAR",
+    copy: COPY["charts.bar"],
     icon: <IconStatsChart />,
-  },
-  {
-    type: "HORIZONTAL_BAR",
-    copy: COPY["charts.horizontalBar"],
-    icon: <IconBarChartHorizontalFill />,
   },
   {
     type: "DOUGHNUT",

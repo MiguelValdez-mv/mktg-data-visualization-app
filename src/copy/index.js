@@ -180,8 +180,7 @@ export const COPY = {
 
   "charts.number": "Número",
   "charts.line": "Línea",
-  "charts.verticalBar": "Barras Verticales",
-  "charts.horizontalBar": "Barras Horizontales",
+  "charts.bar": "Barras",
   "charts.doughnut": "Donut",
 
   "filterInput.filter": "Filtro",
