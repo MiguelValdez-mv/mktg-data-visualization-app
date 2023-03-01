@@ -91,8 +91,7 @@ export const PROP = {
   },
   CHART_DATA: PropTypes.arrayOf(
     PropTypes.shape({
-      metric: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
+      metric: PropTypes.number.isRequired,
       dimension: PropTypes.string,
     })
   ),

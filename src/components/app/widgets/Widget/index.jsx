@@ -13,6 +13,7 @@ import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { isAdminUser } from "@/utils/checkUserRole";
+import { shortenArrayByMaxLength } from "@/utils/shortenArrayByMaxLength";
 
 import { WidgetChart } from "../WidgetChart";
 
@@ -30,7 +31,7 @@ export const Widget = forwardRef(
 
     let content = null;
     if (rows.length) {
-      const data = rows.map((row) => ({
+      const data = shortenArrayByMaxLength(rows).map((row) => ({
         metric: row[metricName],
         ...(dimensionName && { dimension: row[dimensionName] }),
       }));

@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import {
   LineChart as RLineChart,
-  Line,
+  CartesianGrid,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
+  Line,
 } from "recharts";
 
 import { PROP } from "@/constants";
