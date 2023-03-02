@@ -1,4 +1,4 @@
-import { IconChartDonut } from "@/assets/svgs/IconChartDonut";
+import { IconAreaChart } from "@/assets/svgs/IconAreaChart";
 import { IconChartLineVariant } from "@/assets/svgs/IconChartLineVariant";
 import { IconNumber } from "@/assets/svgs/IconNumber";
 import { IconStatsChart } from "@/assets/svgs/IconStatsChart";
@@ -21,8 +21,8 @@ export const CHARTS = [
     icon: <IconStatsChart />,
   },
   {
-    type: "DOUGHNUT",
-    copy: COPY["charts.doughnut"],
-    icon: <IconChartDonut />,
+    type: "AREA",
+    copy: COPY["charts.area"],
+    icon: <IconAreaChart />,
   },
 ];

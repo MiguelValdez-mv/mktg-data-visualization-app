@@ -181,7 +181,7 @@ export const COPY = {
   "charts.number": "Número",
   "charts.line": "Línea",
   "charts.bar": "Barras",
-  "charts.doughnut": "Donut",
+  "charts.area": "Área",
 
   "filterInput.filter": "Filtro",
 
@@ -201,6 +201,8 @@ export const COPY = {
   "widget.delete": "Eliminar",
   "widget.anErrorHasOcurred": "¡Ha ocurrido un error!",
   "widget.noData": "Sin datos",
+
+  "widgetChart.veryLimitedSpace": "Espacio muy reducido",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

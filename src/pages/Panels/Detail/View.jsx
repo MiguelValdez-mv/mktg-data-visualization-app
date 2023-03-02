@@ -5,6 +5,7 @@ import { IconBxsWidget } from "@/assets/svgs/IconBxsWidget";
 import { PanelNavbar } from "@/components/app/panels/PanelNavbar";
 import { Widget } from "@/components/app/widgets/Widget";
 import { WidgetMenu } from "@/components/app/widgets/WidgetMenu";
+import { Col } from "@/components/layout/Col";
 import { Content } from "@/components/layout/Content";
 import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
@@ -56,21 +57,23 @@ function View({
         <Spacing bottom={4} />
 
         {widgets.length ? (
-          <GridLayout
-            className="layout"
-            layout={layout}
-            onLayoutChange={onLayoutChange}
-          >
-            {widgets.map((widget, idx) => (
-              <Widget
-                // eslint-disable-next-line react/no-array-index-key
-                key={idx}
-                widget={widget}
-                onClickEditOpt={() => onClickEditWidgetOpt(idx)}
-                onClickDeleteOpt={() => onClickDeleteWidgetOpt(idx)}
-              />
-            ))}
-          </GridLayout>
+          <Col className="overflow-y-auto">
+            <GridLayout
+              className="layout overflow-hidden min-w-[768px]"
+              layout={layout}
+              onLayoutChange={onLayoutChange}
+            >
+              {widgets.map((widget, idx) => (
+                <Widget
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={idx}
+                  widget={widget}
+                  onClickEditOpt={() => onClickEditWidgetOpt(idx)}
+                  onClickDeleteOpt={() => onClickDeleteWidgetOpt(idx)}
+                />
+              ))}
+            </GridLayout>
+          </Col>
         ) : (
           <NoDataYet
             className="h-full"

@@ -18,7 +18,10 @@ import { shortenArrayByMaxLength } from "@/utils/shortenArrayByMaxLength";
 import { WidgetChart } from "../WidgetChart";
 
 export const Widget = forwardRef(
-  ({ widget, onClickEditOpt, onClickDeleteOpt, children, ...rest }, ref) => {
+  (
+    { widget, onClickEditOpt, onClickDeleteOpt, children = null, ...rest },
+    ref
+  ) => {
     const { user } = useAuth();
 
     const {
@@ -106,5 +109,5 @@ Widget.propTypes = {
   widget: PROP.WIDGET.isRequired,
   onClickEditOpt: PropTypes.func.isRequired,
   onClickDeleteOpt: PropTypes.func.isRequired,
-  children: PROP.CHILDREN.isRequired,
+  children: PROP.CHILDREN,
 };

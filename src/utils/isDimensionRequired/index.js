@@ -1,2 +1,2 @@
 export const isDimensionRequired = (chartType) =>
-  ["LINE", "BAR", "DOUGHNUT"].includes(chartType);
+  ["LINE", "BAR", "AREA"].includes(chartType);
