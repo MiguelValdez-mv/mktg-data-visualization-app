@@ -14,12 +14,22 @@ import { COPY } from "@/copy";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { isAdminUser } from "@/utils/checkUserRole";
 import { shortenArrayByMaxLength } from "@/utils/shortenArrayByMaxLength";
+import { twMerge } from "@/utils/twMerge";
 
 import { WidgetChart } from "../WidgetChart";
 
-export const Widget = forwardRef(
+export const WidgetListItem = forwardRef(
   (
-    { widget, onClickEditOpt, onClickDeleteOpt, children = null, ...rest },
+    {
+      className,
+      style,
+      widget,
+      onClickEditOpt,
+      onClickDeleteOpt,
+      children = null,
+      isLargeScreen,
+      ...rest
+    },
     ref
   ) => {
     const { user } = useAuth();
@@ -39,15 +49,15 @@ export const Widget = forwardRef(
         ...(dimensionName && { dimension: row[dimensionName] }),
       }));
 
-      const width = parseInt(rest.style.width, 10) - 60;
-      const height = parseInt(rest.style.height, 10) - 60;
-
       content = (
         <WidgetChart
           type={chartType}
           data={data}
-          width={width}
-          height={height}
+          {...(style && {
+            width: parseInt(style.width, 10) - 60,
+            height: parseInt(style.height, 10) - 60,
+          })}
+          isLargeScreen={isLargeScreen}
         />
       );
     } else {
@@ -59,7 +69,12 @@ export const Widget = forwardRef(
     }
 
     return (
-      <div ref={ref} {...rest}>
+      <div
+        ref={ref}
+        className={twMerge(!isLargeScreen && "my-2", className)}
+        style={style}
+        {...rest}
+      >
         <Surface className="w-full h-full">
           <Row className="justify-between items-center">
             {title && (
@@ -105,9 +120,13 @@ export const Widget = forwardRef(
   }
 );
 
-Widget.propTypes = {
+WidgetListItem.propTypes = {
+  className: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
   widget: PROP.WIDGET.isRequired,
   onClickEditOpt: PropTypes.func.isRequired,
   onClickDeleteOpt: PropTypes.func.isRequired,
   children: PROP.CHILDREN,
+  isLargeScreen: PropTypes.bool.isRequired,
 };

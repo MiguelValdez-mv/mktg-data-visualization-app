@@ -47,7 +47,7 @@ export const COPY = {
   "panels.creation.title": "Añadir Panel",
   "panels.creation.success": "Panel añadido exitosamente",
   "panels.detail.title": "Detalle de Panel",
-  "panels.detail.noWidgets": "Aún no hay widgets en este panel",
+  "widgetList.noWidgets": "Aún no hay widgets en este panel",
   "panels.detail.widget.create.success": "Widget añadido exitosamente",
   "panels.detail.widget.update.success": "Widget actualizado exitosamente",
   "panels.detail.widget.delete.success": "Eliminación realizada exitosamente",

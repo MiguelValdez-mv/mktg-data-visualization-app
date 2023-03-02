@@ -27,6 +27,6 @@ export function BarChart({ data, width, height }) {
 
 BarChart.propTypes = {
   data: PROP.CHART_DATA.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };

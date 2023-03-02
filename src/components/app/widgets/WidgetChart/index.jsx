@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { ResponsiveContainer } from "recharts";
 
 import { IconResize } from "@/assets/svgs/IconResize";
 import { Text } from "@/components/atoms/Text";
@@ -12,7 +13,20 @@ import { BarChart } from "./BarChart";
 import { LineChart } from "./LineChart";
 import { NumberChart } from "./NumberChart";
 
-export function WidgetChart({ type, ...rest }) {
+export function WidgetChart({ type, isLargeScreen, ...rest }) {
+  if (rest?.width < 100) {
+    return (
+      <Col className="flex-1 justify-center items-center">
+        <IconResize className="text-primary" />
+        <Spacing bottom={1} />
+
+        <Text center tiny>
+          {COPY["widgetChart.veryLimitedSpace"]}
+        </Text>
+      </Col>
+    );
+  }
+
   const Chart = (() => {
     switch (type) {
       case "NUMBER":
@@ -28,23 +42,21 @@ export function WidgetChart({ type, ...rest }) {
     }
   })();
 
-  return rest.width < 100 ? (
-    <Col className="flex-1 justify-center items-center">
-      <IconResize className="text-primary" />
-      <Spacing bottom={1} />
+  if (isLargeScreen) {
+    return <Chart {...rest} />;
+  }
 
-      <Text center tiny>
-        {COPY["widgetChart.veryLimitedSpace"]}
-      </Text>
-    </Col>
-  ) : (
-    <Chart {...rest} />
+  return (
+    <ResponsiveContainer width="100%" aspect={4.0 / 3.0}>
+      <Chart {...rest} />
+    </ResponsiveContainer>
   );
 }
 
 WidgetChart.propTypes = {
   type: PropTypes.string.isRequired,
+  isLargeScreen: PropTypes.bool.isRequired,
   data: PROP.CHART_DATA.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
