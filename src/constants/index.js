@@ -11,3 +11,4 @@ export { TIMESPANS } from "./timespans";
 export { BREAKPOINTS } from "./breakpoints";
 export { CHARTS } from "./charts";
 export { OPERATORS } from "./operators";
+export { WIDGET_STATUS } from "./widgetStatus";

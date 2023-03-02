@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 
+import { WIDGET_STATUS } from "@/constants";
 import { COPY } from "@/copy";
 import { useCreateReport } from "@/hooks/connections/useCreateReport";
 import { useAlert } from "@/hooks/useAlert";
 import { getWidgetFormParams } from "@/utils/getWidgetFormParams";
+import { isReportCreationRequired } from "@/utils/isReportCreationRequired";
 
 import { useGetWidgetsByPanelId } from "../useGetWidgetsByPanelId";
 
@@ -24,56 +26,61 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
   const reportCreationMutation = useCreateReport();
 
   const toggleWidgetMenu = () => setWidgetMenuIsOpen((prevState) => !prevState);
-  const onSubmit = (values, action) => {
+  const onSubmit = async (values, action) => {
     toggleWidgetMenu();
 
-    const { selector, metricName, dimensionName, timespan, filters } = values;
+    let report = currWidget?.report;
+    if (isReportCreationRequired(values, currWidget)) {
+      const { selector, metricName, dimensionName, timespan, filters } = values;
 
-    reportCreationMutation.mutate(
-      { selector, metricName, dimensionName, timespan, filters },
-      {
-        onSuccess: ({ data: report }) => {
-          if (action === "create") {
-            const newWidget = {
-              ...values,
-              report,
-              layout: {
-                x: 0,
-                y: 0,
-                w: 4,
-                h: 4,
-              },
-              status: "pendingToSave",
-            };
-
-            setWidgets((prevState) => [...prevState, newWidget]);
-          } else if (action === "update") {
-            const { layout, status } = currWidget;
-
-            const editedWidget = {
-              ...values,
-              report,
-              layout,
-              status:
-                status === "pendingToSave"
-                  ? "pendingToSave"
-                  : "pendingToUpdate",
-            };
-
-            setWidgets((prevState) =>
-              prevState.map((w, currIdx) =>
-                currIdx === currWidget.idx ? editedWidget : w
-              )
-            );
-          }
-
-          alert.success(COPY[`panels.detail.widget.${action}.success`]);
-        },
+      try {
+        report = (
+          await reportCreationMutation.mutateAsync({
+            selector,
+            metricName,
+            dimensionName,
+            timespan,
+            filters,
+          })
+        ).data;
+      } catch (e) {
+        alert.error(e.message);
       }
-    );
+    }
+
+    if (action === "create") {
+      const newWidget = {
+        ...values,
+        report,
+        layout: { x: 0, y: 0, w: 4, h: 4 },
+        status: WIDGET_STATUS.PENDING_TO_SAVE,
+      };
+
+      setWidgets((prevState) => [...prevState, newWidget]);
+    } else if (action === "update") {
+      const { layout, status } = currWidget;
+
+      const editedWidget = {
+        ...values,
+        report,
+        layout,
+        status:
+          status === WIDGET_STATUS.PENDING_TO_SAVE
+            ? WIDGET_STATUS.PENDING_TO_SAVE
+            : WIDGET_STATUS.PENDING_TO_UPDATE,
+      };
+
+      setWidgets((prevState) =>
+        prevState.map((w, currIdx) =>
+          currIdx === currWidget.idx ? editedWidget : w
+        )
+      );
+    }
+
+    alert.success(COPY[`panels.detail.widget.${action}.success`]);
   };
   const onClickEditWidgetOpt = (idx) => {
-    const widget = widgets.find((_, currIdx) => currIdx === idx);
+    const widget = widgets[idx];
     setCurrWidget({ idx, ...widget });
 
     const {
@@ -84,16 +91,24 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
     toggleWidgetMenu();
   };
   const onClickDeleteWidgetOpt = (idx) => {
+    // TODO: Add deleted widget to a state to delete it later in the db
+
     setWidgets((prevState) =>
       prevState.filter((_, currIdx) => currIdx !== idx)
     );
 
     alert.success(COPY["panels.detail.widget.delete.success"]);
   };
-  const onLayoutChange = (newLayout) =>
+  const onLayoutChange = (newLayout) => {
+    // TODO: Update the status of the widget if its layout changes
+
     setWidgets((prevState) =>
-      prevState.map((w, currIdx) => ({ ...w, layout: newLayout[currIdx] }))
+      prevState.map((widget, currIdx) => ({
+        ...widget,
+        layout: newLayout[currIdx],
+      }))
     );
+  };
 
   const widgetFormParams = getWidgetFormParams({
     panelId,
@@ -106,7 +121,10 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
   useEffect(() => {
     if (widgetsResponse) {
       setWidgets(
-        widgetsResponse.map((widget) => ({ ...widget, status: "saved" }))
+        widgetsResponse.map((widget) => ({
+          ...widget,
+          status: WIDGET_STATUS.SAVED,
+        }))
       );
     }
   }, [widgetsResponse]);
