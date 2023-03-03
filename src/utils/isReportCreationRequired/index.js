@@ -10,9 +10,9 @@ export const isReportCreationRequired = (newWidget, oldWidget) => {
     newWidget.filters.length !== oldWidget.filters.length ||
       newWidget.filters.some(
         (filter, currIdx) =>
-          filter.fieldName !== oldWidget.filter[currIdx].fieldName ||
-          filter.operator !== oldWidget.filter[currIdx].operator ||
-          filter.operand !== oldWidget.filter[currIdx].operand
+          filter.fieldName !== oldWidget.filters[currIdx].fieldName ||
+          filter.operator !== oldWidget.filters[currIdx].operator ||
+          filter.operand !== oldWidget.filters[currIdx].operand
       ),
   ].includes(true);
 };

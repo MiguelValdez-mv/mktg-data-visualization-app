@@ -23,4 +23,5 @@ export const API_URLS = {
   PANELS_BY_USER_ID: (id) => `${LINKS.API}/panels/panels-by-user-id/${id}`,
 
   WIDGETS_BY_PANEL_ID: (id) => `${LINKS.API}/widgets/widgets-by-panel-id/${id}`,
+  MANAGE_WIDGETS: `${LINKS.API}/widgets/manage-widgets`,
 };

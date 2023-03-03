@@ -51,6 +51,7 @@ export const COPY = {
   "panels.detail.widget.create.success": "Widget añadido exitosamente",
   "panels.detail.widget.update.success": "Widget actualizado exitosamente",
   "panels.detail.widget.delete.success": "Eliminación realizada exitosamente",
+  "panels.detail.save.success": "Panel guardado exitosamente",
   "panelNavbar.settings": "Ajustes",
   "panelNavbar.saveChanges": "Guardar",
   "panelNavbar.addWidget": "Añadir Widget",

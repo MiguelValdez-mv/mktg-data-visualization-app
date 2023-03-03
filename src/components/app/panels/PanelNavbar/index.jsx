@@ -19,7 +19,12 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { useDimensions } from "@/hooks/useDimensions";
 import { isAdminUser } from "@/utils/checkUserRole";
 
-export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
+export function PanelNavbar({
+  panel = {},
+  saveChanges,
+  openWidgetMenu,
+  isLoading,
+}) {
   const { isLargeScreen } = useDimensions();
   const { user } = useAuth();
 
@@ -53,7 +58,11 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
           {currentUserIsAdmin && (
             <>
               <Spacing left={2} />
-              <Button variant="outline-primary" startIcon={<IconSave />}>
+              <Button
+                variant="outline-primary"
+                onClick={saveChanges}
+                startIcon={<IconSave />}
+              >
                 {COPY["panelNavbar.saveChanges"]}
               </Button>
 
@@ -106,6 +115,7 @@ export function PanelNavbar({ panel = {}, openWidgetMenu, isLoading }) {
 
 PanelNavbar.propTypes = {
   panel: PROP.PANEL,
+  saveChanges: PropTypes.func.isRequired,
   openWidgetMenu: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
 };

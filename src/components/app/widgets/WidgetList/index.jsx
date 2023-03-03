@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import PropTypes from "prop-types";
 import RGridLayout, { WidthProvider } from "react-grid-layout";
 
@@ -34,7 +33,8 @@ export function WidgetList({
 
   const listRender = widgets.map((widget, idx) => (
     <WidgetListItem
-      key={idx}
+      // eslint-disable-next-line react/no-array-index-key
+      key={`widget_${idx.toString()}`}
       widget={widget}
       onClickEditOpt={() => onClickEditOpt(idx)}
       onClickDeleteOpt={() => onClickDeleteOpt(idx)}

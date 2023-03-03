@@ -11,19 +11,21 @@ import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({
-  isLoading,
-  panel,
   widgets,
-  layout,
-  onLayoutChange,
   widgetMenuIsOpen,
   currConnectionType,
   setCurrConnectionType,
-  widgetFormParams,
+  panel,
   isCreatingReport,
+  isSavingChanges,
   toggleWidgetMenu,
   onClickEditWidgetOpt,
   onClickDeleteWidgetOpt,
+  onLayoutChange,
+  saveChanges,
+  widgetFormParams,
+  isLoading,
+  layout,
 }) {
   return (
     <Page>
@@ -33,8 +35,9 @@ function View({
       <Content isLoading={isLoading}>
         <PanelNavbar
           panel={panel}
+          saveChanges={saveChanges}
           openWidgetMenu={toggleWidgetMenu}
-          isLoading={isCreatingReport}
+          isLoading={isCreatingReport || isSavingChanges}
         />
 
         <WidgetMenu
@@ -59,20 +62,22 @@ function View({
 }
 
 View.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  panel: PROP.PANEL,
   widgets: PROP.WIDGETS.isRequired,
-  layout: PROP.LAYOUT.isRequired,
-  onLayoutChange: PropTypes.func.isRequired,
   widgetMenuIsOpen: PropTypes.bool.isRequired,
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
+  panel: PROP.PANEL,
   isCreatingReport: PropTypes.bool.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  widgetFormParams: PropTypes.object.isRequired,
+  isSavingChanges: PropTypes.bool.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,
   onClickEditWidgetOpt: PropTypes.func.isRequired,
   onClickDeleteWidgetOpt: PropTypes.func.isRequired,
+  onLayoutChange: PropTypes.func.isRequired,
+  saveChanges: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  widgetFormParams: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  layout: PROP.LAYOUT.isRequired,
 };
 
 export default View;
