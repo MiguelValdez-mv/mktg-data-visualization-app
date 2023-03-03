@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 
 import { WIDGET_STATUS } from "@/constants";
 import { COPY } from "@/copy";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { useCreateReport } from "@/hooks/connections/useCreateReport";
 import { useAlert } from "@/hooks/useAlert";
+import { isAdminUser } from "@/utils/checkUserRole";
 import { getWidgetFormParams } from "@/utils/getWidgetFormParams";
 import { isReportCreationRequired } from "@/utils/isReportCreationRequired";
 
@@ -11,6 +13,7 @@ import { useGetWidgetsByPanelId } from "../useGetWidgetsByPanelId";
 
 export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
   const alert = useAlert();
+  const { user } = useAuth();
 
   const [widgets, setWidgets] = useState([]);
   const [currWidget, setCurrWidget] = useState(undefined);
@@ -117,6 +120,7 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
     onSubmit,
     currWidget,
   });
+  const currentUserIsAdmin = isAdminUser(user);
 
   useEffect(() => {
     if (widgetsResponse) {
@@ -138,7 +142,10 @@ export const usePanelWidgets = ({ panelId, connectionsMetadata }) => {
 
   return {
     widgets,
-    layout: widgets.map(({ layout }) => layout),
+    layout: widgets.map(({ layout }) => ({
+      ...layout,
+      static: !currentUserIsAdmin,
+    })),
     onLayoutChange,
     widgetMenuIsOpen,
     currConnectionType,
