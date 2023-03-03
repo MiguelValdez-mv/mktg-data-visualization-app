@@ -29,7 +29,9 @@ const useActions = () => {
 
   const queryToGetWidgets = useGetWidgetsByPanelId({
     id: panelId,
-    staleTime: Infinity,
+    enabled:
+      !widgets.length ||
+      widgets.every(({ status }) => status === WIDGET_STATUS.SAVED),
   });
   const { data: widgetsResponse } = queryToGetWidgets;
 
