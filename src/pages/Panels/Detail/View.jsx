@@ -26,6 +26,7 @@ function View({
   widgetFormParams,
   isLoading,
   layout,
+  isPanelChanged,
 }) {
   return (
     <Page>
@@ -38,6 +39,7 @@ function View({
           saveChanges={saveChanges}
           openWidgetMenu={toggleWidgetMenu}
           isLoading={isCreatingReport || isSavingChanges}
+          isPanelChanged={isPanelChanged}
         />
 
         <WidgetMenu
@@ -78,6 +80,7 @@ View.propTypes = {
   widgetFormParams: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   layout: PROP.LAYOUT.isRequired,
+  isPanelChanged: PropTypes.bool.isRequired,
 };
 
 export default View;

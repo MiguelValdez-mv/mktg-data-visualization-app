@@ -25,13 +25,15 @@ const useActions = () => {
   const [widgetMenuIsOpen, setWidgetMenuIsOpen] = useState(false);
   const [currConnectionType, setCurrConnectionType] = useState("");
 
+  const isPanelChanged = widgets.some(
+    ({ status }) => status !== WIDGET_STATUS.SAVED
+  );
+
   const queryToGetPanelDetail = useGetPanelById({ id: panelId });
 
   const queryToGetWidgets = useGetWidgetsByPanelId({
     id: panelId,
-    enabled:
-      !widgets.length ||
-      widgets.every(({ status }) => status === WIDGET_STATUS.SAVED),
+    enabled: !widgets.length || !isPanelChanged,
   });
   const { data: widgetsResponse } = queryToGetWidgets;
 
@@ -117,7 +119,10 @@ const useActions = () => {
     const params = { save, update, remove: removedWidgets };
 
     widgetManagementMutation.mutate(params, {
-      onSuccess: () => alert.success(COPY["panels.detail.save.success"]),
+      onSuccess: () => {
+        alert.success(COPY["panels.detail.save.success"]);
+        queryToGetWidgets.refetch();
+      },
       onError: (err) => alert.error(err.message),
     });
   };
@@ -231,6 +236,7 @@ const useActions = () => {
     widgetFormParams,
     isLoading,
     layout,
+    isPanelChanged,
   };
 };
 

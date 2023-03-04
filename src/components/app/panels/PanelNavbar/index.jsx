@@ -24,6 +24,7 @@ export function PanelNavbar({
   saveChanges,
   openWidgetMenu,
   isLoading,
+  isPanelChanged,
 }) {
   const { isLargeScreen } = useDimensions();
   const { user } = useAuth();
@@ -32,6 +33,8 @@ export function PanelNavbar({
   const panelSettingsPath = `/panels/${_id}/settings`;
 
   const currentUserIsAdmin = isAdminUser(user);
+
+  const disableSaveBtn = isLoading || !isPanelChanged;
 
   return (
     <Row className="justify-between items-center">
@@ -62,6 +65,7 @@ export function PanelNavbar({
                 variant="outline-primary"
                 onClick={saveChanges}
                 startIcon={<IconSave />}
+                disabled={disableSaveBtn}
               >
                 {COPY["panelNavbar.saveChanges"]}
               </Button>
@@ -94,7 +98,11 @@ export function PanelNavbar({
                     {COPY["panelNavbar.addWidget"]}
                   </MenuOption>
 
-                  <MenuOption startIcon={<IconSave />} close={close}>
+                  <MenuOption
+                    startIcon={<IconSave />}
+                    close={close}
+                    disabled={disableSaveBtn}
+                  >
                     {COPY["panelNavbar.saveChanges"]}
                   </MenuOption>
                 </>
@@ -118,4 +126,5 @@ PanelNavbar.propTypes = {
   saveChanges: PropTypes.func.isRequired,
   openWidgetMenu: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
+  isPanelChanged: PropTypes.bool.isRequired,
 };
