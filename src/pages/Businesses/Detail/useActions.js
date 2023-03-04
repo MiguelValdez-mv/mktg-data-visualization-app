@@ -104,12 +104,12 @@ const useActions = () => {
       ownerId: ownerInput._id,
       ...rest,
     };
-
     const formData = new FormData();
+
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
 
     businessUpdateMutation.mutate(
-      { id: businessId, formData },
+      { id: businessId, newData: formData },
       {
         onSuccess: () => {
           navigate("/businesses");

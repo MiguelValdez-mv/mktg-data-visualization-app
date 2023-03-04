@@ -45,7 +45,8 @@ View.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isCreatingBusiness: PropTypes.bool.isRequired,
   owners: PROP.USERS,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   handleBusinessCreationFormSubmit: PropTypes.func.isRequired,
 };
 

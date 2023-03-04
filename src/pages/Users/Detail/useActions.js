@@ -40,7 +40,7 @@ const useActions = () => {
     Object.keys(values).forEach((key) => formData.append(key, values[key]));
 
     userUpdateMutation.mutate(
-      { id: userId, formData },
+      { id: userId, newData: formData },
       {
         onSuccess: () => {
           navigate("/users");

@@ -7,12 +7,12 @@ const useActions = () => {
   const alert = useAlert();
 
   const queryToGetUsers = useGetUsers();
-  const deleteUsersMutation = useDeleteUsers();
+  const userDeletionMutation = useDeleteUsers();
 
   const deleteUsers = (users) => {
     const userIds = users.map(({ _id }) => _id);
 
-    deleteUsersMutation.mutate(userIds, {
+    userDeletionMutation.mutate(userIds, {
       onSuccess: () => alert.success(COPY["users.removal.success"]),
       onError: (err) => alert.error(err.message),
     });
@@ -21,7 +21,7 @@ const useActions = () => {
   return {
     isLoading: queryToGetUsers.isLoading,
     users: queryToGetUsers.data,
-    isDeletingUsers: deleteUsersMutation.isLoading,
+    isDeletingUsers: userDeletionMutation.isLoading,
     deleteUsers,
   };
 };

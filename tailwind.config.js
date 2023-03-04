@@ -27,7 +27,7 @@ module.exports = {
         small: defaultTheme.fontSize.sm,
         subtitle: defaultTheme.fontSize.xl,
         title: defaultTheme.fontSize["2xl"],
-        caption: defaultTheme.fontSize["3xl"],
+        caption: defaultTheme.fontSize["4xl"],
       },
       dropShadow: {
         surface: defaultTheme.dropShadow.xl,

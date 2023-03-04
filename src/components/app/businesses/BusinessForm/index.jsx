@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import PropTypes from "prop-types";
 
 import { IconBxErrorCircle } from "@/assets/svgs/IconBxErrorCircle";
-import { ProfileCard } from "@/components/app/ProfileCard";
 import { Form } from "@/components/atoms/Form";
 import { Link } from "@/components/atoms/Link";
 import { Text } from "@/components/atoms/Text";
@@ -16,6 +15,7 @@ import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Modal } from "@/components/layout/Modal";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { BUSINESS_TYPES, FORM_SCHEMES, PROP, USER_ROLES } from "@/constants";
 import { COPY } from "@/copy";
 
@@ -74,13 +74,13 @@ export function BusinessForm({
             disabled={disabledForm}
           >
             {(close) =>
-              Object.values(BUSINESS_TYPES).map((opt) => (
+              Object.values(BUSINESS_TYPES).map((type) => (
                 <MenuOption
-                  key={opt}
-                  onClick={() => setFieldValue("type", opt)}
+                  key={type}
+                  onClick={() => setFieldValue("type", type)}
                   close={close}
                 >
-                  {COPY[`businessForm.type.${opt.toLowerCase()}`]}
+                  {COPY[`businessForm.type.${type.toLowerCase()}`]}
                 </MenuOption>
               ))
             }
@@ -191,7 +191,8 @@ export function BusinessForm({
 
 BusinessForm.propTypes = {
   action: PropTypes.oneOf(["create", "update"]),
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   owners: PROP.USERS,
   isLoading: PropTypes.bool,

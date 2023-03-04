@@ -22,8 +22,8 @@ export const COPY = {
   "connections.title": "Conexiones",
   "connections.removal.success": "Eliminación realizada exitosamente",
   "connections.creation.title": "Añadir Conexión",
-  "connections.creation.googleAnalytics": "Google Analytics 4",
-  "connections.creation.facebookAds": "Facebook Ads",
+  "connections.creation.google_analytics": "Google Analytics 4",
+  "connections.creation.facebook_ads": "Facebook Ads",
   "connections.creation.success": "Conexión creada exitosamente",
 
   "businesses.title": "Negocios",
@@ -37,14 +37,27 @@ export const COPY = {
   "businesses.detail.employees": "Empleados",
   "businesses.detail.addEmployee.modal.title": "Selecciona un empleado",
   "businesses.detail.addEmployee.modal.noEmployees":
-    "No hay empleados disponibles en este momento...",
+    "No hay empleados disponibles en este momento",
   "businesses.detail.employeeAddition.success": "Empleado añadido exitosamente",
   "businesses.detail.employeeDeletion.success":
     "Eliminación realizada exitosamente",
 
   "panels.title": "Paneles",
+  "panels.removal.success": "Eliminación realizada exitosamente",
   "panels.creation.title": "Añadir Panel",
   "panels.creation.success": "Panel añadido exitosamente",
+  "panels.detail.title": "Detalle de Panel",
+  "widgetList.noWidgets": "Aún no hay widgets en este panel",
+  "panels.detail.widget.create.success": "Widget añadido exitosamente",
+  "panels.detail.widget.update.success": "Widget actualizado exitosamente",
+  "panels.detail.widget.delete.success": "Eliminación realizada exitosamente",
+  "panels.detail.save.success": "Panel guardado exitosamente",
+  "panelNavbar.settings": "Ajustes",
+  "panelNavbar.saveChanges": "Guardar",
+  "panelNavbar.addWidget": "Añadir Widget",
+  "panels.settings.title": "Ajustes de Panel",
+  "panels.settings.panelRegistrationDate": "Fecha de registro",
+  "panels.settings.update.success": "Panel actualizado exitosamente",
 
   "sidebar.logout": "Cerrar sesión",
 
@@ -93,7 +106,7 @@ export const COPY = {
   "businessForm.owner": "Propietario",
   "businessForm.owner.modal.title": "Selecciona un propietario",
   "businessForm.owner.noOwners": "Actualmente no hay propietarios registrados",
-  "businessForm.owner.addOwner": "Agregar Propietario",
+  "businessForm.owner.addOwner": "Añadir Propietario",
   "businessForm.avatar": "Avatar",
   "businessForm.owner.change": "Cambiar",
   "businessForm.add": "Añadir",
@@ -105,13 +118,92 @@ export const COPY = {
   "panelForm.business.modal.title": "Selecciona un negocio",
   "panelForm.business.change": "Cambiar",
   "panelForm.business.noBusinesses": "Actualmente no hay negocios registrados",
-  "panelForm.business.addBusiness": "Agregar Negocio",
+  "panelForm.business.addBusiness": "Añadir Negocio",
   "panelForm.add": "Añadir",
   "panelForm.save": "Guardar",
 
   "table.viewDetail": "Ver Detalle",
   "table.delete": "Eliminar",
-  "table.noData": "Sin datos",
+
+  "panelListItem.businessName": (businessName) => `Negocio: ${businessName}`,
+  "panelListItem.viewDetail": "Ver Detalle",
+  "panelListItem.delete": "Eliminar",
+
+  noDataYet: "Sin datos",
+
+  "widgetMenu.selectConnectionType": "Selecciona un tipo de conexión",
+  "widgetMenu.google_analytics": "Google Analytics 4",
+  "widgetMenu.facebook_ads": "Facebook Ads",
+  "widgetMenu.noConnections": "Actualmente no hay conexiones registradas",
+  "widgetMenu.addConnection": "Añadir Conexión",
+
+  "googleAnalyticsWidgetForm.property": "Propiedad",
+  "googleAnalyticsWidgetForm.property.modal.title": "Selecciona una propiedad",
+  "googleAnalyticsWidgetForm.metric": "Métrica",
+  "googleAnalyticsWidgetForm.metric.modal.title": "Selecciona una métrica",
+  "googleAnalyticsWidgetForm.chartType": "Tipo de gráfico",
+  "googleAnalyticsWidgetForm.chartType.modal.title":
+    "Selecciona un tipo de gráfico",
+  "googleAnalyticsWidgetForm.timespan": "Periodo de tiempo",
+  "googleAnalyticsWidgetForm.timespan.modal.title":
+    "Selecciona un periodo de tiempo",
+  "googleAnalyticsWidgetForm.dimension": "Dimensión",
+  "googleAnalyticsWidgetForm.dimension.modal.title": "Selecciona una dimensión",
+  "googleAnalyticsWidgetForm.title": "Título",
+  "googleAnalyticsWidgetForm.add": "Añadir",
+  "googleAnalyticsWidgetForm.save": "Guardar",
+
+  "facebookAdsWidgetForm.adAccount": "Cuenta publicitaria",
+  "facebookAdsWidgetForm.adAccount.modal.title":
+    "Selecciona una cuenta publicitaria",
+  "facebookAdsWidgetForm.metric": "Métrica",
+  "facebookAdsWidgetForm.metric.modal.title": "Selecciona una métrica",
+  "facebookAdsWidgetForm.chartType": "Tipo de gráfico",
+  "facebookAdsWidgetForm.chartType.modal.title":
+    "Selecciona un tipo de gráfico",
+  "facebookAdsWidgetForm.timespan": "Periodo de tiempo",
+  "facebookAdsWidgetForm.timespan.modal.title":
+    "Selecciona un periodo de tiempo",
+  "facebookAdsWidgetForm.dimension": "Dimensión",
+  "facebookAdsWidgetForm.dimension.modal.title": "Selecciona una dimensión",
+  "facebookAdsWidgetForm.title": "Título",
+  "facebookAdsWidgetForm.add": "Añadir",
+  "facebookAdsWidgetForm.save": "Guardar",
+
+  "timespans.past7Days": "Últimos 7 días",
+  "timespans.past14Days": "Últimos 14 días",
+  "timespans.past28Days": "Últimos 28 días",
+  "timespans.past30Days": "Últimos 30 días",
+  "timespans.past90Days": "Últimos 90 días",
+  "timespans.thisWeek": "Esta semana",
+  "timespans.thisMonth": "Este mes",
+  "timespans.thisYear": "Este año",
+
+  "charts.number": "Número",
+  "charts.line": "Línea",
+  "charts.bar": "Barras",
+  "charts.area": "Área",
+
+  "filterInput.filter": "Filtro",
+
+  "filterForm.field.modal.title": "Selecciona un campo",
+  "filterForm.operator.modal.title": "Selecciona un operador",
+  "filterForm.operator.equal": "Igual a",
+  "filterForm.operator.not_equal": "No es igual a",
+  "filterForm.operator.starts_with": "Empieza por",
+  "filterForm.operator.ends_with": "Termina por",
+  "filterForm.operator.contain": "Contiene",
+  "filterForm.operator.not_contain": "No contiene",
+  "filterForm.operand": "Expresión",
+  "filterForm.add": "Añadir",
+  "filterForm.save": "Guardar",
+
+  "widget.edit": "Editar",
+  "widget.delete": "Eliminar",
+  "widget.anErrorHasOcurred": "¡Ha ocurrido un error!",
+  "widget.noData": "Sin datos",
+
+  "widgetChart.veryLimitedSpace": "Espacio muy reducido",
 
   "errors.requiredField": "Campo requerido",
   "errors.invalidEmail": "Correo electrónico no válido",

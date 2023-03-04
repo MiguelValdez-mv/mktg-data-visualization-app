@@ -25,6 +25,7 @@ const BusinessDetail = LazyPage(
 const Panels = LazyPage(lazy(() => import("@/pages/Panels")));
 const CreatePanel = LazyPage(lazy(() => import("@/pages/Panels/Create")));
 const PanelDetail = LazyPage(lazy(() => import("@/pages/Panels/Detail")));
+const PanelSettings = LazyPage(lazy(() => import("@/pages/Panels/Settings")));
 const NotFound = LazyPage(lazy(() => import("@/pages/NotFound")));
 
 export function AppRouter() {
@@ -122,6 +123,14 @@ export function AppRouter() {
         element={
           <RequireAuth>
             <PanelDetail />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="panels/:panelId/settings"
+        element={
+          <RequireAuth>
+            <PanelSettings />
           </RequireAuth>
         }
       />

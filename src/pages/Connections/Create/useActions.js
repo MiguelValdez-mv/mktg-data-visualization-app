@@ -34,7 +34,7 @@ const useActions = () => {
         mutate({ type: CONNECTION_TYPES.FACEBOOK_ADS, accessToken });
       },
       {
-        scope: ["ads_management", "ads_read"].join(","),
+        scope: ["ads_management", "ads_read", "read_insights"].join(","),
       }
     );
   };

@@ -4,8 +4,12 @@ import { Box } from "@/components/atoms/Box";
 import { PROP } from "@/constants";
 import { twMerge } from "@/utils/twMerge";
 
-export function Col({ className, children }) {
-  return <Box className={twMerge("flex flex-col", className)}>{children}</Box>;
+export function Col({ className, children, ...rest }) {
+  return (
+    <Box className={twMerge("flex flex-col", className)} {...rest}>
+      {children}
+    </Box>
+  );
 }
 
 Col.propTypes = {

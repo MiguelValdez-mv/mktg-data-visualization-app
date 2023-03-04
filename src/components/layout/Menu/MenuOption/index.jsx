@@ -5,7 +5,7 @@ import { PROP } from "@/constants";
 
 export function MenuOption({ onClick, close, children, ...rest }) {
   const handleClickMenuOpt = () => {
-    onClick();
+    onClick?.();
     close?.();
   };
 
@@ -22,7 +22,7 @@ export function MenuOption({ onClick, close, children, ...rest }) {
 }
 
 MenuOption.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   close: PropTypes.func,
   children: PROP.CHILDREN.isRequired,
 };

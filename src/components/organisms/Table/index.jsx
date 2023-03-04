@@ -1,11 +1,9 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, react/forbid-prop-types */
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
 import { useTable, useGlobalFilter, useRowSelect } from "react-table";
 
-import { IconDocumentList } from "@/assets/svgs/IconDocumentList";
 import { IconMenuRight } from "@/assets/svgs/IconMenuRight";
-import { SearchBar } from "@/components/app/SearchBar";
 import { Divider } from "@/components/atoms/Divider";
 import { Spinner } from "@/components/atoms/Spinner";
 import { TableCell as Cell } from "@/components/atoms/TableCell";
@@ -13,11 +11,13 @@ import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
 import { IconButton } from "@/components/atoms/buttons/IconButton";
 import { Checkbox } from "@/components/atoms/inputs/Checkbox";
+import { SearchBar } from "@/components/atoms/inputs/SearchBar";
 import { Col } from "@/components/layout/Col";
 import { Menu } from "@/components/layout/Menu";
 import { MenuOption } from "@/components/layout/Menu/MenuOption";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { NoDataYet } from "@/components/molecules/NoDataYet";
 import { COPY } from "@/copy";
 import { useDimensions } from "@/hooks/useDimensions";
 
@@ -200,20 +200,15 @@ export function Table({
           </table>
         </Col>
       ) : (
-        <Col className="items-center">
-          <IconDocumentList className="text-muted w-24 h-24" />
-          <Spacing bottom={1} />
-
-          <Text bold>{COPY["table.noData"]}</Text>
-        </Col>
+        <NoDataYet />
       )}
     </Col>
   );
 }
 
 Table.propTypes = {
-  data: PropTypes.array.isRequired, // eslint-disable-line
-  columns: PropTypes.array.isRequired, // eslint-disable-line
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
   selectRows: PropTypes.bool,
   allowedRowActions: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,

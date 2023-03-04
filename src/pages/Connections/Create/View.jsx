@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
-import { GoogleAnalyticsLogo } from "@/assets/svgs/GoogleAnalyticsLogo";
-import { IconSquareFacebook } from "@/assets/svgs/IconSquareFacebook";
+import { ConnectionIcon } from "@/components/app/connections/ConnectionIcon";
 import { Spinner } from "@/components/atoms/Spinner";
 import { Text } from "@/components/atoms/Text";
 import { Button } from "@/components/atoms/buttons/Button";
@@ -11,6 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { Page } from "@/components/layout/Page";
 import { Row } from "@/components/layout/Row";
 import { Spacing } from "@/components/layout/Spacing";
+import { CONNECTION_TYPES } from "@/constants";
 import { COPY } from "@/copy";
 
 function View({ isLoading, authenticateWithGoogle, authenticateWithFacebook }) {
@@ -37,19 +37,21 @@ function View({ isLoading, authenticateWithGoogle, authenticateWithFacebook }) {
           <Button
             className="p-4"
             variant="surface"
-            startIcon={<GoogleAnalyticsLogo />}
+            startIcon={
+              <ConnectionIcon type={CONNECTION_TYPES.GOOGLE_ANALYTICS} />
+            }
             onClick={authenticateWithGoogle}
           >
-            {COPY["connections.creation.googleAnalytics"]}
+            {COPY["connections.creation.google_analytics"]}
           </Button>
 
           <Button
             className="p-4"
             variant="surface"
-            startIcon={<IconSquareFacebook className="text-primary" />}
+            startIcon={<ConnectionIcon type={CONNECTION_TYPES.FACEBOOK_ADS} />}
             onClick={authenticateWithFacebook}
           >
-            {COPY["connections.creation.facebookAds"]}
+            {COPY["connections.creation.facebook_ads"]}
           </Button>
         </GridContainer>
       </Content>

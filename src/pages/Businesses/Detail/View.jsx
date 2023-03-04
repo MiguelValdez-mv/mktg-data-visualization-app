@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 import { IconAdd } from "@/assets/svgs/IconAdd";
-import { ProfileCard } from "@/components/app/ProfileCard";
 import { BusinessForm } from "@/components/app/businesses/BusinessForm";
 import { EmployeeList } from "@/components/app/users/EmployeeList";
 import { Text } from "@/components/atoms/Text";
@@ -13,6 +12,7 @@ import { Modal } from "@/components/layout/Modal";
 import { Page } from "@/components/layout/Page";
 import { Spacing } from "@/components/layout/Spacing";
 import { Surface } from "@/components/layout/Surface";
+import { ProfileCard } from "@/components/molecules/ProfileCard";
 import { PROP } from "@/constants";
 import { COPY } from "@/copy";
 
@@ -125,7 +125,8 @@ View.propTypes = {
   isDeletingEmployees: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   businessRegistrationDate: PropTypes.string.isRequired,
-  initialValues: PropTypes.object.isRequired, // eslint-disable-line
+  // eslint-disable-next-line react/forbid-prop-types
+  initialValues: PropTypes.object.isRequired,
   businessEmployeeListActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleBusinessUpdateFormSubmit: PropTypes.func.isRequired,
   addEmployeeToBusiness: PropTypes.func.isRequired,
