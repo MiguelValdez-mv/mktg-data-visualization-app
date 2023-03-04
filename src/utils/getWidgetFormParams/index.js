@@ -3,6 +3,12 @@ import { CHARTS, TIMESPANS } from "@/constants";
 import { isDimensionRequired } from "../isDimensionRequired";
 
 const getInitialValues = ({ selectors, metrics, dimensions, currWidget }) => {
+  const [defaultSelector] = selectors;
+  const [defaultMetric] = metrics;
+  const [defaultChart] = CHARTS;
+  const [defaultDimension] = dimensions;
+  const [defaultTimespan] = TIMESPANS;
+
   if (currWidget) {
     const {
       selector,
@@ -20,7 +26,7 @@ const getInitialValues = ({ selectors, metrics, dimensions, currWidget }) => {
       chart: CHARTS.find((c) => c.type === chartType),
       dimension: dimensionName
         ? dimensions.find((d) => d.name === dimensionName)
-        : "",
+        : defaultDimension,
       timespan: TIMESPANS.find(
         (t) => t.amount === timespan.amount && t.unit === timespan.unit
       ),
@@ -32,12 +38,6 @@ const getInitialValues = ({ selectors, metrics, dimensions, currWidget }) => {
       })),
     };
   }
-
-  const [defaultSelector] = selectors;
-  const [defaultMetric] = metrics;
-  const [defaultChart] = CHARTS;
-  const [defaultDimension] = dimensions;
-  const [defaultTimespan] = TIMESPANS;
 
   return {
     selector: defaultSelector,
