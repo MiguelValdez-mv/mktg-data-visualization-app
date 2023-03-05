@@ -121,6 +121,7 @@ const useActions = () => {
     widgetManagementMutation.mutate(params, {
       onSuccess: () => {
         alert.success(COPY["panels.detail.save.success"]);
+        setRemovedWidgets([]);
         queryToGetWidgets.refetch();
       },
       onError: (err) => alert.error(err.message),
