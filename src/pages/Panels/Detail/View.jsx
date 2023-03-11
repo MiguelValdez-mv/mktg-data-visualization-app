@@ -16,6 +16,7 @@ function View({
   currConnectionType,
   setCurrConnectionType,
   panel,
+  connectionsMetadata,
   isCreatingReport,
   isSavingChanges,
   toggleWidgetMenu,
@@ -57,6 +58,7 @@ function View({
           onLayoutChange={onLayoutChange}
           onClickEditOpt={onClickEditWidgetOpt}
           onClickDeleteOpt={onClickDeleteWidgetOpt}
+          connectionsMetadata={connectionsMetadata}
         />
       </Content>
     </Page>
@@ -69,6 +71,8 @@ View.propTypes = {
   currConnectionType: PropTypes.string,
   setCurrConnectionType: PropTypes.func.isRequired,
   panel: PROP.PANEL,
+  // eslint-disable-next-line react/forbid-prop-types
+  connectionsMetadata: PropTypes.object,
   isCreatingReport: PropTypes.bool.isRequired,
   isSavingChanges: PropTypes.bool.isRequired,
   toggleWidgetMenu: PropTypes.func.isRequired,

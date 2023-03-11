@@ -227,6 +227,7 @@ const useActions = () => {
     currConnectionType,
     setCurrConnectionType,
     panel: queryToGetPanelDetail.data,
+    connectionsMetadata,
     isCreatingReport: reportCreationMutation.isLoading,
     isSavingChanges: widgetManagementMutation.isLoading,
     toggleWidgetMenu,

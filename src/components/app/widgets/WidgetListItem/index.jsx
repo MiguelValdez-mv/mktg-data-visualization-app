@@ -28,6 +28,7 @@ export const WidgetListItem = forwardRef(
       onClickDeleteOpt,
       children = null,
       isLargeScreen,
+      connectionsMetadata,
       ...rest
     },
     ref
@@ -39,7 +40,7 @@ export const WidgetListItem = forwardRef(
       metricName,
       chartType,
       dimensionName,
-      report: { rows, error },
+      report: { type, rows, error },
     } = widget;
 
     let content = null;
@@ -68,6 +69,10 @@ export const WidgetListItem = forwardRef(
       );
     }
 
+    const dimensionMetadata = connectionsMetadata[type].dimensions.find(
+      (d) => d.name === dimensionName
+    );
+
     return (
       <div
         ref={ref}
@@ -79,7 +84,12 @@ export const WidgetListItem = forwardRef(
           <Row className="justify-between items-center">
             {title && (
               <Text bold truncate>
-                {title}
+                {title}{" "}
+                {dimensionMetadata && (
+                  <Text muted tiny>
+                    ({dimensionMetadata.copy.spanish})
+                  </Text>
+                )}
               </Text>
             )}
 
@@ -129,4 +139,6 @@ WidgetListItem.propTypes = {
   onClickDeleteOpt: PropTypes.func.isRequired,
   children: PROP.CHILDREN,
   isLargeScreen: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  connectionsMetadata: PropTypes.object,
 };

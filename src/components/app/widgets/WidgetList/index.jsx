@@ -18,6 +18,7 @@ export function WidgetList({
   onLayoutChange,
   onClickEditOpt,
   onClickDeleteOpt,
+  connectionsMetadata,
 }) {
   const { isLargeScreen } = useDimensions({ breakpoint: BREAKPOINTS.SMALL });
 
@@ -39,6 +40,7 @@ export function WidgetList({
       onClickEditOpt={() => onClickEditOpt(idx)}
       onClickDeleteOpt={() => onClickDeleteOpt(idx)}
       isLargeScreen={isLargeScreen}
+      connectionsMetadata={connectionsMetadata}
     />
   ));
 
@@ -63,4 +65,6 @@ WidgetList.propTypes = {
   onLayoutChange: PropTypes.func.isRequired,
   onClickEditOpt: PropTypes.func.isRequired,
   onClickDeleteOpt: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  connectionsMetadata: PropTypes.object,
 };
