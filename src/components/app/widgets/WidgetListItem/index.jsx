@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 
 import { HorizontalMenuIcon } from "@/assets/svgs/HorizontalMenuIcon";
 import { Text } from "@/components/atoms/Text";
@@ -43,6 +43,14 @@ export const WidgetListItem = forwardRef(
       report: { type, rows, error },
     } = widget;
 
+    const dimensionMetadata = useMemo(
+      () =>
+        connectionsMetadata[type].dimensions.find(
+          (d) => d.name === dimensionName
+        ),
+      [dimensionName]
+    );
+
     let content = null;
     if (rows.length) {
       const data = shortenArrayByMaxLength(rows).map((row) => ({
@@ -54,11 +62,11 @@ export const WidgetListItem = forwardRef(
         <WidgetChart
           type={chartType}
           data={data}
+          isLargeScreen={isLargeScreen}
           {...(style && {
             width: parseInt(style.width, 10) - 60,
             height: parseInt(style.height, 10) - 60,
           })}
-          isLargeScreen={isLargeScreen}
         />
       );
     } else {
@@ -68,10 +76,6 @@ export const WidgetListItem = forwardRef(
         </Text>
       );
     }
-
-    const dimensionMetadata = connectionsMetadata[type].dimensions.find(
-      (d) => d.name === dimensionName
-    );
 
     return (
       <div

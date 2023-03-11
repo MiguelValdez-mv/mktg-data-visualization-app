@@ -22,7 +22,7 @@ export function WidgetForm({
       case CONNECTION_TYPES.FACEBOOK_ADS:
         return FacebookAdsWidgetForm;
       default:
-        return null;
+        throw new Error("Invalid connection type");
     }
   })();
 

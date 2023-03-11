@@ -11,7 +11,7 @@ export function ConnectionIcon({ type }) {
     case CONNECTION_TYPES.FACEBOOK_ADS:
       return <IconSquareFacebook className="text-primary" />;
     default:
-      return null;
+      throw new Error("Invalid connection type");
   }
 }
 

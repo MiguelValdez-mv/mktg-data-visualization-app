@@ -183,6 +183,7 @@ export const COPY = {
   "charts.line": "Línea",
   "charts.bar": "Barras",
   "charts.area": "Área",
+  "charts.table": "Tabla",
 
   "filterInput.filter": "Filtro",
 

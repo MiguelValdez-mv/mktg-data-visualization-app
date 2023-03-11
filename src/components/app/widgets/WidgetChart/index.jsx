@@ -12,8 +12,9 @@ import { AreaChart } from "./AreaChart";
 import { BarChart } from "./BarChart";
 import { LineChart } from "./LineChart";
 import { NumberChart } from "./NumberChart";
+import { TableChart } from "./TableChart";
 
-export function WidgetChart({ type, isLargeScreen, ...rest }) {
+export function WidgetChart({ type, ...rest }) {
   if (rest?.width < 100) {
     return (
       <Col className="flex-1 justify-center items-center">
@@ -37,12 +38,14 @@ export function WidgetChart({ type, isLargeScreen, ...rest }) {
         return BarChart;
       case "AREA":
         return AreaChart;
+      case "TABLE":
+        return TableChart;
       default:
-        return null;
+        throw new Error("Invalid chart type");
     }
   })();
 
-  if (isLargeScreen) {
+  if (rest.isLargeScreen) {
     return <Chart {...rest} />;
   }
 
